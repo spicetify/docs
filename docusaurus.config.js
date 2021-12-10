@@ -45,7 +45,7 @@ const config = {
         title: 'Spicetify',
         logo: {
           alt: 'Spicetify Logo',
-          src: 'img/logo100.png',
+          src: 'img/spicetify.png',
         },
         items: [
           {
