@@ -9,3 +9,34 @@
   height: 200px;
   width: 200px;
 }
+
+.content {
+  -webkit-animation: fadein 3s;
+  -moz-animation: fadein 3s;
+  -ms-animation: fadein 3s;
+  -o-animation: fadein 3s;
+  animation: fadein 3s;
+  background: rgba(49,54,59,0.8);
+  *zoom: 1;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  75% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
