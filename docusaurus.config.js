@@ -69,24 +69,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Installation',
+                label: 'Getting Started',
                 to: '/docs/getting-started/installation',
               },
               {
-                label: 'Basic Usage',
-                to: '/docs/basic-usage',
+                label: 'Development',
+                to: '/docs/development/compiling',
               },
               {
-                label: 'Themes',
-                to: '/docs/themes',
-              },
-              {
-                label: 'Extensions',
-                to: '/docs/extensions',
-              },
-              {
-                label: 'Custom Apps',
-                to: '/docs/custom-apps',
+                label: 'FAQ',
+                to: '/docs/faq',
               },
             ],
           },
