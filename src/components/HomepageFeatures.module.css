@@ -9,3 +9,44 @@
   height: 200px;
   width: 200px;
 }
+
+html[data-theme='dark'] .features {
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
+  background: rgba(49,54,59,0.8);
+  *zoom: 1;
+}
+
+html[data-theme='light'] .features {
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
+  animation: fadein 2s;
+  background: rgb(255, 255, 255);
+  *zoom: 1;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  75% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

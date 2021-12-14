@@ -12,7 +12,7 @@ const FeatureList = [
   {
     title: 'Extensions',
     Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
-    description: <>Small bonus little features that can be sprikled across Spotify.</>,
+    description: <>Small bonus little features that can be sprinkled across Spotify.</>,
   },
   {
     title: 'Custom Apps',
