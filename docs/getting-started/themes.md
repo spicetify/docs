@@ -11,3 +11,4 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 
 1. [morpheusthewhite/spicetify-themes](https://github.com/morpheusthewhite/spicetify-themes)
 2. [NYRI4/Comfy-spicetify](https://github.com/NYRI4/Comfy-spicetify)
+3. Insert your theme here!
