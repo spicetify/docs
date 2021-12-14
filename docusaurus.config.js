@@ -50,7 +50,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'getting-started/installation',
             position: 'left',
             label: 'Docs',
           },
@@ -69,8 +69,24 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Installation',
+                to: '/docs/getting-started/installation',
+              },
+              {
+                label: 'Basic Usage',
+                to: '/docs/basic-usage',
+              },
+              {
+                label: 'Themes',
+                to: '/docs/themes',
+              },
+              {
+                label: 'Extensions',
+                to: '/docs/extensions',
+              },
+              {
+                label: 'Custom Apps',
+                to: '/docs/custom-apps',
               },
             ],
           },
@@ -78,16 +94,20 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Community Themes',
+                href: 'https://github.com/morpheusthewhite/spicetify-themes/tree/master',
+              },
+              {
+                label: 'GitHub Discussions',
+                href: 'https://github.com/khanhas/spicetify-cli/discussions',
               },
               {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/VnevqPp2Rr',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Reddit',
+                href: 'https://www.reddit.com/r/spicetify',
               },
             ],
           },
@@ -100,7 +120,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/khanhas/spicetify-cli',
               },
             ],
           },
