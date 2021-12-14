@@ -2,6 +2,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
@@ -27,6 +28,13 @@ function HomepageHeader() {
 export default function Home() {
   return (
     <Layout description="Powerful CLI tool to take control of the Spotify client.">
+      <Head>
+        <script
+          defer
+          data-domain-id="7bf4e4217ca9f5fa8bc3d53d183b9192a91d81f2"
+          src="https://fairdatacenter.de/cdn/fair.js"
+        ></script>
+      </Head>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
