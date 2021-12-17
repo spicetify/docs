@@ -18,7 +18,7 @@ After any Spotify update, always run `spicetify backup apply`.
 Optionally, make Spotify shortcut to run `spicetify auto` (instead of direct path to spotify executable), so that Spicetify can backup and apply, when it needs to, then launch Spotify automatically.
 
 ## I cant play some songs after downgrading spotify 
-Delete all files in `%LOCALAPPDATA%\Spotify` and open spotify again
+Delete all files in `%LOCALAPPDATA%\Spotify` and launch spotify again
 
 ## Sometimes **Popup Lyrics** and/or **Lyrics Plus** seem to not work
 
