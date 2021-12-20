@@ -41,6 +41,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
+      image: 'img/spicetify-full.png',
       navbar: {
         title: 'Spicetify',
         logo: {
