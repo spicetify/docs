@@ -125,6 +125,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      algolia: {
+        appId: '8V2X4EIOO7',
+        apiKey: '141f58693466be94be91fe6da510e5d9',
+        indexName: 'spicetify',
+      },
     }),
 };
 
