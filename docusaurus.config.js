@@ -41,6 +41,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
+      image: 'img/spicetify-full.png',
       navbar: {
         title: 'Spicetify',
         logo: {
@@ -122,6 +124,11 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      algolia: {
+        appId: '8V2X4EIOO7',
+        apiKey: '141f58693466be94be91fe6da510e5d9',
+        indexName: 'spicetify',
       },
     }),
 };
