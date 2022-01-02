@@ -4,7 +4,6 @@ title: Your first extension
 authors: [CharlieS1103]
 tags: [spicetify, documentation, community, development]
 ---
-
 ## So you want to make an extension....
 
 ### First step:
