@@ -15,7 +15,7 @@ Ensure that you have a text editor or IDE at the ready.
 
 
 ### Second step:
-First, run spicetify config-dir, this should open up file explorer or finder(dependent on your OS), next, open the "Extensions folder" and create a file title extension.js, or whichever title you choose(For this tutorial we will be using extension.js). Open up this file, and input the following code:
+First, run spicetify config-dir, this should open up file explorer or finder(dependent on your OS), next, open the "Extensions folder" and create a file titled extension.js, or whichever title you choose(For this tutorial we will be using extension.js). Open this file, and input the following code:
 ```js
 // The async modifier allows for the user of await, which converts a promise into an object, when not using await, async is not necessary.
 (async function extension() {
