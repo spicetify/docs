@@ -1,7 +1,7 @@
 ---
 slug: your-first-extension
 title: Your first extension
-authors: [CharlieS1103]
+authors: [charlies1103]
 tags: [spicetify, documentation, community, development]
 ---
 ## So you want to make an extension....
