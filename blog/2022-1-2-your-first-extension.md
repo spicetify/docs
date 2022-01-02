@@ -30,7 +30,7 @@ Next, run ``spicetify config extensions extension.js``, and follow with ``spicet
 Open up the Spotify console, which can be done via right clicking anywhere on the page, however, there are some places that Spotify overrides this right click; if that is the case, right click somewhere else. Then, click ``Inspect Element``, and open the console tab in the window that just popped up. You should see your new "Hello World" displayed!
 
 ### Third Step:
-Let's finish up this blog post by creating an user greet that welcomes the user on load. For that, you can paste the following code segment in place of the ``console.log("Hello world!") ``statement:
+Let's finish up this blog post by creating a message that welcomes the user on load. For that, you can paste the following code segment in place of the ``console.log("Hello world!") ``statement:
 ```js
 const user = await Spicetify.Platform.UserAPI.getUser();
 Spicetify.showNotification(`Hello ` + user.displayName)
