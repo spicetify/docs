@@ -138,6 +138,8 @@ For Rainmeter users, establish connection with WebNowPlaying plugin to send trac
 If you just want WebNowPlaying without changing UI color, CSS, run this:
 ```powershell
 spicetify config inject_css 0 replace_colors 0
+spicetify config extensions webnowplaying.js
+spicetify apply
 ```
 
 ## Legacy Extensions
