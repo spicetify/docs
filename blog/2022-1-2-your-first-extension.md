@@ -1,6 +1,6 @@
 ---
 slug: your-first-extension
-title: Your first extension
+title: Your First Extension
 authors: [charlies1103]
 tags: [spicetify, documentation, community, development]
 ---
@@ -35,4 +35,3 @@ Let's finish up this blog post by creating a message that welcomes the user on l
 const user = await Spicetify.Platform.UserAPI.getUser();
 Spicetify.showNotification(`Hello ` + user.displayName)
 ```
-![](../static/img/spicetify-full.png)
