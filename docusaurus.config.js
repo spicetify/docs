@@ -113,7 +113,11 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
+                label: 'GitHub - Docs',
+                href: 'https://github.com/afonsojramos/spicetify-docs',
+              },
+              {
+                label: 'GitHub - CLI',
                 href: 'https://github.com/khanhas/spicetify-cli',
               },
             ],
