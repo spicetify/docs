@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -33,7 +33,7 @@ export default function Home() {
           defer
           data-domain-id="7bf4e4217ca9f5fa8bc3d53d183b9192a91d81f2"
           src="https://fairdatacenter.de/cdn/fair.js"
-        ></script>
+        />
       </Head>
       <HomepageHeader />
       <main>
