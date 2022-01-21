@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ## Windows
 
-This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the **Spicetify Marketplace** that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_ and _snippets_.
+This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the [**Spicetify Marketplace**](https://github.com/CharlieS1103/spicetify-marketplace) that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_ and _snippets_.
 
 ### Powershell (pre-built binary)
 
