@@ -1,6 +1,6 @@
 ---
 title: Javascript NPM Modules
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 Since v0.9.8, Spicetify injects extension with file extension `.mjs` as a script with type="module" and automatically symlink `node_modules` folder found in user's Extensions folder to `zlink` app.
