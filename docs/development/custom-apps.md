@@ -141,7 +141,7 @@ Spicetify.Platform.History.push({
 });
 ```
 
-In order to render a different page it is loaded, you can check the `pathname` of the current page. In the main render method in your `index.js`, you can check the `pathname`, and render a different page component for different paths. The main path for your custom app will be the name of the folder (what goes in your `config-xpui.ini`). 
+In order to render a different page it is loaded, you can check the `pathname` of the current page. In the main render method in your `index.js`, you can check the `pathname`, and render a different page component for different paths. The main path for your custom app will be the name of the folder (what goes in your [`config-xpui.ini`](customization#configs)). 
 In this example, if our `pathname` is "/spicetify-marketplace/readme", we load the `ReadmePage` component, otherwise we load our main page component, `Grid`. 
 
 ```js
