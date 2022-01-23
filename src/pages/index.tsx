@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -16,7 +16,7 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/getting-started/installation">
+          <Link className="button button--secondary button--lg" to="/docs/getting-started/simple-installation">
             Install Now!
           </Link>
         </div>
@@ -33,7 +33,7 @@ export default function Home() {
           defer
           data-domain-id="7bf4e4217ca9f5fa8bc3d53d183b9192a91d81f2"
           src="https://fairdatacenter.de/cdn/fair.js"
-        ></script>
+        />
       </Head>
       <HomepageHeader />
       <main>

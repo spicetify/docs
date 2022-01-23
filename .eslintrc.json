@@ -3,7 +3,14 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "plugin:react/jsx-runtime", "standard", "prettier"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,10 +18,11 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": ["error"],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "global-require": "off"
   },
   "settings": {
     "react": {
