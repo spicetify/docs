@@ -52,7 +52,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'getting-started/installation',
+            docId: 'getting-started/simple-installation',
             position: 'left',
             label: 'Docs',
           },
@@ -72,7 +72,7 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/getting-started/installation',
+                to: '/docs/getting-started/simple-installation',
               },
               {
                 label: 'Development',
