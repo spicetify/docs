@@ -19,7 +19,7 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/sp
 
 ### Scoop
 
-Follow this guide: https://github.com/TheRandomLabs/Scoop-Spotify
+Follow this guide: https://github.com/zwxi/Scoop-Spotify
 
 ### Chocolatey
 
