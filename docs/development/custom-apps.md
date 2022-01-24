@@ -3,10 +3,6 @@ title: Custom Apps
 sidebar_position: 4
 ---
 
-- [How to start](#how-to-start)
-- [Manifest file](#manifest-file)
-- [Common questions](#common-questions)
-
 ## How to start
 - Create an `index.js` and a `manifest.json`. 
 - The `index.js` file is the main file for the custom app. 

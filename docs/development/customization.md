@@ -3,9 +3,6 @@ title: Customization
 sidebar_position: 2
 ---
 
-- [Config](#configs)
-- [Theme](#themes)
-
 ## Configs
 Config file is located at:  
 
