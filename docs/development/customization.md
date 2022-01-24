@@ -7,10 +7,10 @@ sidebar_position: 2
 
 Config file is located at:
 
-| Platform            | Path                                  |
-| ------------------- | ------------------------------------- |
-| **Windows**         | `%userprofile%\.spicetify\config.ini` |
-| **Linux**/**MacOS** | `~/.config/spicetify/config.ini`      |
+| Platform            | Path                                       |
+| ------------------- | ------------------------------------------ |
+| **Windows**         | `%userprofile%\.spicetify\config-xpui.ini` |
+| **Linux**/**MacOS** | `~/.config/spicetify/config-xpui.ini`      |
 
 Or simply run
 
