@@ -73,26 +73,6 @@ class Grid extends react.Component {
         react.createElement("div", {
             className: "marketplace-header",
         }, react.createElement("h1", null, this.props.title),
-        // Start of marketplace-header__right
-        react.createElement("div", {
-            className: "marketplace-header__right",
-        },
-        // Show colour scheme dropdown if there is a theme with schemes installed
-        this.state.activeScheme ? react.createElement(SortBox, {
-            onChange: (value) => this.updateColourSchemes(this.state.schemes, value),
-            // TODO: Make this compatible with the changes to the theme install process: need to create a method to update the scheme options without a full reload.
-            sortBoxOptions: generateSchemesOptions(this.state.schemes),
-            // It doesn't work when I directly use CONFIG.theme.activeScheme in the sortBySelectedFn
-            // because it hardcodes the value into the fn
-            sortBySelectedFn: (a) => a.key === this.getActiveScheme(),
-        }) : null,
-        react.createElement("button", {
-            className: "marketplace-settings-button",
-            id: "marketplace-settings-button",
-
-            onClick: openConfig,
-        }, SETTINGS_ICON),
-        // End of marketplace-header__right
         ),
         ), react.createElement("div", {
             id: "marketplace-grid",
@@ -101,14 +81,8 @@ class Grid extends react.Component {
             style: {
                 "--minimumColumnWidth": "180px",
             },
-        }, cardList.map((card) => {
-            // Clone the cards and update the prop to trigger re-render
-            // TODO: is it possible to only re-render the theme cards whose status have changed?
-            const cardElement = react.cloneElement(card, {
-                activeThemeKey: this.state.activeThemeKey,
-            });
-            return cardElement;
-        })), react.createElement("footer", {
+        }, [...cardList]),
+        react.createElement("footer", {
             style: {
                 margin: "auto",
                 textAlign: "center",
@@ -120,6 +94,7 @@ class Grid extends react.Component {
             activeLink: CONFIG.activeTab,
         }));
     }
+}
 ```
 
 ## Common questions: 
