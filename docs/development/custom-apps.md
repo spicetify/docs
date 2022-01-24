@@ -4,7 +4,8 @@ sidebar_position: 4
 ---
 
 ## How to start
-- Create an `index.js` and a `manifest.json`. 
+- Make a new folder for your custom app in your [CustomApps folder](../getting-started/custom-apps). You'll install it like any other custom app. 
+- Create an `index.js` and a `manifest.json` inside that folder. 
 - The `index.js` file is the main file for the custom app. 
 - The manifest includes some important information to make the custom app work. 
 
@@ -112,7 +113,7 @@ Spicetify.Platform.History.push({
 });
 ```
 
-In order to render a different page it is loaded, you can check the `pathname` of the current page. In the main render method in your `index.js`, you can check the `pathname`, and render a different page component for different paths. The main path for your custom app will be the name of the folder (what goes in your [`config-xpui.ini`](customization#configs)). 
+In order to render a different page, you can check the `pathname` of the current page within `index.js`'s main render method, and render a different page component for different paths. The main path for your custom app will be the name of the folder (which is the same that needs to be used in the [`config-xpui.ini`](customization#configs) configuration file). 
 In this example, if our `pathname` is "/spicetify-marketplace/readme", we load the `ReadmePage` component, otherwise we load our main page component, `Grid`. 
 
 ```js
