@@ -1,6 +1,6 @@
 ---
 title: Themes
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 One of the most popular features in Spicetify is theming.
