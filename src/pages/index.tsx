@@ -7,6 +7,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+import heroImg from '@site/static/img/themes-preview.png';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -15,6 +16,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <img src={heroImg} alt="TODO" className={styles.heroImg} />
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/getting-started/simple-installation">
             Install Now!
