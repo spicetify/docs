@@ -1,25 +1,17 @@
 import React from 'react';
-// TODO: there has got to be a better way to grab the images
-import img1 from '@site/static/img/homepage-carousel/1.png';
-import img2 from '@site/static/img/homepage-carousel/2.png';
-import img3 from '@site/static/img/homepage-carousel/3.png';
-import img4 from '@site/static/img/homepage-carousel/4.png';
-import img5 from '@site/static/img/homepage-carousel/5.png';
-import img6 from '@site/static/img/homepage-carousel/6.png';
-import img7 from '@site/static/img/homepage-carousel/7.png';
 import { StackedCarousel, ResponsiveContainer, StackedCarouselSlideProps } from 'react-stacked-center-carousel';
 // import Fab from '@material-ui/core/Fab';
 // import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const data = [
-  { cover: img1, title: 'Preview 1' },
-  { cover: img2, title: 'Preview 2' },
-  { cover: img3, title: 'Preview 3' },
-  { cover: img4, title: 'Preview 4' },
-  { cover: img5, title: 'Preview 5' },
-  { cover: img6, title: 'Preview 6' },
-  { cover: img7, title: 'Preview 7' },
+  { cover: require('@site/static/img/homepage-carousel/1.png').default, title: 'Preview 1' },
+  { cover: require('@site/static/img/homepage-carousel/2.png').default, title: 'Preview 2' },
+  { cover: require('@site/static/img/homepage-carousel/3.png').default, title: 'Preview 3' },
+  { cover: require('@site/static/img/homepage-carousel/4.png').default, title: 'Preview 4' },
+  { cover: require('@site/static/img/homepage-carousel/5.png').default, title: 'Preview 5' },
+  { cover: require('@site/static/img/homepage-carousel/6.png').default, title: 'Preview 6' },
+  { cover: require('@site/static/img/homepage-carousel/7.png').default, title: 'Preview 7' },
 ];
 
 // Very important to memoize your component!!!
