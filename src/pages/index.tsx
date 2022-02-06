@@ -7,7 +7,9 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
-import heroImg from '@site/static/img/themes-preview.png';
+// import heroImg from '@site/static/img/themes-preview.png';
+
+import ResponsiveCarousel from '../components/HomepageCarousel';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -16,7 +18,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <img src={heroImg} alt="Screenshot of Spotify client themed in various colours" className={styles.heroImg} />
+        <ResponsiveCarousel />
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/getting-started/simple-installation">
             Install Now!
