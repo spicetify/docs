@@ -31,10 +31,11 @@ export default () => {
     <Swiper
       // install Swiper modules
       modules={[Navigation, Scrollbar, A11y, EffectCoverflow]}
-      // spaceBetween={-100}
-      spaceBetween={0}
+      spaceBetween={-200}
       slidesPerView={3}
       navigation
+      loop
+      simulateTouch
       // onSwiper={(swiper) => console.log(swiper)}
       centeredSlides={true}
       // onSlideChange={() => console.log('slide change')}
@@ -50,11 +51,11 @@ export default () => {
       }}
       breakpoints={{
         700: {
-          // spaceBetween: -100,
+          spaceBetween: -100,
           slidesPerView: 3,
         },
         500: {
-          // spaceBetween: -50,
+          spaceBetween: -100,
           slidesPerView: 2,
         },
         // 411: {
@@ -62,11 +63,10 @@ export default () => {
         //   slidesPerView: 2,
         // },
         300: {
-          spaceBetween: 0,
+          spaceBetween: -100,
           slidesPerView: 1,
         },
       }}
-      loop
     >
       {slides}
       {/* <SwiperSlide>Slide 1</SwiperSlide>
