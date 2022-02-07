@@ -18,19 +18,8 @@
   justify-content: center;
 }
 
-.heroImg {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: var(--ifm-paragraph-margin-bottom);
-
-}
-
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
-  }
-
-  .heroImg {
-    max-width: 600px;
   }
 }
