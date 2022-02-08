@@ -7,6 +7,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+import SwiperCarousel from '../components/SwiperCarousel';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -15,11 +16,16 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/getting-started/simple-installation">
-            Install Now!
-          </Link>
-        </div>
+      </div>
+
+      <div className={styles.heroCarousel}>
+        <SwiperCarousel />
+      </div>
+
+      <div className={styles.buttons}>
+        <Link className="button button--secondary button--lg" to="/docs/getting-started/simple-installation">
+          Install Now!
+        </Link>
       </div>
     </header>
   );
