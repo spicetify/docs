@@ -1,9 +1,7 @@
 import React from 'react';
-// import Swiper core and required modules
 import { Navigation, Scrollbar, A11y, EffectCoverflow } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
@@ -29,20 +27,17 @@ export default () => {
 
   return (
     <Swiper
-      // install Swiper modules
       modules={[Navigation, Scrollbar, A11y, EffectCoverflow]}
       spaceBetween={-200}
       slidesPerView={3}
       navigation
       loop
       simulateTouch
+      centeredSlides
       // onSwiper={(swiper) => console.log(swiper)}
-      centeredSlides={true}
-      // onSlideChange={() => console.log('slide change')}
+      // onSlideChange={centeredSlide() => console.log('slide change')}
       effect="coverflow"
       coverflowEffect={{
-        // rotate: 20,
-        // stretch: 25,
         rotate: 0,
         stretch: 0,
         depth: 250,
@@ -58,10 +53,6 @@ export default () => {
           spaceBetween: -100,
           slidesPerView: 2,
         },
-        // 411: {
-        //   spaceBetween: -50,
-        //   slidesPerView: 2,
-        // },
         300: {
           spaceBetween: -100,
           slidesPerView: 1,
@@ -69,10 +60,6 @@ export default () => {
       }}
     >
       {slides}
-      {/* <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide> */}
     </Swiper>
   );
 };
