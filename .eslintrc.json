@@ -21,6 +21,7 @@
   "rules": {
     "prettier/prettier": ["error"],
     "react/prop-types": "off",
+    "react/jsx-key": "off",
     "@typescript-eslint/no-var-requires": "off",
     "global-require": "off"
   },
