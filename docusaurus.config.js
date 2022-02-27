@@ -123,7 +123,7 @@ const config = {
               {
                 html: `
                     <a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by Vercel">
-                      <img src="./img/powered-by-vercel.svg" alt="Powered by Vercel" width="180" />
+                      <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" width="180" />
                     </a>
                   `,
               },
