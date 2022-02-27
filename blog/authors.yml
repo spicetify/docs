@@ -1,6 +1,6 @@
 khanhas:
   name: khanhas
-  title: Lead Maintainer of Spicetify
+  title: Creator of Spicetify
   url: https://github.com/khanhas/
   image_url: https://github.com/khanhas.png
 
@@ -9,7 +9,7 @@ afonsojramos:
   title: Maintainer of Spicetify
   url: https://github.com/afonsojramos
   image_url: https://github.com/afonsojramos.png
-  
+
 charlies1103:
   name: Charlie S
   title: Co-Developer of Marketplace & Contributor
