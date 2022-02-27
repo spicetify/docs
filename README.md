@@ -1,25 +1,25 @@
 # Spicetify Docs
 
-This website is built using [Docusaurus 2](https://docusaurus.io/).
+This repository holds the documentation for Spicetify, which can be found [here](https://spicetify.app).
 
-### Installation
+## Contributing
 
-```
-$ yarn
-```
+If you feel like you can contribute, please do so by opening an issue or pull request. We are always open to expand our documentation and add new features.
 
-### Local Development
+## Local Development
+
+We are using yarn to manage our dependencies, as it is Docusaurus's default, as such, you may start by installing dependencies by running `yarn`.
 
 ```
 $ yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The command above starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-### Build
+<hr>
 
-```
-$ yarn build
-```
+This website is built using [Docusaurus 2](https://docusaurus.io/).
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+<a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss">
+    <img src="./static/img/powered-by-vercel.svg" alt="Powered by Vercel">
+</a>
