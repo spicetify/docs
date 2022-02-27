@@ -8,13 +8,13 @@ sidebar_position: 2
 ### Powershell (pre-built binary) - Recommended
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.ps1" | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
 ```
 
 If you have problem with downloading, use this:
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install_curl.ps1" | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install_curl.ps1" | Invoke-Expression
 ```
 
 ### Scoop
@@ -30,7 +30,7 @@ Follow this guide: https://chocolatey.org/packages/spicetify-cli
 ### Shell (pre-built binary) - Recommended
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
 ```
 
 ### Homebrew or LinuxBrew
@@ -129,16 +129,16 @@ If you wish to use old Spotify client v1.1.56 or older, you have to install spic
 **Windows**: In powershell
 
 ```powershell
-$v="1.2.1"; Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.ps1" | Invoke-Expression
+$v="1.2.1"; Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
 ```
 
 **Linux/MacOS:** In bash
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh -o /tmp/install.sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh -o /tmp/install.sh
 sh /tmp/install.sh 1.2.1
 ```
 
-spicetify v1 code is available in branch [`legacy`](https://github.com/khanhas/spicetify-cli/tree/legacy) if you want to build from source.
+spicetify v1 code is available in branch [`legacy`](https://github.com/spicetify/spicetify-cli/tree/legacy) if you want to build from source.
 
 If you want legacy themes, you can find them [here](https://github.com/morpheusthewhite/spicetify-themes/tree/legacy).

@@ -11,7 +11,7 @@ Clone repo and download dependencies:
 
 ```bash
 cd $HOME
-git clone https://github.com/khanhas/spicetify-cli
+git clone https://github.com/spicetify/spicetify-cli
 ```
 
 ### Build

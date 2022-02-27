@@ -30,7 +30,7 @@ Delete all files in the following folder and launch spotify again.
 
 ## Sometimes **Popup Lyrics** and/or **Lyrics Plus** seem to not work
 
-This problem happens in the extension [Popup Lyrics](https://github.com/khanhas/spicetify-cli/wiki/Extensions#pop-up-lyrics) and custom app [Lyrics Plus](https://github.com/khanhas/spicetify-cli/wiki/Custom-Apps#lyrics-plus) mostly because your MusicXMatch token has been flagged for doing too many requests. This can be fixed by just waiting without skipping songs too much, however, if it is still a problem for you, all you need to do is to install the Musixmatch official app, which is also web based app as Spotify.
+This problem happens in the extension [Popup Lyrics](https://github.com/spicetify/spicetify-cli/wiki/Extensions#pop-up-lyrics) and custom app [Lyrics Plus](https://github.com/spicetify/spicetify-cli/wiki/Custom-Apps#lyrics-plus) mostly because your MusicXMatch token has been flagged for doing too many requests. This can be fixed by just waiting without skipping songs too much, however, if it is still a problem for you, all you need to do is to install the Musixmatch official app, which is also web based app as Spotify.
 
 1. **Linux:** https://download-app.musixmatch.com/download  
    **Windows:** install it via Windows Store.

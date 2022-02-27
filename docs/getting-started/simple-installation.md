@@ -5,13 +5,13 @@ sidebar_position: 1
 
 ## Windows
 
-This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the [**Spicetify Marketplace**](https://github.com/CharlieS1103/spicetify-marketplace) that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_ and _snippets_.
+This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the [**Spicetify Marketplace**](https://github.com/spicetify/spicetify-marketplace) that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_ and _snippets_.
 
 ### Powershell (pre-built binary)
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.ps1" | Invoke-Expression
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/CharlieS1103/spicetify-marketplace/master/install.ps1" | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-marketplace/master/install.ps1" | Invoke-Expression
 ```
 
 ## Linux and MacOS
@@ -19,8 +19,8 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/CharlieS11
 ### Shell (pre-built binary)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.sh | sh
-curl -fsSL https://raw.githubusercontent.com/CharlieS1103/spicetify-marketplace/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/install.sh | sh
 ```
 
 <hr/>

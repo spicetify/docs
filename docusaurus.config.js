@@ -58,7 +58,7 @@ const config = {
           },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
-            href: 'https://github.com/khanhas/spicetify-cli',
+            href: 'https://github.com/spicetify/spicetify-cli',
             label: 'GitHub',
             position: 'right',
           },
@@ -93,7 +93,7 @@ const config = {
               },
               {
                 label: 'GitHub Discussions',
-                href: 'https://github.com/khanhas/spicetify-cli/discussions',
+                href: 'https://github.com/spicetify/spicetify-cli/discussions',
               },
               {
                 label: 'Discord',
@@ -118,7 +118,7 @@ const config = {
               },
               {
                 label: 'GitHub - CLI',
-                href: 'https://github.com/khanhas/spicetify-cli',
+                href: 'https://github.com/spicetify/spicetify-cli',
               },
               {
                 html: `
