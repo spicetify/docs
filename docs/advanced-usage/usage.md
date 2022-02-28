@@ -1,6 +1,6 @@
 ---
-title: Basic Usage
-sidebar_position: 3
+title: Usage
+sidebar_position: 2
 ---
 
 Run with no command once to generate config file

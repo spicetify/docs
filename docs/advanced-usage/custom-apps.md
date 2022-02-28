@@ -1,6 +1,6 @@
 ---
 title: Custom Apps
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 Inject custom apps to Spotify and access them in left sidebar.  

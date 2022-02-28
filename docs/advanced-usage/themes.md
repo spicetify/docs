@@ -1,6 +1,6 @@
 ---
 title: Themes
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 One of the most popular features in Spicetify is theming.
@@ -9,6 +9,6 @@ You can customize your Spotify to your <span style={{'color': '#CB1010'}}>**hear
 
 For this reason, the theming heroes of the Spicetify community have created a huge library of themes which can be found in the following repositories:
 
-1. [morpheusthewhite/spicetify-themes](https://github.com/morpheusthewhite/spicetify-themes)
+1. [spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes)
 2. [NYRI4/Comfy-spicetify](https://github.com/NYRI4/Comfy-spicetify)
 3. Insert your theme here!
