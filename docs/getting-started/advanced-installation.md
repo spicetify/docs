@@ -27,8 +27,6 @@ Follow this guide: https://chocolatey.org/packages/spicetify-cli
 scoop install spicetify-cli
 ```
 
-### Note for Windows users
-
 #### Spotify installed from Scoop
 
 - To find the location of your Spotify installation, run `scoop prefix spotify`.
@@ -38,9 +36,9 @@ $ scoop prefix spotify
 C:\Users\<username>\scoop\apps\spotify\current
 ```
 
-After you have located it, set `spotify_path` to that directory in the config file:
+After you have located it, set `spotify_path` to that directory in Spicetify's config file:
 
-![scoop-spotify-path](https://user-images.githubusercontent.com/56180050/157407968-9d55a75a-bcd5-49ec-bbd1-5f315bd3c303.png)
+![scoop-spotify-path](https://user-images.githubusercontent.com/56180050/158084602-99428adf-93bb-4983-968f-14e1f4f5b253.png)
 
 ## Linux and MacOS
 
