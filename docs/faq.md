@@ -9,6 +9,8 @@ sidebar_position: 3
 
   1. There is great chance that you are using Windows Store Spotify. Please double check that in Spotify About page.
   2. If you are actually using Windows Store Spotify, remove it completely. Go to Spotify website to download normal version installer.
+  3. If you are not using the Windows Store Spotify, and are using the one from the Spotify website, check to see if you have a "prefs" file in `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify`. 
+  4. If so, open your `config-xpui.ini` and set `prefs_path` to the absolute path of that prefs file. (e.g. `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify\prefs`) Then try running `spicetify` again. 
 
 - **Linux**
   1. In `bash`, run `cd ~` and `find | grep "spotify/prefs$"`
