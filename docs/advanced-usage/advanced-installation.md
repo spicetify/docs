@@ -17,13 +17,28 @@ If you have problem with downloading, use this:
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install_curl.ps1" | Invoke-Expression
 ```
 
-### Scoop
-
-Follow this guide: https://github.com/zwxi/Scoop-Spotify
-
 ### Chocolatey
 
 Follow this guide: https://chocolatey.org/packages/spicetify-cli
+
+### Scoop
+
+```powershell
+scoop install spicetify-cli
+```
+
+#### Spotify installed from Scoop
+
+- To find the location of your Spotify installation, run `scoop prefix spotify`.
+
+```console
+$ scoop prefix spotify
+C:\Users\<username>\scoop\apps\spotify\current
+```
+
+After you have located it, set `spotify_path` to that directory in Spicetify's config file:
+
+![scoop-spotify-path](https://user-images.githubusercontent.com/56180050/158084602-99428adf-93bb-4983-968f-14e1f4f5b253.png)
 
 ## Linux and MacOS
 

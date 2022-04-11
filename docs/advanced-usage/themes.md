@@ -9,6 +9,7 @@ You can customize your Spotify to your <span style={{'color': '#CB1010'}}>**hear
 
 For this reason, the theming heroes of the Spicetify community have created a huge library of themes which can be found in the following repositories:
 
-1. [spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes)
+1. [spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes) - The official Spicetify themes repository. Feel free to contribute with more themes!
 2. [NYRI4/Comfy-spicetify](https://github.com/NYRI4/Comfy-spicetify)
-3. Insert your theme here!
+3. [williamckha/spicetify-fluent](https://github.com/williamckha/spicetify-fluent)
+4. Insert your theme here!

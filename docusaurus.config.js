@@ -138,7 +138,7 @@ const config = {
       },
       algolia: {
         appId: '8V2X4EIOO7',
-        apiKey: '141f58693466be94be91fe6da510e5d9',
+        apiKey: 'd538fac3f86b5167706ae2e5c3cce353',
         indexName: 'spicetify',
       },
     }),
