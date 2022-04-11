@@ -29,18 +29,14 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/mai
 
 <hr/>
 
-- ⚠️ Sometimes Spotify upgrades things that break Spicetify.<br/>
-- ⚠️ When this happens we need to update Spicetify, and you may need to run `spicetify upgrade`.<br/>
-- ⚠️ After this command, run `spicetify restore backup apply` to have everything back where it was.
-
 ## Basic Usage
 
 After installing Spicetify, and the Spicetify's Marketplace, you can now use it to customize your Spotify client using all the available **extensions** and **themes** found in the Marketplace.
 
 ### Updating
 
-Spotify, every now and then, updates its client. Since we have no power over this process, you will likely need to re-apply Spicetify. 
+***Spotify***, every now and then, **updates** its client. Since we have no power over this process, you will likely need to **re-apply Spicetify**. 
 
-However, the update might have major changes to the client, which means you will need to run run `spicetify upgrade` every time you update Spotify, if no update for Spicetify is available, it means that it either still works by simply running `spicetify backup apply`, or that we are still working on updating Spicetify.
+However, the update might have major changes to the client, which means you will need to run run `spicetify upgrade` every time you update Spotify. If no update for Spicetify is available, it means that it either still works by simply running `spicetify backup apply`, or that we are still **working on updating Spicetify** to work on the new version.
 
 After running `spicetify upgrade`, you will be prompted to run `spicetify restore backup apply` to have everything back where it was.
