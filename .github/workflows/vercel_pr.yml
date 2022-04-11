@@ -19,7 +19,7 @@ jobs:
           token: ${{ github.token }}
 
       - name: Vercel-PR => Algolia crawler creation and recrawl on preview (Pull Request)
-        uses: algolia/algoliasearch-crawler-github-actions@v1
+        uses: algolia/algoliasearch-crawler-github-actions@latest
         id: crawler_pr
         with:
           crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
