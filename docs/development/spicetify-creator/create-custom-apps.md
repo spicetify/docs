@@ -1,6 +1,6 @@
 ---
 title: Create Custom Apps
-description: 🔧 Creating single page Apps for Spicetify.
+description: 🔧 Creating single page apps for Spicetify.
 ---
 
 Notes:
