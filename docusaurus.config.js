@@ -94,11 +94,11 @@ const config = {
             items: [
               {
                 label: 'Community Themes',
-                href: 'https://github.com/spicetify/spicetify-themes/tree/master',
+                href: 'https://github.com/spicetify/spicetify-themes',
               },
               {
-                label: 'GitHub Discussions',
-                href: 'https://github.com/spicetify/spicetify-cli/discussions',
+                label: 'Documentation',
+                href: 'https://github.com/spicetify/spicetify-docs',
               },
               {
                 label: 'Discord',
@@ -114,23 +114,18 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub - Docs',
-                href: 'https://github.com/spicetify/spicetify-docs',
-              },
-              {
-                label: 'GitHub - CLI',
-                href: 'https://github.com/spicetify/spicetify-cli',
+                html: `
+                  <a href="https://opencollective.com/spicetify" target="_blank">
+                    <img src="https://opencollective.com/spicetify/tiers/backer.svg?avatarHeight=73 " alt="Open Collective" />
+                  </a>
+                `,
               },
               {
                 html: `
-                    <a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by Vercel">
-                      <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" width="180" />
-                    </a>
-                  `,
+                  <a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by Vercel">
+                    <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" width="150" />
+                  </a>
+                `,
               },
             ],
           },
