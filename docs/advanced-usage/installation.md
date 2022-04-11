@@ -1,6 +1,6 @@
 ---
-title: Advanced Installation
-sidebar_position: 1
+title: Installation
+description: ⚡ An advanced view on how to install Spicetify.
 ---
 
 ## Windows

@@ -1,6 +1,6 @@
 ---
-title: Usage
-sidebar_position: 2
+title: Command Line Interface (CLI)
+description: 👾 Using Spicetify from the command line.
 ---
 
 Run with no command once to generate config file

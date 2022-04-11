@@ -1,6 +1,6 @@
 ---
 title: Custom Apps
-sidebar_position: 4
+description: 🔧 Creating Custom Apps.
 ---
 
 ## How to start

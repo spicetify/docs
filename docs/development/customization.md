@@ -1,30 +1,7 @@
 ---
 title: Customization
-sidebar_position: 2
+description: ✨ How to create Themes for Spicetify.
 ---
-
-## Configs
-
-Config file is located at:
-
-| Platform            | Path                                       |
-| ------------------- | ------------------------------------------ |
-| **Windows**         | `%userprofile%\.spicetify\config-xpui.ini` |
-| **Linux**/**MacOS** | `~/.config/spicetify/config-xpui.ini`      |
-
-Or simply run
-
-```
-spicetify -c
-```
-
-to know where it is.
-
-For detail information of each config field, please run:
-
-```bash
-spicetify --help config
-```
 
 ## Themes
 

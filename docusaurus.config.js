@@ -41,6 +41,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      autoCollapseSidebarCategories: true,
       metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
       image: 'img/spicetify-full.png',
       navbar: {
@@ -52,7 +53,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'introduction',
+            docId: 'getting-started',
             position: 'left',
             label: 'Docs',
           },
@@ -71,12 +72,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Introduction',
-                to: '/docs/introduction',
+                label: 'Getting Started',
+                to: '/docs/getting-started',
+              },
+              {
+                label: 'Advanced Usage',
+                to: '/docs/advanced-usage',
               },
               {
                 label: 'Development',
-                to: '/docs/development/compiling',
+                to: '/docs/development',
               },
               {
                 label: 'FAQ',

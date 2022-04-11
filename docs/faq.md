@@ -1,7 +1,34 @@
 ---
 title: FAQ
-sidebar_position: 3
 ---
+
+## Where is the config file?
+
+The config file is generally located at:
+
+| Platform            | Path                                       |
+| ------------------- | ------------------------------------------ |
+| **Windows**         | `%userprofile%\.spicetify\config-xpui.ini` |
+| **Linux**/**MacOS** | `~/.config/spicetify/config-xpui.ini`      |
+
+However, you can know specifically where it is with:
+
+```
+spicetify -c
+```
+
+Or, you can open the folder where it is located with:
+
+```
+spicetify config-dir
+```
+
+For detail information of each config field, please run:
+
+```bash
+spicetify --help config
+```
+
 
 ## Cannot find `pref_file`
 
