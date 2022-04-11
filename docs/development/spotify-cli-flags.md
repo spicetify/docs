@@ -1,6 +1,6 @@
 ---
 title: Spotify CLI Flags
-sidebar_position: 3
+description: 🚩 Flags to alter the behavior of the Spotify.
 ---
 
 | Flag                                   | Description                                                                                                                                                |

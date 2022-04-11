@@ -1,6 +1,6 @@
 ---
 title: Building And Testing
-sidebar_position: 4
+description: 🛠 Ensuring the quality of your creations.
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

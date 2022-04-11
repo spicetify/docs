@@ -1,6 +1,6 @@
 ---
 title: The Basics
-sidebar_position: 1
+description: 🤠 Spicetify Creator 101.
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

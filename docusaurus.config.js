@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'afonsojramos',
+  organizationName: 'spicetify',
   projectName: 'spicetify-docs',
 
   presets: [
@@ -24,12 +24,12 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/afonsojramos/spicetify-docs/edit/main',
+          editUrl: 'https://github.com/spicetify/spicetify-docs/edit/main',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/afonsojramos/spicetify-docs/edit/main',
+          editUrl: 'https://github.com/spicetify/spicetify-docs/edit/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -41,6 +41,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      autoCollapseSidebarCategories: true,
       metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
       image: 'img/spicetify-full.png',
       navbar: {
@@ -52,7 +53,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'getting-started/simple-installation',
+            docId: 'getting-started',
             position: 'left',
             label: 'Docs',
           },
@@ -72,11 +73,15 @@ const config = {
             items: [
               {
                 label: 'Getting Started',
-                to: '/docs/getting-started/simple-installation',
+                to: '/docs/getting-started',
+              },
+              {
+                label: 'Advanced Usage',
+                to: '/docs/advanced-usage',
               },
               {
                 label: 'Development',
-                to: '/docs/development/compiling',
+                to: '/docs/development',
               },
               {
                 label: 'FAQ',
@@ -89,7 +94,7 @@ const config = {
             items: [
               {
                 label: 'Community Themes',
-                href: 'https://github.com/morpheusthewhite/spicetify-themes/tree/master',
+                href: 'https://github.com/spicetify/spicetify-themes/tree/master',
               },
               {
                 label: 'GitHub Discussions',
@@ -114,7 +119,7 @@ const config = {
               },
               {
                 label: 'GitHub - Docs',
-                href: 'https://github.com/afonsojramos/spicetify-docs',
+                href: 'https://github.com/spicetify/spicetify-docs',
               },
               {
                 label: 'GitHub - CLI',

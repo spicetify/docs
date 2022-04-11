@@ -1,6 +1,6 @@
 ---
-title: Advanced Installation
-sidebar_position: 2
+title: Installation
+description: ⚡ An advanced view on how to install Spicetify.
 ---
 
 ## Windows
@@ -156,4 +156,4 @@ sh /tmp/install.sh 1.2.1
 
 spicetify v1 code is available in branch [`legacy`](https://github.com/spicetify/spicetify-cli/tree/legacy) if you want to build from source.
 
-If you want legacy themes, you can find them [here](https://github.com/morpheusthewhite/spicetify-themes/tree/legacy).
+If you want legacy themes, you can find them [here](https://github.com/spicetify/spicetify-themes/tree/legacy).

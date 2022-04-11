@@ -1,6 +1,6 @@
 ---
 title: Compiling
-sidebar_position: 1
+description: 🧰 Compiling Spicetify.
 ---
 
 ### Requirements

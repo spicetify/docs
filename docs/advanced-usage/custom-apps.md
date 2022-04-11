@@ -1,6 +1,6 @@
 ---
 title: Custom Apps
-sidebar_position: 6
+description: 💥 Manually installing Custom Apps.
 ---
 
 Inject custom apps to Spotify and access them in left sidebar.  

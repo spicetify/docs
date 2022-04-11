@@ -1,6 +1,6 @@
 ---
 title: Extensions
-sidebar_position: 5
+description: 🧩 Manually installing Extensions.
 ---
 
 Extensions, in a nutshell, are JavaScript files that will be evaluated along with Spotify main JavaScript.
