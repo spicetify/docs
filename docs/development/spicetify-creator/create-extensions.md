@@ -1,6 +1,6 @@
 ---
 title: Create Extensions
-sidebar_position: 2
+description: 🔨 Creating small addons for Spicetify.
 ---
 
 Notes:
