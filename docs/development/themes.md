@@ -1,6 +1,6 @@
 ---
 title: Themes
-description: ✨ Information on developing a theme.
+description: ✨ Information on developing a Theme for Spicetify.
 ---
 
 ## Themes
