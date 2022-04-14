@@ -46,7 +46,7 @@ spicetify --help config
 
 ## The term is not recognized / Command not found
 
-1. This is almost always an issue with your $path on GNU/Linux and mac, or your PATH on Windows.
+1. This is almost always an issue with your PATH, the environment variable that saves the directories of the executable programs in your OS.
 2. Google how to add the corresponding paths to your path based on your OS;
   - **Windows**: `%USERPROFILE%/spicetify-cli` --> `C:\Users\tomfi\spicetify-cli`
   - **GNU/Linux**: `$HOME/.spicetify`
