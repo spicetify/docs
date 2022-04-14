@@ -1,3 +1,8 @@
+---
+title: Devtools
+description: ✨ What devtools are and how to use them.
+---
+
 ## Enabling/using devtools in spicetify >= 2.9.3
 
 ### Windows
