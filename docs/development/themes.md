@@ -1,6 +1,6 @@
 ---
-title: Structures
-description: ✨ The guidelines and structure for addons.
+title: Themes
+description: ✨ Information on developing a theme.
 ---
 
 ## Themes
