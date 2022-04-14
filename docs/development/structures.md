@@ -1,6 +1,6 @@
 ---
-title: Customization
-description: ✨ How to create Themes for Spicetify.
+title: Structures
+description: ✨ The guidelines and structure for addons.
 ---
 
 ## Themes
