@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Trigger Algolia Crawler
-        uses: algolia/algoliasearch-crawler-github-actions@v1.0.14
+        uses: algolia/algoliasearch-crawler-github-actions@v1.1.0
         id: crawler_push
         with:
           crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
@@ -20,4 +20,3 @@ jobs:
           algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
           site-url: "https://spicetify.app/"
-          override-config: true
