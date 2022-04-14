@@ -1,3 +1,8 @@
+---
+title: Uninstallation
+description: ✨ Instructions on uninstalling spicetify and its components.
+---
+
 ## How do I uninstall Spicetify?
 
 ### Windows
