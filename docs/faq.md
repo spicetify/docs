@@ -52,30 +52,6 @@ spicetify --help config
   - **Linux**: `$HOME/.spicetify`
   - **MacOS**: `$HOME/.spicetify`
 
-## Why can’t I open devtools anymore?
-#### *Thanks to Spotify loving the ricing/modding community, in later versions of Spotify they have decided to REMOVE debugging tools such as inspect element. However remote debugging can bypass this limitation*.
-
-### Windows
-
-1. Start by finding your preferred Spotify shortcut. Right click this shortcut and enter properties, inside of the "target" text box, at the very end of the path, add a space and type in "--remote-debugging-port=9222". Apply and close.
-2. Navigate to Google Chrome and in the address tab type "chrome://inspect", click on the box that says 
-"port forwarding". In the new menu there will be a table of values, on a new line, in the first box input the port "9222" and the second box "localhost:9222", leave port forwarding DISABLED and press done.
-3. After that providing you have Spotify open; you should see it in the list of connected targets. Press the inspect button and voila!
-
-### Linux + MacOS
-1. Locate your Spicetify config using the command `spicetify config-dir` and enter `spotify_launch_flags = --remote-debugging-port=9222`
-2. Open google chrome and go to "chrome://inspect" and Spotify should pop up, from there press inspect.
-3. If Spotify does not pop up click on the box that says, "port forwarding". In the new menu there will be a table of values, on a new line, in the first box input the port "9222" and the second box "localhost:9222", leave port forwarding DISABLED and press done.
-
-## How do I uninstall Spicetify?
-
-### Windows
-
-1. Ensure you have no running Spotify or Spicetify processes.
-2. Open a terminal of your choice (Command Prompt is recommended) with administrator permissions and type `spicetify restore` to ensure that nothing is leftover in your Spotify installation.
-3. Type each command 1 after another ensuring they are executed correctly; `cd %userprofile%`, `rmdir .spicetify\ /S`, `rmdir spicetify-cli\ /S`.
-4. Lastly in your start menu search bar type the word "environment" an application should appear that says, "edit environment variables for your account" once opened double click on the "path" header, select path "C:\Users\!!USERNAME!!\spicetify-cli" and press the delete button. make sure to press okay in both windows and not cancel.
-
 ## Cannot find `pref_file`
 
 ### Windows
