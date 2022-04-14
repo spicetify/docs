@@ -44,7 +44,7 @@ spicetify --help config
 2. It’s possible the regex is broken for the latest versions of Spicetify, unfortunately there is no fix for this, and you'll instead have to downgrade Spotify and Spicetify to ensure they work together.
 3. Ask around in the Spicetify discord server, there are lots of active GNU/Linux and macOS users ready to give you pointers.
 
-## Cannot use term "Spicetify" in my terminal.
+## The term is not recognized / Command not found
 
 1. This is almost always an issue with your $path on GNU/Linux and mac, or your PATH on Windows.
 2. Google how to add the corresponding paths to your path based on your OS;
