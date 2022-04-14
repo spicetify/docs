@@ -29,7 +29,7 @@ For detail information of each config field, please run:
 spicetify --help config
 ```
 
-## My Spotify is blank!
+## Blank Spotify after latest update
 
 ### Windows
 
