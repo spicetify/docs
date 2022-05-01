@@ -37,7 +37,7 @@ export default () => {
       centeredSlides
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={centeredSlide() => console.log('slide change')}
-      autoplay={{ delay: 2500, disableOnInteraction: false }}
+      autoplay={{ delay: 2000, disableOnInteraction: false }}
       effect="coverflow"
       coverflowEffect={{
         rotate: 0,
