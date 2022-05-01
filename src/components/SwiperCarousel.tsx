@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
-import { Navigation, Scrollbar, A11y, EffectCoverflow } from 'swiper';
+import { Navigation, Scrollbar, A11y, EffectCoverflow, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -28,7 +28,7 @@ export default () => {
 
   return (
     <Swiper
-      modules={[Navigation, Scrollbar, A11y, EffectCoverflow]}
+      modules={[Navigation, Scrollbar, A11y, EffectCoverflow, Autoplay]}
       spaceBetween={-200}
       slidesPerView={3}
       navigation
@@ -37,6 +37,7 @@ export default () => {
       centeredSlides
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={centeredSlide() => console.log('slide change')}
+      autoplay={{ delay: 2500, disableOnInteraction: false }}
       effect="coverflow"
       coverflowEffect={{
         rotate: 0,
