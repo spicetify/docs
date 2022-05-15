@@ -5,10 +5,19 @@ description: ⚡ An advanced view on how to uninstall Spicetify.
 
 ## Windows
 
-1. Ensure you have no running Spotify or Spicetify processes.
-2. Open a terminal of your choice (Command Prompt is recommended) with administrator permissions and type `spicetify restore` to ensure that nothing is leftover in your Spotify installation.
-3. Type each command 1 after another ensuring they are executed correctly; `cd %userprofile%`, `rmdir .spicetify\ /S`, `rmdir spicetify-cli\ /S`.
-4. Lastly in your start menu search bar type the word "environment" an application should appear that says, "edit environment variables for your account" once opened double click on the "path" header, select path "C:\Users\!!USERNAME!!\spicetify-cli" and press the delete button. make sure to press okay in both windows and not cancel.
+### Command Prompt (Administrator) - removal of spicetify
+```cmd
+spicetify restore
+rmdir %userprofile%\.spicetify\ /S
+rmdir %userprofile%\spicetify-cli\ /S
+```
+
+### Powershell (Administrator) - removal of paths
+```powershell
+$path = [System.Environment]::GetEnvironmentVariable("PATH", "User")
+$replacement = ([System.Environment]::GetEnvironmentVariable("PATH", "User").Split(";") | Where-Object { $_.TrimEnd("") -ne "${HOME}\spicetify-cli" }) -join ";"
+if ("$path".Contains("${HOME}\spicetify-cli")) {[Environment]::SetEnvironmentVariable("PATH", "${replacement}", "User")}
+```
 
 ## Linux and MacOS
 TBA
