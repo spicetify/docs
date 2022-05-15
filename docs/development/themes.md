@@ -1,6 +1,6 @@
 ---
-title: Customization
-description: ✨ How to create Themes for Spicetify.
+title: Themes
+description: ✨ Information on developing a Theme for Spicetify.
 ---
 
 ## Themes
