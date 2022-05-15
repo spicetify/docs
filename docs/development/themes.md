@@ -3,8 +3,6 @@ title: Themes
 description: ✨ Information on developing a Theme for Spicetify.
 ---
 
-## Themes
-
 There are 2 places you can put your themes:
 
 1. `Themes` folder in Home directory
