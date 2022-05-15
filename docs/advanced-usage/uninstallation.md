@@ -1,3 +1,8 @@
+---
+title: Uninstallation
+description: ⚡ An advanced view on how to uninstall Spicetify.
+---
+
 ## Windows
 
 1. Ensure you have no running Spotify or Spicetify processes.
