@@ -1,6 +1,4 @@
-## How do I uninstall Spicetify?
-
-### Windows
+## Windows
 
 1. Ensure you have no running Spotify or Spicetify processes.
 2. Open a terminal of your choice (Command Prompt is recommended) with administrator permissions and type `spicetify restore` to ensure that nothing is leftover in your Spotify installation.
