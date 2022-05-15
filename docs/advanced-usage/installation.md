@@ -8,13 +8,13 @@ description: ⚡ An advanced view on how to install Spicetify.
 ### Powershell (pre-built binary) - Recommended
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
 ```
 
 If you have problem with downloading, use this:
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install_curl.ps1" | Invoke-Expression
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install_curl.ps1 | iex
 ```
 
 ### Chocolatey
