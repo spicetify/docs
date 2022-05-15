@@ -14,8 +14,8 @@ This is the installation method what we recommend for most users. It is the fast
 #### Powershell (pre-built binary)
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-marketplace/master/install.ps1" | Invoke-Expression
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/master/install.ps1 | iex
 ```
 
 ### Linux and MacOS

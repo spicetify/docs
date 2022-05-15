@@ -44,6 +44,10 @@ const config = {
       autoCollapseSidebarCategories: true,
       metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
       image: 'img/spicetify-full.png',
+      colorMode: {
+        defaultMode: 'light',
+        respectPrefersColorScheme: true,
+      },
       navbar: {
         title: 'Spicetify',
         logo: {
