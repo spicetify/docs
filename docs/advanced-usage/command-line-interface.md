@@ -14,7 +14,7 @@ If you just want to use Custom Apps and Extensions head over to each specific se
 Make sure config file is created successfully and there is no error, then run:
 
 ```bash
-spicetify backup apply enable-devtool
+spicetify backup apply enable-devtools
 ```
 
 From now, after changing colors in `color.ini` or CSS in `user.css`, you just need to run:
