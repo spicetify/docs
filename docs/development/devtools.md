@@ -1,6 +1,6 @@
 ---
 title: Devtools
-description: ✨ What devtools are and how to use them.
+description: ✨ How to use Spicetify devtools.
 ---
 
 ## Remote Debugging
