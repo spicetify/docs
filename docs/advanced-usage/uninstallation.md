@@ -5,7 +5,7 @@ description: 🗑 How to remove Spicetify.
 
 ## Windows
 
-### Command Prompt (Administrator) - Spicetify Removal
+### Command Prompt (Administrator)
 ```cmd
 spicetify restore
 rmdir %userprofile%\.spicetify\ /S
