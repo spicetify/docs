@@ -1,6 +1,6 @@
 ---
 title: Uninstallation
-description: ⚡ An advanced view on how to uninstall Spicetify.
+description: 🗑 How to remove Spicetify.
 ---
 
 ## Windows
@@ -12,12 +12,9 @@ rmdir %userprofile%\.spicetify\ /S
 rmdir %userprofile%\spicetify-cli\ /S
 ```
 
-### Powershell (Administrator) - Optional Path Removal 
-```powershell
-$path = [System.Environment]::GetEnvironmentVariable("PATH", "User")
-$replacement = ([System.Environment]::GetEnvironmentVariable("PATH", "User").Split(";") | Where-Object { $_.TrimEnd("") -ne "${HOME}\spicetify-cli" }) -join ";"
-if ("$path".Contains("${HOME}\spicetify-cli")) {[Environment]::SetEnvironmentVariable("PATH", "${replacement}", "User")}
-```
-
 ## Linux and MacOS
-TBA
+```bash
+spicetify restore
+rm -rf ~/.spicetify
+rm -rf ~/.config/spicetify
+```
