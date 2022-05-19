@@ -1,6 +1,6 @@
 ---
 title: Themes
-description: ✨ Information on developing a Theme for Spicetify.
+description: ✨ Creating Themes for Spicetify.
 ---
 
 There are 2 places you can put your themes:
