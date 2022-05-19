@@ -28,22 +28,6 @@ For detail information of each config field, please run:
 ```bash
 spicetify --help config
 ```
-## Spotify 'blank' after update
-
-### Windows
-
-1. It is common for this issue to stem from outdated Spotify and/or Spicetify, you can rule this out by checking your "version" and "with" entries inside of your `config-xpui.ini`.
-2. If this is the case; go ahead and do a FRESH install of Spicetify + Spotify.
-3. If the version of Spotify inside of your `config-xpui.ini` does not correspond with what is actually installed, this could mean your config is out of sync. Delete your config file and run `spicetify` in a new terminal instance. If it’s still reflecting an incorrect entry, delete your "prefs" files inside of `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify\prefs`.
-4. Some themes have had histories of deleting the main view of Spotify by accident, make sure to troubleshoot across multiple themes and extensions.
-5. If you are on the latest spicetify and you still have a blank screen, downgrade your spotify 1-3 versions.
-
-### GNU/Linux + MacOS
-
-1. Spicetify has a history of incompatibility with Spotify on GNU/Linux, start off by assuring you are not using snap's version of Spotify.
-2. It’s possible the regex is broken for the latest versions of Spicetify, unfortunately there is no fix for this, and you'll instead have to downgrade Spotify and Spicetify to ensure they work together.
-3. Ask around in the Spicetify discord server, there are lots of active GNU/Linux and macOS users ready to give you pointers.
-
 
 ## Cannot find `pref_file`
 
