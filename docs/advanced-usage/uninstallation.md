@@ -5,11 +5,11 @@ description: 🗑 How to remove Spicetify.
 
 ## Windows
 
-### Command Prompt (Administrator)
+### Powershell
 ```cmd
 spicetify restore
-rmdir %userprofile%\.spicetify\ /S
-rmdir %userprofile%\spicetify-cli\ /S
+rmdir -r -fo $env:USERPROFILE\.spicetify
+rmdir -r -fo $env:USERPROFILE\spicetify-cli
 ```
 
 ## Linux and MacOS
