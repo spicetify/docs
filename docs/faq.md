@@ -29,7 +29,6 @@ For detail information of each config field, please run:
 spicetify --help config
 ```
 
-
 ## Cannot find `pref_file`
 
 ### Windows

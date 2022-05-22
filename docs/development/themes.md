@@ -1,9 +1,7 @@
 ---
-title: Customization
-description: ✨ How to create Themes for Spicetify.
+title: Themes
+description: ✨ Creating Themes for Spicetify.
 ---
-
-## Themes
 
 There are 2 places you can put your themes:
 

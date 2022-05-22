@@ -26,6 +26,7 @@ const sidebars = {
       },
       items: [
         'advanced-usage/installation',
+        'advanced-usage/uninstallation',
         'advanced-usage/command-line-interface',
         'advanced-usage/themes',
         'advanced-usage/extensions',
@@ -42,10 +43,10 @@ const sidebars = {
       },
       items: [
         'development/compiling',
-        'development/customization',
-        'development/spotify-cli-flags',
+        'development/themes',
         'development/custom-apps',
         'development/js-modules',
+        'development/spotify-cli-flags',
         {
           type: 'category',
           label: 'Spicetify Creator',
