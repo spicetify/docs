@@ -1,0 +1,14 @@
+name: Image Optimizer
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  image_optimizer:
+    name: Image Optimizer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Optimizing Images
+        uses: crush-pics/crush-pics-github-action@v1.0
