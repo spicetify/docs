@@ -6,17 +6,17 @@ import styles from './HomepageFeatures.module.css';
 const FeatureList = [
   {
     title: 'Themes',
-    Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('../../static/images/undraw_docusaurus_mountain.svg').default,
     description: <>The customization you&apos;ve always needed, but didn&apos;t know you wanted.</>,
   },
   {
     title: 'Extensions',
-    Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('../../static/images/undraw_docusaurus_tree.svg').default,
     description: <>Small bonus little features that can be sprinkled across Spotify.</>,
   },
   {
     title: 'Custom Apps',
-    Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('../../static/images/undraw_docusaurus_react.svg').default,
     description: <>Whole new pages that complement Spotify&apos;s missing ones.</>,
   },
 ];
