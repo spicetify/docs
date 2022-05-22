@@ -41,12 +41,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      autoCollapseSidebarCategories: true,
       metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
       image: 'img/spicetify-full.png',
       colorMode: {
         defaultMode: 'light',
         respectPrefersColorScheme: true,
+      },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+          hideable: false,
+        },
       },
       navbar: {
         title: 'Spicetify',
