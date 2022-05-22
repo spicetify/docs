@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'images/favicon.ico',
   organizationName: 'spicetify',
   projectName: 'spicetify-docs',
 
@@ -42,7 +42,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
-      image: 'img/spicetify-full.png',
+      image: 'images/spicetify-full.png',
       colorMode: {
         defaultMode: 'light',
         respectPrefersColorScheme: true,
@@ -57,7 +57,7 @@ const config = {
         title: 'Spicetify',
         logo: {
           alt: 'Spicetify Logo',
-          src: 'img/spicetify.png',
+          src: 'images/spicetify.png',
         },
         items: [
           {
@@ -132,7 +132,7 @@ const config = {
               {
                 html: `
                   <a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by Vercel">
-                    <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" width="150" />
+                    <img src="/images/powered-by-vercel.svg" alt="Powered by Vercel" width="150" />
                   </a>
                 `,
               },

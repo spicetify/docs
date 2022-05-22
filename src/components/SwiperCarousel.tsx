@@ -9,13 +9,13 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/effect-coverflow';
 
 const data = [
-  { cover: require('@site/static/img/homepage-carousel/1.png').default, title: 'Preview 1' },
-  { cover: require('@site/static/img/homepage-carousel/2.png').default, title: 'Preview 2' },
-  { cover: require('@site/static/img/homepage-carousel/3.png').default, title: 'Preview 3' },
-  { cover: require('@site/static/img/homepage-carousel/4.png').default, title: 'Preview 4' },
-  { cover: require('@site/static/img/homepage-carousel/5.png').default, title: 'Preview 5' },
-  { cover: require('@site/static/img/homepage-carousel/6.png').default, title: 'Preview 6' },
-  { cover: require('@site/static/img/homepage-carousel/7.png').default, title: 'Preview 7' },
+  { cover: require('@site/static/images/homepage-carousel/1.png').default, title: 'Preview 1' },
+  { cover: require('@site/static/images/homepage-carousel/2.png').default, title: 'Preview 2' },
+  { cover: require('@site/static/images/homepage-carousel/3.png').default, title: 'Preview 3' },
+  { cover: require('@site/static/images/homepage-carousel/4.png').default, title: 'Preview 4' },
+  { cover: require('@site/static/images/homepage-carousel/5.png').default, title: 'Preview 5' },
+  { cover: require('@site/static/images/homepage-carousel/6.png').default, title: 'Preview 6' },
+  { cover: require('@site/static/images/homepage-carousel/7.png').default, title: 'Preview 7' },
 ];
 
 // eslint-disable-next-line react/display-name

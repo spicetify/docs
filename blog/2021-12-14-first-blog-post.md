@@ -19,4 +19,4 @@ Hope you can join us in this journey and thank you for coming on the ride! 🚀
 
 **PS:** Yes, this design is not final, please do contribute and help make it more appealing!
 
-![](../static/img/spicetify-full.png)
+![](../static/images/spicetify-full.png)
