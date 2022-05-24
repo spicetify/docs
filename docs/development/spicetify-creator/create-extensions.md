@@ -4,9 +4,11 @@ description: 🔨 Creating small addons for Spicetify.
 ---
 
 Notes:
+
 - This tutorial assumes you chose to generate an example in Create Spicetify App.
 
 After creating a new Spicetify Creator project and choosing "Extension" as your app's type, your project's structure should look like this (With the generated example):
+
 ```
 my-app/
   .gitattributes
@@ -16,12 +18,13 @@ my-app/
   tsconfig.json
   yarn.lock
   src/
-    ...    
+    ...
   node_modules/
     ...
 ```
 
-For now, we only care about the `src/` folder, which structure's look like this
+For now, we only care about the `src/` folder, which structure looks like this
+
 ```
 src/
   app.tsx
@@ -31,10 +34,11 @@ src/
 ```
 
 `app.tsx` exports a function that will be executed every time Spotify starts up.
-It comes with an example that says "Hello!" to the user at when Spotify starts up.  
-`settings.json` is a simple json file containing 1 key:
-  ```json
-  {
-    "nameId": "my-app"  // The id of your app
-  }
-  ```
+It comes with an example that says "Hello!" to the user when Spotify starts up.  
+`settings.json` is a simple JSON file containing 1 key:
+
+```json
+{
+  "nameId": "my-app" // The id of your app
+}
+```

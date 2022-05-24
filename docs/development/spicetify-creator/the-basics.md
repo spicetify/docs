@@ -2,15 +2,16 @@
 title: The Basics
 description: 🤠 Spicetify Creator 101.
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-
 [Spicetify Creator](https://github.com/FlafyDev/spicetify-creator) is a tool to compile modern Typescript/Javascript code to Spicetify extensions and custom apps.
 
 Its built-in features include:
+
 - Typescript and React syntax
 - [Import node packages](#node-packages)
 - [CSS/SCSS with PostCSS support](#css)
@@ -18,6 +19,7 @@ Its built-in features include:
 - [Plugins](#plugins)
 
 ## Getting Started
+
 The easiest way to start using Spicetify Creator is with Create Spicetify App.  
 Create Spicetify App allows you to effortlessly create new Spicetify Creator projects through the terminal.
 
@@ -38,7 +40,7 @@ Open the terminal in your desired directory and enter the following command
 </Tabs>
 
 The command will ask you 3-4 simple questions about the app you plan to create and generate a Spicetify Creator project accordingly.  
-After creation, read one of the following pages depending on what type of app you chose to create.  
+After creation, read one of the following pages depending on what type of app you chose to create.
 
 <div style={{width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', padding: '20px', textAlign: 'center'}}>
   <span style={{margin: '0 20px'}}><a href='./create-extensions'>Create Extensions</a></span>
@@ -46,19 +48,23 @@ After creation, read one of the following pages depending on what type of app yo
 </div>
 
 ## CSS
+
 To apply a CSS/SCSS file to your app you have to import it like this:
+
 ```ts
-import './my-css-file.css'    // For CSS
-import './my-scss-file.scss'  // For SCSS
+import './my-css-file.css'; // For CSS
+import './my-scss-file.scss'; // For SCSS
 ```
 
 There is also support for [CSS Modules](https://github.com/css-modules/css-modules) and you import them like this:
+
 ```ts
-import styles from './item-list.module.css'  // For CSS
-import styles from './item-list.module.scss' // For SCSS
+import styles from './item-list.module.css'; // For CSS
+import styles from './item-list.module.scss'; // For SCSS
 ```
 
 ## Node packages
+
 You can use node packages in your app by installing them with your package manager.
 
 <Tabs groupId="package-managers">
@@ -77,18 +83,19 @@ You can use node packages in your app by installing them with your package manag
 then simply import the package in the code and you're good to go.
 
 ```ts
-import packageName from '<package-name>'
+import packageName from '<package-name>';
 ```
 
 ## Plugins
+
 Plugins are node packages designed for Spicetify Creator projects, and they support either extensions, custom apps, or both.  
-The convention is to name every plugin like so: `spcr-<name>`.  
+The convention is to name every plugin like so: `spcr-<name>`.
 
 For a list of plugins: https://github.com/FlafyDev/spicetify-creator-plugins
 
 To install and import a plugin:
 <Tabs groupId="package-managers">
-  <TabItem value="npm" label="npm" default>
+<TabItem value="npm" label="npm" default>
 
     npm install spcr-<name>
 
@@ -101,10 +108,11 @@ To install and import a plugin:
 </Tabs>
 
 ```ts
-import plugin from 'spcr-<name>'
+import plugin from 'spcr-<name>';
 ```
 
-#### Example of 2 plugins you can already use in your own apps:  
+#### Example of 2 plugins you can already use in your own apps:
+
 - [spcr-settings](https://github.com/FlafyDev/spicetify-creator-plugins/tree/main/packages/spcr-settings)
 - [spcr-navigation-bar](https://github.com/FlafyDev/spicetify-creator-plugins/tree/main/packages/spcr-navigation-bar)
 
