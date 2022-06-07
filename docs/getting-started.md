@@ -15,7 +15,7 @@ This is the installation method what we recommend for most users. It is the fast
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.ps1 | iex
 ```
 
 ### Linux and MacOS
@@ -24,7 +24,7 @@ iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
 ```
 
 <hr/>
