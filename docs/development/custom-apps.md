@@ -110,7 +110,7 @@ You can use `Spicetify.Platform.History.push(...)` to navigate to a new page. Th
 
 ```js
 Spicetify.Platform.History.push({
-  pathname: '/spicetify-marketplace/readme',
+  pathname: '/marketplace/readme',
   state: {
     data: {
       title: 'My sub page title',
@@ -121,7 +121,7 @@ Spicetify.Platform.History.push({
 ```
 
 In order to render a different page, you can check the `pathname` of the current page within `index.js`'s main render method, and render a different page component for different paths. The main path for your custom app will be the name of the folder (which is the same that needs to be used in the [`config-xpui.ini`](themes#configs) configuration file).
-In this example, if our `pathname` is "/spicetify-marketplace/readme", we load the `ReadmePage` component, otherwise we load our main page component, `Grid`.
+In this example, if our `pathname` is "/marketplace/readme", we load the `ReadmePage` component, otherwise we load our main page component, `Grid`.
 
 ```js
 function render() {
@@ -129,7 +129,7 @@ function render() {
 
   // If page state set to display readme, render it
   // (This location state data comes from your Spicetify.Platform.History.push() call
-  if (location.pathname === '/spicetify-marketplace/readme') {
+  if (location.pathname === '/marketplace/readme') {
     return react.createElement(ReadmePage, {
       title: 'Spicetify Marketplace - Readme',
       data: location.state.data,

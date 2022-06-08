@@ -9,13 +9,13 @@ Spicetify is a multiplatform command-line tool to customize the official Spotify
 
 ### Windows
 
-This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the [**Spicetify Marketplace**](https://github.com/spicetify/spicetify-marketplace) that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_ and _snippets_.
+This is the installation method what we recommend for most users. It is the fastest and most reliable way to install Spicetify. It also includes the [**Spicetify Marketplace**](https://github.com/spicetify/spicetify-marketplace) that gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_, and _snippets_.
 
 #### Powershell (pre-built binary)
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/master/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.ps1 | iex
 ```
 
 ### Linux and MacOS
@@ -24,7 +24,7 @@ iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/mast
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
 ```
 
 <hr/>
