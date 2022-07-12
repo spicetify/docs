@@ -125,7 +125,7 @@ const config = {
               {
                 html: `
                   <a href="https://opencollective.com/spicetify" target="_blank">
-                    <img src="https://opencollective.com/spicetify/tiers/backer.svg?avatarHeight=73 " alt="Open Collective" />
+                    <img src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36" alt="Open Collective" />
                   </a>
                 `,
               },
