@@ -109,3 +109,6 @@ dist
 
 # Vercel CLI
 .vercel
+
+# MacOS directory
+.DS_Store
