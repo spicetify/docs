@@ -13,7 +13,7 @@ Extension files can be store in:
 
 | Platform            | Path                                   |
 | ------------------- | -------------------------------------- |
-| **Windows**         | `%userprofile%\.spicetify\Extensions\` |
+| **Windows**         | `%appdata%\spicetify\Extensions\`      |
 | **Linux**/**MacOS** | `~/.config/spicetify/Extensions`       |
 
 - `Extensions` folder in Spicetify executable directory.

@@ -8,7 +8,7 @@ The config file is generally located at:
 
 | Platform            | Path                                       |
 | ------------------- | ------------------------------------------ |
-| **Windows**         | `%userprofile%\.spicetify\config-xpui.ini` |
+| **Windows**         | `%appdata%\spicetify\config-xpui.ini`      |
 | **Linux**/**MacOS** | `~/.config/spicetify/config-xpui.ini`      |
 
 However, you can know specifically where it is with:

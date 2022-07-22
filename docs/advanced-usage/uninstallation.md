@@ -8,8 +8,8 @@ description: 🗑 How to remove Spicetify.
 ### Powershell
 ```cmd
 spicetify restore
-rmdir -r -fo $env:USERPROFILE\.spicetify
-rmdir -r -fo $env:USERPROFILE\spicetify-cli
+rmdir -r -fo $env:APPDATA\spicetify
+rmdir -r -fo $env:LOCALAPPDATA\spicetify
 ```
 
 ## Linux and MacOS
