@@ -19,7 +19,7 @@ App folders can be stored in:
 
 | Platform            | Path                                   |
 | ------------------- | -------------------------------------- |
-| **Windows**         | `%userprofile%\.spicetify\CustomApps\` |
+| **Windows**         | `%appdata%\spicetify\CustomApps\`      |
 | **Linux**/**MacOS** | `~/.config/spicetify/CustomApps`       |
 
 - `CustomApps` folder in Spicetify executable directory.

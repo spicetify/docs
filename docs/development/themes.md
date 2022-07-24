@@ -9,7 +9,7 @@ There are 2 places you can put your themes:
 
 | Platform            | Path                              |
 | ------------------- | --------------------------------- |
-| **Windows**         | `%userprofile%\.spicetify\Themes` |
+| **Windows**         | `%appdata%\spicetify\Themes`      |
 | **Linux**/**MacOS** | `~/.config/spicetify/Themes`      |
 
 2. `Themes` folder in Spicetify executable directory
