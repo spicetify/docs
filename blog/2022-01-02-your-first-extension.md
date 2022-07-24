@@ -10,7 +10,8 @@ tags: [spicetify, documentation, community, development]
 ### First step:
 
 Start out by setting up your environment:
-In terminal or powershell, run `spicetify enable-devtool`
+In terminal or powershell, run `spicetify enable-devtools`
+If at any point devtools stops working, simply run this command again.
 Ensure that you have a text editor or IDE ready.
 
 ### Second step:
