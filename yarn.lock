@@ -4685,11 +4685,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus-plugin-matomo@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/docusaurus-plugin-matomo/-/docusaurus-plugin-matomo-0.0.6.tgz#3b85ec817465bd4b3b337d973b29edc6fd303489"
-  integrity sha512-zAhUz3eMaW2tUJsvV5guOMwb554swoVEeI55BZA10LVk3+PyfWYpBl2FEHITe0ofA8/vG6BTuTzGNSWxW70NwA==
-
 dom-converter@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.2.0.tgz#6721a9daee2e293682955b6afe416771627bb768"
