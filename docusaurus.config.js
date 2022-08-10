@@ -36,7 +36,6 @@ const config = {
       }),
     ],
   ],
-  plugins: ['docusaurus-plugin-matomo'],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -149,12 +148,6 @@ const config = {
         appId: '8V2X4EIOO7',
         apiKey: 'd538fac3f86b5167706ae2e5c3cce353',
         indexName: 'spicetify',
-      },
-      matomo: {
-        matomoUrl: 'https://spicetify.matomo.cloud/',
-        siteId: '1',
-        phpLoader: 'matomo.php',
-        jsLoader: 'matomo.js',
       },
     }),
 };
