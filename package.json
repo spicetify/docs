@@ -15,15 +15,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.13.0",
-    "@docusaurus/core": "^2.0.0-beta.22",
-    "@docusaurus/preset-classic": "^2.0.0-beta.22",
-    "@docusaurus/types": "^2.0.0-beta.22",
-    "clsx": "^1.1.1",
-    "prism-react-renderer": "^1.3.1",
+    "@algolia/client-search": "^4.14.2",
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/types": "^2.0.1",
+    "clsx": "^1.2.1",
+    "docusaurus-plugin-matomo": "^0.0.6",
+    "prism-react-renderer": "^1.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "swiper": "^8.1.4"
+    "swiper": "^8.3.2"
   },
   "browserslist": {
     "production": [
@@ -38,21 +39,19 @@
     ]
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.0.0-beta.22",
-    "@tsconfig/docusaurus": "^1.0.5",
-    "@types/react": "^17.0.44",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
-    "eslint": "^8.14.0",
+    "@docusaurus/module-type-aliases": "^2.0.1",
+    "@tsconfig/docusaurus": "^1.0.6",
+    "@types/react": "^17.0.48",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.5.0",
-    "husky": "^7.0.4",
-    "lint-staged": ">=12",
-    "prettier": "2.6.2",
-    "prettier-eslint": "^14.0.2",
-    "typescript": "^4.6.4"
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "lint-staged": ">=13",
+    "prettier": "2.7.1",
+    "typescript": "^4.7.4"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix **/*.tsx"
