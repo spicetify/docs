@@ -6,26 +6,26 @@ import styles from './HomepageFeatures.module.css';
 const FeatureList = [
   {
     title: 'Themes',
-    Svg: require('../../static/images/undraw_docusaurus_mountain.svg').default,
+    image: require('@site/static/images/theme.png').default,
     description: <>The customization you&apos;ve always needed, but didn&apos;t know you wanted.</>,
   },
   {
     title: 'Extensions',
-    Svg: require('../../static/images/undraw_docusaurus_tree.svg').default,
+    image: require('@site/static/images/extension.png').default,
     description: <>Small bonus little features that can be sprinkled across Spotify.</>,
   },
   {
     title: 'Custom Apps',
-    Svg: require('../../static/images/undraw_docusaurus_react.svg').default,
+    image: require('@site/static/images/app.png').default,
     description: <>Whole new pages that complement Spotify&apos;s missing ones.</>,
   },
 ];
 
-function Feature({ Svg, title, description }) {
+function Feature({ image, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} alt={title} />
+        <img className={styles.featureImage} src={image} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
