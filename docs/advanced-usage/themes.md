@@ -13,4 +13,5 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 2. [NYRI4/Comfy-spicetify](https://github.com/NYRI4/Comfy-spicetify)
 3. [williamckha/spicetify-fluent](https://github.com/williamckha/spicetify-fluent)
 4. [JulienMaille/dribbblish-dynamic-theme](https://github.com/JulienMaille/dribbblish-dynamic-theme)
-5. Insert your theme here!
+5. [Tetrax-10/Nord-Spotify](https://github.com/Tetrax-10/Nord-Spotify)
+6. Insert your theme here!

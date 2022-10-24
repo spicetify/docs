@@ -8,13 +8,23 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-coverflow';
 
+// NOTE: These screenshots were generated with a window of size 1214x649.
+// (You can see the size when you resize if you have the dev tools open)
+// The shadow + blur is from macOS's screenshot tool.
 const data = [
+  // Sleek (Elementary) - Homepage
   { cover: require('@site/static/images/homepage-carousel/1.png').default, title: 'Preview 1' },
+  // Sleek (Wealthy) - Homepage
   { cover: require('@site/static/images/homepage-carousel/2.png').default, title: 'Preview 2' },
+  // Nord theme, new UI - Homepage
   { cover: require('@site/static/images/homepage-carousel/3.png').default, title: 'Preview 3' },
+  // Comfy - Homepage
   { cover: require('@site/static/images/homepage-carousel/4.png').default, title: 'Preview 4' },
+  // Dribbblish - Homepage
   { cover: require('@site/static/images/homepage-carousel/5.png').default, title: 'Preview 5' },
+  // Sleek (Elementary) - Marketplace extensions
   { cover: require('@site/static/images/homepage-carousel/6.png').default, title: 'Preview 6' },
+  // Nord theme, new UI - Marketplace themes
   { cover: require('@site/static/images/homepage-carousel/7.png').default, title: 'Preview 7' },
 ];
 
