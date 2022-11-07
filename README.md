@@ -19,7 +19,3 @@ The command above starts a local development server and opens up a browser windo
 <hr>
 
 This website is built using [Docusaurus 2](https://docusaurus.io/).
-
-<a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss">
-    <img src="./static/images/powered-by-vercel.svg" alt="Powered by Vercel">
-</a>

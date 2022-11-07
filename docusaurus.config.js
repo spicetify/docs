@@ -127,14 +127,7 @@ const config = {
                     <img src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36" alt="Open Collective" />
                   </a>
                 `,
-              },
-              {
-                html: `
-                  <a href="https://vercel.com/?utm_source=spicetify&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by Vercel">
-                    <img src="/images/powered-by-vercel.svg" alt="Powered by Vercel" width="150" />
-                  </a>
-                `,
-              },
+              }
             ],
           },
         ],
