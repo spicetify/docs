@@ -43,8 +43,8 @@ The command will ask you 3-4 simple questions about the app you plan to create a
 After creation, read one of the following pages depending on what type of app you chose to create.
 
 <div style={{width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex', padding: '20px', textAlign: 'center'}}>
-  <span style={{margin: '0 20px'}}><a href='./create-extensions'>Create Extensions</a></span>
-  <span style={{margin: '0 20px'}}><a href='./create-custom-apps'>Create Custom Apps</a></span>
+  <span style={{margin: '0 20px'}}><a href='/docs/development/spicetify-creator/create-extensions'>Create Extensions</a></span>
+  <span style={{margin: '0 20px'}}><a href='/docs/development/spicetify-creator/create-custom-apps'>Create Custom Apps</a></span>
 </div>
 
 ## CSS
