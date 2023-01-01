@@ -51,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/inst
 ### Homebrew or LinuxBrew
 
 ```bash
-brew install khanhas/tap/spicetify-cli
+brew install spicetify/homebrew-tap/spicetify-cli
 ```
 
 ### AUR
