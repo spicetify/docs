@@ -40,6 +40,12 @@ After you have located it, set `spotify_path` to that directory in Spicetify's c
 
 ![scoop-spotify-path](https://user-images.githubusercontent.com/56180050/158084602-99428adf-93bb-4983-968f-14e1f4f5b253.png)
 
+### Winget
+
+```powershell
+winget install Spicetify.Spicetify
+```
+
 ## Linux and MacOS
 
 ### Shell (pre-built binary) - Recommended
