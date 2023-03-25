@@ -11,12 +11,6 @@ description: ⚡ An advanced view on how to install Spicetify.
 iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
 ```
 
-If you have problem with downloading, use this:
-
-```powershell
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install_curl.ps1 | iex
-```
-
 ### Chocolatey
 
 Follow this guide: https://chocolatey.org/packages/spicetify-cli
