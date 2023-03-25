@@ -25,9 +25,12 @@ iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main
 ### Linux and MacOS
 
 #### Shell (pre-built binary)
-
-```bash
+Spicetify CLI
+```sh
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+```
+Spicetify Marketplace
+```sh
 curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
 ```
 
