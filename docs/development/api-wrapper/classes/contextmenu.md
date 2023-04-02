@@ -3,19 +3,14 @@ title: ContextMenu
 description: Create custom menu item and prepend to right click context menu.
 ---
 
+Create custom menu item and prepend to right click context menu.
+
 ## Classes
 
 ### Item
 
 Single context menu item.
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| name | `string` | Name of the menu item. |
-| onClick | `OnClickCallback` | Callback function when menu item is clicked. |
-| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
-| disabled | `boolean` | Whether the menu item is disabled. |
 
 ```ts
 new Spicetify.ContextMenu.Item(
@@ -26,6 +21,16 @@ new Spicetify.ContextMenu.Item(
   disabled?: boolean,
 )
 ```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| name | `string` | Name of the menu item. |
+| onClick | `OnClickCallback` | Callback function when menu item is clicked. |
+| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+| disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
 
@@ -51,12 +56,6 @@ Create a sub menu to contain `Item`s.
 
 `Item`s in `subItems` array shouldn't be registered.
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| name | `string` | Name of the menu item. |
-| subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/contextmenu/#item) | Array of `Item`s to be added to the sub menu. |
-| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
-| disabled | `boolean` | Whether the menu item is disabled. |
 
 ```ts
 new Spicetify.ContextMenu.SubMenu(
@@ -66,6 +65,15 @@ new Spicetify.ContextMenu.SubMenu(
   disabled?: boolean,
 )
 ```
+
+#### Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| name | `string` | Name of the menu item. |
+| subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/contextmenu/#item) | Array of `Item`s to be added to the sub menu. |
+| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
+| disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
 

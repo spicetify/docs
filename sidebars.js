@@ -81,6 +81,7 @@ const sidebars = {
               },
               items: [
                 "development/api-wrapper/classes/contextmenu",
+                "development/api-wrapper/classes/menu",
               ],
             },
             {
