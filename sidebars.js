@@ -62,6 +62,63 @@ const sidebars = {
             'development/spicetify-creator/building-and-testing',
           ],
         },
+        {
+          type: 'category',
+          label: "API Wrapper",
+          link: {
+            type: "doc",
+            id: "development/api-wrapper/index",
+          },
+          items: [
+            "development/api-wrapper/modules",
+            {
+              type: "category",
+              label: "Classes",
+              link: {
+                type: "generated-index",
+                description: "A list of all classes in the API Wrapper.",
+                slug: "/development/api-wrapper/classes",
+              },
+              items: [
+                "development/api-wrapper/classes/contextmenu",
+              ],
+            },
+            {
+              type: "category",
+              label: "Functions",
+              link: {
+                type: "generated-index",
+                description: "A list of all functions in the API Wrapper.",
+                slug: "/development/api-wrapper/functions",
+              },
+              items: [],
+            },
+            {
+              type: "category",
+              label: "Properties",
+              link: {
+                type: "generated-index",
+                description: "A list of all properties in the API Wrapper.",
+                slug: "/development/api-wrapper/properties",
+              },
+              items: [
+                "development/api-wrapper/properties/config",
+              ],
+            },
+            {
+              type: "category",
+              label: "Types",
+              link: {
+                type: "generated-index",
+                description: "A list of all type definitions in the API Wrapper.",
+                slug: "/development/api-wrapper/types",
+              },
+              items: [
+                "development/api-wrapper/types/config",
+              ],
+            }
+          ],
+        },
       ],
     },
     'faq',
