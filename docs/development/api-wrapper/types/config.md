@@ -3,6 +3,16 @@ title: Config
 description: Config type definition.
 ---
 
+```ts
+interface Config {
+  version: string;
+  current_theme: string;
+  color_scheme: string;
+  extensions: string[];
+  custom_apps: string[];
+}
+```
+
 | Property | Type | Description |
 | --- | --- | --- |
 | `version` | `string` | Spicetify version. |

@@ -80,7 +80,7 @@ const sidebars = {
                 slug: "/development/api-wrapper/classes",
               },
               items: [
-                "development/api-wrapper/classes/contextmenu",
+                "development/api-wrapper/classes/context-menu",
                 "development/api-wrapper/classes/menu",
               ],
             },
@@ -115,7 +115,28 @@ const sidebars = {
                 slug: "/development/api-wrapper/types",
               },
               items: [
+                {
+                  type: "category",
+                  label: "CosmosAsync",
+                  link: {
+                    type: "generated-index",
+                    description: "A list of all type definitions in the CosmosAsync method.",
+                    slug: "/development/api-wrapper/types/cosmos-async",
+                  },
+                  items: [
+                    "development/api-wrapper/types/cosmos-async/body",
+                    "development/api-wrapper/types/cosmos-async/headers",
+                    "development/api-wrapper/types/cosmos-async/method",
+                    "development/api-wrapper/types/cosmos-async/error",
+                    "development/api-wrapper/types/cosmos-async/response",
+                  ],
+                },
                 "development/api-wrapper/types/config",
+                "development/api-wrapper/types/metadata",
+                "development/api-wrapper/types/context-track",
+                "development/api-wrapper/types/context-option",
+                "development/api-wrapper/types/player-state",
+                "development/api-wrapper/types/provided-track",
               ],
             }
           ],
