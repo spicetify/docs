@@ -38,3 +38,13 @@ Spicetify.ReactDOM
 ```js
 Spicetify.Tippy
 ```
+
+### Mousetrap
+
+[Mousetrap](https://craig.is/killing/mice) is a simple library for handling keyboard shortcuts in Javascript.
+
+`Spicetify.Keyboard` is wrapper of this library configured to be compatible with legacy Spotify, so new extensions should use this library instead.
+
+```js
+Spicetify.Mousetrap
+```

@@ -38,8 +38,60 @@ new Spicetify.Menu.Item(
 | setName | `(name: string) => void` | Set name of the menu item. |
 | setState | `(isEnabled: boolean) => void` | Set state of the menu item. Item would has a tick next to it if its state is enabled.|
 | setIcon | `(icon: SVGIcon) => void` | Set icon of the menu item. |
-| register | `() => void` | Register the menu item to menu. |
-| deregister | `() => void` | Remove the menu item from menu. |
+
+#### Methods
+
+##### setName
+
+Set the label of the menu item.
+
+```ts
+setName(name: string): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| name | `string` | Name of the menu item. |
+
+##### setState
+
+Set the state of the menu item. Item would has a tick next to it if its state is enabled.
+
+```ts
+setState(isEnabled: boolean): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| isEnabled | `boolean` | Whether the menu item is enabled. |
+
+##### setIcon
+
+Set the icon at the end of the menu item.
+
+```ts
+setIcon(icon: SVGIcon): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+
+##### register
+
+Register the menu item to profile menu.
+
+```ts
+register(): void
+```
+
+##### deregister
+
+Remove the menu item from profile menu.
+
+```ts
+deregister(): void
+```
 
 ### SubMenu
 

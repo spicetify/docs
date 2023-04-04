@@ -3,7 +3,11 @@ title: Error
 description: CosmosAsync Error type definition.
 ---
 
-**Note**: This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
+:::note
+
+This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
+
+:::
 
 ```ts
 interface Error {

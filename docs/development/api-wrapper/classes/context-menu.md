@@ -5,6 +5,8 @@ description: Create custom menu item and prepend to right click context menu.
 
 Create custom menu item and prepend to right click context menu.
 
+Useful for adding custom actions to context menu (when a user right-clicks on a track, album, artist, etc.)
+
 ## Classes
 
 ### Item
@@ -29,7 +31,7 @@ new Spicetify.ContextMenu.Item(
 | name | `string` | Name of the menu item. |
 | onClick | `OnClickCallback` | Callback function when menu item is clicked. |
 | shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon at the end of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
@@ -38,17 +40,28 @@ new Spicetify.ContextMenu.Item(
 | :--- | :--- | :--- |
 | iconList | [`readonly SVGIcon[]`](/docs/development/api-wrapper/types/svgicon) | List of icons. |
 | name | `string` | Name of the menu item. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon at the end of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 | shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
 | onClick | `OnClickCallback` | Callback function when menu item is clicked. |
 
 #### Methods
 
-| Name | Callback | Description |
-| :--- | :--- | :--- |
-| register | `() => void` | Register the menu item to context menu. |
-| deregister | `() => void` | Remove the menu item from context menu. |
+##### register
+
+Register the menu item to context menu.
+
+```ts
+register(): void
+```
+
+##### deregister
+
+Remove the menu item from context menu.
+
+```ts
+deregister(): void
+```
 
 ### SubMenu
 
@@ -85,9 +98,42 @@ new Spicetify.ContextMenu.SubMenu(
 
 #### Methods
 
-| Name | Callback | Description |
+##### addItem
+
+Add an `Item` to the sub menu.
+
+```ts
+addItem(item: Item): void
+```
+
+| Parameter | Type | Description |
 | :--- | :--- | :--- |
-| addItem | `(item: Item) => void` | Add an `Item` to the sub menu. |
-| removeItem | `(item: Item) => void` | Remove an `Item` from the sub menu. |
-| register | `() => void` | Register the menu item to context menu. |
-| deregister | `() => void` | Remove the menu item from context menu. |
+| item | [`Item`](/docs/development/api-wrapper/classes/contextmenu/#item) | `Item` to be added to the sub menu. |
+
+##### removeItem
+
+Remove an `Item` from the sub menu.
+
+```ts
+removeItem(item: Item): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| item | [`Item`](/docs/development/api-wrapper/classes/contextmenu/#item) | `Item` to be removed from the sub menu. |
+
+##### register
+
+Register the sub menu to context menu.
+
+```ts
+register(): void
+```
+
+##### deregister
+
+Remove the sub menu from context menu.
+
+```ts
+deregister(): void
+```

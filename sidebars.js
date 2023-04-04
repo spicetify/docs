@@ -73,6 +73,19 @@ const sidebars = {
             "development/api-wrapper/modules",
             {
               type: "category",
+              label: "Methods",
+              link: {
+                type: "generated-index",
+                description: "A list of all methods in the API Wrapper.",
+                slug: "/development/api-wrapper/methods",
+              },
+              items: [
+                "development/api-wrapper/methods/platform",
+                "development/api-wrapper/methods/cosmos-async",
+              ]
+            },
+            {
+              type: "category",
               label: "Classes",
               link: {
                 type: "generated-index",
@@ -104,6 +117,8 @@ const sidebars = {
               },
               items: [
                 "development/api-wrapper/properties/config",
+                "development/api-wrapper/properties/svgicons",
+                "development/api-wrapper/properties/queue",
               ],
             },
             {
@@ -137,6 +152,8 @@ const sidebars = {
                 "development/api-wrapper/types/context-option",
                 "development/api-wrapper/types/player-state",
                 "development/api-wrapper/types/provided-track",
+                "development/api-wrapper/types/svgicon",
+                "development/api-wrapper/types/queue",
               ],
             }
           ],
