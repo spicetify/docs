@@ -3,7 +3,7 @@ title: Keyboard
 description: A wrapper for keyboard shortcuts.
 ---
 
-Spicetify provides its own method for keyboard shortcuts. It's a wrapper for [`Spicetify.Mouse`](/docs/development/api-wrapper/modules/#mousetrap) that allows you to define shortcuts for your extensions.
+Spicetify provides its own method for global keyboard shortcuts. You can specify actions for your extension when the user presses a keyboard shortcut.
 
 :::caution
 
