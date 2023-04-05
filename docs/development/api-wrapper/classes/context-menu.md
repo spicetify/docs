@@ -108,7 +108,7 @@ addItem(item: Item): void
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| item | [`Item`](/docs/development/api-wrapper/classes/contextmenu/#item) | `Item` to be added to the sub menu. |
+| item | [`Item`](/docs/development/api-wrapper/classes/context-menu/#item) | `Item` to be added to the sub menu. |
 
 ##### removeItem
 
@@ -120,7 +120,7 @@ removeItem(item: Item): void
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| item | [`Item`](/docs/development/api-wrapper/classes/contextmenu/#item) | `Item` to be removed from the sub menu. |
+| item | [`Item`](/docs/development/api-wrapper/classes/context-menu/#item) | `Item` to be removed from the sub menu. |
 
 ##### register
 
