@@ -5,7 +5,7 @@ description: A wrapper for keyboard shortcuts.
 
 Spicetify provides its own method for global keyboard shortcuts. You can specify actions for your extension when the user presses a keyboard shortcut.
 
-:::caution
+:::tip
 
 `Spicetify.Keyboard` is wrapper of [`Spicetify.Mousetrap`](/docs/development/api-wrapper/modules/#mousetrap) configured to be compatible with legacy Spotify.
 
@@ -13,7 +13,7 @@ New extensions are advised to use the module instead.
 
 :::
 
-:::note
+:::caution
 
 All shortcuts registered by `Spicetify.Keyboard` are global. Be mindful of conflicts with other extensions or the Spotify client itself.
 
