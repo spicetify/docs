@@ -84,7 +84,7 @@ new Spicetify.ContextMenu.SubMenu(
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
-| subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/contextmenu/#item) | Array of `Item`s to be added to the sub menu. |
+| subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/context-menu/#item) | Array of `Item`s to be added to the sub menu. |
 | shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 

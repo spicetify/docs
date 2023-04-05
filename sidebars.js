@@ -105,7 +105,9 @@ const sidebars = {
                 description: "A list of all functions in the API Wrapper.",
                 slug: "/development/api-wrapper/functions",
               },
-              items: [],
+              items: [
+                "development/api-wrapper/functions/color-extractor",
+              ],
             },
             {
               type: "category",
