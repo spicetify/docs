@@ -1,9 +1,9 @@
 ---
 title: Modules
-description: 🧩 NPM modules that are exposed via Spicetify object.
+description: 🧩 Modules exposed via Spicetify object.
 ---
 
-Spicetify exposes some NPM modules via `Spicetify` object.
+Spicetify exposes some modules via `Spicetify` object.
 
 You can access them by typing `Spicetify.<module name>` in DevTools console, inside your extension, or `window.top.Spicetify.<module name>` if you're developing an app inside `iframe`.
 
@@ -42,8 +42,6 @@ Spicetify.Tippy
 ### Mousetrap
 
 [Mousetrap](https://craig.is/killing/mice) is a simple library for handling keyboard shortcuts in Javascript.
-
-`Spicetify.Keyboard` is wrapper of this library configured to be compatible with legacy Spotify, so new extensions should use this library instead.
 
 ```js
 Spicetify.Mousetrap
