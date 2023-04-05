@@ -537,12 +537,6 @@ await Spicetify.Platform.PlayerAPI.seekBy(-10000);
 
 Seek forward in the current user's playback.
 
-:::tip
-
-[`Player.seek`](/docs/development/api-wrapper/methods/player#seek) support both seeking by a number of milliseconds and by a percentage.
-
-:::
-
 ```ts
 await Spicetify.Platform.PlayerAPI.seekForward(ms);
 ```
@@ -561,6 +555,12 @@ await Spicetify.Platform.PlayerAPI.seekForward(10000);
 #### `seekTo`
 
 Seek to a specific position in the current user's playback.
+
+:::tip
+
+[`Player.seek`](/docs/development/api-wrapper/methods/player#seek) support both seeking by a number of milliseconds and by a percentage.
+
+:::
 
 ```ts
 await Spicetify.Platform.PlayerAPI.seekTo(ms);
