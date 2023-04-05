@@ -511,7 +511,27 @@ await Spicetify.Platform.PlayerAPI.seekBackward(10000);
 
 #### `seekBy`
 
-See [`seekForward`](#seekforward).
+Seek by a number of milliseconds in the current user's playback.
+
+If passed a negative number, it will seek backward.
+
+```ts
+await Spicetify.Platform.PlayerAPI.seekBy(ms);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `ms` | `number` | The number of milliseconds to seek by. |
+
+##### Example
+
+```ts
+// Seek forward 10 seconds
+await Spicetify.Platform.PlayerAPI.seekBy(10000);
+
+// Seek backward 10 seconds
+await Spicetify.Platform.PlayerAPI.seekBy(-10000);
+```
 
 #### `seekForward`
 
