@@ -444,8 +444,8 @@ await Spicetify.Platform.PlayerAPI.play(uri, context, options);
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `uri` | [`ContextTrack`](/docs/development/api-wrapper/types/context-track) | The track to play. |
-| `context` | [`Context`](/docs/development/api-wrapper/types/context) | The context of the track. Must be an object. |
-| `options` | [`PlaybackOptions`](/docs/development/api-wrapper/types/playback-options) &#124; `undefined` | Playback options. |
+| `context` | `Record<string, any>` | The context of the track. Must be an object. |
+| `options` | `Record<string, any>` &#124; `undefined` | Playback options. |
 
 ##### Example
 
