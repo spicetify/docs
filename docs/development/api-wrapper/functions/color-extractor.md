@@ -1,5 +1,5 @@
 ---
-title: ColorExtractor
+title: colorExtractor
 description: Extracts colors from a playlist, track, album, artist, show, etc.
 ---
 

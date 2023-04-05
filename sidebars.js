@@ -83,6 +83,7 @@ const sidebars = {
                 "development/api-wrapper/methods/platform",
                 "development/api-wrapper/methods/cosmos-async",
                 "development/api-wrapper/methods/player",
+                "development/api-wrapper/methods/keyboard",
               ]
             },
             {
@@ -108,6 +109,7 @@ const sidebars = {
               },
               items: [
                 "development/api-wrapper/functions/color-extractor",
+                "development/api-wrapper/functions/get-audio-data",
               ],
             },
             {
@@ -161,6 +163,19 @@ const sidebars = {
                     "development/api-wrapper/types/context-menu/onclickcallback",
                     "development/api-wrapper/types/context-menu/shouldaddcallback",
                   ]
+                },
+                {
+                  type: "category",
+                  label: "Keyboard",
+                  link: {
+                    type: "generated-index",
+                    description: "A list of all type definitions in the Keyboard method.",
+                    slug: "/development/api-wrapper/types/keyboard",
+                  },
+                  items: [
+                    "development/api-wrapper/types/keyboard/validkey",
+                    "development/api-wrapper/types/keyboard/keysdefine",
+                  ],
                 },
                 "development/api-wrapper/types/config",
                 "development/api-wrapper/types/metadata",
