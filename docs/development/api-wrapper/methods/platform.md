@@ -314,6 +314,12 @@ interface Session {
 }
 ```
 
+:::note
+
+If you're trying to make an API request to internal Spotify endpoints, you should use [`CosmosAsync`](/docs/development/api-wrapper/methods/cosmos-async)
+
+:::
+
 #### `accessToken`
 
 The current user's access token. This is used to authenticate requests to the Spotify API.
@@ -340,4 +346,276 @@ Contains translation strings used throughout the current Spotify client.
 interface Translations {
     [key: string]: string;
 }
+```
+
+### PlayerAPI
+
+Contains methods to interact with the Spotify client's player.
+
+:::tip
+
+It is recommended to use [`Player`](/docs/development/api-wrapper/methods/player) instead for ease of use, or access `Player.origin` to get the `PlayerAPI` object.
+
+:::
+
+```ts
+interface PlayerAPI {
+    addToQueue: (items: ContextTrack[]) => Promise<void>;
+    clearQueue: () => Promise<void>;
+    pause: () => Promise<void>;
+    play: (uri: ContextTrack, context, options = {}) => Promise<void>;
+    removeFromQueue: (items: ContextTrack[]) => Promise<void>;
+    resume: () => Promise<void>;
+    seekBackward: (ms: number) => Promise<void>;
+    seekBy: (ms: number) => Promise<void>;
+    seekForward: (ms: number) => Promise<void>;
+    seekTo: (ms: number) => Promise<void>;
+    setRepeat: (mode: RepeatMode) => Promise<void>;
+    setShuffle: (shuffle: boolean) => Promise<void>;
+    setSpeed: (speed: number) => Promise<void>;
+}
+```
+
+#### `RepeatMode`
+
+Enum for the repeat mode.
+
+```ts
+enum RepeatMode {
+    Off = 0,
+    RepeatAll = 1,
+    RepeatOne = 2,
+}
+```
+
+#### `addToQueue`
+
+Add items to the current user's queue.
+
+```ts
+await Spicetify.Platform.PlayerAPI.addToQueue(items);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | [`ContextTrack[]`](/docs/development/api-wrapper/types/context-track) | Items to add to the queue. |
+
+##### Example
+
+```ts
+// Add a track to the queue
+
+// 505 - Arctic Monkeys
+const track = { uri: "spotify:track:0BxE4FqsDD1Ot4YuBXwAPp" };
+
+await Spicetify.Platform.PlayerAPI.addToQueue([track]);
+```
+
+#### `clearQueue`
+
+Clear the current user's queue.
+
+```ts
+await Spicetify.Platform.PlayerAPI.clearQueue();
+```
+
+#### `pause`
+
+Pause the current user's playback.
+
+```ts
+await Spicetify.Platform.PlayerAPI.pause();
+```
+
+#### `play`
+
+:::tip
+
+It is recommended to use [`Player.playUri`](/docs/development/api-wrapper/methods/player#playuri) instead for ease of use.
+
+:::
+
+Start playback of a track.
+
+```ts
+await Spicetify.Platform.PlayerAPI.play(uri, context, options);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `uri` | [`ContextTrack`](/docs/development/api-wrapper/types/context-track) | The track to play. |
+| `context` | [`Context`](/docs/development/api-wrapper/types/context) | The context of the track. Must be an object. |
+| `options` | [`PlaybackOptions`](/docs/development/api-wrapper/types/playback-options) &#124; `undefined` | Playback options. |
+
+##### Example
+
+```ts
+// 505 - Arctic Monkeys
+const track = { uri: "spotify:track:0BxE4FqsDD1Ot4YuBXwAPp" };
+
+// Play the track
+// Spicetify.Player.playUri(track.uri);
+await Spicetify.Platform.PlayerAPI.play(track, {}, {});
+```
+
+#### `removeFromQueue`
+
+Remove items from the current user's queue.
+
+```ts
+await Spicetify.Platform.PlayerAPI.removeFromQueue(items);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | [`ContextTrack[]`](/docs/development/api-wrapper/types/context-track) | Items to remove from the queue. |
+
+##### Example
+
+```ts
+// Remove a track from the queue
+
+// 505 - Arctic Monkeys
+const track = { uri: "spotify:track:0BxE4FqsDD1Ot4YuBXwAPp" };
+
+// Remove the track if it's in the queue
+await Spicetify.Platform.PlayerAPI.removeFromQueue([track]);
+```
+
+#### `resume`
+
+Resume the current user's playback.
+
+```ts
+await Spicetify.Platform.PlayerAPI.resume();
+```
+
+#### `seekBackward`
+
+Seek backward in the current user's playback.
+
+```ts
+await Spicetify.Platform.PlayerAPI.seekBackward(ms);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `ms` | `number` | The number of milliseconds to seek backward. |
+
+##### Example
+
+```ts
+// Seek backward 10 seconds
+await Spicetify.Platform.PlayerAPI.seekBackward(10000);
+```
+
+#### `seekBy`
+
+See [`seekForward`](#seekforward).
+
+#### `seekForward`
+
+Seek forward in the current user's playback.
+
+:::tip
+
+[`Player.seek`](/docs/development/api-wrapper/methods/player#seek) support both seeking by a number of milliseconds and by a percentage.
+
+:::
+
+```ts
+await Spicetify.Platform.PlayerAPI.seekForward(ms);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `ms` | `number` | The number of milliseconds to seek forward. |
+
+##### Example
+
+```ts
+// Seek forward 10 seconds
+await Spicetify.Platform.PlayerAPI.seekForward(10000);
+```
+
+#### `seekTo`
+
+Seek to a specific position in the current user's playback.
+
+```ts
+await Spicetify.Platform.PlayerAPI.seekTo(ms);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `ms` | `number` | The position in milliseconds to seek to. |
+
+##### Example
+
+```ts
+// Seek to 1 minute
+await Spicetify.Platform.PlayerAPI.seekTo(60000);
+```
+
+#### `setRepeat`
+
+Set the current user's repeat mode.
+
+```ts
+await Spicetify.Platform.PlayerAPI.setRepeat(mode);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `mode` | [`RepeatMode`](#repeatmode) | The repeat mode to set. |
+
+##### Example
+
+```ts
+// Set repeat mode to repeat one
+await Spicetify.Platform.PlayerAPI.setRepeat(2);
+```
+
+#### `setShuffle`
+
+Set the current user's shuffle mode.
+
+```ts
+await Spicetify.Platform.PlayerAPI.setShuffle(shuffle);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `shuffle` | `boolean` | Whether to enable shuffle mode. |
+
+##### Example
+
+```ts
+// Enable shuffle mode
+await Spicetify.Platform.PlayerAPI.setShuffle(true);
+```
+
+#### `setSpeed`
+
+Set the current user's playback speed.
+
+:::note
+
+This only works for podcasts. Music playback speed is unaffected.
+
+:::
+
+```ts
+await Spicetify.Platform.PlayerAPI.setSpeed(speed);
+```
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `speed` | `number` | The playback speed to set. |
+
+##### Example
+
+```ts
+// Set playback speed to 1.5x
+await Spicetify.Platform.PlayerAPI.setSpeed(1.5);
 ```

@@ -82,6 +82,7 @@ const sidebars = {
               items: [
                 "development/api-wrapper/methods/platform",
                 "development/api-wrapper/methods/cosmos-async",
+                "development/api-wrapper/methods/player",
               ]
             },
             {
@@ -147,6 +148,19 @@ const sidebars = {
                     "development/api-wrapper/types/cosmos-async/error",
                     "development/api-wrapper/types/cosmos-async/response",
                   ],
+                },
+                {
+                  type: "category",
+                  label: "ContextMenu",
+                  link: {
+                    type: "generated-index",
+                    description: "A list of all type definitions in the ContextMenu class.",
+                    slug: "/development/api-wrapper/types/context-menu",
+                  },
+                  items: [
+                    "development/api-wrapper/types/context-menu/onclickcallback",
+                    "development/api-wrapper/types/context-menu/shouldaddcallback",
+                  ]
                 },
                 "development/api-wrapper/types/config",
                 "development/api-wrapper/types/metadata",

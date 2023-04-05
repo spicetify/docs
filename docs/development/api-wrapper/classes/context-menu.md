@@ -42,12 +42,12 @@ new Spicetify.ContextMenu.Item(
 | name | `string` | Name of the menu item. |
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon at the end of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
-| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
-| onClick | `OnClickCallback` | Callback function when menu item is clicked. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
+| onClick | [`OnClickCallback`](/docs/development/api-wrapper/types/context-menu/onclickcallback) | Callback function when menu item is clicked. |
 
 #### Methods
 
-##### register
+##### `register`
 
 Register the menu item to context menu.
 
@@ -55,12 +55,42 @@ Register the menu item to context menu.
 register(): void
 ```
 
-##### deregister
+##### `deregister`
 
 Remove the menu item from context menu.
 
 ```ts
 deregister(): void
+```
+#### Example
+
+```ts
+// This function will determine if the selected item is a track
+function ifItemIsTrack(uri) {
+  let uriObj = Spicetify.URI.fromString(uri[0]);
+  switch (uriObj.type) {
+    case Type.TRACK:
+      return true;
+  }
+  return false;
+}
+
+// Create a new menu item that only appears when a track is selected
+const menuItem = new Spicetify.ContextMenu.Item(
+  "My Menu Item",
+  () => {
+    Spicefy.showNotification("My Menu Item clicked!");
+  },
+  ifItemIsTrack,
+  Spicetify.SVGIcons["play"],
+  false,
+);
+
+// Register the menu item
+menuItem.register();
+
+// Deregister the menu item
+menuItem.deregister();
 ```
 
 ### SubMenu
@@ -85,7 +115,7 @@ new Spicetify.ContextMenu.SubMenu(
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/context-menu/#item) | Array of `Item`s to be added to the sub menu. |
-| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
@@ -94,11 +124,11 @@ new Spicetify.ContextMenu.SubMenu(
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
-| shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
 
 #### Methods
 
-##### addItem
+##### `addItem`
 
 Add an `Item` to the sub menu.
 
@@ -110,7 +140,7 @@ addItem(item: Item): void
 | :--- | :--- | :--- |
 | item | [`Item`](/docs/development/api-wrapper/classes/context-menu/#item) | `Item` to be added to the sub menu. |
 
-##### removeItem
+##### `removeItem`
 
 Remove an `Item` from the sub menu.
 
@@ -122,7 +152,7 @@ removeItem(item: Item): void
 | :--- | :--- | :--- |
 | item | [`Item`](/docs/development/api-wrapper/classes/context-menu/#item) | `Item` to be removed from the sub menu. |
 
-##### register
+##### `register`
 
 Register the sub menu to context menu.
 
@@ -130,7 +160,7 @@ Register the sub menu to context menu.
 register(): void
 ```
 
-##### deregister
+##### `deregister`
 
 Remove the sub menu from context menu.
 
