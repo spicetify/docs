@@ -7,9 +7,9 @@ Spicetify provides its own method for keyboard shortcuts. It's a wrapper for [`S
 
 :::caution
 
-`Spicetify.Keyboard` is wrapper of [`Spicetify.Mouse`](/docs/development/api-wrapper/modules/#mousetrap) configured to be compatible with legacy Spotify, so new extensions should use it instead.
+`Spicetify.Keyboard` is wrapper of [`Spicetify.Mousetrap`](/docs/development/api-wrapper/modules/#mousetrap) configured to be compatible with legacy Spotify.
 
-Look into [Mousetrap](https://craig.is/killing/mice) for more information.
+New extensions are advised to use the module instead.
 
 :::
 
