@@ -19,7 +19,7 @@ Because these APIs are internal, they are not guaranteed to be stable and may *d
 
 ## Usage
 
-Since these APIs differs between each versions of the Spotify client, we cannot provide a complete list of all available APIs. Instead, we provide a list of APIs that are may prove useful for extension developers and generally hasn't changed much over the years.
+Since these APIs differs between each versions of the Spotify client, we cannot provide a complete list of all available APIs. Instead, we provide a list of APIs that may prove useful for extension developers and generally hasn't changed much over the years.
 
 :::note
 
