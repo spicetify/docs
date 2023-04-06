@@ -5,12 +5,23 @@ description: 🛠️ Accessing a copy of Spicetify's `config-xpui.ini` file insi
 
 To make it easier for you to validate and debug your extensions, Spicetify provides a filtered copy of the user's `config-xpui.ini` in the `Spicetify` object.
 
-```js
-Spicetify.Config
+```ts
+interface Config {
+  version: string;
+  current_theme: string;
+  color_scheme: string;
+  extensions: string[];
+  custom_apps: string[];
+}
 ```
 
-## Return
-[`Config`](/docs/development/api-wrapper/types/config) object.
+| Property | Type | Description |
+| --- | --- | --- |
+| `version` | `string` | Spicetify version. |
+| `current_theme` | `string` | Current theme name. |
+| `color_scheme` | `string` | Current color scheme name. |
+| `extensions` | `string[]` | List of enabled extensions. |
+| `custom_apps` | `string[]` | List of enabled custom apps. |
 
 ## Usage
 

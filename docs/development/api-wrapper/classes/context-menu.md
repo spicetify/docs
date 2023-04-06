@@ -19,7 +19,7 @@ new Spicetify.ContextMenu.Item(
   name: string,
   onClick: OnClickCallback,
   shouldAdd?: ShouldAddCallback,
-  icon?: SVGIcon,
+  icon?: SVGIcon | string,
   disabled?: boolean,
 )
 ```
@@ -31,16 +31,22 @@ new Spicetify.ContextMenu.Item(
 | name | `string` | Name of the menu item. |
 | onClick | `OnClickCallback` | Callback function when menu item is clicked. |
 | shouldAdd | `ShouldAddCallback` | Callback function to determine if menu item should be added. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon at the end of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
+
+:::tip
+
+All of the listed properties are dynamic and can be changed at any time. Look into the example below for more information.
+
+:::
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | iconList | [`readonly SVGIcon[]`](/docs/development/api-wrapper/types/svgicon) | List of icons. |
 | name | `string` | Name of the menu item. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon at the end of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon at the end of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 | shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
 | onClick | [`OnClickCallback`](/docs/development/api-wrapper/types/context-menu/onclickcallback) | Callback function when menu item is clicked. |
@@ -91,6 +97,12 @@ menuItem.register();
 
 // Deregister the menu item
 menuItem.deregister();
+
+// Change the menu item's name
+menuItem.name = "My New Menu Item";
+
+// Change the menu item's icon
+menuItem.icon = "pause"
 ```
 
 ### SubMenu
@@ -119,6 +131,12 @@ new Spicetify.ContextMenu.SubMenu(
 | disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
+
+:::tip
+
+All of the listed properties are dynamic and can be changed at any time. Look into the example below for more information.
+
+:::
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
@@ -166,4 +184,47 @@ Remove the sub menu from context menu.
 
 ```ts
 deregister(): void
+```
+
+#### Example
+
+```ts
+// Create a new menu item
+const menuItem = new Spicetify.ContextMenu.Item(
+  "My Menu Item",
+  () => {
+    Spicefy.showNotification("My Menu Item clicked!");
+  },
+  () => true,
+  Spicetify.SVGIcons["play"],
+  false,
+);
+
+// Create a new sub menu
+const subMenu = new Spicetify.ContextMenu.SubMenu(
+  "My Sub Menu",
+  [menuItem],
+  () => true,
+  false,
+);
+
+// Register the sub menu
+subMenu.register();
+
+// Deregister the sub menu
+subMenu.deregister();
+
+// Change the sub menu's name
+subMenu.name = "My New Sub Menu";
+
+// Add a new menu item to the sub menu
+subMenu.addItem(new Spicetify.ContextMenu.Item(
+  "My New Menu Item",
+  () => {
+    Spicefy.showNotification("My New Menu Item clicked!");
+  },
+  () => true,
+  Spicetify.SVGIcons["play"],
+  false,
+));
 ```

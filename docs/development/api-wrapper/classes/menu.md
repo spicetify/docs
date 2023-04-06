@@ -27,17 +27,21 @@ new Spicetify.Menu.Item(
 | name | `string` | Name of the menu item. |
 | isEnabled | `boolean` | Whether the menu item is enabled. |
 | onClick | `(self: Item) => void` | Callback function when menu item is clicked. |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the menu item. |
 
 #### Properties
+
+:::tip
+
+All of the listed properties are dynamic and can be changed at any time. Look into the example below for more information.
+
+:::
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | isEnabled | `boolean` | Whether the menu item is enabled. |
-| setName | `(name: string) => void` | Set name of the menu item. |
-| setState | `(isEnabled: boolean) => void` | Set state of the menu item. Item would has a tick next to it if its state is enabled.|
-| setIcon | `(icon: SVGIcon) => void` | Set icon of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the menu item. |
 
 #### Methods
 
@@ -70,12 +74,12 @@ setState(isEnabled: boolean): void
 Set the icon at the end of the menu item.
 
 ```ts
-setIcon(icon: SVGIcon): void
+setIcon(icon: SVGIcon | string): void
 ```
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | Icon of the menu item. |
+| icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the menu item. |
 
 ##### register
 
@@ -91,6 +95,25 @@ Remove the menu item from profile menu.
 
 ```ts
 deregister(): void
+```
+
+#### Example
+
+```ts
+const item = new Spicetify.Menu.Item("My Item", true, () => {
+  console.log("My Item is clicked");
+});
+
+item.register();
+
+// item.name = "My Item (Updated)";
+item.setName("My Item (Updated)");
+
+// item.isEnabled = false;
+item.setState(false);
+
+// item.icon = "heart";
+item.setIcon("heart");
 ```
 
 ### SubMenu
@@ -115,11 +138,92 @@ new Spicetify.Menu.SubMenu(
 
 #### Properties
 
+:::tip
+
+All of the listed properties are dynamic and can be changed at any time. Look into the example below for more information.
+
+:::
+
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
-| setName | `(name: string) => void` | Set name of the menu item. |
-| addItem | `(item: Item) => void` | Add a sub menu item. |
-| removeItem | `(item: Item) => void` | Remove a sub menu item. |
-| register | `() => void` | Register the menu item to menu. |
-| deregister | `() => void` | Remove the menu item from menu. |
+
+#### Methods
+
+##### setName
+
+Set the label of the menu item.
+
+```ts
+setName(name: string): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| name | `string` | Name of the menu item. |
+
+##### addItem
+
+Add a sub menu item.
+
+```ts
+addItem(item: Item): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| item | [`Item`](/docs/development/api-wrapper/classes/menu#item) | Sub menu item. |
+
+##### removeItem
+
+Remove a sub menu item.
+
+```ts
+removeItem(item: Item): void
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| item | [`Item`](/docs/development/api-wrapper/classes/menu#item) | Sub menu item. |
+
+##### register
+
+Register the menu item to profile menu.
+
+```ts
+register(): void
+```
+
+##### deregister
+
+Remove the menu item from profile menu.
+
+```ts
+deregister(): void
+```
+
+#### Example
+
+```ts
+const item1 = new Spicetify.Menu.Item("My Item 1", true, () => {
+  console.log("My Item 1 is clicked");
+});
+
+const item2 = new Spicetify.Menu.Item("My Item 2", true, () => {
+  console.log("My Item 2 is clicked");
+});
+
+const subMenu = new Spicetify.Menu.SubMenu("My Sub Menu", [item1, item2]);
+
+subMenu.register();
+
+// subMenu.name = "My Sub Menu (Updated)";
+subMenu.setName("My Sub Menu (Updated)");
+
+// subMenu.addItem(item3);
+subMenu.addItem(
+  new Spicetify.Menu.Item("My Item 3", true, () => {
+    console.log("My Item 3 is clicked");
+  })
+);
+```
