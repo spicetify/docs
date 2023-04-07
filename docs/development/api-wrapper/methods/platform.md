@@ -109,15 +109,44 @@ You can pass either a `Location` object or a `pathname` string to this method.
 | --- | --- | --- |
 | `path` | `Location` &#124; `string` | Location to push. |
 
+```ts
+Spicetify.Platform.History.push("/app/your-app");
+
+Spicetify.Platform.History.push({
+    pathname: "/app/your-app",
+    search: "?foo=bar",
+    hash: "#baz",
+    state: { foo: "bar" },
+});
+```
+
 #### `replace`
 
 Replace the current location in the history stack.
+
+:::caution
+
+Users will **not** be able to go back to the previous page.
+
+:::
 
 You can pass either a `Location` object or a `pathname` string to this method.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `path` | `Location` &#124; `string` | Location to replace. |
+
+```ts
+// Replace the current location with a new one.
+Spicetify.Platform.History.replace("/app/your-app");
+
+Spicetify.Platform.History.replace({
+    pathname: "/app/your-app",
+    search: "?foo=bar",
+    hash: "#baz",
+    state: { foo: "bar" },
+});
+```
 
 #### `goBack`
 
@@ -472,7 +501,7 @@ Remove items from the current user's queue.
 
 :::tip
 
-This works similarly to [`Spicetify.removeFromQueue`](/docs/development/api-wrapper/functions/remove-from-queue), but it will not show a notification.
+This works similarly to [`Spicetify.removeFromQueue`](/docs/development/api-wrapper/functions/remove-from-queue).
 
 :::
 

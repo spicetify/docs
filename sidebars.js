@@ -101,6 +101,7 @@ const sidebars = {
                 'development/api-wrapper/classes/context-menu',
                 'development/api-wrapper/classes/menu',
                 'development/api-wrapper/classes/topbar',
+                'development/api-wrapper/classes/playbar',
               ],
             },
             {
