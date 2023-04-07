@@ -5,7 +5,7 @@ description: Get the audio data from a track.
 
 Fetch track analyzed audio data.
 
-Under the hood, it uses the `wg://audio-attributes/v1/audio-analysis/` endpoint, which is identical to Spotify Web API's [Get Track's Audio Analysis](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/). The only difference is that it doesn't require authentication.
+Under the hood, it uses the `wg://audio-attributes/v1/audio-analysis/` endpoint, which is identical to Spotify Web API's [Get Track's Audio Analysis](https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis). The only difference is that it doesn't require authentication.
 
 :::caution
 
@@ -25,7 +25,7 @@ function getAudioData(uri?: string): Promise<any>;
 
 #### Returns
 
-An object containing the audio data. See the [Spotify Web API reference](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/) for more details.
+An object containing the audio data. See the [Spotify Web API reference](https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis) for more details.
 
 #### Example
 

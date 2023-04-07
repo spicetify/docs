@@ -222,7 +222,6 @@ const sidebars = {
                 'development/api-wrapper/types/player-state',
                 'development/api-wrapper/types/provided-track',
                 'development/api-wrapper/types/svgicon',
-                'development/api-wrapper/types/queue',
               ],
             },
           ],

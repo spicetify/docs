@@ -79,7 +79,7 @@ class URI {
   public query?: string;
   public country?: string;
   public global?: boolean;
-  public context?: string | null;
+  public context?: string | typeof URI | null;
   public anchor?: string;
   public play?: any;
   public toplist?: any;

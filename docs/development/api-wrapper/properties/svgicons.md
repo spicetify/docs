@@ -6,7 +6,7 @@ description: A set of SVG icons used throughout the Spotify client.
 Spicetify has a predefined set of SVG icons that are used by Spotify throughout the client. These are strings of SVG `innerHTML` that are used to create `<svg>` elements.
 
 ```ts
-const SVGIcons = { [key: SVGIcon]: string };
+const SVGIcons = Record<SVGIcon, string>;
 ```
 
 | Property | Type | Description |

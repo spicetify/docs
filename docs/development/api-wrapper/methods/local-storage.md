@@ -7,21 +7,9 @@ Spicetify provides a wrapper for `localStorage` to make it easier to use.
 
 ```ts
 namespace LocalStorage {
-    /**
-     * Empties the list associated with the object of all key/value pairs, if there are any.
-     */
     function clear(): void;
-    /**
-     * Get key value
-     */
     function get(key: string): string | null;
-    /**
-     * Delete key
-     */
     function remove(key: string): void;
-    /**
-     * Set new value for key
-     */
     function set(key: string, value: string): void;
 };
 ```

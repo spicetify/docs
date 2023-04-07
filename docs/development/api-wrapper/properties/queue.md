@@ -16,7 +16,22 @@ Spicetify.Queue
 ```
 
 ## Return
-[`Queue`](/docs/development/api-wrapper/types/queue)
+
+```ts
+const Queue: {
+    nextTracks: ProvidedTrack[];
+    prevTracks: ProvidedTrack[];
+    queueRevision: string;
+    track: ProvidedTrack;
+};
+```
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `nextTracks` | [`ProvidedTrack[]`](/docs/development/api-wrapper/types/provided-track) | List of next tracks. |
+| `prevTracks` | [`ProvidedTrack[]`](/docs/development/api-wrapper/types/provided-track) | List of previous tracks. |
+| `queueRevision` | `string` | Queue revision ID used internally by Spotify. |
+| `track` | [`ProvidedTrack`](/docs/development/api-wrapper/types/provided-track) | Current track. |
 
 ## Usage
 
