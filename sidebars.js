@@ -97,7 +97,11 @@ const sidebars = {
                 description: 'A list of all classes in the API Wrapper.',
                 slug: '/development/api-wrapper/classes',
               },
-              items: ['development/api-wrapper/classes/context-menu', 'development/api-wrapper/classes/menu'],
+              items: [
+                'development/api-wrapper/classes/context-menu',
+                'development/api-wrapper/classes/menu',
+                'development/api-wrapper/classes/topbar',
+              ],
             },
             {
               type: 'category',
@@ -108,6 +112,8 @@ const sidebars = {
                 slug: '/development/api-wrapper/functions',
               },
               items: [
+                'development/api-wrapper/functions/add-to-queue',
+                'development/api-wrapper/functions/remove-from-queue',
                 'development/api-wrapper/functions/color-extractor',
                 'development/api-wrapper/functions/get-audio-data',
                 'development/api-wrapper/functions/show-notification',

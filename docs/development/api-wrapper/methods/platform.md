@@ -392,6 +392,14 @@ enum RepeatMode {
 
 Add items to the current user's queue.
 
+:::tip
+
+This works as if the user had clicked the `Add to queue` button in the Spotify client, meaning a notification will be shown.
+
+If you want to add items to the queue without showing a notification, use [`Spicetify.addToQueue`](/docs/development/api-wrapper/functions/add-to-queue).
+
+:::
+
 ```ts
 await Spicetify.Platform.PlayerAPI.addToQueue(items);
 ```
@@ -461,6 +469,12 @@ await Spicetify.Platform.PlayerAPI.play(track, {}, {});
 #### `removeFromQueue`
 
 Remove items from the current user's queue.
+
+:::tip
+
+This works similarly to [`Spicetify.removeFromQueue`](/docs/development/api-wrapper/functions/remove-from-queue), but it will not show a notification.
+
+:::
 
 ```ts
 await Spicetify.Platform.PlayerAPI.removeFromQueue(items);
