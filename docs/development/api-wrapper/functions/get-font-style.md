@@ -21,7 +21,7 @@ function getFontStyle(font: Variant): string;
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| font | [`Variant`](/docs//development/api-wrapper/types/variant) | Font variant |
+| font | [`Variant`](/docs/development/api-wrapper/types/variant) | Font variant |
 
 #### Returns
 
