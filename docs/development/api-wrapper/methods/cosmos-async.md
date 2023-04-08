@@ -13,7 +13,7 @@ It works similarly to `fetch` or `axios` but for each request it will automatica
 
 :::caution
 
-Be mindful of where you're making a request to, especially if you're making a request to an external URL as it *may* compromise the user's privacy.
+Be mindful of where you're making a request to, especially if you're making a request to an external URL as it *may* compromise the user's account.
 
 If you're not certain, only use `CosmosAsync` for internal Spotify URLs, or use `fetch` for external URLs.
 
@@ -57,6 +57,21 @@ await Spicetify.CosmosAsync.request("GET", "sp://desktop/v1/version");
 ```
 
 For a complete list of available HTTP methods, see [`Method`](/docs/development/api-wrapper/types/cosmos-async/method).
+
+You can also use `CosmosAsync` for Spotify Web API endpoints without having to manually add the required headers and cookies.
+
+```ts
+// All endpoints that uses the `sp`, `wg`, and `hm` protocol are internal Spotify endpoints
+await Spicetify.CosmosAsync.get("sp://desktop/v1/version");
+
+// Spotify Web API endpoints also works
+await Spicetify.CosmosAsync.get("https://api.spotify.com/v1/me");
+
+// Requests to external URLs are NOT safe and may compromise the user's account
+// Only use this if you're certain that the URL is safe
+// If you need to make a request to an external URL, use `fetch` instead
+await fetch("https://example.com");
+```
 
 ### `head`
 

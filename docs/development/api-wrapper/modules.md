@@ -10,7 +10,7 @@ You can access them by typing `Spicetify.<module name>` in DevTools console, ins
 Utilizing these modules can help you create more powerful extensions without having to include the whole module in your extension.
 
 ```js
-window.top.Spicetify.React
+Spicetify.React
 ```
 
 For usage of these modules, please refer to their official documentation.

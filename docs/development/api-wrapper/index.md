@@ -8,8 +8,8 @@ Making an extension from scratch can be a daunting task. Luckily, Spicetify prov
 ## Spicetify Object
 You can access the Spicetify object by typing `Spicetify` in DevTools console, inside your extension, or `window.top.Spicetify` if you're developing an app inside `iframe`.
 
-```js
-window.top.Spicetify
+```ts
+Spicetify
 ```
 
 Navigate the sidebar to see all the methods and properties available in the Spicetify object!
