@@ -69,7 +69,7 @@ An object contains all information about current track and player.
 
 :::caution
 
-If the current player doesn't have any track, `data` will be `null`. Always check for `null` before using `data` to avoid error.
+If the current player doesn't have any track, `data` will be `null`. Always check for `null` before using `data` to avoid errors.
 
 :::
 
@@ -94,7 +94,7 @@ if (currentURI) {
 
 ### eventListeners
 
-An object contains all registered event listeners.
+An object containing all registered event listeners.
 
 ```ts
 Spicetify.Player.eventListeners;
@@ -117,7 +117,7 @@ Spicetify.Player.eventListeners;
 
 ### addEventListener
 
-Register a listener `type` on Spicetify.Player. You can use this method to listen to events that are fired throughout the app, including:
+Register a listener of `type` on Spicetify.Player. You can use this method to listen to events that are fired throughout the app, including:
 
   * `songchange` type when player changes track.
   * `onplaypause` type when player plays or pauses.

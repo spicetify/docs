@@ -27,7 +27,7 @@ namespace Topbar {
 | :--- | :--- | :--- |
 | label | `string` | Label of the button. |
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the button. |
-| onClick | `(self: Button) => void` | Callback function when button is clicked. |
+| onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | disabled | `boolean` | Whether the button is disabled. |
 
 #### Properties
@@ -43,7 +43,7 @@ All of the listed properties are dynamic and can be changed at any time. Look in
 | label | `string` | Label of the button. |
 | icon | `string` | Icon of the button. |
 | disabled | `boolean` | Whether the button is disabled. |
-| onClick | `(self: Button) => void` | Callback function when button is clicked. |
+| onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | element | `HTMLButtonElement` | HTML element of the button. |
 | tippy | `any` | Tippy instance of the button. For more information, see [Tippy.js](https://atomiks.github.io/tippyjs/v6/tippy-instance/). |
 
@@ -51,7 +51,7 @@ All of the listed properties are dynamic and can be changed at any time. Look in
 
 :::caution
 
-Tippy, `onlick` or any other click events will **not** work if `disabled` is set to `true`. You will need to manually enable the button inside your extension.
+Tippy, `onclick` or any other click events will **not** work if `disabled` is set to `true`. You will need to manually enable the button inside your extension.
 
 This is due to the limitations of Tippy itself and how HTML elements work.
 

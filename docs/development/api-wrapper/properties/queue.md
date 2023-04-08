@@ -9,7 +9,7 @@ This type is deducted from Spotify's internal usage. It may not be accurate and 
 
 :::
 
-The `Queue` object contains list of queuing tracks, history of played tracks and current track metadata.
+The `Queue` object contains a list of queuing tracks, history of played tracks, and current track metadata.
 
 ```ts
 Spicetify.Queue

@@ -30,7 +30,7 @@ namespace Playbar {
 | :--- | :--- | :--- |
 | label | `string` | Label of the button. |
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the button. |
-| onClick | `(self: Button) => void` | Callback function when button is clicked. |
+| onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | disabled | `boolean` &#124; `undefined` | Whether the button is disabled. |
 | active | `boolean` &#124; `undefined` | Whether the button is active. |
 | registerOnCreate | `boolean` &#124; `undefined` | Whether the button should be registered to the player on creation. |
@@ -49,7 +49,7 @@ All of the listed properties are dynamic and can be changed at any time. Look in
 | icon | `string` | Icon of the button. |
 | disabled | `boolean` | Whether the button is disabled. |
 | active | `boolean` | Whether the button is active. |
-| onClick | `(self: Button) => void` | Callback function when button is clicked. |
+| onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | element | `HTMLButtonElement` | HTML element of the button. |
 | tippy | `any` | Tippy instance of the button. For more information, see [Tippy.js](https://atomiks.github.io/tippyjs/v6/tippy-instance/). |
 
@@ -75,7 +75,7 @@ deregister(): void;
 
 :::caution
 
-Tippy, `onlick` or any other click events will **not** work if `disabled` is set to `true`. You will need to manually enable the button inside your extension.
+Tippy, `onclick` or any other click events will **not** work if `disabled` is set to `true`. You will need to manually enable the button inside your extension.
 
 This is due to the limitations of Tippy itself and how HTML elements work.
 
@@ -89,7 +89,7 @@ const button = new Spicetify.Playbar.Button(
     "My Button",
     "play",
     (self) => {
-        // Do something when button is clicked.
+        // Do something when the button is clicked.
     },
     false, // Whether the button is disabled.
     false, // Whether the button is active.

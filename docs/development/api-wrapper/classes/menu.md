@@ -1,9 +1,9 @@
 ---
 title: Menu
-description: Create and prepend custom menu item in profile menu.
+description: Create and prepend custom menu items in the profile menu.
 ---
 
-Create and prepend custom menu item in profile menu.
+Create and prepend custom menu items in the profile menu.
 
 ## Classes
 
@@ -26,7 +26,7 @@ new Spicetify.Menu.Item(
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | isEnabled | `boolean` | Whether the menu item is enabled. |
-| onClick | `(self: Item) => void` | Callback function when menu item is clicked. |
+| onClick | `(self: Item) => void` | Callback function when the menu item is clicked. |
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the menu item. |
 
 #### Properties
@@ -59,7 +59,7 @@ setName(name: string): void
 
 ##### setState
 
-Set the state of the menu item. Item would has a tick next to it if its state is enabled.
+Set the state of the menu item. The item would has a tick icon next to it if its state is enabled.
 
 ```ts
 setState(isEnabled: boolean): void
@@ -83,7 +83,7 @@ setIcon(icon: SVGIcon | string): void
 
 ##### register
 
-Register the menu item to profile menu.
+Register the menu item to the profile menu.
 
 ```ts
 register(): void
@@ -91,7 +91,7 @@ register(): void
 
 ##### deregister
 
-Remove the menu item from profile menu.
+Remove the menu item from the profile menu.
 
 ```ts
 deregister(): void
