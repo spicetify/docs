@@ -48,8 +48,8 @@ All of the listed properties are dynamic and can be changed at any time. Look in
 | name | `string` | Name of the menu item. |
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon at the end of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
-| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
-| onClick | [`OnClickCallback`](/docs/development/api-wrapper/types/context-menu/onclickcallback) | Callback function when menu item is clicked. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/should-add-callback) | Callback function to determine if menu item should be added. |
+| onClick | [`OnClickCallback`](/docs/development/api-wrapper/types/context-menu/onclick-callback) | Callback function when menu item is clicked. |
 
 #### Methods
 
@@ -127,7 +127,7 @@ new Spicetify.ContextMenu.SubMenu(
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | subItems | [`Iterable<Item>`](/docs/development/api-wrapper/classes/context-menu/#item) | Array of `Item`s to be added to the sub menu. |
-| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/should-add-callback) | Callback function to determine if menu item should be added. |
 | disabled | `boolean` | Whether the menu item is disabled. |
 
 #### Properties
@@ -142,7 +142,7 @@ All of the listed properties are dynamic and can be changed at any time. Look in
 | :--- | :--- | :--- |
 | name | `string` | Name of the menu item. |
 | disabled | `boolean` | Whether the menu item is disabled. |
-| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/shouldaddcallback) | Callback function to determine if menu item should be added. |
+| shouldAdd | [`ShouldAddCallback`](/docs/development/api-wrapper/types/context-menu/should-add-callback) | Callback function to determine if menu item should be added. |
 
 #### Methods
 

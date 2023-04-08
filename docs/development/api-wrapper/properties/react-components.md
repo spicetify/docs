@@ -45,7 +45,7 @@ Generic context menu provider. It is used by Spotify on a variety of elements, s
 
 #### Props
 
-See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/contextmenuprops).
+See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/context-menu-props).
 
 #### Example
 
@@ -78,7 +78,7 @@ Wrapper of [`ContextMenu`](#contextmenu) with predefined props: `action = 'toggl
 
 #### Props
 
-See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/contextmenuprops).
+See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/context-menu-props).
 
 #### Example
 
@@ -109,7 +109,7 @@ Outer layer containing [`MenuItem`](#menuitem)s.
 
 #### Props
 
-See [`MenuProps`](/docs/development/api-wrapper/types/react-component/menuprops).
+See [`MenuProps`](/docs/development/api-wrapper/types/react-component/menu-props).
 
 #### Example
 
@@ -130,7 +130,7 @@ Component to construct menu item. Used as [`Menu`](#menu) children.
 
 #### Props
 
-See [`MenuItemProps`](/docs/development/api-wrapper/types/react-component/menuitemprops).
+See [`MenuItemProps`](/docs/development/api-wrapper/types/react-component/menu-item-props).
 
 #### Example
 
@@ -163,7 +163,7 @@ Tailored [`Menu`](#menu) for specific type of object.
 
 #### Props
 
-Accepts `uri` and `onRemoveCallback` props along with [`MenuProps`](/docs/development/api-wrapper/types/react-component/menuprops).
+Accepts `uri` and `onRemoveCallback` props along with [`MenuProps`](/docs/development/api-wrapper/types/react-component/menu-props).
 
 ```ts
 interface AlbumMenuProps extends MenuProps {
@@ -197,7 +197,7 @@ This component is a wrapper for [`Tippy`](https://atomiks.github.io/tippyjs/). I
 
 #### Props
 
-See [`TooltipProps`](/docs/development/api-wrapper/types/react-component/tooltipprops).
+See [`TooltipProps`](/docs/development/api-wrapper/types/react-component/tooltip-props).
 
 #### Example
 
@@ -224,7 +224,7 @@ This component is a wrapper for [`styled-components`](https://styled-components.
 
 #### Props
 
-See [`IconComponentProps`](/docs/development/api-wrapper/types/react-component/iconcomponentprops).
+See [`IconComponentProps`](/docs/development/api-wrapper/types/react-component/icon-component-props).
 
 #### Example
 
@@ -250,7 +250,7 @@ This component is a wrapper for [`styled-components`](https://styled-components.
 
 #### Props
 
-See [`TextComponentProps`](/docs/development/api-wrapper/types/react-component/textcomponentprops).
+See [`TextComponentProps`](/docs/development/api-wrapper/types/react-component/text-component-props).
 
 #### Example
 

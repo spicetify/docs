@@ -34,4 +34,4 @@ await Spicetify.addToQueue([currentTrack]);
 // Add a track to queue
 const trackUri = "spotify:track:4iV5W9uYEdYUVa79Axb7Rh";
 
-await Spicetify.addToQueue([{ uri: trackUri }]);
+await Spicetify.addToQueue([ { uri: trackUri } ]);

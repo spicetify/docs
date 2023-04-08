@@ -272,7 +272,7 @@ Parses a given string into a [`URI`](#usage) instance.
 
 :::caution
 
-This function will throw a `TypeError` if the string is not a valid URI. Use [`URI.from`](#from) if you want to parse any kind of value.
+This function will throw a `TypeError` if the argument passed is not a string. Use [`URI.from`](#from) if you want to parse any kind of value.
 
 :::
 

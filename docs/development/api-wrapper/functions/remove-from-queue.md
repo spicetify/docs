@@ -36,5 +36,5 @@ await Spicetify.removeFromQueue([currentTrack]);
 // Remove a track from queue
 const trackUri = "spotify:track:4iV5W9uYEdYUVa79Axb7Rh";
 
-await Spicetify.removeFromQueue([{ uri: trackUri }]);
+await Spicetify.removeFromQueue([ { uri: trackUri } ]);
 ```
