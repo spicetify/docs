@@ -27,7 +27,7 @@ namespace PopupModal {
 | Property | Type | Description |
 | --- | --- | --- |
 | `title` | `string` | Title of the modal. |
-| `content` | `string` | Content of the modal. You can specify a string for simple text display or a HTML element for interactive config/setting menu. |
+| `content` | `string` | Content of the modal. You can specify a string for simple text display or an HTML element for interactive config/setting menu. |
 | `isLarge` | `boolean` &#124; `undefined` | Bigger modal. |
 
 ## Methods

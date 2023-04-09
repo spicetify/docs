@@ -19,7 +19,7 @@ Because these APIs are internal, they are not guaranteed to be stable and may *d
 
 ## Usage
 
-Since these APIs differs between each versions of the Spotify client, we cannot provide a complete list of all available APIs. Instead, we provide a list of APIs that may prove useful for extension developers and generally hasn't changed much over the years.
+Since these APIs differ between each version of the Spotify client, we cannot provide a complete list of all available APIs. Instead, we provide a list of APIs that may prove useful for extension developers and generally hasn't changed much over the years.
 
 :::note
 
@@ -334,7 +334,7 @@ The current Spotify client version. Usually in the format `1.2.8`, `1.2.8.923`, 
 
 #### `event_sender_context_information`
 
-An object containing information about the current operating system, used for analytics throughout the Spotify client.
+An object containing information about the current operating system. Used for analytics throughout the Spotify client.
 
 Example:
 
