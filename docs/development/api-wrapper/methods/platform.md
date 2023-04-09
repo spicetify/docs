@@ -43,14 +43,20 @@ The Spotify client doesn't allow users to copy directly from the client (say `Ct
 
 ```ts
 interface ClipboardAPI {
-    copy: (text: string) => void;
-    paste: () => string;
+    copy: (text: string) => Promise<void>;
+    paste: () => Promise<string | undefined>;
 };
 ```
 
 #### `copy`
 
 Copy text to clipboard.
+
+:::info
+
+The parameter passed will be stringified before being copied to the clipboard.
+
+:::
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -59,18 +65,31 @@ Copy text to clipboard.
 Example:
 
 ```ts
-Spicetify.Platform.ClipboardAPI.copy("Hello World!");
+// Will be copied as "Hello World!"
+await Spicetify.Platform.ClipboardAPI.copy("Hello World!");
+
+// Will be stringified to '{"0":0,"1":0,"2":0,"3":0}'
+await Spicetify.Platform.ClipboardAPI.copy(new Uint16Array(4));
 ```
 
 #### `paste`
 
-Paste text from clipboard.
+Paste text from clipboard. Returns a string.
+
+:::caution
+
+If the content of the clipboard is not a string, this method will return `undefined`.
+
+:::
 
 Example:
 
 ```ts
-Spicetify.Platform.ClipboardAPI.copy("Hello World!");
-Spicetify.Platform.ClipboardAPI.paste(); // "Hello World!"
+await Spicetify.Platform.ClipboardAPI.copy("Hello World!");
+await Spicetify.Platform.ClipboardAPI.paste(); // "Hello World!"
+
+await Spicetify.Platform.ClipboardAPI.copy(new Uint16Array(4));
+await Spicetify.Platform.ClipboardAPI.paste(); // '{"0":0,"1":0,"2":0,"3":0}'
 ```
 
 ### History
@@ -156,6 +175,12 @@ Go back to the previous location in the history stack.
 
 Go forward to the next location in the history stack.
 
+:::caution
+
+The page may not be fully loaded when this event is fired. You may need to wait for the DOM to finish loading before you can interact with it.
+
+:::
+
 #### `listen`
 
 Listen to changes in the history stack. Fires whenever the user navigates to a new page.
@@ -190,6 +215,14 @@ Inside `localStorage`, the keys are stored using the following format:
 ```ts
 `${namespace}:${key}`
 ```
+
+:::tip
+
+All keys created using this method will be namespaced using the current user's username.
+
+If you wish to create a generic key, you can use [`Spicetify.LocalStorage`](./local-storage) instead.
+
+:::
 
 ```ts
 interface LocalStorageAPI {

@@ -5,6 +5,14 @@ description: Get and set data in local storage.
 
 Spicetify provides a wrapper for `localStorage` to make it easier to use.
 
+:::tip
+
+All keys created via this method is generic and stored as-is.
+
+If you wish to store values that are specific for each user account, you can use [`Platform.LocalStorageAPI`](./platform#localstorage) instead.
+
+:::
+
 ```ts
 namespace LocalStorage {
     function clear(): void;
