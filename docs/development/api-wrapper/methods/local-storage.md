@@ -32,6 +32,8 @@ Empties the list associated with the object of all key/value pairs, if there are
 
 This method will remove all data in local storage, not just the data that Spicetify uses. This essentially resets the client to its default state.
 
+It will also wipe all data stored by extensions and custom apps (e.g. Marketplace, Lyrics Plus, etc.)
+
 :::
 
 ```ts
