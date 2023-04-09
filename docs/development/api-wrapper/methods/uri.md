@@ -23,7 +23,7 @@ In this documentation, we will be covering the new method, used from version `1.
 
 ## Introduction
 
-Almost every component in the client has its own URI, whether it be a track, an album, a playlist, a user, etc. The URI is used to identify the resource and to interact with it.
+Almost every component in the client has its own URI (Uniform Resource Indicator), whether it be a track, an album, a playlist, a user, etc. The URI is used to identify the resource and to interact with it.
 
 They all follow the same format in the form of `spotify:<type>:<id>`, where `<type>` is the type of the resource and `<id>` is the `base62` unique identifier of the resource.
 
