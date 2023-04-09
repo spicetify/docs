@@ -5,7 +5,7 @@ description: Create buttons in the player.
 
 Create buttons in the player, next to the player controls.
 
-This is useful for creating buttons which actions has an impact on/relating to the player and is generally dynamic/stateful, such as a button that toggles the player's loop mode.
+This is useful for creating buttons whose actions have an impact on or relate to the player, and are generally dynamic/stateful, such as a button that toggles the player's loop mode.
 
 ```ts
 namespace Playbar {
