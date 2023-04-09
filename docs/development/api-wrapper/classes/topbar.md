@@ -5,7 +5,7 @@ description: Create buttons in the top bar.
 
 Create buttons in the top bar, next to the navigation buttons.
 
-This is useful for creating buttons which actions has an impact on the whole app and is generally static, such as a button that opens a settings menu.
+This is useful for creating buttons that are generally static and whose actions have an impact on the whole app, such as a button that opens a settings menu.
 
 ```ts
 namespace Topbar {
