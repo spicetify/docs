@@ -139,7 +139,7 @@ Have easy access to a pop-up window with the current song's lyrics. Click at mic
 ### Shuffle+
 
 **Filename:** `shuffle+.js`  
-Shuffles using Fisher–Yates algorithm with zero bias. After installing extensions, right click album/playlist/artist item, there will be an option "Play with Shuffle+". You can also multiple select tracks and choose to "Play with Shuffle+". Moreover, enable option "Auto Shuffle+" in Profile menu to inject Shuffle+ into every play buttons, no need to right click anymore.
+Shuffles using Fisher–Yates algorithm with zero bias. After installing extensions, right click album/playlist/artist item, there will be an option "Play with Shuffle+". You can also multiple select tracks and choose to "Play with Shuffle+".
 
 ![Shuffle](https://i.imgur.com/gxbnqSN.png)
 
