@@ -7,7 +7,7 @@ Extensions, in a nutshell, are JavaScript files that will be evaluated along wit
 
 ## Installing
 
-Extension files can be store in:
+Extension files can be stored in:
 
 - `Extensions` folder in Home directory:
 
