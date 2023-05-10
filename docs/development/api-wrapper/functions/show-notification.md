@@ -19,14 +19,14 @@ function showNotification(text: string, isError?: boolean, msTimeout?: number): 
 
 ```ts
 // Display a notification
-Spicefy.showNotification("My Menu Item clicked!");
+Spicetify.showNotification("My Menu Item clicked!");
 
 // Display a notification with a custom timeout
-Spicefy.showNotification("My Menu Item clicked!", false, 1000);
+Spicetify.showNotification("My Menu Item clicked!", false, 1000);
 
 // Display an error notification
-Spicefy.showNotification("Something wrong happened", true);
+Spicetify.showNotification("Something wrong happened", true);
 
 // Display a bolded error notification
-Spicefy.showNotification("<b>Something wrong happened</b>", true);
+Spicetify.showNotification("<b>Something wrong happened</b>", true);
 ```
