@@ -165,7 +165,7 @@ For a list of definitions, see [`Query`](/docs/development/api-wrapper/types/gra
 
 The list of methods are subjected to change in the future depending on Spotify's usage.
 
-Also of the nature that this is a private API, the definitions are not documented by Spotify, and may not be accurate. They can also be removed in the future, both server-side and client-side.
+Also of the nature that this is a private API, the definitions are not documented by Spotify. They can also be removed in the future, both server-side and client-side.
 
 It is recommended to check the definitions in DevTools before using them, and to have several fallbacks in case a definition is removed.
 
