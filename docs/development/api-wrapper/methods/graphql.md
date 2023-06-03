@@ -121,7 +121,7 @@ query fetchExtractedColors($uris: [ID!]!) {
 }
 ```
 
-By itself, it looks like gibberish, since you have no way of telling what the hash is for, and what it is used for. Additionally, as seen from the query above, each request will have their own unique hash, and the request would return an error if the hash is mismatched or not provided.
+By itself, it looks like gibberish, since you have no way of telling what the hash is, and what it is used for. Additionally, as seen from the query above, each request will have their own unique hash, and the request would return an error if the hash is mismatched or not provided.
 
 You also wouldn't be able to tell if Spotify have changed the query server-side until the request breaks, and would need to track down the network request again to get the new hash.
 
