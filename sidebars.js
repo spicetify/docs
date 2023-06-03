@@ -82,11 +82,14 @@ const sidebars = {
               items: [
                 'development/api-wrapper/methods/platform',
                 'development/api-wrapper/methods/cosmos-async',
+                'development/api-wrapper/methods/graphql',
                 'development/api-wrapper/methods/player',
                 'development/api-wrapper/methods/keyboard',
                 'development/api-wrapper/methods/local-storage',
                 'development/api-wrapper/methods/uri',
                 'development/api-wrapper/methods/popup-modal',
+                'development/api-wrapper/methods/panel',
+                'development/api-wrapper/methods/app-title',
               ],
             },
             {
@@ -134,6 +137,7 @@ const sidebars = {
                 'development/api-wrapper/properties/svgicons',
                 'development/api-wrapper/properties/queue',
                 'development/api-wrapper/properties/react-components',
+                'development/api-wrapper/properties/react-hook',
                 'development/api-wrapper/properties/tippy-props',
               ],
             },
@@ -216,6 +220,34 @@ const sidebars = {
                     'development/api-wrapper/types/react-component/tooltip-props',
                     'development/api-wrapper/types/react-component/icon-component-props',
                     'development/api-wrapper/types/react-component/text-component-props',
+                    'development/api-wrapper/types/react-component/confirm-dialog-props',
+                    'development/api-wrapper/types/react-component/panel-skeleton-props',
+                    'development/api-wrapper/types/react-component/panel-content-props',
+                    'development/api-wrapper/types/react-component/panel-header-props',
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'Panel',
+                  link: {
+                    type: 'generated-index',
+                    description: 'A list of all type definitions in the Panel method.',
+                    slug: '/development/api-wrapper/types/panel',
+                  },
+                  items: [
+                    'development/api-wrapper/types/panel/panel-props',
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'GraphQL',
+                  link: {
+                    type: 'generated-index',
+                    description: 'A list of all type definitions in the GraphQL method.',
+                    slug: '/development/api-wrapper/types/graphql',
+                  },
+                  items: [
+                    'development/api-wrapper/types/graphql/query',
                   ],
                 },
                 'development/api-wrapper/types/metadata',

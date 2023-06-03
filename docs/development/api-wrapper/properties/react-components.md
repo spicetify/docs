@@ -24,6 +24,10 @@ namespace ReactComponent {
     const TooltipWrapper: any;
     const IconComponent: any;
     const TextComponent: any;
+    const ConfirmDialog: any;
+    const PanelSkeleton: any;
+    const PanelContent: any;
+    const PanelHeader: any;
 };
 ```
 
@@ -265,3 +269,55 @@ const text = React.memo((props: TextComponentProps) =>
     </Spicetify.ReactComponent.TextComponent>
 );
 ```
+
+### `ConfirmDialog`
+
+Component to display Spotify-style confirmation dialog. Used by Spotify on playlist, track removal, etc.
+
+:::info
+
+For each of the `onConfirm`, `onCancel`, and `onOutsideClick` props, the dialog will not close automatically. You must manually handle the state of the dialog.
+
+:::
+
+#### Props
+
+See [`ConfirmDialogProps`](/docs/development/api-wrapper/types/react-component/confirm-dialog-props).
+
+#### Example
+
+```tsx
+const ConfirmButton = () => {
+    // Modal open state must be handled manually
+    const [showModal, setShowModal] = React.useState(false);
+
+    return (
+        <Spicetify.ReactComponent.ConfirmDialog
+            isOpen={showModal}
+            onConfirm={() => {
+                setShowModal(false);
+                Spicetify.showNotification('Confirmed');
+            }}
+            onCancel={() => {
+                setShowModal(false);
+                Spicetify.showNotification('Cancelled');
+            }}
+            onOutsideClick={() => {
+                setShowModal(false);
+                Spicetify.showNotification('Clicked outside');
+            }}
+            titleText="Confirm Modal"
+            descriptionText="Are you sure you want to confirm?"
+            confirmText="Confirm"
+            cancelText="Cancel"
+        />
+        <button onClick={() => setShowModal(true)}>Click me</button>
+    );
+}
+```
+
+### `PanelSkeleton`, `PanelContent`, `PanelHeader`
+
+Components to render Spotify-style panel. Used by Spotify on their right sidebar panels (e.g. BuddyFeed, Now Playing, etc).
+
+Refer to [`Panel.Components`](/docs/development/api-wrapper/methods/panel#components) for more details.
