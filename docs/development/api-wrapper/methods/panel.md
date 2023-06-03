@@ -187,7 +187,7 @@ To make it easier and convenient for developers to use the Panel API, this metho
 
 However, this also means that the props passed onto the Panel cannot be updated after the Panel is registered. (most notably the `label` and `header` props)
 
-If you want to customize the Panel, you can pass `isCustom` as `true` to disable the default wrapper.
+If you want to customize the Panel, look into [Registering a custom Panel](#registering-a-custom-panel).
 
 :::
 
