@@ -259,7 +259,9 @@ const PanelAction = () => {
 
 // Ideally, you would want to memorize this component
 // to prevent unnecessary re-renders if you were to pass props
-const Panel = () => {
+
+// Props will have a single `panel` property for the panel ID
+const Panel = ({ panel }) => {
     // For example, if you want to change the header title
     const [title, setTitle] = React.useState('Hello World');
     // Or if you want to display extra actions on the header in a stateful manner
@@ -276,7 +278,8 @@ const Panel = () => {
                 <Spicetify.ReactComponent.PanelHeader
                     title={title}
                     link="/collection" // Can be an URI or an external URL
-                    headerActions={showActions && <PanelAction />}
+                    panel={panel}
+                    actions={showActions && <PanelAction />}
                     onClose={() => Spicetify.showNotification('Closed')}
                     onBack={() => Spicetify.showNotification('Back')}
                 />
