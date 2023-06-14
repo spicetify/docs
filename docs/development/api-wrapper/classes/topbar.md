@@ -10,11 +10,12 @@ This is useful for creating buttons that are generally static and whose actions 
 ```ts
 namespace Topbar {
     class Button {
-        constructor(label: string, icon: SVGIcon | string, onClick: (self: Button) => void, disabled?: boolean);
+        constructor(label: string, icon: SVGIcon | string, onClick: (self: Button) => void, disabled?: boolean, isRight?: boolean);
         label: string;
         icon: string;
         onClick: (self: Button) => void;
         disabled: boolean;
+        isRight: boolean;
         element: HTMLButtonElement;
         tippy: any;
     }
@@ -29,6 +30,7 @@ namespace Topbar {
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the button. |
 | onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | disabled | `boolean` | Whether the button is disabled. |
+| isRight | `boolean` | Whether the button is button placed on right side. |
 
 #### Properties
 
