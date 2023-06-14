@@ -259,6 +259,8 @@ const PanelAction = () => {
 
 // Ideally, you would want to memorize this component
 // to prevent unnecessary re-renders if you were to pass props
+
+// Props will have a single `panel` property for the panel ID
 const Panel = ({ panel }) => {
     // For example, if you want to change the header title
     const [title, setTitle] = React.useState('Hello World');
