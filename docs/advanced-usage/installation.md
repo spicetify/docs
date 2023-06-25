@@ -66,10 +66,15 @@ yay -S spicetify-cli
 
 Before applying Spicetify, you need to gain write permission on Spotify files, by running command:
 
+<!--This may be outdated as the AUR package for the spotify launcher uses a different install directory-->
 ```bash
 sudo chmod a+wr /opt/spotify
 sudo chmod a+wr /opt/spotify/Apps -R
 ```
+
+If spotify is installed through the `spotify-launcher` package in the AUR then spotify won't install to `/opt/spotify` and is instead in this folder: `~/.local/share/spotify-launcher/install/usr/share/spotify/`
+
+This directory will need to be added to the `spotify-path` section of the config <!--I Don't think the write permission commands are needed with the home directory-->
 
 **Note:** Your Spotify client location might be different.
 
