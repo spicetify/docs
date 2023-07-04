@@ -20,27 +20,7 @@ namespace ReactHook {
         sectionIndex?: number,
         dropOriginUri?: string
     ): (event: React.DragEvent, uris?: string[], label?: string, contextUri?: string, sectionIndex?: number) => void;
-    /**
-     * React Hook to use panel state
-     * @param id ID of the panel to use
-     * @return Object with methods of the panel
-     */
     function usePanelState(id: number): { toggle: () => void, isActive: boolean };
-
-    /**
-     * React Hook to use extracted color from GraphQL
-     * 
-     * @note This is a wrapper of ReactQuery's `useQuery` hook. 
-     * The component using this hook must be wrapped in a `QueryClientProvider` component.
-     * 
-     * @see https://tanstack.com/query/v3/docs/react/reference/QueryClientProvider
-     * 
-     * @param uri URI of the Spotify image to extract color from.
-     * @param fallbackColor Fallback color to use if the image is not available. Defaults to `#535353`.
-     * @param variant Variant of the color to use. Defaults to `colorRaw`.
-     * 
-     * @return Extracted color hex code.
-     */
     function useExtractedColor(uri: string, fallbackColor?: string, variant?: "colorRaw" | "colorLight" | "colorDark"): string;
 }
 ```
@@ -122,6 +102,7 @@ Object with methods of the panel.
 
 ```tsx
 const PanelComponent = () => {
+    // The ID can be either Spotify's default panel IDs or your custom panel ID registered via `Spicetify.Panel.registerPanel`
     const { toggle, isActive } = Spicetify.ReactHook.usePanelState(5);
 
     return (
