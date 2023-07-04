@@ -123,7 +123,7 @@ React Hook to use extracted color from GraphQL.
 function useExtractedColor(uri: string, fallbackColor?: string, variant?: "colorRaw" | "colorLight" | "colorDark"): string;
 ```
 
-::: note
+:::note
 
 This is a wrapper of ReactQuery's `useQuery` hook. The component using this hook must be wrapped in a `QueryClientProvider` component.
 
