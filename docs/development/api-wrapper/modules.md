@@ -59,7 +59,7 @@ Spicetify.ReactFlipToolkit;
 
 [React Query](https://react-query.tanstack.com/) is a library for managing, caching, syncing, and refetching server state in React.
 
-::: note
+:::note
 
 Spotify uses React Query v3, instead of the current latest version (v4). As such, the API may be different from the official documentation.
 
