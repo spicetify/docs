@@ -71,7 +71,7 @@ Spicetify.ReactQuery;
 
 ### classnames
 
-[classnames](https://github.com/JedWatson/classnames) is a simple JavaScript utility for conditionally joining classNames together.
+[classnames](https://github.com/JedWatson/classnames) is a simple JavaScript utility for conditionally joining class names together.
 
 ```js
 Spicetify.classnames;
