@@ -85,7 +85,7 @@ function ifItemIsTrack(uri) {
 const menuItem = new Spicetify.ContextMenu.Item(
   "My Menu Item",
   () => {
-    Spicefy.showNotification("My Menu Item clicked!");
+    Spicetify.showNotification("My Menu Item clicked!");
   },
   ifItemIsTrack,
   Spicetify.SVGIcons["play"],
@@ -193,7 +193,7 @@ deregister(): void
 const menuItem = new Spicetify.ContextMenu.Item(
   "My Menu Item",
   () => {
-    Spicefy.showNotification("My Menu Item clicked!");
+    Spicetify.showNotification("My Menu Item clicked!");
   },
   () => true,
   Spicetify.SVGIcons["play"],
@@ -221,7 +221,7 @@ subMenu.name = "My New Sub Menu";
 subMenu.addItem(new Spicetify.ContextMenu.Item(
   "My New Menu Item",
   () => {
-    Spicefy.showNotification("My New Menu Item clicked!");
+    Spicetify.showNotification("My New Menu Item clicked!");
   },
   () => true,
   Spicetify.SVGIcons["play"],
