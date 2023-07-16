@@ -88,3 +88,7 @@ It should look like this:
 6. You can open the config for Popup Lyrics by right clicking on the Popup Lyrics button. Or if you're using Lyrics Plus, open the config by clicking on Lyrics in the sidebar and clicking on the profile menu and then clicking 'Lyrics Plus config'. You can then paste your personal token in the input field in the Musixmatch section and turn the switch on.
 
 ![mxm4](https://i.imgur.com/yvrkllb.png)
+
+## Unable to switch off shuffle mode
+
+This problem may occur if you have "played around" with the experimental settings tab, the fix is simple: in the "Experimental features" tab (Profile --> Experimental features) disable "Enable pick and shuffle" and/or "Smart shuffle" (whichever you have enabled). If this fix does not work, then try pressing the "Reset" button at the bottom of the "Experimental features" tab.
