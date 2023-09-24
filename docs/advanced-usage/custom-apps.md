@@ -3,6 +3,8 @@ title: Custom Apps
 description: 💥 Manually installing Custom Apps.
 ---
 
+Custom Apps, similar to Extensions, are simply Javascript that will be injected into Spotify, that consists of a page that can be accessed from the sidebar.
+
 ## Installing
 
 Custom Apps files can be stored in:
@@ -35,6 +37,8 @@ If you want to remove a custom app from the current list of custom app you can a
 spicetify config custom_apps <file name>-
 spicetify apply
 ```
+
+## Custom Apps
 
 Inject custom apps to Spotify and access them in left sidebar.  
 Add your desired custom app folder names in config, separated them by `|` character.  
