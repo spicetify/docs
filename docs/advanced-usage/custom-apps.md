@@ -72,3 +72,11 @@ To install, run following commands:
 spicetify config custom_apps lyrics-plus
 spicetify apply
 ```
+## Uninstalling
+
+If you want to remove an custom app from the current list of custom app you can always append a `-` after the file name:
+
+```bash
+spicetify config custom_apps <file name>-
+spicetify apply
+```
