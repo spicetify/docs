@@ -3,6 +3,39 @@ title: Custom Apps
 description: 💥 Manually installing Custom Apps.
 ---
 
+## Installing
+
+Custom Apps files can be stored in:
+
+- `CustomApps` folder in Home directory:
+
+| Platform            | Path                                   |
+| ------------------- | -------------------------------------- |
+| **Windows**         | `%appdata%\spicetify\CustomApps\`      |
+| **Linux**/**MacOS** | `~/.config/spicetify/CustomApps`       |
+
+- `CustomApps` folder in Spicetify executable directory.
+
+If there are 2 Custom Apps with the same name, the extension within the Home directory will be prioritized.
+
+After placing the Custom App file into correct folder, run following command to install it:
+
+```bash
+spicetify config custom_apps <file name>
+spicetify apply
+```
+
+**Note:** Using `config` command to add Custom Apps always append file name to existed extensions list. It does not replace the whole key's value.
+
+## Uninstalling
+
+If you want to remove a custom app from the current list of custom app you can always append a `-` after the file name:
+
+```bash
+spicetify config custom_apps <file name>-
+spicetify apply
+```
+
 Inject custom apps to Spotify and access them in left sidebar.  
 Add your desired custom app folder names in config, separated them by `|` character.  
 Example:
@@ -70,13 +103,5 @@ To install, run following commands:
 
 ```
 spicetify config custom_apps lyrics-plus
-spicetify apply
-```
-## Uninstalling
-
-If you want to remove an custom app from the current list of custom app you can always append a `-` after the file name:
-
-```bash
-spicetify config custom_apps <file name>-
 spicetify apply
 ```
