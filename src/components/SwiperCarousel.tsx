@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
-import { Navigation, Scrollbar, A11y, EffectCoverflow, Autoplay } from 'swiper';
+import { Navigation, Scrollbar, A11y, EffectCoverflow, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
