@@ -1,9 +1,69 @@
 ---
 title: Custom Apps
-description: 💥 Custom Apps for Spicetify.
+description: 💥 Manually installing Custom Apps.
 ---
 
-Below are list of default custom apps that come with the distributed package:
+Custom Apps, similar to Extensions, are simply Javascript that will be injected into Spotify, that consists of a page that can be accessed from the sidebar.
+
+## Installing
+
+Custom Apps files can be stored in:
+
+- `CustomApps` folder in Home directory:
+
+| Platform            | Path                                   |
+| ------------------- | -------------------------------------- |
+| **Windows**         | `%appdata%\spicetify\CustomApps\`      |
+| **Linux**/**MacOS** | `~/.config/spicetify/CustomApps`       |
+
+- `CustomApps` folder in Spicetify executable directory.
+
+If there are 2 Custom Apps with the same name, the extension within the Home directory will be prioritized.
+
+After placing the Custom App file into correct folder, run following command to install it:
+
+```bash
+spicetify config custom_apps <file name>
+spicetify apply
+```
+
+**Note:** Using `config` command to add Custom Apps always append file name to existed extensions list. It does not replace the whole key's value.
+
+## Uninstalling
+
+If you want to remove a custom app from the current list of custom app you can always append a `-` after the file name:
+
+```bash
+spicetify config custom_apps <file name>-
+spicetify apply
+```
+
+## Custom Apps
+
+Inject custom apps to Spotify and access them in left sidebar.  
+Add your desired custom app folder names in config, separated them by `|` character.  
+Example:
+
+```ini
+[AdditionalOptions]
+...
+custom_apps = reddit|yourownapp
+```
+
+App folders can be stored in:
+
+- `CustomApps` folder in Home directory:
+
+| Platform            | Path                                   |
+| ------------------- | -------------------------------------- |
+| **Windows**         | `%appdata%\spicetify\CustomApps\`      |
+| **Linux**/**MacOS** | `~/.config/spicetify/CustomApps`       |
+
+- `CustomApps` folder in Spicetify executable directory.
+
+If there are 2 apps having same name, app in Home directory is prioritized.
+
+Three apps have been included to demonstrate how to create and inject an app:
 
 - [Reddit](#reddit)
 - [New Releases](#new-releases)

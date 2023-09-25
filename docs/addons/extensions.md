@@ -1,25 +1,76 @@
 ---
 title: Extensions
-description: 🧩 Extensions for Spicetify.
+description: 🧩 Manually installing Extensions.
 ---
+
+Extensions, in a nutshell, are JavaScript files that will be evaluated along with Spotify main JavaScript.
+
+## Installing
+
+Extension files can be stored in:
+
+- `Extensions` folder in Home directory:
+
+| Platform            | Path                                   |
+| ------------------- | -------------------------------------- |
+| **Windows**         | `%appdata%\spicetify\Extensions\`      |
+| **Linux**/**MacOS** | `~/.config/spicetify/Extensions`       |
+
+- `Extensions` folder in Spicetify executable directory.
+
+If there are 2 extensions with the same name, the extension within the Home directory will be prioritized.
+
+Some Spotify API endpoints are exposed and can be found in the global object `Spicetify`. Check out `global.d.ts` for API documentation.
+
+After placing the extension file into correct folder, run following command to install it:
+
+```bash
+spicetify config extensions <file name>
+spicetify apply
+```
+
+**Note:** Using `config` command to add extension always append file name to existed extensions list. It does not replace the whole key's value.
+
+## Uninstalling
+
+If you want to remove an extension from the current list of extensions you can always append a `-` after the file name:
+
+```bash
+spicetify config extensions <file name>-
+spicetify apply
+```
+
+## Manual Install
+
+You can always manually edit the config file, add your desired extension filenames in `extensions` key, separated them by `|` character.  
+Example:
+
+```ini
+[AdditionalOptions]
+...
+extensions = autoSkipExplicit.js|queueAll.js|djMode.js|shuffle+.js|trashbin.js
+```
+
+Afterwards, you will need to run the following:
+
+```
+spicetify apply
+```
+
+## Extensions
 
 Below are list of default extensions that come with the distributed package:
 
-- [Extensions](#extensions)
-  - [Auto Skip Videos](#auto-skip-videos)
-  - [Bookmark](#bookmark)
-  - [Christian Spotify](#christian-spotify)
-  - [Full App Display](#full-app-display)
-  - [Keyboard Shortcut](#keyboard-shortcut)
-  - [Loopy Loop](#loopy-loop)
-  - [Pop-up Lyrics](#pop-up-lyrics)
-  - [Shuffle+](#shuffle)
-  - [Trash Bin](#trash-bin)
-  - [Web Now Playing](#web-now-playing)
-- [Legacy Extensions](#legacy-extensions)
-  - [DJ Mode](#dj-mode)
-  - [New Release](#new-release)
-  - [Queue All](#queue-all)
+- [Auto Skip Videos](#auto-skip-videos)
+- [Bookmark](#bookmark)
+- [Christian Spotify](#christian-spotify)
+- [Full App Display](#full-app-display)
+- [Keyboard Shortcut](#keyboard-shortcut)
+- [Loopy Loop](#loopy-loop)
+- [Pop-up Lyrics](#pop-up-lyrics)
+- [Shuffle+](#shuffle)
+- [Trash Bin](#trash-bin)
+- [Web Now Playing](#web-now-playing)
 
 ### Auto Skip Videos
 
@@ -88,7 +139,7 @@ Have easy access to a pop-up window with the current song's lyrics. Click at mic
 ### Shuffle+
 
 **Filename:** `shuffle+.js`  
-Shuffles using Fisher–Yates algorithm with zero bias. After installing extensions, right click album/playlist/artist item, there will be an option "Play with Shuffle+". You can also multiple select tracks and choose to "Play with Shuffle+". Moreover, enable option "Auto Shuffle+" in Profile menu to inject Shuffle+ into every play buttons, no need to right click anymore.
+Shuffles using Fisher–Yates algorithm with zero bias. After installing extensions, right click album/playlist/artist item, there will be an option "Play with Shuffle+". You can also multiple select tracks and choose to "Play with Shuffle+".
 
 ![Shuffle](https://i.imgur.com/gxbnqSN.png)
 
@@ -116,10 +167,9 @@ spicetify apply
 
 If you are running Spicetify 1.2.1 or below, and a supported Spotify version, you may also have access to the extensions listed below.
 
-- [Legacy Extensions](#legacy-extensions)
-  - [DJ Mode](#dj-mode)
-  - [New Release](#new-release)
-  - [Queue All](#queue-all)
+- [DJ Mode](#dj-mode)
+- [New Release](#new-release)
+- [Queue All](#queue-all)
 
 ### DJ Mode
 
