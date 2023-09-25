@@ -4,7 +4,7 @@ description: ⚡ A simple guide to installing Spicetify on any platform.
 ---
 
 :::tip
-Please read our [**usage**](./usage.md#post-installation) guide after installing!
+Please read our CLI [**usage**](./command-line.md#post-installation) guide after installing!
 :::
 
 ## Windows
