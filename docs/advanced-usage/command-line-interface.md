@@ -1,5 +1,5 @@
 ---
-title: Usage
+title: Command Line Interface (CLI)
 description: 👾 Using Spicetify from the command line.
 ---
 ## Post Installation
