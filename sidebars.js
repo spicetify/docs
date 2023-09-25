@@ -19,6 +19,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Advanced Usage',
+      collapsed: false,
       link: {
         type: 'generated-index',
         description: 'A guide about advanced usage of Spicetify and venturing outside of the Spicetify Marketplace.',
