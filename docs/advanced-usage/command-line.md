@@ -1,7 +1,8 @@
 ---
-title: Command Line Interface (CLI)
-description: 👾 Using Spicetify from the command line.
+title: Command Line
+description: 👾 Using Spicetify from the command line (CLI).
 ---
+
 ## Post Installation
 :::tip
 
