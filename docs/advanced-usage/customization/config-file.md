@@ -36,7 +36,7 @@ If the config file is not present in any of the above locations, run `spicetify`
 ## Using The Config
 :::note
 
-Please read [**this**](./local-addons.md) to learn where to download custom addons.
+Please read [**this**](./addons.md) to learn where to download custom addons.
 
 :::
 
