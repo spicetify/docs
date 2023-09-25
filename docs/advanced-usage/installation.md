@@ -75,6 +75,12 @@ sudo chmod a+wr /opt/spotify/Apps -R
 
 **Note:** Your Spotify client location might be different.
 
+#### Spotify installed via `spotify-launcher` package (Arch Linux)
+
+If Spotify is installed through the `spotify-launcher` package, then Spotify won't install to `/opt/spotify` and is instead in this folder: `~/.local/share/spotify-launcher/install/usr/share/spotify/`
+
+This directory will need to be added to the `spotify-path` section of the config (and you won't need to change any permissions like the AUR method). 
+
 #### Spotify installed from Snap
 
 Apps installed from Snap **cannot be modified** so you need to follow these steps to get Spicetify working:
