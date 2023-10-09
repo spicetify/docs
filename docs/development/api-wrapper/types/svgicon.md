@@ -82,3 +82,5 @@ type SVGIcon = "album" |
     "watch" |
     "x";
 ```
+
+![Ext_SVGs](https://i.imgur.com/k4tIjlB.png)
