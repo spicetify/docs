@@ -12,8 +12,8 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 1. [spicetify/spicetify-themes](https://github.com/spicetify/spicetify-themes) - The official Spicetify themes repository. Feel free to contribute with more themes!
 2. [NYRI4/Comfy-spicetify](https://github.com/NYRI4/Comfy-spicetify)
 3. [williamckha/spicetify-fluent](https://github.com/williamckha/spicetify-fluent)
-4. [JulienMaille/dribbblish-dynamic-theme](https://github.com/JulienMaille/dribbblish-dynamic-theme)
-5. [Tetrax-10/Nord-Spotify](https://github.com/Tetrax-10/Nord-Spotify)
-6. [Catppuccin/spicetify](https://github.com/catppuccin/spicetify)
-7. [nimsandu/spicetify-bloom](https://github.com/nimsandu/spicetify-bloom)
+4. [Catppuccin/spicetify](https://github.com/catppuccin/spicetify)
+5. [nimsandu/spicetify-bloom](https://github.com/nimsandu/spicetify-bloom)
+6. [Tetrax-10/Nord-Spotify](https://github.com/Tetrax-10/Nord-Spotify) (not maintained)
+7. [JulienMaille/dribbblish-dynamic-theme](https://github.com/JulienMaille/dribbblish-dynamic-theme) (not maintained)
 8. Insert your theme here!
