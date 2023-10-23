@@ -23,10 +23,10 @@
     "@docusaurus/types": "^2.4.3",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^2.0.0",
-    "prism-react-renderer": "^2.0.6",
+    "prism-react-renderer": "^2.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "swiper": "^10.3.0"
+    "swiper": "^10.3.1"
   },
   "browserslist": {
     "production": [
@@ -42,18 +42,19 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.4.3",
-    "@tsconfig/docusaurus": "^2.0.1",
-    "@types/node": "^20.6.5",
-    "@types/react": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
-    "eslint": "^8.50.0",
+    "@docusaurus/theme-classic": "^2.4.3",
+    "@tsconfig/docusaurus": "^2.0.2",
+    "@types/node": "^20.8.7",
+    "@types/react": "^17.0.69",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
-    "lint-staged": ">=14",
-    "prettier": "3.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
   "lint-staged": {
