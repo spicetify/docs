@@ -82,3 +82,6 @@ type SVGIcon = "album" |
     "watch" |
     "x";
 ```
+
+### Examples
+![svg-examples](/images/spicetify-svg-examples.png)
