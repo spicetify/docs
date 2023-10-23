@@ -106,16 +106,12 @@ Full App Display: Minimal album cover art display with beautiful blur effect bac
 
 **Filename:** `keyboardShortcut.js`
 
-Register some useful keybinds to support keyboard-driven navigation in Spotify client. Less time touching the mouse.
+Extends Spotify's default keybinds (toggle help modal with `?`) with vim like shortcuts. Less time touching the mouse.
 
 - <kbd>Ctrl</kbd> <kbd>Tab</kbd> / <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Tab</kbd>: Navigate items in left sidebar menu.
-- <kbd>Shift</kbd> <kbd>H</kbd>/<kbd>Shift</kbd> <kbd>L</kbd>: Navigate history backward/forward.
 - <kbd>PageUp</kbd>/<kbd>PageDown</kbd>: Force scroll up/down app page only (because mouse focus is sometimes in sidebar region and they scroll sidebar instead of app page).
 - <kbd>J</kbd>/<kbd>K</kbd>: Scroll app page up/down. \*Tips hat to Vim users\*
 - <kbd>G</kbd>/<kbd>Shift</kbd> <kbd>G</kbd>: Scroll to top or bottom
-- <kbd>M</kbd>: Like/Unlike track
-- <kbd>/</kbd>: Open search page
-- <kbd>Ctrl</kbd> <kbd>Q</kbd>: Open Queue page.
 - <kbd>F</kbd>: Open up keyboard-driven navigation. Hit correct key sequences to open up place you want to go:
 
 ![KeyboardDemo](https://i.imgur.com/evkGv9q.png)
