@@ -119,13 +119,26 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Supporters',
             items: [
               {
                 html: `
+                <div>
+                  <p style="margin:0;font-weight:500">Open Collective</p>
                   <a href="https://opencollective.com/spicetify" target="_blank">
                     <img src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36" alt="Open Collective" />
                   </a>
+                </div>
+                `,
+              },
+              {
+                html: `
+                <div>
+                  <p style="margin-bottom:0.25rem;font-weight:500">Sponsors</p>
+                  <a href="https://anthems.framer.website/?utm_source=spicetify&utm_medium=top-fan" target="_blank">
+                    <img src="anthems.svg" alt="Anthems Logo" width="128"" />
+                  </a>
+                </p>
                 `,
               },
             ],

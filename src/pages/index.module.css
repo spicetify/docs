@@ -8,8 +8,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-color: #FBAB7E;
-  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   flex-direction: column;
 }
 
@@ -22,6 +22,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.sponsor {
+  display: inline-block;
+  text-align: center;
+  margin: 0.5rem 0;
+  height: min-content;
+  & > a {
+    position: relative;
+    &:hover .tooltipMsg {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.tooltipMsg {
+  visibility: hidden;
+  text-decoration: none;
+  color: white;
+  background-color: #555;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  z-index: 1;
+  width: 240px;
+  max-width: 50vw;
+  top: 150%;
+  right: 50%;
+  margin-right: -120px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+@media screen and (max-width: 600px) {
+  .tooltipMsg {
+    right: 0;
+    margin-right: 20px;
+  }
 }
 
 @media screen and (max-width: 966px) {
