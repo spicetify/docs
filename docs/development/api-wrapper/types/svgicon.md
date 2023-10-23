@@ -84,4 +84,4 @@ type SVGIcon = "album" |
 ```
 
 ### Examples
-![svg-examples](/static/images/spicetify-svg-examples.png)
+![svg-examples](/images/spicetify-svg-examples.png)
