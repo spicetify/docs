@@ -140,7 +140,7 @@ const config = {
                 <div>
                   <p style="margin-bottom:0.25rem;font-weight:500">Sponsors</p>
                   <a href="https://anthems.framer.website/?utm_source=spicetify&utm_medium=top-fan" target="_blank">
-                    <img src="anthems.svg" alt="Anthems Logo" width="128"" />
+                    <img src="images/anthems.svg" alt="Anthems Logo" width="128"" />
                   </a>
                 </p>
                 `,
