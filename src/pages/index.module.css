@@ -29,13 +29,15 @@
   text-align: center;
   margin: 0.5rem 0;
   height: min-content;
-  & > a {
-    position: relative;
-    &:hover .tooltipMsg {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
+}
+
+.sponsor > a {
+  position: relative;
+}
+
+.sponsor > a:hover > .tooltipMsg {
+  visibility: visible;
+  opacity: 1;
 }
 
 .tooltipMsg {
