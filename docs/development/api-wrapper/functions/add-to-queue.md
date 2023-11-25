@@ -27,7 +27,7 @@ function addToQueue(uri: ContextTrack[]): Promise<void>;
 
 ```ts
 // Add current track to queue
-const currentTrack = Spicetify.Player.data.track;
+const currentTrack = Spicetify.Player.data.item;
 
 await Spicetify.addToQueue([currentTrack]);
 
