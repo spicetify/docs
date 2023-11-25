@@ -44,6 +44,4 @@ After installing Spicetify and Spicetify's Marketplace, you can use it to custom
 
 **_Spotify_**, every now and then, **updates** its client. Since we have no power over this process, you will likely need to **re-apply Spicetify**.
 
-However, the update might have major changes to the client, which means you will need to run `spicetify upgrade` every time you update Spotify. If no update for Spicetify is available, it means that it either still works by simply running `spicetify backup apply`, or that we are still **working on updating Spicetify** to work on the new version.
-
-After running `spicetify upgrade`, you will be prompted to run `spicetify restore backup apply` to have everything back where it was.
+However, the update might have major changes to the client, which means you will need to run `spicetify update` (`spicetify upgrade` in Spicetify versions **below 2.27.0**) every time you update Spotify. If no update for Spicetify is available, it means that it either still works by simply running `spicetify backup apply`, or that we are still **working on updating Spicetify** to work on the new version.
