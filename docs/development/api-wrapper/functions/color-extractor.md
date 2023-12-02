@@ -35,6 +35,6 @@ function colorExtractor(uri: string): Promise<{
 
 ```ts
 // Get color from current track
-const currentTrack = Spicetify.Player.data.track;
+const currentTrack = Spicetify.Player.data.item;
 const colors = await Spicetify.ColorExtractor.colorExtractor(currentTrack.uri);
 ```

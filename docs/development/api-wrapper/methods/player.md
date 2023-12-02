@@ -86,7 +86,7 @@ Spicetify.Player.data;
 
 ```ts
 // Get current track URI
-const currentURI = Spicetify.Player.data?.track.uri;
+const currentURI = Spicetify.Player.data?.item.uri;
 if (currentURI) {
     console.log(currentURI);
 }
