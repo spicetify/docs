@@ -24,7 +24,6 @@ type SliderProps = {
     onDragEnd: (value: number) => void;
     onStepForward?: (value: number) => void;
     onStepBackward?: (value: number) => void;
-    direction?: "horizontal" | "vertical";
 }
 ```
 
@@ -43,4 +42,3 @@ type SliderProps = {
 | onDragEnd | `(value: number) => void` | Callback function when dragging ends. |
 | onStepForward | `(value: number) => void` &#124; `undefined` | Callback function when the slider steps forward. **Deprecated.** |
 | onStepBackward | `(value: number) => void` &#124; `undefined` | Callback function when the slider steps backward. **Deprecated.** |
-| direction | `"horizontal"` &#124; `"vertical"` &#124; `undefined` | The direction of the slider. |
