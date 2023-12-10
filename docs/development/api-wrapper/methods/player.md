@@ -5,7 +5,7 @@ description: A collection of methods to interact with the Spotify player.
 
 Spicetify provides a collection of methods to interact with the Spotify player. You can get the current player state, play/pause, skip to next/previous track, set repeat/shuffle mode, and more.
 
-This is a wrapper of the `Spicetify.Platform.PlayerAPI` object.
+This is mostly a wrapper of the `Spicetify.Platform.PlayerAPI` object.
 
 ```ts
 namespace Player {
@@ -13,16 +13,6 @@ namespace Player {
     function addEventListener(type: "songchange", callback: (event?: Event & { data: PlayerState }) => void): void;
     function addEventListener(type: "onplaypause", callback: (event?: Event & { data: PlayerState }) => void): void;
     function addEventListener(type: "onprogress", callback: (event?: Event & { data: number }) => void): void;
-    function addEventListener(type: "appchange", callback: (event?: Event & { data: {
-        /**
-         * App href path
-         */
-        path: string;
-        /**
-         * App container
-         */
-        container: HTMLElement;
-    } }) => void): void;
     function back(): void;
     const data?: PlayerState;
     function decreaseVolume(): void;
@@ -47,6 +37,7 @@ namespace Player {
     function playUri(uri: string, context?: any, options?: any): Promise<void>;
     function removeEventListener(type: string, callback: (event?: Event) => void): void;
     function seek(position: number): void;
+    function setHeart(status: boolean): void;
     function setMute(state: boolean): void;
     function setRepeat(mode: number): void;
     function setShuffle(state: boolean): void;
@@ -86,7 +77,7 @@ Spicetify.Player.data;
 
 ```ts
 // Get current track URI
-const currentURI = Spicetify.Player.data?.track.uri;
+const currentURI = Spicetify.Player.data?.item.uri;
 if (currentURI) {
     console.log(currentURI);
 }
@@ -122,7 +113,6 @@ Register a listener of `type` on Spicetify.Player. You can use this method to li
   * `songchange` type when player changes track.
   * `onplaypause` type when player plays or pauses.
   * `onprogress` type when track progress changes.
-  * `appchange` type when user changes page.
 
 ```ts
 // Register a listener that will be called when player changes track
@@ -143,12 +133,11 @@ Spicetify.Player.addEventListener("songchange", (event) => {
 
 Dispatches an event at `Spicetify.Player`.
 
-On default, `Spicetify.Player` always dispatch
+By default, `Spicetify.Player` always dispatch
 
   * `songchange` type when player changes track.
   * `onplaypause` type when player plays or pauses.
   * `onprogress` type when track progress changes.
-  * `appchange` type when user changes page.
 
 ```ts
 Spicetify.Player.dispatchEvent(event);
@@ -425,19 +414,33 @@ Spicetify.Player.seek(0.5);
 Spicetify.Player.seek(60000);
 ```
 
-### setMute
+### setHeart
 
-Set the mute state of player.
+Set the heart status of the currently playing track.
 
 ```ts
-Spicetify.Player.setMute(mute);
+Spicetify.Player.setHeart(status);
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `mute` | `boolean` | Mute state |
+| `status` | `boolean` | Heart status |
+
+### setMute
+
+Set the mute state of player.
+
+```ts
+Spicetify.Player.setMute(state);
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `state` | `boolean` | Mute state |
 
 ### setRepeat
 
@@ -448,42 +451,42 @@ Set the repeat mode of player. The value can be:
   * `2` for repeat one.
 
 ```ts
-Spicetify.Player.setRepeat(repeat);
+Spicetify.Player.setRepeat(mode);
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `repeat` | `number` | Repeat mode |
+| `mode` | `number` | Repeat mode |
 
 ### setShuffle
 
 Set the shuffle state of player.
 
 ```ts
-Spicetify.Player.setShuffle(shuffle);
+Spicetify.Player.setShuffle(state);
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `shuffle` | `boolean` | Shuffle state |
+| `state` | `boolean` | Shuffle state |
 
 ### setVolume
 
 Set the volume of player. The value is from 0 to 1.
 
 ```ts
-Spicetify.Player.setVolume(volume);
+Spicetify.Player.setVolume(level);
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `volume` | `number` | Volume |
+| `level` | `number` | Volume |
 
 ### toggleHeart
 

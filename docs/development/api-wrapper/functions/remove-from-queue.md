@@ -29,7 +29,7 @@ function removeFromQueue(uri: ContextTrack[]): Promise<void>;
 
 ```ts
 // Remove current track from queue
-const currentTrack = Spicetify.Player.data.track;
+const currentTrack = Spicetify.Player.data.item;
 
 await Spicetify.removeFromQueue([currentTrack]);
 

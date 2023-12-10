@@ -29,6 +29,7 @@ namespace ReactComponent {
     const PanelContent: any;
     const PanelHeader: any;
     const Toggle: any;
+    const Slider: any
 };
 ```
 
@@ -180,7 +181,7 @@ interface AlbumMenuProps extends MenuProps {
 #### Example
 
 ```tsx
-const currentAlbumURI = Spicetify.Player.data.track.metadata.album_uri;
+const currentAlbumURI = Spicetify.Player.data.item.metadata.album_uri;
 
 const albumMenu = React.memo((props: AlbumMenuProps) =>
     <Spicetify.ReactComponent.AlbumMenu {...props}
@@ -325,8 +326,6 @@ Component to display Spotify-style toggle. Used by Spotify on the settings page.
 
 See [`ToggleProps`](/docs/development/api-wrapper/types/react-component/toggle-props).
 
-#### Example
-
 ```tsx
 const Toggle = () => {
     const [enabled, setEnabled] = React.useState(false);
@@ -338,6 +337,33 @@ const Toggle = () => {
             id="my-toggle-id"
             class="my-toggle-class"
         ></Spicetify.ReactComponent.Toggle>
+    );
+}
+```
+
+### `Slider`
+
+Component to render sliders. It is used by Spotify for the volume/playing bars and on the settings page.
+
+#### Props
+
+See [`SliderProps`](/docs/development/api-wrapper/types/react-component/slider-props).
+
+#### Example
+
+```tsx
+const Slider = () => {
+    const [value, setValue] = useState(0);
+
+    return (
+        <Spicetify.ReactComponent.Slider
+            max={100}
+            step={1}
+            value={value}
+            onDragStart={() => {}}
+            onDragMove={setValue}
+            onDragEnd={(value) => {console.log(`final value is ${value}`)}}
+        ></Spicetify.ReactComponent.Slider>
     );
 }
 ```

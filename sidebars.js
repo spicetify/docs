@@ -226,6 +226,7 @@ const sidebars = {
                     'development/api-wrapper/types/react-component/panel-content-props',
                     'development/api-wrapper/types/react-component/panel-header-props',
                     'development/api-wrapper/types/react-component/toggle-props',
+                    'development/api-wrapper/types/react-component/slider-props',
                   ],
                 },
                 {
