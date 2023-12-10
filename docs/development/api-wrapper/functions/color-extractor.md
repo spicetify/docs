@@ -25,6 +25,7 @@ function colorExtractor(uri: string): Promise<{
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| DARK_VIBRANT | `string` | Dark vibrant color in hex format. |
 | DESATURATED | `string` | Desaturated color in hex format. |
 | LIGHT_VIBRANT | `string` | Light vibrant color in hex format. |
 | PROMINENT | `string` | Prominent color in hex format. |
