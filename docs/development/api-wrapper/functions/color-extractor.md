@@ -25,6 +25,7 @@ function colorExtractor(uri: string): Promise<{
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
+| DARK_VIBRANT | `string` | Dark vibrant color in hex format. |
 | DESATURATED | `string` | Desaturated color in hex format. |
 | LIGHT_VIBRANT | `string` | Light vibrant color in hex format. |
 | PROMINENT | `string` | Prominent color in hex format. |
@@ -36,5 +37,5 @@ function colorExtractor(uri: string): Promise<{
 ```ts
 // Get color from current track
 const currentTrack = Spicetify.Player.data.item;
-const colors = await Spicetify.ColorExtractor.colorExtractor(currentTrack.uri);
+const colors = await Spicetify.colorExtractor(currentTrack.uri);
 ```
