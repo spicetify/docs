@@ -28,6 +28,7 @@ namespace ReactComponent {
     const PanelSkeleton: any;
     const PanelContent: any;
     const PanelHeader: any;
+    const Toggle: any;
     const Slider: any
 };
 ```
@@ -313,6 +314,29 @@ const ConfirmButton = () => {
             cancelText="Cancel"
         />
         <button onClick={() => setShowModal(true)}>Click me</button>
+    );
+}
+```
+
+### `Toggle`
+
+Component to display Spotify-style toggle. Used by Spotify on the settings page.
+
+#### Props
+
+See [`ToggleProps`](/docs/development/api-wrapper/types/react-component/toggle-props).
+
+```tsx
+const Toggle = () => {
+    const [enabled, setEnabled] = React.useState(false);
+
+    return (
+        <Spicetify.ReactComponent.Toggle
+            value={enabled}
+            onSelected={setEnabled}
+            id="my-toggle-id"
+            class="my-toggle-class"
+        ></Spicetify.ReactComponent.Toggle>
     );
 }
 ```
