@@ -154,13 +154,13 @@ const { useExtractedColor } = Spicetify.ReactHook;
 const queryClient = new QueryClient();
 
 const Component = () => {
-    const [imageUri, setImageUri] = useState(Spicetify.Player.data?.track?.metadata?.image_xlarge_url ?? "");
+    const [imageUri, setImageUri] = useState(Spicetify.Player.data?.item?.metadata?.image_xlarge_url ?? "");
     const color = useExtractedColor(imageUri);
 
     useEffect(() => {
         // Listen to track change
         const listener = () => {
-            setImageUri(Spicetify.Player.data?.track?.metadata?.image_xlarge_url ?? "");
+            setImageUri(Spicetify.Player.data?.item?.metadata?.image_xlarge_url ?? "");
         };
         Spicetify.Player.addEventListener("songchange", listener);
 

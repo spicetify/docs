@@ -180,7 +180,7 @@ interface AlbumMenuProps extends MenuProps {
 #### Example
 
 ```tsx
-const currentAlbumURI = Spicetify.Player.data.track.metadata.album_uri;
+const currentAlbumURI = Spicetify.Player.data.item.metadata.album_uri;
 
 const albumMenu = React.memo((props: AlbumMenuProps) =>
     <Spicetify.ReactComponent.AlbumMenu {...props}
