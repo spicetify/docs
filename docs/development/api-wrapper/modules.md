@@ -21,7 +21,7 @@ For usage of these modules, please refer to their official documentation.
 
 :::note
 
-Spotify versions *below* 1.2.26 use version **17.0.2**, *after* - **18.0.2**.
+Spotify versions *below* 1.2.26 use version **17.0.2**, *after* - **18.2.0**.
 
 :::
 
