@@ -19,6 +19,12 @@ For usage of these modules, please refer to their official documentation.
 
 [React](https://reactjs.org/) is a JavaScript library for building user interfaces. It is used by Spotify to build their UI.
 
+:::note
+
+Spotify versions *below* 1.2.26 use version **17.0.2**, *after* - **18.2.0**.
+
+:::
+
 ```js
 Spicetify.React;
 ```
@@ -75,4 +81,18 @@ Spicetify.ReactQuery;
 
 ```js
 Spicetify.classnames;
+```
+
+### Snackbar
+
+[Notistack](https://github.com/iamhosseindhv/notistack) is a JavaScript library for creating highly customizable notification snackbars (toasts) that can be stacked on top of each other.
+
+:::note
+
+Be aware that only `SnackbarProvider` and `useSnackbar` work as described in the official Notistack documentation.
+
+:::
+
+```js
+Spicetify.Snackbar;
 ```
