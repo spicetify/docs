@@ -51,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/inst
 ### Homebrew or LinuxBrew
 
 ```bash
-brew install spicetify/homebrew-tap/spicetify-cli
+brew install spicetify-cli
 ```
 
 On macOS, you will need to set`spotify_path` to `/Applications/Spotify.app/Contents/Resources` in the `~/.config/spicetify/config-xpui.ini` config file.
