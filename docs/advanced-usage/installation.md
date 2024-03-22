@@ -113,6 +113,11 @@ sudo chmod a+wr /usr/share/spotify/Apps -R
 /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/
 ```
 
+- In some distros it is stored in:
+```
+~/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/
+```
+
 - Yours might be different, try these steps:
 
 1. Find flatpak installation place with command: `flatpak --installations`
