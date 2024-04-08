@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react';
 import clsx from 'clsx';
 import styles from './HomepageFeatures.module.css';
 
@@ -7,17 +5,26 @@ const FeatureList = [
   {
     title: 'Themes',
     image: require('@site/static/images/theme.png').default,
-    description: <>The customization you&apos;ve always needed, but didn&apos;t know you wanted.</>,
+    description: (
+      <>
+        The customization you&apos;ve always needed, but didn&apos;t know you
+        wanted.
+      </>
+    ),
   },
   {
     title: 'Extensions',
     image: require('@site/static/images/extension.png').default,
-    description: <>Small bonus little features that can be sprinkled across Spotify.</>,
+    description: (
+      <>Small bonus little features that can be sprinkled across Spotify.</>
+    ),
   },
   {
     title: 'Custom Apps',
     image: require('@site/static/images/app.png').default,
-    description: <>Whole new pages that complement Spotify&apos;s missing ones.</>,
+    description: (
+      <>Whole new pages that complement Spotify&apos;s missing ones.</>
+    ),
   },
 ];
 

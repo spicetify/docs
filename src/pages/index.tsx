@@ -1,12 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
+import Layout from '@theme/Layout';
+import clsx from 'clsx';
 import HomepageFeatures from '../components/HomepageFeatures';
 import SwiperCarousel from '../components/SwiperCarousel';
+import styles from './index.module.css';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -22,7 +20,10 @@ function HomepageHeader() {
       </div>
 
       <div className={styles.buttons}>
-        <Link className="button button--secondary button--lg" to="/docs/getting-started">
+        <Link
+          className="button button--secondary button--lg"
+          to="/docs/getting-started"
+        >
           Install Now!
         </Link>
       </div>
@@ -36,7 +37,10 @@ export default function Home() {
       <div className={styles.sponsor}>
         Dive deeper into your top artists with&nbsp;
         <a href="https://anthems.framer.website/?utm_source=spicetify&utm_medium=top-fan">
-          Anthems →<span className={styles.tooltipMsg}>Anthems is a sponsor of Spicetify</span>
+          Anthems →
+          <span className={styles.tooltipMsg}>
+            Anthems is a sponsor of Spicetify
+          </span>
         </a>
       </div>
       <HomepageHeader />

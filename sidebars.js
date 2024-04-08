@@ -22,7 +22,8 @@ const sidebars = {
       collapsed: false,
       link: {
         type: 'generated-index',
-        description: 'A guide about advanced usage of Spicetify and venturing outside of the Spicetify Marketplace.',
+        description:
+          'A guide about advanced usage of Spicetify and venturing outside of the Spicetify Marketplace.',
         slug: '/advanced-usage',
       },
       items: [
@@ -39,7 +40,8 @@ const sidebars = {
       label: 'Development',
       link: {
         type: 'generated-index',
-        description: "Let's learn about how to contribute to the Spicetify community!",
+        description:
+          "Let's learn about how to contribute to the Spicetify community!",
         slug: '/development',
       },
       items: [
@@ -147,7 +149,8 @@ const sidebars = {
               label: 'Types',
               link: {
                 type: 'generated-index',
-                description: 'A list of all type definitions in the API Wrapper.',
+                description:
+                  'A list of all type definitions in the API Wrapper.',
                 slug: '/development/api-wrapper/types',
               },
               items: [
@@ -156,7 +159,8 @@ const sidebars = {
                   label: 'CosmosAsync',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the CosmosAsync method.',
+                    description:
+                      'A list of all type definitions in the CosmosAsync method.',
                     slug: '/development/api-wrapper/types/cosmos-async',
                   },
                   items: [
@@ -172,7 +176,8 @@ const sidebars = {
                   label: 'ContextMenu',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the ContextMenu class.',
+                    description:
+                      'A list of all type definitions in the ContextMenu class.',
                     slug: '/development/api-wrapper/types/context-menu',
                   },
                   items: [
@@ -185,7 +190,8 @@ const sidebars = {
                   label: 'Keyboard',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the Keyboard method.',
+                    description:
+                      'A list of all type definitions in the Keyboard method.',
                     slug: '/development/api-wrapper/types/keyboard',
                   },
                   items: [
@@ -198,7 +204,8 @@ const sidebars = {
                   label: 'URI',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the URI method.',
+                    description:
+                      'A list of all type definitions in the URI method.',
                     slug: '/development/api-wrapper/types/uri',
                   },
                   items: [
@@ -211,7 +218,8 @@ const sidebars = {
                   label: 'ReactComponent',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the ReactComponent property.',
+                    description:
+                      'A list of all type definitions in the ReactComponent property.',
                     slug: '/development/api-wrapper/types/react-component',
                   },
                   items: [
@@ -234,24 +242,22 @@ const sidebars = {
                   label: 'Panel',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the Panel method.',
+                    description:
+                      'A list of all type definitions in the Panel method.',
                     slug: '/development/api-wrapper/types/panel',
                   },
-                  items: [
-                    'development/api-wrapper/types/panel/panel-props',
-                  ],
+                  items: ['development/api-wrapper/types/panel/panel-props'],
                 },
                 {
                   type: 'category',
                   label: 'GraphQL',
                   link: {
                     type: 'generated-index',
-                    description: 'A list of all type definitions in the GraphQL method.',
+                    description:
+                      'A list of all type definitions in the GraphQL method.',
                     slug: '/development/api-wrapper/types/graphql',
                   },
-                  items: [
-                    'development/api-wrapper/types/graphql/query',
-                  ],
+                  items: ['development/api-wrapper/types/graphql/query'],
                 },
                 'development/api-wrapper/types/metadata',
                 'development/api-wrapper/types/context-track',
