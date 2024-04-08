@@ -29,11 +29,7 @@
     "swiper": "^11.1.0"
   },
   "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.5%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -41,23 +37,17 @@
     ]
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.4",
     "@docusaurus/module-type-aliases": "^3.2.1",
     "@docusaurus/theme-classic": "^3.2.1",
     "@docusaurus/tsconfig": "^3.2.1",
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
     "typescript": "^5.4.4"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix **/*.tsx"
+    "*.js|ts|jsx|tsx": "biome check --apply"
   }
 }

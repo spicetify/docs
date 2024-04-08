@@ -40,7 +40,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      metadata: [{ name: 'keywords', content: 'spicetify, spotify, customization, documentation, blog' }],
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'spicetify, spotify, customization, documentation, blog',
+        },
+      ],
       image: 'images/spicetify-full.png',
       colorMode: {
         defaultMode: 'light',
