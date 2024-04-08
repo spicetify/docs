@@ -16,17 +16,17 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@algolia/client-search": "^4.20.0",
-    "@docusaurus/core": "^2.4.3",
-    "@docusaurus/preset-classic": "^2.4.3",
-    "@docusaurus/theme-common": "^2.4.3",
-    "@docusaurus/types": "^2.4.3",
-    "@mdx-js/react": "^1.6.22",
-    "clsx": "^2.0.0",
-    "prism-react-renderer": "^2.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "swiper": "^10.3.1"
+    "@algolia/client-search": "^4.23.2",
+    "@docusaurus/core": "^3.2.1",
+    "@docusaurus/preset-classic": "^3.2.1",
+    "@docusaurus/theme-common": "^3.2.1",
+    "@docusaurus/types": "^3.2.1",
+    "@mdx-js/react": "^3.0.1",
+    "clsx": "^2.1.0",
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swiper": "^11.1.0"
   },
   "browserslist": {
     "production": [
@@ -41,21 +41,21 @@
     ]
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.4.3",
-    "@docusaurus/theme-classic": "^2.4.3",
-    "@tsconfig/docusaurus": "^2.0.2",
-    "@types/node": "^20.8.7",
-    "@types/react": "^17.0.69",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-react": "^7.33.2",
+    "@docusaurus/module-type-aliases": "^3.2.1",
+    "@docusaurus/theme-classic": "^3.2.1",
+    "@docusaurus/tsconfig": "^3.2.1",
+    "@types/node": "^20.12.5",
+    "@types/react": "^18.2.74",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.4"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix **/*.tsx"

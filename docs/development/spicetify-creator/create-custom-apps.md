@@ -55,8 +55,8 @@ It comes with an example of a simple counter using React's logic, and usages for
 The `extensions/` folder takes all the files inside it and transforms them into extensions that will run on Spotify's startup.  
 The `extensions/extension.tsx` file is an example that says "Welcome!" whenever Spotify starts.
 
-<details><summary>extension.tsx's content</summary>
-<p>
+<details>
+<summary>extension.tsx's content</summary>
 
 ```ts
 (async () => {
@@ -69,5 +69,4 @@ The `extensions/extension.tsx` file is an example that says "Welcome!" whenever 
 })();
 ```
 
-</p>
 </details>

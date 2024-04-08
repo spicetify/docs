@@ -28,14 +28,19 @@ Open the terminal in your desired directory and enter the following command
 
 <Tabs groupId="package-managers">
   <TabItem value="npm" label="npm" default>
-
-    npx create-spicetify-app
-
+    ```shell
+      npx create-spicetify-app
+    ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-
-    yarn create spicetify-app
-
+    ```shell
+      yarn create spicetify-app
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```shell
+      pnpm create spicetify-app
+    ```
   </TabItem>
 </Tabs>
 
@@ -69,14 +74,19 @@ You can use node packages in your app by installing them with your package manag
 
 <Tabs groupId="package-managers">
   <TabItem value="npm" label="npm" default>
-
-    npm install <package-name>
-
+    ```shell
+      npm install <package-name>
+    ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-
-    yarn add <package-name>
-
+    ```shell
+      yarn add <package-name>
+    ```shell
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```shell
+      pnpm add <package-name>
+    ```
   </TabItem>
 </Tabs>
 
@@ -96,14 +106,19 @@ For a list of plugins: https://github.com/FlafyDev/spicetify-creator-plugins
 To install and import a plugin:
 <Tabs groupId="package-managers">
 <TabItem value="npm" label="npm" default>
-
-    npm install spcr-<name>
-
+    ```shell
+      npm install spcr-<name>
+    ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-
-    yarn add spcr-<name>
-
+    ```shell
+      yarn add spcr-<name>
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```shell
+      pnpm add spcr-<name>
+    ```
   </TabItem>
 </Tabs>
 
@@ -120,13 +135,18 @@ import plugin from 'spcr-<name>';
 
 <Tabs groupId="package-managers">
   <TabItem value="npm" label="npm" default>
-
-    npm update spicetify-creator
-
+    ```shell
+      npm update spicetify-creator
+    ```
   </TabItem>
   <TabItem value="yarn" label="Yarn">
-
-    yarn upgrade spicetify-creator
-
+    ```shell
+      yarn upgrade spicetify-creator
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```shell
+      pnpm update spicetify-creator
+    ```
   </TabItem>
 </Tabs>

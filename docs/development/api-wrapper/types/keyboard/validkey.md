@@ -113,8 +113,8 @@ For the list of valid keys, refer to the [type definition](/docs/development/api
 |_|-|
 |+|=|
 |:|;|
-|<|,|
-|>|.|
+|\<|,|
+|\>|.|
 |?|/|
 |||\\|
 
