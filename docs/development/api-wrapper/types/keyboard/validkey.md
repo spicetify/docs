@@ -5,7 +5,7 @@ description: A list of valid keys for keyboard shortcuts.
 
 :::tip
 
-For the list of valid keys, refer to the [type definition](/docs/development/api-wrapper/types/keyboard/validkey/#type-definition).
+For the list of valid keys, refer to the [type definition](#type-definition).
 
 :::
 
