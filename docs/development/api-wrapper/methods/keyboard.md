@@ -7,7 +7,7 @@ Spicetify provides its own method for global keyboard shortcuts. You can specify
 
 :::tip
 
-`Spicetify.Keyboard` is wrapper of [`Spicetify.Mousetrap`](/docs/development/api-wrapper/modules/#mousetrap) configured to be compatible with legacy Spotify.
+`Spicetify.Keyboard` is wrapper of [`Spicetify.Mousetrap`](/docs/development/api-wrapper/modules#mousetrap) configured to be compatible with legacy Spotify.
 
 New extensions are advised to use the module instead.
 
