@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@biomejs/biome": "1.6.4",
+    "@biomejs/biome": "1.7.3",
     "@docusaurus/module-type-aliases": "^3.2.1",
     "@docusaurus/theme-classic": "^3.2.1",
     "@docusaurus/tsconfig": "^3.2.1",
@@ -48,6 +48,6 @@
     "typescript": "^5.4.4"
   },
   "lint-staged": {
-    "*": "biome check --apply"
+    "*": "biome check --apply --no-errors-on-unmatched"
   }
 }
