@@ -11,7 +11,9 @@ Clone repo and download dependencies:
 
 ```bash
 cd $HOME
-git clone https://github.com/spicetify/spicetify-cli
+mkdir spicetify
+cd spicetify
+git clone https://github.com/spicetify/cli
 ```
 
 ### Build
@@ -19,13 +21,13 @@ git clone https://github.com/spicetify/spicetify-cli
 #### Windows
 
 ```powershell
-cd $HOME\spicetify-cli
+cd $HOME\spicetify\cli
 go build -o spicetify.exe
 ```
 
 #### Linux and MacOS
 
 ```bash
-cd ~/spicetify-cli
+cd ~/spicetify/cli
 go build -o spicetify
 ```

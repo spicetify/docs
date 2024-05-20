@@ -74,10 +74,10 @@ const config = {
           {
             html: `
             <div style="display:flex;align-items:center">
-              <img src="https://img.shields.io/github/stars/spicetify/spicetify-cli?style=social" alt="GitHub stars" />
+              <img src="https://img.shields.io/github/stars/spicetify/cli?style=social" alt="GitHub stars" />
             </div>
             `,
-            href: 'https://github.com/spicetify/spicetify-cli',
+            href: 'https://github.com/spicetify/cli',
             position: 'right',
           },
         ],
