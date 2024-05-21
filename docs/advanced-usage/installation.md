@@ -8,7 +8,7 @@ description: ⚡ An advanced view on how to install Spicetify.
 ### Powershell (pre-built binary) - Recommended
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex
 ```
 
 ### Chocolatey
@@ -45,7 +45,7 @@ winget install Spicetify.Spicetify
 ### Shell (pre-built binary) - Recommended
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 ```
 
 ### Homebrew or LinuxBrew
@@ -159,16 +159,16 @@ If you wish to use old Spotify client v1.1.56 or older, you have to install spic
 **Windows**: In powershell
 
 ```powershell
-$v="1.2.1"; Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.ps1" | Invoke-Expression
+$v="1.2.1"; Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/spicetify/cli/main/install.ps1" | Invoke-Expression
 ```
 
 **Linux/MacOS:** In bash
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh -o /tmp/install.sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh -o /tmp/install.sh
 sh /tmp/install.sh 1.2.1
 ```
 
-spicetify v1 code is available in branch [`legacy`](https://github.com/spicetify/spicetify-cli/tree/legacy) if you want to build from source.
+spicetify v1 code is available in branch [`legacy`](https://github.com/spicetify/cli/tree/legacy) if you want to build from source.
 
 If you want legacy themes, you can find them [here](https://github.com/spicetify/spicetify-themes/tree/legacy).
