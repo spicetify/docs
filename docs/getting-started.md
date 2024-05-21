@@ -17,9 +17,9 @@ This is the installation method we recommend for most users. It is the fastest a
 iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex
 ```
 
-Also run the following if you would like to install the [**Spicetify Marketplace**](https://github.com/spicetify/spicetify-marketplace), which gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_, and _snippets_.
+Also run the following if you would like to install the [**Spicetify Marketplace**](https://github.com/spicetify/marketplace), which gives you access to a tab in Spotify's sidebar that allows you to search for and install _themes_, _extensions_, and _snippets_.
 ```powershell
-iwr -useb https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.ps1 | iex
 ```
 
 ### Linux and MacOS
@@ -31,7 +31,7 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 ```
 Spicetify Marketplace
 ```sh
-curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh
 ```
 
 <hr/>
