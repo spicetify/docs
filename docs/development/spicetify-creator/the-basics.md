@@ -81,7 +81,7 @@ You can use node packages in your app by installing them with your package manag
   <TabItem value="yarn" label="Yarn">
     ```shell
       yarn add <package-name>
-    ```shell
+    ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
     ```shell
