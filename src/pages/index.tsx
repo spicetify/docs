@@ -35,13 +35,10 @@ export default function Home() {
   return (
     <Layout description="Powerful CLI tool to take control of the Spotify client.">
       <div className={styles.sponsor}>
-        Dive deeper into your top artists with&nbsp;
-        <a href="https://anthems.framer.website/?utm_source=spicetify&utm_medium=top-fan">
-          Anthems →
-          <span className={styles.tooltipMsg}>
-            Anthems is a sponsor of Spicetify
-          </span>
-        </a>
+        <a href="https://github.com/sponsors/spicetify/sponsorships?tier_id=411293">
+          Sponsor us
+        </a>{' '}
+        and get your logo here!
       </div>
       <HomepageHeader />
       <main>
