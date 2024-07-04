@@ -97,7 +97,7 @@ spicetify apply
 
 ### Lyrics Plus
 
-Get access to the current track's lyrics from various lyrics providers (Musixmatch, Netease, Genius). Learn more [here](https://github.com/spicetify/cli/tree/main/CustomApps/lyrics-plus).
+Get access to the current track's lyrics from various lyrics providers (Musixmatch, Netease, lrclib). Learn more [here](https://github.com/spicetify/cli/tree/main/CustomApps/lyrics-plus).
 
 Colors, lyrics providers can be customized in config menu (in Profile menu, top right button with your user name).
 
