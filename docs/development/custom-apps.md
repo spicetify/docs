@@ -16,7 +16,7 @@ description: 🔧 Creating Custom Apps.
 - `name`: The name of the custom app.
 - `icon`: The escaped SVG markup for the sidebar icon.
 - `active-icon`: The escaped SVG markup for the active status of the sidebar icon (when your custom app is open).
-- `subfiles`: You can optionally include other JS files. These files will be concatenated together in the order defined here. Any variables you delcare in the main `index.js`, or any subfiles will be accessible from all. This is useful for organizational purposes for more complex custom apps.
+- `subfiles`: You can optionally include other JS files. These files will be concatenated together in the order defined here. Any variables you declare in the main `index.js`, or any subfiles will be accessible from all. This is useful for organizational purposes for more complex custom apps.
 - `subfiles_extension`: You can optionally include an extension(s) with your custom app. These are treated as regular extensions, and will run when Spotify starts.
 
 _Note: The `subfiles` can be in nested folders, while any `subfiles_extension` can not._
