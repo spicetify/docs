@@ -21,6 +21,11 @@ Open a terminal in the project's directory and run this:
     yarn run build
     ```
   </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    ```shell
+    pnpm run build
+    ```
+  </TabItem>
 </Tabs>
 
 Then make sure you've added your app to Spicetify's config by running this:
@@ -63,6 +68,11 @@ Go into your project's directory and enter the following command:
     yarn run watch
     ```
   </TabItem>
+<TabItem value="pnpm" label="pnpm" default>
+    ```shell
+    pnpm run watch
+    ```
+  </TabItem>
 </Tabs>
 
 Then, run Spotify in watch mode:
@@ -93,6 +103,11 @@ If you want to upload the build files with your repository or just see them, you
   <TabItem value="yarn" label="Yarn">
     ```shell
     yarn run build-local
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm" default>
+    ```shell
+    pnpm run build-local
     ```
   </TabItem>
 </Tabs>
