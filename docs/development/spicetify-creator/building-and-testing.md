@@ -23,7 +23,7 @@ Open a terminal in the project's directory and run this:
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
     ```shell
-    pnpm run build
+    pnpm build
     ```
   </TabItem>
 </Tabs>
@@ -70,7 +70,7 @@ Go into your project's directory and enter the following command:
   </TabItem>
 <TabItem value="pnpm" label="pnpm" default>
     ```shell
-    pnpm run watch
+    pnpm watch
     ```
   </TabItem>
 </Tabs>
@@ -107,7 +107,7 @@ If you want to upload the build files with your repository or just see them, you
   </TabItem>
   <TabItem value="pnpm" label="pnpm" default>
     ```shell
-    pnpm run build-local
+    pnpm build-local
     ```
   </TabItem>
 </Tabs>
