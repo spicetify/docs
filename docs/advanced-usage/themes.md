@@ -17,4 +17,5 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 6. [Tetrax-10/Nord-Spotify](https://github.com/Tetrax-10/Nord-Spotify) (not maintained)
 7. [JulienMaille/dribbblish-dynamic-theme](https://github.com/JulienMaille/dribbblish-dynamic-theme) (not maintained)
 8. [sanoojes/spicetify-lucid](https://github.com/sanoojes/spicetify-lucid)
-9. Insert your theme here!
+9. [Skaytacium/Gruvify](https://github.com/Skaytacium/Gruvify)
+10. Insert your theme here!
