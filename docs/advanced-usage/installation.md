@@ -107,7 +107,7 @@ sudo chmod a+wr /usr/share/spotify/Apps -R
 
 #### Spotify installed from Flatpak
 
-- You need to find where Flatpak stores your Spotify client. In Manjaro, it is stored in:
+- You need to find where Flatpak stores your Spotify client. In Manjaro and Fedora, it is stored in:
 
 ```
 /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/
