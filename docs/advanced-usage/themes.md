@@ -20,3 +20,4 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 9. [Skaytacium/Gruvify](https://github.com/Skaytacium/Gruvify)
 10. [dracula/spicetify](https://github.com/dracula/spicetify)
 11. Insert your theme here!
+StarryNight/theme.js
