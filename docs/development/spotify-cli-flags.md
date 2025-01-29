@@ -101,6 +101,6 @@ If you are using **Spotify older than 1.2.34**:
 7. Restart Spotify with the `--enable-chrome-runtime` switch and developer mode enabled
 8. Press *Ctrl + Shift + T*
 9. Click the `chrome://version` link
-10. Copy and paste the flags between `--flag-switches-begin` `--flag-switches-end` into your spicetify config and/or the shrotrcut/`.desktop` file you use to launch Spotify.
+10. Copy and paste the flags between `--flag-switches-begin` `--flag-switches-end` into your spicetify config and/or the shrotrcut/`.desktop` file you use to launch Spotify
 
 The `--enable-chrome-runtime` switch and developer mode are not required for experimental features to work.
