@@ -3,6 +3,8 @@ title: Spotify CLI Flags
 description: 🚩 Flags to alter the behavior of the Spotify.
 ---
 
+## List of flags
+
 **When adding flags to your spicetify config, separate each one with `|`.**
 
 | Flag                                             | Description                                                                                                                                                                                          |
