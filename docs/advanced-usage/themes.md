@@ -19,4 +19,5 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 8. [sanoojes/spicetify-lucid](https://github.com/sanoojes/spicetify-lucid)
 9. [Skaytacium/Gruvify](https://github.com/Skaytacium/Gruvify)
 10. [dracula/spicetify](https://github.com/dracula/spicetify)
-11. Insert your theme here!
+11. [Spotify Dark](https://github.com/SyndiShanX/Spotify-Dark)
+12. Insert your theme here!
