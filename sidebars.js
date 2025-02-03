@@ -49,6 +49,7 @@ const sidebars = {
         'development/themes',
         'development/custom-apps',
         'development/js-modules',
+        'development/react-devtools',
         'development/spotify-cli-flags',
         {
           type: 'category',
