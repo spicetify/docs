@@ -29,6 +29,7 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl: 'https://github.com/spicetify/spicetify-docs/edit/main',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -36,6 +37,8 @@ const config = {
       }),
     ],
   ],
+
+  plugins: [process.env.RSDOCTOR === 'true' && ['rsdoctor', {}]],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -155,6 +158,9 @@ const config = {
         indexName: 'spicetify',
       },
     }),
+  future: {
+    experimental_faster: true,
+  },
 };
 
 module.exports = config;
