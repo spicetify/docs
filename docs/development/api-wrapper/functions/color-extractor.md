@@ -7,6 +7,7 @@ Extracts colors from a playlist, track, album, artist, show, etc.
 
 ```ts
 function colorExtractor(uri: string): Promise<{
+    DARK_VIBRANT: string;
     DESATURATED: string;
     LIGHT_VIBRANT: string;
     PROMINENT: string;
