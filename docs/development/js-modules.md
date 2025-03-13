@@ -7,7 +7,7 @@ Since v0.9.8, Spicetify injects extension with file extension `.mjs` as a script
 
 In Javascript module, Javascript would work just the same as normal script but now you can use `import` to include other Javascript files. [Click here for details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
-Node Package Manager (NPM) is a commandline app bundled with NodeJS. You can it use to download and install hundred of utilities packages to ease your development process. Since Spicetify symlinks `node_modules` to Spotify main app folder, all packages files are mutually linked and available for you to use in your extension. Simply just use `import`:
+Node Package Manager (NPM) is a commandline app bundled with NodeJS. You can use it to download and install hundreds of utility packages to ease your development process. Since Spicetify symlinks `node_modules` to Spotify main app folder, all packages files are mutually linked and available for you to use in your extension. Simply just use `import`:
 
 ```js
 import './node_modules/package_name/file.js';
@@ -17,7 +17,7 @@ Careful! Javascript file you import has to be supported by Browser, not NodeJS. 
 
 ### Example
 
-For Japanese studying purpose, I'm developing an extension that show Romaji form of Japanese track titles or artist names.
+For Japanese studying purpose, I'm developing an extension that shows the Romaji form of Japanese track titles or artist names.
 
 The idea is when I right click at track name and choose Show Romaji:
 
@@ -27,11 +27,11 @@ Result should show as a notification:
 
 ![img2](https://i.imgur.com/LLF5ZGh.png)
 
-To translate Japanese text to Romaji, I use a package named [kuroshiro](https://github.com/hexenq/kuroshiro). Luckily, this package will export distribution files as ES6 Module. This is quite important because package itself relies on other utilities packages too. When it is complied as ES6 Module, everything is transpiled to Browser supported Javascript and combined in one file. Moreover, kuroshiro also needs [kuroshiro-analyzer-kuromoji](https://github.com/hexenq/kuroshiro-analyzer-kuromoji) package to be usable, which relies on dictionaries gzip files. You can see there is no easy way to utiltise both packages and their external files if we use traditional Javascript extension.
+To translate Japanese text to Romaji, I use a package named [kuroshiro](https://github.com/hexenq/kuroshiro). Luckily, this package will export distribution files as ES6 Module. This is quite important because package itself relies on other utilities packages too. When it is compiled as an ES6 module, everything is transpiled to Browser supported Javascript and combined in one file. Moreover, kuroshiro also needs [kuroshiro-analyzer-kuromoji](https://github.com/hexenq/kuroshiro-analyzer-kuromoji) package to be usable, which relies on dictionaries gzip files. You can see there is no easy way to utiltise both packages and their external files if we use traditional Javascript extension.
 
 **Following are steps to make and install this extension from scratch:**
 
-1. First, change director to user's `Extensions` folder:
+1. First, change director to the user's `Extensions` folder:
 
 - **Windows, in Powershell:**
 
@@ -51,7 +51,7 @@ cd "$(dirname "$(spicetify -c)")/Extensions"
 npm install kuroshiro kuroshiro-analyzer-kuromoji
 ```
 
-Go to user's `Extensions` folder, you can see `node_modules` folder is created and contains all installed packages files. Next, go to `kuroshiro` and `kuroshiro-analyzer-kuromoji`folder to locate ES6 Module distribution files.
+Go to user's `Extensions` folder, you can see `node_modules` folder is created and contains all installed packages files. Next, go to the `kuroshiro` and `kuroshiro-analyzer-kuromoji`folder to locate ES6 Module distribution files.
 
 3. After that I can comfortably include both of them in my extension. Following is extension code:
 

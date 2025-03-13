@@ -5,7 +5,7 @@ description: Installing and using React Developer Tools in Spotify.
 
 To install React Developer Tools in Spotify:
 
-1. Launch Spotify in the developer mode (and with the `--enable-chrome-runtime` flag if you are using **Spotify older than 1.2.34**; without it React Developer Tools won't work)
+1. Launch Spotify in the developer mode (and with the `--enable-chrome-runtime` flag if you are using **Spotify versions older than 1.2.34**; without it, React Developer Tools won't work)
 2. Press *Ctrl + Shift + T*
 3. Press *Ctrl + N*
 4. Navigate to the React Developer Tools page on Chrome Web Store using the address bar: `https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi`

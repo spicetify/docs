@@ -31,7 +31,7 @@ spicetify apply
 
 ## Uninstalling
 
-If you want to remove a custom app from the current list of custom app you can always append a `-` after the file name:
+If you want to remove a custom app from the current list of custom apps you can always append a `-` after the file name:
 
 ```bash
 spicetify config custom_apps <file name>-
@@ -71,7 +71,7 @@ Three apps have been included to demonstrate how to create and inject an app:
 
 ### Reddit
 
-Fetching posts from any Spotify link sharing subreddit. You can add, remove, arrange subreddits and customize post visual in config menu (in Profile menu, top right button with your user name).
+Fetching posts from any Spotify link sharing subreddit. You can add, remove, arrange subreddits and customize post visual in config menu (in Profile menu, top right button with your username).
 
 ![Reddit](https://i.imgur.com/MC3tpNZ.png)
 
@@ -84,7 +84,7 @@ spicetify apply
 
 ### New Releases
 
-Aggregate all new releases from favorite artists, podcasts. Time range, release type, and other filters can be customized in config menu (in Profile menu, top right button with your user name). Date format is based on your locale code (BCP47).
+Aggregate all new releases from favorite artists, podcasts. Time range, release type, and other filters can be customized in config menu (in Profile menu, top right button with your username). Date format is based on your locale code (BCP47).
 
 ![New Releases](https://i.imgur.com/MP9dTjt.png)
 
@@ -99,7 +99,7 @@ spicetify apply
 
 Get access to the current track's lyrics from various lyrics providers (Musixmatch, Netease, LRCLIB). Learn more [here](https://github.com/spicetify/cli/tree/main/CustomApps/lyrics-plus).
 
-Colors, lyrics providers can be customized in config menu (in Profile menu, top right button with your user name).
+Colors, lyrics providers can be customized in config menu (in Profile menu, top right button with your username).
 
 ![Lyrics Plus](https://i.imgur.com/WtD080A.png)
 

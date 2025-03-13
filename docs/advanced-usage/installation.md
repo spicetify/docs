@@ -81,7 +81,7 @@ If Spotify is installed through the `spotify-launcher` package, then Spotify won
 
 This directory will need to be added to the `spotify-path` section of the config (and you won't need to change any permissions like the AUR method). 
 
-**Note:** `spotify-path` must be an abslolute path. Do not use `~` to reference the home folder.
+**Note:** `spotify-path` must be an absolute path. Do not use `~` to reference the home folder.
 
 #### Spotify installed from Snap
 
@@ -96,7 +96,7 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt-get update && sudo apt-get install spotify-client
 ```
 
-4. After Spotify is installed successfully, you need to gain read write permissions on Spotify files, by running commands:
+3. After Spotify is installed successfully, you need to gain read write permissions on Spotify files, by running commands:
 
 ```bash
 sudo chmod a+wr /usr/share/spotify

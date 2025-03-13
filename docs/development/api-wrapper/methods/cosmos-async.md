@@ -1,9 +1,9 @@
 ---
 title: CosmosAsync
-description: Asyncronous Cosmos API wrapper used by the Spotify client.
+description: Asynchronous Cosmos API wrapper used by the Spotify client.
 ---
 
-Asyncronous Cosmos API wrapper used by the Spotify client. It is used to make requests to the Spotify client's internal API as well as external URLs.
+Asynchronous Cosmos API wrapper used by the Spotify client. It is used to make requests to the Spotify client's internal API as well as external URLs.
 
 ```ts
 Spicetify.CosmosAsync

@@ -7,7 +7,7 @@ Spicetify provides a function that returns the CSS style for a given font varian
 
 :::tip
 
-This function is used to provide backwards compatibility for older Spicetify extensions and custom apps that uses `main-type-` classes.
+This function is used to provide backwards compatibility for older Spicetify extensions and custom apps that use `main-type-` classes.
 
 Instead of using this function to get Spotify stylings, you can simply add the `main-type-<variant>` class to your element.
 

@@ -6,7 +6,7 @@ description: 🔧 Creating single-page apps for Spicetify.
 Notes:
 
 - It is recommended to learn React before starting to create Custom Apps.
-- This tutorial assumes you chose to generate an example in Create Spicetify App.
+- This tutorial assumes you have chosen to generate an example using Create Spicetify App.
 
 After creating a new Spicetify Creator project and choosing "Custom App" as your app's type, your project's structure should look like this (With the generated example):
 
@@ -24,7 +24,7 @@ my-app/
     ...
 ```
 
-For now, we only care about the `src/` folder, which structure looks like this
+For now, we only care about the `src/` folder, whose structure looks like this
 
 ```
 src/

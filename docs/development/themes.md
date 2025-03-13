@@ -14,11 +14,11 @@ There are 2 places you can put your themes:
 
 2. `Themes` folder in Spicetify executable directory
 
-If there are 2 themes having same name, theme in Home directory is prioritized.
+If there are 2 themes with the same name, the theme in the Home directory is prioritized.
 
 Every theme should contain:
 
-- `color.ini`: store colors value that later will be converted to CSS variables
+- `color.ini`: stores colors values that later will be converted to CSS variables
 - `user.css`: set of custom CSS rules to manipulate, hide, move UI elements.
 
 Color value can be in several formats and forms:

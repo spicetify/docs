@@ -7,7 +7,7 @@ Spicetify provides a set of API methods to interact with the Spotify client app 
 
 :::note
 
-These methods only works for default app title.
+These methods only work for the default app title.
 
 :::
 
@@ -24,7 +24,7 @@ namespace AppTitle {
 
 ### `set`
 
-Set default app title and forces it until cancelled. This will override any previous forced title.
+Set the default app title and force it until canceled. This will override any previous forced title.
 
 :::note
 

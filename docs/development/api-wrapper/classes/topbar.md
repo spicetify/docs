@@ -30,7 +30,7 @@ namespace Topbar {
 | icon | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) &#124; `string` | Icon of the button. |
 | onClick | `(self: Button) => void` | Callback function when the button is clicked. |
 | disabled | `boolean` | Whether the button is disabled. |
-| isRight | `boolean` | Whether the button is button placed on right side. |
+| isRight | `boolean` | Whether the button is button placed on the right side. |
 
 #### Properties
 

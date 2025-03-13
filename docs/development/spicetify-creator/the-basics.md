@@ -8,11 +8,11 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-[Spicetify Creator](https://github.com/FlafyDev/spicetify-creator) is a tool to compile modern Typescript/Javascript code to Spicetify extensions and custom apps.
+[Spicetify Creator](https://github.com/FlafyDev/spicetify-creator) is a tool to compile modern TypeScript/JavaScript code to Spicetify extensions and custom apps.
 
 Its built-in features include:
 
-- Typescript and React syntax
+- TypeScript and React syntax
 - [Import node packages](#node-packages)
 - [CSS/SCSS with PostCSS support](#css)
 - Extremely fast compile time with esbuild.

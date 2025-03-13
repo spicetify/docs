@@ -304,7 +304,7 @@ For a list of all validation functions, see [`Validation functions`](/docs/devel
 
 :::caution
 
-Almost all playlists uses the `playlist-v2` type, so use `Spicetify.URI.isPlaylistV2URI` instead.
+Almost all playlists use the `playlist-v2` type, so use `Spicetify.URI.isPlaylistV2URI` instead.
 
 Similarly, you can use `Spicetify.URI.isPlaylistV1OrV2` to check if a URI is a playlist of any version.
 

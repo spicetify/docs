@@ -66,7 +66,7 @@ type PlayerState = {
 | Property | Type | Description |
 | --- | --- | --- |
 | `timestamp` | `number` | Timestamp. |
-| `context_uri` | `string` | Context URI from which the track played from. |
+| `context_uri` | `string` | Context URI from which the track was played. |
 | `context_url` | `string` | Context internal URL. |
 | `context_restrictions` | `Record<string, string[]>` | Context restrictions. |
 | `index` | `object` &#124; `undefined` | Track index. |
