@@ -9,7 +9,7 @@ Run with no command once to generate config file
 spicetify
 ```
 
-If you just want to use Custom Apps and Extensions head over to each specific sections, if you want to create you own theme, keep reading below.
+If you just want to use Custom Apps and Extensions head over to each specific sections, if you want to create your own theme, keep reading below.
 
 Make sure config file is created successfully and there is no error, then run:
 
