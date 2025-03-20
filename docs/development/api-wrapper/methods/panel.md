@@ -3,7 +3,7 @@ title: Panel
 description: API wrapper to interact with Spotify's panel/right sidebar.
 ---
 
-Spicetify provides a wrapper for Spotify `PanelAPI` method to make it easier to use, as well as providing a method to help you register your own panel.
+Spicetify provides a wrapper for the Spotify `PanelAPI` method to make it easier to use, as well as providing a method to help you register your own panel.
 
 ```ts
 namespace Panel {
@@ -257,7 +257,7 @@ const PanelAction = () => {
     )
 }
 
-// Ideally, you would want to memorize this component
+// Ideally, you would want to memoize this component
 // to prevent unnecessary re-renders if you were to pass props
 
 // Props will have a single `panel` property for the panel ID

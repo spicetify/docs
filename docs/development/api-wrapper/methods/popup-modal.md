@@ -22,7 +22,7 @@ namespace PopupModal {
 
 ### `Content`
 
-`Content` is an object that contains information about the modal needs to be displayed.
+`Content` is an object that contains the information needed to display the modal.
 
 | Property | Type | Description |
 | --- | --- | --- |

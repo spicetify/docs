@@ -47,7 +47,7 @@ Spicetify.Tippy;
 
 ### Mousetrap
 
-[Mousetrap](https://craig.is/killing/mice) is a simple library for handling keyboard shortcuts in Javascript.
+[Mousetrap](https://craig.is/killing/mice) is a simple library for handling keyboard shortcuts in JavaScript.
 
 ```js
 Spicetify.Mousetrap;

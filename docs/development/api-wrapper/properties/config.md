@@ -35,4 +35,4 @@ if (Config.custom_apps.includes("lyrics-plus")) {
 }
 ```
 
-This can ensure that your extension doesn't break if the user doesn't have the requried app or theme installed.
+This can ensure that your extension doesn't break if the user doesn't have the required app or theme installed.

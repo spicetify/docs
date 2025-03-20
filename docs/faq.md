@@ -23,7 +23,7 @@ Or, you can open the folder where it is located by entering the following in you
 spicetify config-dir
 ```
 
-For detail information of each config field, please run:
+For details about each config field, please run:
 
 ```bash
 spicetify --help config
@@ -33,8 +33,8 @@ spicetify --help config
 
 ### Windows
 
-1. There is great chance that you are using Microsoft Store Spotify. Please double check that in Spotify About page.
-2. If you are actually using Microsoft Store Spotify, remove it completely. Go to Spotify website to download normal version installer.
+1. There is a great chance that you are using Microsoft Store Spotify. Please double check that in Spotify About page.
+2. If you are actually using Microsoft Store Spotify, remove it completely. Go to Spotify website to download the normal version installer.
 3. If you are not using the Microsoft Store Spotify, and are using the one from the Spotify website, check to see if you have a "prefs" file in `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify`.
 4. If so, open your `config-xpui.ini` and set `prefs_path` to the absolute path of that prefs file. (e.g. `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify\prefs`) Then try running `spicetify` again.
 
@@ -46,7 +46,7 @@ spicetify --help config
 ## After Spotify's update, running `spicetify apply` or `spicetify update` breaks Spotify.
 
 After any Spotify update, always run `spicetify backup apply`.  
-Optionally, set the Spotify shortcut to run `spicetify auto` (instead of direct path to spotify executable), so that Spicetify can backup and apply, when it needs to, then launch Spotify automatically.
+Optionally, set the Spotify shortcut to run `spicetify auto` (instead of direct path to Spotify executable), so that Spicetify can backup and apply, when it needs to, then launch Spotify automatically.
 
 It may be the case that Spicetify does not yet support a new Spotify update. In that case, please check the Spicetify issue tracker.
 

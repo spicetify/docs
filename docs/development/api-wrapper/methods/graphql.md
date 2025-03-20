@@ -9,9 +9,9 @@ GraphQL API Wrapper used throughout the Spotify client. It is used to communicat
 
 Because this is a private API, it is not documented by Spotify. This documentation is based on the usage of the API in the Spotify client, and may not be accurate.
 
-It is also subjected to drastic changes in the future, and has went through such changes in the past.
+It is also subject to drastic changes in the future, and has gone through such changes in the past.
 
-Any issues or errors that arises from using this API is not the responsibility of this documentation. Use at your own risk.
+Any issues or errors that arise from using this API are not the responsibility of this documentation. If you want to take advantage of this API, bear this in mind.
 
 :::
 
@@ -266,7 +266,7 @@ This is the type of operation that you want to perform, and can be either `query
 
 ###### `name`
 
-This is the name of the operation that you want to perform. Usually the name of the definition are self-explanatory, so you can be sure of what the operation does by looking at the name.
+This is the name of the operation that you want to perform. Usually the name of the definition is self-explanatory, so you can be sure of what the operation does by looking at the name.
 
 ###### `variableDefinitions`
 

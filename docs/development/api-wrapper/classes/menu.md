@@ -59,7 +59,7 @@ setName(name: string): void
 
 ##### setState
 
-Set the state of the menu item. The item would has a tick icon next to it if its state is enabled.
+Set the state of the menu item. The item will have a tick icon next to it if its state is enabled.
 
 ```ts
 setState(isEnabled: boolean): void

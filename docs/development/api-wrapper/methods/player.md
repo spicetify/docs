@@ -167,7 +167,7 @@ Spicetify.Player.decreaseVolume();
 
 ### formatTime
 
-Format a time in milisecond to a string in `mm:ss` format.
+Format a time in milliseconds to a string in `mm:ss` format.
 
 ```ts
 Spicetify.Player.formatTime(time);
@@ -177,7 +177,7 @@ Spicetify.Player.formatTime(time);
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `time` | `number` | Time in milisecond |
+| `time` | `number` | Time in milliseconds |
 
 #### Return
 
@@ -196,7 +196,7 @@ console.log(formattedDuration); // "03:45"
 
 ### getDuration
 
-Return the duration of current track in milisecond.
+Return the duration of current track in milliseconds.
 
 ```ts
 Spicetify.Player.getDuration();
@@ -228,7 +228,7 @@ Spicetify.Player.getMute();
 
 ### getProgress
 
-Return the progress of current track in milisecond.
+Return the progress of current track in milliseconds.
 
 ```ts
 Spicetify.Player.getProgress();
@@ -392,7 +392,7 @@ Spicetify.Player.removeEventListener(type, callback);
 
 ### seek
 
-Seek track to position. Position can be in percentage (0 to 1) or in milisecond.
+Seek track to position. Position can be in percentage (0 to 1) or in milliseconds.
 
 ```ts
 Spicetify.Player.seek(position);
@@ -402,7 +402,7 @@ Spicetify.Player.seek(position);
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `position` | `number` | Position to seek. Can be in percentage (0 to 1) or in milisecond |
+| `position` | `number` | Position to seek. Can be in percentage (0 to 1) or in milliseconds |
 
 #### Example
 

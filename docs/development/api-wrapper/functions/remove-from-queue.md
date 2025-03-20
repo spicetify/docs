@@ -11,7 +11,7 @@ This works similarly to [`Spicetify.Platform.PlayerAPI.removeFromQueue`](/docs/d
 
 :::caution
 
-If an `uid` is not provided, all tracks with the same `uri` will be removed.
+If a `uid` is not provided, all tracks with the same `uri` will be removed.
 
 :::
 

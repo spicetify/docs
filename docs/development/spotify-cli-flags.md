@@ -11,7 +11,7 @@ description: 🚩 Flags to alter the behavior of the Spotify.
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--allow-upgrades`                     |                                                                                                                                                                                                      |
 | `--append-log-file`                    |                                                                                                                                                                                                      |
-| `--app-directory=<path>`               | Specify the "Apps" directory path. Used by spicetify for modyfing Spotify from Microsoft Store.                                                                                                      |
+| `--app-directory=<path>`               | Specify the "Apps" directory path. Used by spicetify for modifying Spotify from Microsoft Store.                                                                                                      |
 | `--app-icon-overlay`                   |                                                                                                                                                                                                      |
 | `--apr`                                |                                                                                                                                                                                                      |
 | `--audio-api`                          |                                                                                                                                                                                                      |
@@ -101,6 +101,6 @@ If you are using **Spotify older than 1.2.34**:
 7. Restart Spotify with the `--enable-chrome-runtime` switch and developer mode enabled
 8. Press *Ctrl + Shift + T*
 9. Click the `chrome://version` link
-10. Copy and paste the flags between `--flag-switches-begin` `--flag-switches-end` into your spicetify config and/or the shrotrcut/`.desktop` file you use to launch Spotify
+10. Copy and paste the flags between `--flag-switches-begin` `--flag-switches-end` into your spicetify config and/or the shortcut/`.desktop` file you use to launch Spotify
 
 The `--enable-chrome-runtime` switch and developer mode are not required for experimental features to work.

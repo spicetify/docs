@@ -7,7 +7,7 @@ Spicetify provides a wrapper for `localStorage` to make it easier to use.
 
 :::tip
 
-All keys created via this method is generic and stored as-is.
+All keys created via this method are generic and stored as-is.
 
 If you wish to store values that are specific for each user account, you can use [`Platform.LocalStorageAPI`](/docs/development/api-wrapper/methods/platform#localstorageapi) instead.
 
