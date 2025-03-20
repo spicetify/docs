@@ -11,7 +11,7 @@ Because this is a private API, it is not documented by Spotify. This documentati
 
 It is also subject to drastic changes in the future, and has gone through such changes in the past.
 
-Any issues or errors that arise from using this API are not the responsibility of this documentation.
+Any issues or errors that arise from using this API are not the responsibility of this documentation. If you want to take advantage of this API, bear this in mind.
 
 :::
 
@@ -268,7 +268,7 @@ This is the type of operation that you want to perform, and can be either `query
 
 This is the name of the operation that you want to perform. Usually the name of the definition is self-explanatory, so you can be sure of what the operation does by looking at the name.
 
-###### `variableDefinitions`    
+###### `variableDefinitions`
 
 This is the list of variables that you want to pass to the operation.
 
