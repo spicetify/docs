@@ -98,7 +98,7 @@ Auto skip explicit tracks. Toggle option is in Profile menu (top right button).
 
 **Filename:** `fullAppDisplay.js`
 
-Full App Display: Minimal album cover art display with beautiful blur effect background. Activating button locates in top bar. While in display mode, double click anywhere to exit. Right click anywhere to open setting menu.
+Full App Display: Minimal album cover art display with beautiful blur effect background. Activating button located in top bar. While in display mode, double click anywhere to exit. Right click anywhere to open setting menu.
 
 ![Ext_FAD](https://i.imgur.com/S7CPQ2s.png)
 
