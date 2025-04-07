@@ -16,7 +16,7 @@ const FeatureList = [
     title: 'Extensions',
     image: require('@site/static/images/extension.png').default,
     description: (
-      <>Small bonus little features that can be sprinkled across Spotify.</>
+      <>Small bonus features that can be sprinkled across Spotify.</>
     ),
   },
   {
