@@ -21,4 +21,5 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 10. [dracula/spicetify](https://github.com/dracula/spicetify)
 11. [Spotify Dark](https://github.com/SyndiShanX/Spotify-Dark)
 12. [bluedrift/Spicetify-Throwback](https://github.com/bluedrift/Spicetify-Throwback)
-13. Insert your theme here!
+13. [Unofficial Dracula theme](https://github.com/m0squdev/dracula-spicetify-theme)
+14. Insert your theme here!
