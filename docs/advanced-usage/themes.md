@@ -18,7 +18,8 @@ For this reason, the theming heroes of the Spicetify community have created a hu
 7. [JulienMaille/dribbblish-dynamic-theme](https://github.com/JulienMaille/dribbblish-dynamic-theme) (not maintained)
 8. [sanoojes/spicetify-lucid](https://github.com/sanoojes/spicetify-lucid)
 9. [Skaytacium/Gruvify](https://github.com/Skaytacium/Gruvify)
-10. [dracula/spicetify](https://github.com/dracula/spicetify)
+10. [dracula/spicetify](https://github.com/dracula/spicetify) (not maintained)
 11. [Spotify Dark](https://github.com/SyndiShanX/Spotify-Dark)
 12. [bluedrift/Spicetify-Throwback](https://github.com/bluedrift/Spicetify-Throwback)
-13. Insert your theme here!
+13. [m0squdev/dracula-spicetify-theme](https://github.com/m0squdev/dracula-spicetify-theme)
+14. Insert your theme here!
