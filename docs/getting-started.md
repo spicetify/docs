@@ -10,6 +10,7 @@ Spicetify is a multiplatform command-line tool to customize the official Spotify
 ### Windows
 
 This is the installation method we recommend for most users. It is the fastest and most reliable way to install Spicetify. 
+(Note: Spicetify should not be run with administrator/root privileges, Running as admin can cause Spotify to show a black/blank window after applying spicetify. This happens because Spotify (running as a normal user) can't access files modified with admin privileges. and ONLY download spotify from the web, not from microsoft store)
 
 #### Powershell (pre-built binary)
 
