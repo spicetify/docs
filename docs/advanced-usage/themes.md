@@ -4,7 +4,7 @@ description: ✨ Themes for Spicetify.
 ---
 
 One of the most popular features in Spicetify is theming.
-You can customize your Spotify to your <span style={{'color': '#CB1010'}}>**heart's**</span> desire!
+You can customize your Spotify to your <span style={{'color': '#1039'}}>**heart's**</span> desire!
 **However**, this is a very cumbersome task.
 
 For this reason, the theming heroes of the Spicetify community have created a huge library of themes which can be found in the following repositories:
