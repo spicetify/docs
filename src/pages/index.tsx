@@ -35,10 +35,8 @@ export default function Home() {
   return (
     <Layout description="Powerful CLI tool to take control of the Spotify client.">
       <div className={styles.sponsor}>
-        <a href="https://github.com/sponsors/spicetify/sponsorships?tier_id=411293">
-          Sponsor us
-        </a>{' '}
-        and get your logo here!
+        Find Cheap Discord Nitro & Server Boosts in{' '}
+        <a href="https://boostmania.gg?ref=spicetify">boostmania.gg</a>
       </div>
       <HomepageHeader />
       <main>

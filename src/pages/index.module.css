@@ -29,6 +29,7 @@
   text-align: center;
   margin: 0.5rem 0;
   height: min-content;
+  font-weight: 700;
 }
 
 .sponsor > a {
