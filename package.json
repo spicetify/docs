@@ -1,5 +1,6 @@
 {
   "name": "spicetify-docs",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,39 +16,39 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "prepare": "husky",
-    "lint": "biome check"
+    "lint": "biome check",
+    "format": "biome check --write"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.20.0",
-    "@docusaurus/core": "^3.7.0",
-    "@docusaurus/faster": "^3.7.0",
-    "@docusaurus/preset-classic": "^3.7.0",
-    "@docusaurus/theme-common": "^3.7.0",
-    "@docusaurus/types": "^3.7.0",
-    "@mdx-js/react": "^3.1.0",
+    "@algolia/client-search": "^5.39.0",
+    "@docusaurus/core": "^3.9.1",
+    "@docusaurus/faster": "^3.9.1",
+    "@docusaurus/preset-classic": "^3.9.1",
+    "@docusaurus/theme-common": "^3.9.1",
+    "@docusaurus/types": "^3.9.1",
+    "@mdx-js/react": "^3.1.1",
     "clsx": "^2.1.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "swiper": "^11.2.2"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "swiper": "^12.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@docusaurus/module-type-aliases": "^3.7.0",
-    "@docusaurus/plugin-rsdoctor": "^3.7.0",
-    "@docusaurus/theme-classic": "^3.7.0",
-    "@docusaurus/tsconfig": "^3.7.0",
-    "@types/node": "^22.13.0",
-    "@types/react": "^19.0.8",
+    "@biomejs/biome": "^2.2.5",
+    "@types/node": "^24.6.2",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "typescript": "^5.7.3"
+    "lint-staged": "^16.2.3",
+    "typescript": "^5.9.3"
   },
   "lint-staged": {
-    "*": "biome check --apply --no-errors-on-unmatched"
+    "*": "biome check --write --no-errors-on-unmatched"
   },
   "browserslist": {
-    "production": [">0.5%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
