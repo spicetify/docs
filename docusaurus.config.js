@@ -11,7 +11,16 @@ const config = {
   url: 'https://spicetify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  future: {
+    experimental_faster: true,
+    v4: true,
+  },
+  markdown: {
+    hooks: {
+      onBrokenMarkdownImages: 'throw',
+      onBrokenMarkdownLinks: 'throw',
+    },
+  },
   favicon: 'images/favicon.ico',
   organizationName: 'spicetify',
   projectName: 'spicetify-docs',
@@ -158,9 +167,6 @@ const config = {
         indexName: 'spicetify',
       },
     }),
-  future: {
-    experimental_faster: true,
-  },
 };
 
 module.exports = config;

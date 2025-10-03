@@ -54,7 +54,7 @@ const data = [
 ];
 
 export default () => {
-  const slides = data.map((item, index) => (
+  const slides = data.map((item) => (
     <SwiperSlide key={item.title}>
       <img src={item.cover} alt={item.title} />
     </SwiperSlide>

@@ -1,4 +1,7 @@
 {
   "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "types": ["@docusaurus/module-type-aliases", "node"]
+  },
   "include": ["src/"]
 }
