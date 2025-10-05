@@ -71,14 +71,10 @@ deregister(): void
 #### Example
 
 ```ts
-// This function will determine if the selected item is a track
-function ifItemIsTrack(uri) {
-  let uriObj = Spicetify.URI.fromString(uri[0]);
-  switch (uriObj.type) {
-    case Type.TRACK:
-      return true;
-  }
-  return false;
+// This function will determine if the given item is a track
+function isTrack(uri) {
+  const uriObject = Spicetify.URI.fromString(uri);
+  return uriObject.type === Spicetify.URI.Type.TRACK;
 }
 
 // Create a new menu item that only appears when a track is selected
@@ -87,7 +83,7 @@ const menuItem = new Spicetify.ContextMenu.Item(
   () => {
     Spicetify.showNotification("My Menu Item clicked!");
   },
-  ifItemIsTrack,
+  (uris) => uris.every((uri) => isTrack(uri)),
   Spicetify.SVGIcons["play"],
   false,
 );
