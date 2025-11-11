@@ -1,4 +1,4 @@
----
+spotify---
 title: Themes
 description: ✨ Themes for Spicetify.
 ---
