@@ -14,6 +14,7 @@ To install React Developer Tools in Spotify:
 
 You may need to reload the client for the extension to work.
 
-If you get an error saying that you're not allowed to install extensions, try using `Force enable Chrome extensions` feature of the ["CEF/Spotify Tweaks" Windhawk mod](https://windhawk.net/mods/cef-titlebar-enabler-universal).
+If you get an error saying that you're not allowed to install extensions, try using the `Force enable Chrome extensions` feature of the ["CEF/Spotify Tweaks" Windhawk mod](https://windhawk.net/mods/cef-titlebar-enabler-universal).
 
 You can find more info about React Developer Tools on the [official React website](https://react.dev/learn/react-developer-tools).
+
