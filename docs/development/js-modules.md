@@ -21,11 +21,11 @@ For Japanese studying purpose, I'm developing an extension that shows the Romaji
 
 The idea is when I right click at track name and choose Show Romaji:
 
-![img1](https://i.imgur.com/kkSOtwG.png)
+![img1](/images/development/js-modules-1.png)
 
 Result should show as a notification:
 
-![img2](https://i.imgur.com/LLF5ZGh.png)
+![img2](/images/development/js-modules-2.png)
 
 To translate Japanese text to Romaji, I use a package named [kuroshiro](https://github.com/hexenq/kuroshiro). Luckily, this package will export distribution files as ES6 Module. This is quite important because package itself relies on other utilities packages too. When it is compiled as an ES6 module, everything is transpiled to Browser supported Javascript and combined in one file. Moreover, kuroshiro also needs [kuroshiro-analyzer-kuromoji](https://github.com/hexenq/kuroshiro-analyzer-kuromoji) package to be usable, which relies on dictionaries gzip files. You can see there is no easy way to utiltise both packages and their external files if we use traditional Javascript extension.
 

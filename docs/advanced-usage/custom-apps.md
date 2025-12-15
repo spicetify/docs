@@ -73,7 +73,7 @@ Three apps have been included to demonstrate how to create and inject an app:
 
 Fetching posts from any Spotify link sharing subreddit. You can add, remove, arrange subreddits and customize post visual in config menu (in Profile menu, top right button with your username).
 
-![Reddit](https://i.imgur.com/MC3tpNZ.png)
+![Reddit](/images/apps/reddit.png)
 
 To install, run following commands:
 
@@ -86,7 +86,7 @@ spicetify apply
 
 Aggregate all new releases from favorite artists, podcasts. Time range, release type, and other filters can be customized in config menu (in Profile menu, top right button with your username). Date format is based on your locale code (BCP47).
 
-![New Releases](https://i.imgur.com/MP9dTjt.png)
+![New Releases](/images/apps/new-releases.png)
 
 To install, run following commands:
 
@@ -101,7 +101,7 @@ Get access to the current track's lyrics from various lyrics providers (Musixmat
 
 Colors, lyrics providers can be customized in config menu (in Profile menu, top right button with your username).
 
-![Lyrics Plus](https://i.imgur.com/WtD080A.png)
+![Lyrics Plus](/images/apps/lyrics-plus.png)
 
 To install, run following commands:
 
