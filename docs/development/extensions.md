@@ -5,11 +5,23 @@ description: Creating extensions for Spicetify.
 
 Extensions are JavaScript files that run alongside Spotify's main code. They can add UI elements, modify behavior, integrate with external services, and more.
 
+## Extension Structure
+
+```
+~/.config/spicetify/Extensions/   # Linux/macOS
+%appdata%\spicetify\Extensions\   # Windows
+├── myExtension.js
+├── anotherExtension.js
+└── ...
+```
+
+Extensions are single JavaScript files. For complex extensions with multiple files, use [Spicetify Creator](/docs/development/spicetify-creator).
+
 ## Getting Started
 
-### Basic Structure
+### Location
 
-An extension is a single JavaScript file placed in your Extensions folder:
+Place your extension file in the Extensions folder:
 
 | Platform | Path |
 |----------|------|

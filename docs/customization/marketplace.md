@@ -90,3 +90,32 @@ After Spotify updates, you may need to re-apply Spicetify:
 ```bash
 spicetify backup apply
 ```
+
+### Resetting Marketplace
+
+If Marketplace becomes unresponsive or you cannot access its settings:
+
+1. Enable DevTools:
+
+   ```bash
+   spicetify enable-devtools
+   ```
+
+2. Open DevTools in Spotify (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> or <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd>)
+
+3. In the Console tab, run:
+
+   ```js
+   Marketplace.reset()
+   ```
+
+   This resets all Marketplace localStorage data. You can also reset specific types:
+
+   ```js
+   Marketplace.reset("theme")              // Reset theme only
+   Marketplace.reset("extensions")         // Reset extensions only
+   Marketplace.reset("snippets")           // Reset snippets only
+   Marketplace.reset("theme", "snippets")  // Reset multiple types
+   ```
+
+4. Restart Spotify

@@ -3,7 +3,21 @@ title: Custom Apps
 description: 🔧 Creating Custom Apps.
 ---
 
-## How to start
+## App Structure
+
+```
+~/.config/spicetify/CustomApps/   # Linux/macOS
+%appdata%\spicetify\CustomApps\   # Windows
+└── my-app/
+    ├── index.js                  # Required: main entry with render()
+    ├── manifest.json             # Required: app metadata and icons
+    ├── style.css                 # Optional: custom styles
+    └── src/                      # Optional: additional JS files
+        ├── Component.js
+        └── ...
+```
+
+## How to Start
 
 - Make a new folder for your custom app in your [CustomApps folder](/docs/customization/custom-apps). You'll install it like any other custom app.
 - Create an `index.js` and a `manifest.json` inside that folder.

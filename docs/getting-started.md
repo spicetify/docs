@@ -205,6 +205,14 @@ spicetify config spotify_path "/Applications/Spotify.app/Contents/Resources"
 
 ---
 
+## Before First Run
+
+:::tip
+If this is a fresh Spotify install, open Spotify and log in for at least 60 seconds before running Spicetify. This allows Spotify to generate the files that Spicetify needs to function.
+:::
+
+---
+
 ## Marketplace
 
 The [Spicetify Marketplace](https://github.com/spicetify/marketplace) gives you a tab in Spotify's sidebar to browse and install themes, extensions, and snippets.
