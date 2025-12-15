@@ -105,8 +105,8 @@ const config = {
                 to: '/docs/getting-started',
               },
               {
-                label: 'Advanced Usage',
-                to: '/docs/advanced-usage',
+                label: 'Customization',
+                to: '/docs/customization',
               },
               {
                 label: 'Development',

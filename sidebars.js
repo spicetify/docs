@@ -13,27 +13,32 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  // By default, Docusaurus generates a sidebar from the docs folder structure
   sidebar: [
     'getting-started',
     {
       type: 'category',
-      label: 'Advanced Usage',
+      label: 'Customization',
       collapsed: false,
       link: {
-        type: 'generated-index',
-        description:
-          'A guide about advanced usage of Spicetify and venturing outside of the Spicetify Marketplace.',
-        slug: '/advanced-usage',
+        type: 'doc',
+        id: 'customization/index',
       },
       items: [
-        'advanced-usage/installation',
-        'advanced-usage/uninstallation',
-        'advanced-usage/command-line-interface',
-        'advanced-usage/themes',
-        'advanced-usage/extensions',
-        'advanced-usage/custom-apps',
+        'customization/marketplace',
+        'customization/themes',
+        'customization/extensions',
+        'customization/custom-apps',
+        'customization/config-file',
       ],
+    },
+    {
+      type: 'category',
+      label: 'CLI Reference',
+      link: {
+        type: 'doc',
+        id: 'cli/index',
+      },
+      items: ['cli/commands'],
     },
     {
       type: 'category',
@@ -41,12 +46,13 @@ const sidebars = {
       link: {
         type: 'generated-index',
         description:
-          "Let's learn about how to contribute to the Spicetify community!",
+          'Learn how to create themes, extensions, and custom apps for Spicetify.',
         slug: '/development',
       },
       items: [
         'development/compiling',
         'development/themes',
+        'development/extensions',
         'development/custom-apps',
         'development/js-modules',
         'development/react-devtools',
@@ -275,6 +281,7 @@ const sidebars = {
       ],
     },
     'faq',
+    'uninstallation',
   ],
 };
 
