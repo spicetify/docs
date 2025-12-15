@@ -69,15 +69,15 @@ This problem happens in the extension [Popup Lyrics](https://github.com/spicetif
 
 3. Now in Musixmatch app, hit `Ctrl + Shift + i` to bring up DevTools.
 
-![mxm1](https://i.imgur.com/jMGMgCc.png)
+![mxm1](/images/faq/mxm1.png)
 
 4. Switch to Network tab. Hit `Ctrl + R`. Filter results with "apic":
 
-![mxm2](https://i.imgur.com/QdwqtQa.png)
+![mxm2](/images/faq/mxm2.png)
 
 5. Click on any result. Click on the Headers tab. Scroll all the way down. Note down `usertoken`
 
-![mxm3](https://i.imgur.com/ZsGwKG3.png)
+![mxm3](/images/faq/mxm3.png)
 
 It should look like this:
 
@@ -87,4 +87,4 @@ It should look like this:
 
 6. You can open the config for Popup Lyrics by right clicking on the Popup Lyrics button. Or if you're using Lyrics Plus, open the config by clicking on Lyrics in the sidebar and clicking on the profile menu and then clicking 'Lyrics Plus config'. You can then paste your personal token in the input field in the Musixmatch section and turn the switch on.
 
-![mxm4](https://i.imgur.com/yvrkllb.png)
+![mxm4](/images/faq/mxm4.png)

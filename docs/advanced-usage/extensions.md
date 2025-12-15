@@ -84,7 +84,7 @@ Videos are unable to play in some regions because of Spotify's policy. Instead o
 
 Easily store and browse pages, play tracks or tracks in specific time. Useful for who wants to check out an artist, album later without following them or writing their name down.
 
-![Ext_bookmark](https://i.imgur.com/isgU4TS.png)
+![Ext_bookmark](/images/extensions/bookmark.png)
 
 ### Christian Spotify
 
@@ -92,7 +92,7 @@ Easily store and browse pages, play tracks or tracks in specific time. Useful fo
 
 Auto skip explicit tracks. Toggle option is in Profile menu (top right button).
 
-![Ext_ChristianDemo](https://i.imgur.com/5reGrBb.png)
+![Ext_ChristianDemo](/images/extensions/christian-demo.png)
 
 ### Full App Display
 
@@ -100,7 +100,7 @@ Auto skip explicit tracks. Toggle option is in Profile menu (top right button).
 
 Full App Display: Minimal album cover art display with beautiful blur effect background. Activating button located in top bar. While in display mode, double click anywhere to exit. Right click anywhere to open setting menu.
 
-![Ext_FAD](https://i.imgur.com/S7CPQ2s.png)
+![Ext_FAD](/images/extensions/full-app-display.png)
 
 ### Keyboard Shortcut
 
@@ -114,7 +114,7 @@ Extends Spotify's default keybinds (toggle help modal with `?`) with vim like sh
 - <kbd>G</kbd>/<kbd>Shift</kbd> <kbd>G</kbd>: Scroll to top or bottom
 - <kbd>F</kbd>: Open up keyboard-driven navigation. Hit correct key sequences to open up place you want to go:
 
-![KeyboardDemo](https://i.imgur.com/evkGv9q.png)
+![KeyboardDemo](/images/extensions/keyboard-demo.png)
 
 ### Loopy Loop
 
@@ -122,7 +122,7 @@ Extends Spotify's default keybinds (toggle help modal with `?`) with vim like sh
 
 Provide ability to mark start and end points on progress bar and automatically loop over that track portion.
 
-![LoopyLoop](https://i.imgur.com/YEkbjLC.png)
+![LoopyLoop](/images/extensions/loopy-loop.png)
 
 ### Pop-up Lyrics
 
@@ -130,21 +130,21 @@ Provide ability to mark start and end points on progress bar and automatically l
 
 Have easy access to a pop-up window with the current song's lyrics. Click at microphone icon on top bar to open lyrics windows. Right click at the same icon to open config menu to customize looks and lyrics providers priorities.
 
-![Pop-up Lyrics](https://i.imgur.com/Nx9Lx7D.png)
+![Pop-up Lyrics](/images/extensions/popup-lyrics.png)
 
 ### Shuffle+
 
 **Filename:** `shuffle+.js`  
 Shuffles using Fisher–Yates algorithm with zero bias. After installing extensions, right click album/playlist/artist item, there will be an option "Play with Shuffle+". You can also multiple select tracks and choose to "Play with Shuffle+".
 
-![Shuffle](https://i.imgur.com/gxbnqSN.png)
+![Shuffle](/images/extensions/shuffle.png)
 
 ### Trash Bin
 
 **Filename:** `trashbin.js`  
 Throw songs/artists to trash bin and never hear them again (automatically skip). This extension will append a Throw to Trashbin option in tracks and artists link right click menu.
 
-![Ext_Trash](https://i.imgur.com/ZFTy5Rm.png)
+![Ext_Trash](/images/extensions/trash.png)
 
 ### Web Now Playing
 
@@ -173,7 +173,7 @@ If you are running Spicetify 1.2.1 or below, and a supported Spotify version, yo
 
 Easily setting up the client for your friends or audiences to choose, add song to queue but prevent them to control player. Plays button in album track list/playlist are re-purposed to add track to queue, instead of play track directly. Hide Controls option also allow you to hide all control button in player bar, Play/More/Follow buttons in cards.
 
-![Ext_DJDemo](https://i.imgur.com/pOFEqtM.png)
+![Ext_DJDemo](/images/extensions/dj-demo.png)
 
 ### New Release
 
@@ -189,4 +189,4 @@ Aggregate all new releases from favorite artists, podcasts. Setting menu could b
 
 You like using Discover, New Releases page to find new music but adding each one of them to queue takes a lot of effort? If so, activate this extensions and apply. At top of every carousel now has a "Queue All" button to help you add all of them to queue. Note: Not available for playlist carousels. Just songs, albums ones.
 
-![QueueAllDemo](https://i.imgur.com/D9ytt7K.png)
+![QueueAllDemo](/images/extensions/queue-all-demo.png)
