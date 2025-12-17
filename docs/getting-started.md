@@ -255,10 +255,10 @@ Spotify updates periodically. After a Spotify update, you'll need to re-apply Sp
 spicetify backup apply
 ```
 
-If that doesn't work, Spicetify itself may need an upgrade:
+If that doesn't work, Spicetify itself may need an update:
 
 ```bash
-spicetify upgrade
+spicetify update
 ```
 
 If you updated Spicetify via a package manager (Homebrew, AUR, etc.) or the upgrade command didn't fully apply changes, run:
