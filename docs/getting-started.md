@@ -45,7 +45,8 @@ See the [Chocolatey package page](https://chocolatey.org/packages/spicetify-cli)
 </TabItem>
 </Tabs>
 
-#### Spotify from Scoop
+<details>
+<summary>Spotify from Scoop</summary>
 
 If you installed Spotify via Scoop, find its location and set it in your config:
 
@@ -57,6 +58,8 @@ C:\Users\<username>\scoop\apps\spotify\current
 ```powershell
 spicetify config spotify_path "C:\Users\<username>\scoop\apps\spotify\current"
 ```
+
+</details>
 
 ### Linux
 
