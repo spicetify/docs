@@ -7,7 +7,7 @@ Extensions are JavaScript files that run alongside Spotify's main code. They can
 
 ## Extension Structure
 
-```
+```text
 ~/.config/spicetify/Extensions/   # Linux/macOS
 %appdata%\spicetify\Extensions\   # Windows
 ├── myExtension.js

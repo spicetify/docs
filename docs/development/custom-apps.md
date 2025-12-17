@@ -5,7 +5,7 @@ description: 🔧 Creating Custom Apps.
 
 ## App Structure
 
-```
+```text
 ~/.config/spicetify/CustomApps/   # Linux/macOS
 %appdata%\spicetify\CustomApps\   # Windows
 └── my-app/

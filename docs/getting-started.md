@@ -106,7 +106,7 @@ spicetify config spotify_path "$HOME/.local/share/spotify-launcher/install/usr/s
 ```
 
 :::warning
-Use the absolute path. Do not use `~` - it must be the full path like `/home/username/...`
+When setting config values, use the full absolute path (e.g., `/home/username/...`). The `~` shortcut works in shell commands but not in config values.
 :::
 
 </details>

@@ -85,7 +85,7 @@ Control CSS/color injection.
 
 ### [AdditionalOptions]
 
-Theme and addon configuration.
+Theme and add-on configuration.
 
 | Key | Description | Example |
 |-----|-------------|---------|

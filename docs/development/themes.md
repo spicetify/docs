@@ -5,7 +5,7 @@ description: ✨ Creating Themes for Spicetify.
 
 ## Theme Structure
 
-```
+```text
 ~/.config/spicetify/Themes/       # Linux/macOS
 %appdata%\spicetify\Themes\       # Windows
 └── MyTheme/
