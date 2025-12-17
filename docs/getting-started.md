@@ -248,13 +248,13 @@ Spotify updates periodically. After a Spotify update, you'll need to re-apply Sp
 spicetify backup apply
 ```
 
-If that doesn't work, Spicetify itself may need an update:
+If that doesn't work, Spicetify itself may need an upgrade:
 
 ```bash
 spicetify upgrade
 ```
 
-If no Spicetify update is available yet, the team is likely still working on compatibility with the new Spotify version.
+If no Spicetify upgrade is available yet, the team is likely still working on compatibility with the new Spotify version.
 
 ---
 
