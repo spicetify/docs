@@ -254,6 +254,12 @@ If that doesn't work, Spicetify itself may need an upgrade:
 spicetify upgrade
 ```
 
+If you updated Spicetify via a package manager (Homebrew, AUR, etc.) or the upgrade command didn't fully apply changes, run:
+
+```bash
+spicetify restore backup apply
+```
+
 If no Spicetify upgrade is available yet, the team is likely still working on compatibility with the new Spotify version.
 
 ---
