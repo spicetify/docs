@@ -36,7 +36,11 @@ scoop install spicetify-cli
 </TabItem>
 <TabItem value="chocolatey" label="Chocolatey">
 
-See the [Chocolatey package page](https://chocolatey.org/packages/spicetify-cli) for instructions.
+```powershell
+choco install spicetify-cli
+```
+
+See the [Chocolatey package page](https://chocolatey.org/packages/spicetify-cli) for more details.
 
 </TabItem>
 </Tabs>
