@@ -55,7 +55,10 @@ Place your extension file in the Extensions folder:
    spicetify apply
    ```
 
-3. Open DevTools in Spotify (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>) to see console output
+3. Open DevTools in Spotify to see console output:
+   - **Windows/Linux**: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
+   - **macOS**: <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd>
+
 
 ---
 
