@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: cutecore!
 sidebar_position: 1
 ---
 
