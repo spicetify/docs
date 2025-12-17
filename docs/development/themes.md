@@ -3,6 +3,21 @@ title: Themes
 description: ✨ Creating Themes for Spicetify.
 ---
 
+## Theme Structure
+
+```text
+~/.config/spicetify/Themes/       # Linux/macOS
+%appdata%\spicetify\Themes\       # Windows
+└── MyTheme/
+    ├── color.ini                 # Required: color definitions
+    ├── user.css                  # Required: custom CSS rules
+    ├── theme.js                  # Optional: theme-specific JavaScript
+    └── assets/                   # Optional: images, fonts, etc.
+        └── ...
+```
+
+## Theme Location
+
 There are 2 places you can put your themes:
 
 1. `Themes` folder in Home directory
