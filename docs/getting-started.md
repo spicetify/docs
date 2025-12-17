@@ -261,7 +261,7 @@ If that doesn't work, Spicetify itself may need an update:
 spicetify update
 ```
 
-If you updated Spicetify via a package manager (Homebrew, AUR, etc.) or the upgrade command didn't fully apply changes, run:
+If you updated Spicetify via a package manager (Homebrew, AUR, etc.) or the update command didn't fully apply changes, run:
 
 ```bash
 spicetify restore backup apply
