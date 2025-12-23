@@ -92,6 +92,32 @@ yay -S spicetify-cli
 Depending on how you installed Spotify, you may need additional configuration.
 
 <details>
+<summary>Setting spicetify config to path</summary>
+
+Determine your shell
+   
+```
+echo $SHELL
+```
+
+Depending on if it says `/bin/zsh` `/bin/bash` `/usr/bin/fish` use the following commands based on that.
+
+```zsh
+echo 'export PATH=$PATH:~/.spicetify' >> ~/.zshrc
+source ~/.zshrc
+```
+
+```bash
+echo 'export PATH=$PATH:~/.spicetify' >> ~/.bashrc
+source ~/.bashrc
+```
+
+```fish
+fish_add_path ~/.spicetify
+```
+</details>
+
+<details>
 <summary>Spotify from AUR</summary>
 
 Grant write permissions to Spotify's directory:
