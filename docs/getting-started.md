@@ -92,29 +92,44 @@ yay -S spicetify-cli
 Depending on how you installed Spotify, you may need additional configuration.
 
 <details>
-<summary>Setting spicetify config to path</summary>
+<summary>Adding Spicetify to PATH</summary>
 
-Determine your shell
-   
-```
+If you installed Spicetify via a package manager (Homebrew, AUR, etc.) and the `spicetify` command isn't found, you may need to add it to your PATH manually.
+
+First, determine your shell:
+
+```bash
 echo $SHELL
 ```
 
-Depending on if it says `/bin/zsh` `/bin/bash` `/usr/bin/fish` use the following commands based on that.
+Then add `~/.spicetify` to your PATH based on your shell:
 
-```zsh
+<Tabs>
+<TabItem value="zsh" label="zsh" default>
+
+```bash
 echo 'export PATH=$PATH:~/.spicetify' >> ~/.zshrc
 source ~/.zshrc
 ```
+
+</TabItem>
+<TabItem value="bash" label="bash">
 
 ```bash
 echo 'export PATH=$PATH:~/.spicetify' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+</TabItem>
+<TabItem value="fish" label="fish">
+
 ```fish
 fish_add_path ~/.spicetify
 ```
+
+</TabItem>
+</Tabs>
+
 </details>
 
 <details>
