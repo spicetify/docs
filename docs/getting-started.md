@@ -103,16 +103,21 @@ Then import the module and configure:
 # For NixOS: spicetify-nix.nixosModules.spicetify
 # For Home Manager: spicetify-nix.homeManagerModules.spicetify
 
-programs.spicetify = {
-  enable = true;
-  enabledExtensions = with spicePkgs.extensions; [
-    adblockify
-    hidePodcasts
-    shuffle
-  ];
-  theme = spicePkgs.themes.catppuccin;
-  colorScheme = "mocha";
-};
+{ pkgs, inputs, ... }:
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+in {
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+    ];
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
+  };
+}
 ```
 
 See the [spicetify-nix documentation](https://gerg-l.github.io/spicetify-nix) for full configuration options.
@@ -255,7 +260,7 @@ For nix-darwin and Home Manager users on macOS, use the [spicetify-nix](https://
 }
 ```
 
-Import the module (`spicetify-nix.darwinModules.spicetify` for nix-darwin or `spicetify-nix.homeManagerModules.spicetify` for Home Manager) and configure `programs.spicetify`. See the [Linux Nix tab](#linux) for a configuration example.
+Import the module (`spicetify-nix.darwinModules.spicetify` for nix-darwin or `spicetify-nix.homeManagerModules.spicetify` for Home Manager) and configure `programs.spicetify`. See the Linux "Nix / NixOS" tab above for a configuration example.
 
 </TabItem>
 </Tabs>
