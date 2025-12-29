@@ -85,6 +85,48 @@ yay -S spicetify-cli
 ```
 
 </TabItem>
+<TabItem value="nix" label="Nix / NixOS">
+
+For NixOS and Home Manager users, use the [spicetify-nix](https://github.com/Gerg-L/spicetify-nix) flake. It provides declarative configuration and handles Spotify installation automatically.
+
+Add the flake input:
+
+```nix
+{
+  inputs.spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+}
+```
+
+Then import the module and configure:
+
+```nix
+# For NixOS: spicetify-nix.nixosModules.spicetify
+# For Home Manager: spicetify-nix.homeManagerModules.spicetify
+
+{ pkgs, inputs, ... }:
+let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+in {
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+    ];
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
+  };
+}
+```
+
+See the [spicetify-nix documentation](https://gerg-l.github.io/spicetify-nix) for full configuration options.
+
+:::note
+The module installs Spotify for you. Do not install `pkgs.spotify` separately.
+:::
+
+</TabItem>
 </Tabs>
 
 #### Linux-Specific Setup
@@ -247,6 +289,19 @@ After installing via Homebrew, set the Spotify path:
 ```bash
 spicetify config spotify_path "/Applications/Spotify.app/Contents/Resources"
 ```
+
+</TabItem>
+<TabItem value="nix-macos" label="Nix / nix-darwin">
+
+For nix-darwin and Home Manager users on macOS, use the [spicetify-nix](https://github.com/Gerg-L/spicetify-nix) flake:
+
+```nix
+{
+  inputs.spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+}
+```
+
+Import the module (`spicetify-nix.darwinModules.spicetify` for nix-darwin or `spicetify-nix.homeManagerModules.spicetify` for Home Manager) and configure `programs.spicetify`. See the [Linux Nix tab](#linux) for a configuration example.
 
 </TabItem>
 </Tabs>
