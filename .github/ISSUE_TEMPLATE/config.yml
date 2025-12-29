@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Spicetify Discord
+    url: https://discord.gg/VnevqPp2Rr
+    about: Get help from the community on Discord
+  - name: Spicetify CLI Issues
+    url: https://github.com/spicetify/cli/issues
+    about: Report issues with Spicetify CLI (not documentation)

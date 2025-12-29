@@ -1,0 +1,58 @@
+name: Bug Report
+description: Report incorrect, outdated, or unclear documentation
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: checkboxes
+    id: existing-issue
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the problem you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of issue
+      description: What type of documentation issue is this?
+      options:
+        - Incorrect information
+        - Outdated content
+        - Broken link
+        - Missing information
+        - Typo or grammatical error
+        - Unclear or confusing explanation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: Link to the documentation page with the issue
+      placeholder: https://spicetify.app/docs/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue with the documentation
+      placeholder: |
+        What is wrong or missing?
+        What should it say instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested fix
+      description: If you have a suggestion for how to fix this, please describe it here
+      placeholder: The documentation should say...
+    validations:
+      required: false

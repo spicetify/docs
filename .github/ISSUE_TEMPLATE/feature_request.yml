@@ -1,0 +1,57 @@
+name: Feature Request
+description: Suggest new documentation or improvements
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: checkboxes
+    id: existing-issue
+    attributes:
+      label: Is there an existing request for this?
+      description: Please search to see if a similar request already exists.
+      options:
+        - label: I have searched the existing issues
+          required: true
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Type of request
+      description: What type of documentation improvement are you suggesting?
+      options:
+        - New documentation page
+        - Expand existing documentation
+        - Add examples or code snippets
+        - Add images or diagrams
+        - Improve navigation or organization
+        - Translation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: related-page
+    attributes:
+      label: Related page (if applicable)
+      description: Link to an existing documentation page this relates to
+      placeholder: https://spicetify.app/docs/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the documentation you'd like to see
+      placeholder: |
+        What topic should be covered?
+        Why would this be helpful?
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context, examples, or references that might help
+    validations:
+      required: false
