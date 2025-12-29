@@ -260,7 +260,7 @@ For nix-darwin and Home Manager users on macOS, use the [spicetify-nix](https://
 }
 ```
 
-Import the module (`spicetify-nix.darwinModules.spicetify` for nix-darwin or `spicetify-nix.homeManagerModules.spicetify` for Home Manager) and configure `programs.spicetify`. See the Linux "Nix / NixOS" tab above for a configuration example.
+Import the module (`spicetify-nix.darwinModules.spicetify` for nix-darwin or `spicetify-nix.homeManagerModules.spicetify` for Home Manager) and configure `programs.spicetify`. See the [Linux Nix tab](#linux) for a configuration example.
 
 </TabItem>
 </Tabs>
