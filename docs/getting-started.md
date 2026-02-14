@@ -256,7 +256,7 @@ Snap apps cannot be modified. You'll need to switch to the apt version:
    ls ~/.var/app/com.spotify.Client/config/spotify/prefs
 
    # Set whichever exists (use the full absolute path):
-   spicetify config prefs_path /home/username/.var/app/com.spotify.Client/config/spotify/prefs
+   spicetify config prefs_path $HOME/.var/app/com.spotify.Client/config/spotify/prefs
    ```
 
 4. Grant permissions:
