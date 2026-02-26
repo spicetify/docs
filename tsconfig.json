@@ -1,7 +1,7 @@
 {
-  "extends": "@docusaurus/tsconfig",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types": ["@docusaurus/module-type-aliases", "node"]
-  },
-  "include": ["src/"]
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

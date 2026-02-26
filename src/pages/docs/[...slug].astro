@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+
+const editUrl = `https://github.com/spicetify/spicetify-docs/edit/main/src/content/docs/${doc.id}.md`;
+---
+
+<DocsLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  headings={headings}
+  editUrl={editUrl}
+>
+  <Content />
+</DocsLayout>

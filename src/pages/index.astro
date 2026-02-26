@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Spicetify" description="Powerful CLI tool to take control of the Spotify client.">
+  <div class="hero">
+    <h1>Spicetify</h1>
+    <p>Powerful CLI tool to take control of the Spotify client.</p>
+    <a href="/docs/getting-started" class="cta-button">Install Now!</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+    color: white;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: white;
+    color: #eb5a37;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+
+  .cta-button:hover {
+    text-decoration: none;
+    opacity: 0.95;
+  }
+</style>
