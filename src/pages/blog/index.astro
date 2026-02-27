@@ -1,0 +1,182 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const authors = await getCollection('authors');
+const authorMap = new Map(authors.map((a) => [a.id, a.data]));
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout title="Blog" description="News and updates from the Spicetify team.">
+  <div class="blog-container">
+    <h1>Blog</h1>
+    <p class="subtitle">News and updates from the Spicetify team.</p>
+    <div class="posts">
+      {posts.map((post) => {
+        const slug = post.data.slug || post.id;
+        const postAuthors = (post.data.authors || [])
+          .map((id) => authorMap.get(id))
+          .filter(Boolean);
+
+        return (
+          <article class="post-card">
+            <a href={`/blog/${slug}`} class="post-link">
+              <time datetime={post.data.date.toISOString()}>
+                {formatDate(post.data.date)}
+              </time>
+              <h2>{post.data.title}</h2>
+              {post.data.description && <p>{post.data.description}</p>}
+            </a>
+            {postAuthors.length > 0 && (
+              <div class="post-authors">
+                {postAuthors.map((author) => (
+                  <a
+                    href={author!.url}
+                    class="author"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {author!.image_url && (
+                      <img
+                        src={author!.image_url}
+                        alt={author!.name}
+                        width="28"
+                        height="28"
+                        loading="lazy"
+                      />
+                    )}
+                    <span>{author!.name}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: calc(var(--navbar-height) + 2rem) 1.5rem 4rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .post-card {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .post-link {
+    text-decoration: none;
+    display: block;
+  }
+
+  .post-link:hover {
+    text-decoration: none;
+  }
+
+  time {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+
+  .post-link p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .post-authors {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .author:hover {
+    color: var(--color-link);
+  }
+
+  .author img {
+    border-radius: 50%;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+    color: var(--color-text-secondary);
+  }
+</style>
