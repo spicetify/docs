@@ -1,0 +1,82 @@
+---
+import { findBreadcrumbs, sidebar } from '../config/sidebar';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const crumbs = findBreadcrumbs(sidebar, currentPath) || [];
+---
+
+{
+  crumbs.length > 1 && (
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        {crumbs.map((crumb, i) => (
+          <li>
+            {i < crumbs.length - 1 ? (
+              <>
+                {crumb.href ? (
+                  <a href={crumb.href}>{crumb.label}</a>
+                ) : (
+                  <span>{crumb.label}</span>
+                )}
+                <span class="separator" aria-hidden="true">
+                  /
+                </span>
+              </>
+            ) : (
+              <span aria-current="page">{crumb.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 1rem;
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  span {
+    color: var(--color-text-secondary);
+  }
+
+  [aria-current='page'] {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .separator {
+    color: var(--color-border);
+  }
+</style>
