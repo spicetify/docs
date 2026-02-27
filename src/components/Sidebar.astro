@@ -1,0 +1,20 @@
+---
+import { sidebar } from '../config/sidebar';
+import SidebarSublist from './SidebarSublist.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<nav class="sidebar-nav" aria-label="Documentation sidebar">
+  <SidebarSublist items={sidebar} currentPath={currentPath} />
+</nav>
+
+<style>
+  .sidebar-nav {
+    padding: 0.5rem 0;
+  }
+</style>

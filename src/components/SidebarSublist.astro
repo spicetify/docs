@@ -1,0 +1,174 @@
+---
+import type { SidebarItem } from '../config/sidebar';
+import { isInSubtree } from '../config/sidebar';
+
+interface Props {
+  items: SidebarItem[];
+  currentPath: string;
+  nested?: boolean;
+}
+
+const { items, currentPath, nested = false } = Astro.props;
+---
+
+<ul class:list={['sidebar-list', { nested }]}>
+  {items.map((item) => {
+    const isActive = item.href === currentPath;
+    const isOpen = item.collapsed === false || isInSubtree(item, currentPath);
+    const hasChildren = item.items && item.items.length > 0;
+
+    return (
+      <li>
+        {hasChildren ? (
+          <details open={isOpen}>
+            <summary>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  class:list={{ active: isActive }}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <span class="group-label">{item.label}</span>
+              )}
+              <svg
+                class="caret"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </summary>
+            <Astro.self
+              items={item.items!}
+              currentPath={currentPath}
+              nested
+            />
+          </details>
+        ) : (
+          <a
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+            class:list={{ active: isActive }}
+          >
+            {item.label}
+          </a>
+        )}
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-list.nested {
+    padding-left: 0.875rem;
+    border-left: 1px solid var(--color-border);
+    margin-left: 0.5rem;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a,
+  .group-label {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  a:hover {
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+    text-decoration: none;
+  }
+
+  a.active,
+  a[aria-current='page'] {
+    color: var(--color-primary);
+    font-weight: 600;
+    background: rgba(235, 90, 55, 0.08);
+  }
+
+  .group-label {
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: default;
+  }
+
+  details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+
+  details > summary:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details > summary::marker {
+    display: none;
+    content: '';
+  }
+
+  /* When the summary contains an active link, highlight the full row */
+  details > summary:has(a.active),
+  details > summary:has(a[aria-current='page']) {
+    background: rgba(235, 90, 55, 0.08);
+  }
+
+  /* Remove duplicate padding/bg from links inside summary since summary handles it */
+  details > summary a,
+  details > summary .group-label {
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  details > summary a:hover {
+    background: none;
+  }
+
+  .caret {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: transform 0.2s;
+  }
+
+  details[open] > summary .caret {
+    transform: rotate(0deg);
+  }
+
+  details:not([open]) > summary .caret {
+    transform: rotate(-90deg);
+  }
+</style>
