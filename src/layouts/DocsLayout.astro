@@ -1,4 +1,7 @@
 ---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import DocPrevNext from '../components/DocPrevNext.astro';
+import Sidebar from '../components/Sidebar.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -9,15 +12,17 @@ interface Props {
 }
 
 const { title, description, headings = [], editUrl } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <BaseLayout title={title} description={description}>
   <div class="docs-container">
     <aside class="docs-sidebar">
-      <slot name="sidebar" />
+      <Sidebar currentPath={currentPath} />
     </aside>
     <article class="docs-content" data-pagefind-body>
-      <h1>{title}</h1>
+      <Breadcrumbs currentPath={currentPath} />
+      <h1 data-pagefind-weight="10" data-pagefind-meta="title">{title}</h1>
       <slot />
       {editUrl && (
         <div class="edit-link">
@@ -26,6 +31,7 @@ const { title, description, headings = [], editUrl } = Astro.props;
           </a>
         </div>
       )}
+      <DocPrevNext currentPath={currentPath} />
     </article>
     {headings.length > 0 && (
       <aside class="docs-toc">
@@ -208,10 +214,25 @@ const { title, description, headings = [], editUrl } = Astro.props;
   @media (max-width: 768px) {
     .docs-sidebar {
       display: none;
+      position: fixed;
+      top: var(--navbar-height);
+      left: 0;
+      width: 280px;
+      height: calc(100vh - var(--navbar-height));
+      background: var(--color-bg);
+      z-index: 50;
+      border-right: 1px solid var(--color-border);
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
     }
+
+    .docs-sidebar:global(.open) {
+      display: block;
+    }
+
     .docs-container {
       grid-template-columns: 1fr;
     }
+
     .docs-content {
       padding: 1.5rem 1rem;
     }

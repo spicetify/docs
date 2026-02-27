@@ -1,14 +1,19 @@
 ---
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
 import SEO from '../components/SEO.astro';
+import SearchModal from '../components/SearchModal.astro';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   type?: string;
+  hideFooter?: boolean;
 }
 
-const { title, description, image, type } = Astro.props;
+const { title, description, image, type, hideFooter = false } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
 ---
 
@@ -34,11 +39,12 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
   </head>
   <body>
     <a href="#main-content" class="skip-to-content">Skip to content</a>
-    <slot name="header" />
+    <Navbar currentPath={currentPath} />
     <main id="main-content">
       <slot />
     </main>
-    <slot name="footer" />
+    {!hideFooter && <Footer />}
+    <SearchModal />
   </body>
 </html>
 
@@ -186,5 +192,61 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
 
   [data-theme='dark'] .admonition {
     background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Tabs */
+  .tabs-container {
+    margin: 1.5rem 0;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .tab-list {
+    display: flex;
+    gap: 0;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    overflow-x: auto;
+  }
+
+  .tab-button {
+    padding: 0.6rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-button:hover {
+    color: var(--color-text);
+  }
+
+  .tab-button.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    background: var(--color-bg);
+  }
+
+  .tabs-container [role='tabpanel'] {
+    padding: 1rem;
+  }
+
+  .tabs-container [role='tabpanel'] > :first-child {
+    margin-top: 0;
+  }
+
+  .tabs-container [role='tabpanel'] > :last-child {
+    margin-bottom: 0;
+  }
+
+  .tabs-container [role='tabpanel'] .expressive-code {
+    margin: 0;
   }
 </style>
