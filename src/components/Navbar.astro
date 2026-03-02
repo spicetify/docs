@@ -139,6 +139,15 @@ const isBlogActive = currentPath.startsWith('/blog');
       </a>
     </div>
   </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a
+      href="/docs/getting-started"
+      class:list={{ active: isDocsActive }}
+    >
+      Docs
+    </a>
+    <a href="/blog" class:list={{ active: isBlogActive }}>Blog</a>
+  </nav>
 </header>
 
 <script>
@@ -156,9 +165,14 @@ const isBlogActive = currentPath.startsWith('/blog');
     const toggle = document.querySelector('.mobile-menu-toggle');
     toggle?.addEventListener('click', () => {
       const sidebar = document.querySelector('.docs-sidebar');
+      const mobileNav = document.querySelector('.mobile-nav');
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!expanded));
-      sidebar?.classList.toggle('open');
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      } else if (mobileNav) {
+        mobileNav.classList.toggle('open');
+      }
     });
   }
 
@@ -307,6 +321,30 @@ const isBlogActive = currentPath.startsWith('/blog');
     color: var(--color-text);
   }
 
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 0.6rem 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+  }
+
   @media (max-width: 768px) {
     .mobile-menu-toggle {
       display: flex;
@@ -314,6 +352,10 @@ const isBlogActive = currentPath.startsWith('/blog');
 
     .navbar-links {
       display: none;
+    }
+
+    .mobile-nav:global(.open) {
+      display: flex;
     }
 
     .search-label,
