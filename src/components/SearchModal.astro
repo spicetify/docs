@@ -120,7 +120,6 @@
       });
     }
 
-    // Keyboard shortcut
     document.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -135,10 +134,8 @@
       }
     });
 
-    // Close on backdrop click
     backdrop?.addEventListener('click', closeModal);
 
-    // Search on input
     input?.addEventListener('input', () => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
@@ -146,7 +143,6 @@
       }, 200);
     });
 
-    // Navigate results with keyboard
     input?.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
@@ -160,7 +156,6 @@
       }
     });
 
-    // Handle Enter on focused result
     resultsContainer?.addEventListener('keydown', (e) => {
       const target = e.target;
       if (e.key === 'Enter' && target.classList.contains('search-result')) {
@@ -179,7 +174,6 @@
       }
     });
 
-    // Search trigger buttons
     document.querySelectorAll('[data-search-trigger]').forEach((btn) => {
       btn.addEventListener('click', openModal);
     });

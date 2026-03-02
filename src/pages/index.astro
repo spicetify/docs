@@ -43,7 +43,6 @@ const themes = [
 ---
 
 <BaseLayout title="Spicetify" description="Powerful CLI tool to take control of the Spotify client.">
-  <!-- Section 1: Hero -->
   <section id="hero" class="hero">
     <div class="hero-glow"></div>
     <div class="hero-content">
@@ -68,7 +67,6 @@ const themes = [
     </div>
   </section>
 
-  <!-- Section 2: Theme Showcase -->
   <section id="themes" class="section themes-section">
     <div class="section-container">
       <h2 class="section-title">Themes for every taste</h2>
@@ -96,7 +94,6 @@ const themes = [
     </div>
   </section>
 
-  <!-- Section 3: Features -->
   <section id="features" class="section features-section">
     <div class="section-container">
       <h2 class="section-title">Everything you need</h2>
@@ -134,7 +131,6 @@ const themes = [
     </div>
   </section>
 
-  <!-- Section 4: Install Snippet -->
   <section id="install" class="section install-section">
     <div class="section-container">
       <h2 class="section-title">Install in seconds</h2>
@@ -164,7 +160,6 @@ const themes = [
     </div>
   </section>
 
-  <!-- Section 5: Community Stats -->
   <section id="community" class="section stats-section">
     <div class="section-container">
       <div class="stats-grid">
@@ -193,7 +188,6 @@ const themes = [
     </div>
   </section>
 
-  <!-- Section 6: Footer CTA -->
   <section id="cta" class="section cta-section">
     <div class="section-container">
       <div class="cta-glow"></div>
@@ -216,7 +210,6 @@ const themes = [
 
 <script is:inline>
   (function () {
-    // Install tabs
     function setupInstallTabs() {
       var tabs = document.querySelectorAll('.install-tab');
       var panels = document.querySelectorAll('.install-panel');
@@ -244,7 +237,6 @@ const themes = [
       });
     }
 
-    // Copy button
     function setupCopyButton() {
       var btn = document.querySelector('.copy-btn');
       if (!btn) return;
@@ -282,7 +274,6 @@ const themes = [
 </script>
 
 <style>
-  /* ── Shared ── */
   .section {
     padding: 5rem 1.5rem;
   }
@@ -348,7 +339,6 @@ const themes = [
     border-color: var(--color-text-secondary);
   }
 
-  /* ── Hero ── */
   .hero {
     position: relative;
     min-height: calc(100vh - var(--navbar-height));
@@ -399,7 +389,6 @@ const themes = [
     flex-wrap: wrap;
   }
 
-  /* ── Theme Showcase ── */
   .themes-section {
     background: var(--color-bg-secondary);
   }
@@ -445,9 +434,7 @@ const themes = [
     line-height: 1.4;
   }
 
-  /* Bento layout: item 1 spans 2 cols */
   .bento-1 { grid-column: span 2; }
-  /* item 5 spans 2 rows */
   .bento-5 { grid-row: span 2; }
 
   .browse-link {
@@ -470,7 +457,6 @@ const themes = [
     border-radius: 4px;
   }
 
-  /* ── Features ── */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -526,7 +512,6 @@ const themes = [
     margin: 0;
   }
 
-  /* ── Install Snippet ── */
   .install-block {
     max-width: 640px;
     margin: 0 auto;
@@ -620,7 +605,6 @@ const themes = [
     outline-offset: 2px;
   }
 
-  /* ── Community Stats ── */
   .stats-section {
     background: var(--color-bg-secondary);
   }
@@ -656,7 +640,6 @@ const themes = [
     font-weight: 500;
   }
 
-  /* ── Footer CTA ── */
   .cta-section {
     position: relative;
     text-align: center;
@@ -697,7 +680,6 @@ const themes = [
     flex-wrap: wrap;
   }
 
-  /* ── Entrance Animations ── */
   @media (prefers-reduced-motion: no-preference) {
     .section-title,
     .section-subtitle,
@@ -719,7 +701,6 @@ const themes = [
       animation: fade-in-up 0.6s ease 0.1s forwards;
     }
 
-    /* Stagger bento items */
     .bento-1 { animation-delay: 0.05s; }
     .bento-2 { animation-delay: 0.1s; }
     .bento-3 { animation-delay: 0.15s; }
@@ -735,7 +716,6 @@ const themes = [
     }
   }
 
-  /* ── Responsive ── */
   @media (max-width: 768px) {
     .section {
       padding: 3.5rem 1rem;
