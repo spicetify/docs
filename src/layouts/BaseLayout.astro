@@ -13,7 +13,8 @@ interface Props {
 }
 
 const { title, description, image, type, hideFooter = false } = Astro.props;
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const currentPath =
+  Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
 ---
 

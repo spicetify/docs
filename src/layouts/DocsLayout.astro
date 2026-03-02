@@ -12,7 +12,8 @@ interface Props {
 }
 
 const { title, description, headings = [], editUrl } = Astro.props;
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const currentPath =
+  Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 ---
 
 <BaseLayout title={title} description={description}>
