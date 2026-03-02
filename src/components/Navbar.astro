@@ -1,0 +1,371 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const isDocsActive = currentPath.startsWith('/docs');
+const isBlogActive = currentPath.startsWith('/blog');
+---
+
+<header class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-left">
+      <button
+        class="mobile-menu-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img
+          src="/images/spicetify.png"
+          alt="Spicetify Logo"
+          width="32"
+          height="32"
+        />
+        <span>Spicetify</span>
+      </a>
+      <nav class="navbar-links" aria-label="Main navigation">
+        <a
+          href="/docs/getting-started"
+          class:list={{ active: isDocsActive }}
+        >
+          Docs
+        </a>
+        <a href="/blog" class:list={{ active: isBlogActive }}>Blog</a>
+      </nav>
+    </div>
+    <div class="navbar-right">
+      <button
+        data-search-trigger
+        class="search-trigger"
+        aria-label="Search"
+        title="Search (Cmd+K)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <span class="search-label">Search</span>
+        <kbd>
+          <span class="kbd-meta">&#8984;</span>K
+        </kbd>
+      </button>
+      <button
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+        class="icon-button"
+      >
+        <svg
+          class="sun-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line
+            x1="12"
+            y1="21"
+            x2="12"
+            y2="23"
+          /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line
+            x1="18.36"
+            y1="18.36"
+            x2="19.78"
+            y2="19.78"
+          /><line x1="1" y1="12" x2="3" y2="12" /><line
+            x1="21"
+            y1="12"
+            x2="23"
+            y2="12"
+          /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line
+            x1="18.36"
+            y1="5.64"
+            x2="19.78"
+            y2="4.22"
+          />
+        </svg>
+        <svg
+          class="moon-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+      <a
+        href="https://github.com/spicetify/cli"
+        class="github-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
+        <img
+          src="https://img.shields.io/github/stars/spicetify/cli?style=social"
+          alt="GitHub stars"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a
+      href="/docs/getting-started"
+      class:list={{ active: isDocsActive }}
+    >
+      Docs
+    </a>
+    <a href="/blog" class:list={{ active: isBlogActive }}>Blog</a>
+  </nav>
+</header>
+
+<script>
+  function setupThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    toggle?.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  function setupMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    toggle?.addEventListener('click', () => {
+      const sidebar = document.querySelector('.docs-sidebar');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      } else if (mobileNav) {
+        mobileNav.classList.toggle('open');
+      }
+    });
+  }
+
+  setupThemeToggle();
+  setupMobileMenu();
+</script>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 100;
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+
+  .navbar-brand:hover {
+    text-decoration: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .navbar-links a {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .navbar-links a:hover,
+  .navbar-links a.active {
+    color: var(--color-text);
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    border-radius: 6px;
+  }
+
+  .icon-button:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+  }
+
+  :global([data-theme='light']) .moon-icon,
+  :global([data-theme='dark']) .sun-icon {
+    display: none;
+  }
+
+  .search-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .search-trigger:hover {
+    border-color: var(--color-text-secondary);
+    color: var(--color-text);
+  }
+
+  .search-trigger kbd {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.35rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    line-height: 1.4;
+  }
+
+  .kbd-meta {
+    font-size: 0.8rem;
+  }
+
+  .github-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 1rem;
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 0.6rem 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .navbar-links {
+      display: none;
+    }
+
+    .mobile-nav:global(.open) {
+      display: flex;
+    }
+
+    .search-label,
+    .search-trigger kbd {
+      display: none;
+    }
+
+    .search-trigger {
+      padding: 0.35rem;
+      border: none;
+    }
+  }
+</style>

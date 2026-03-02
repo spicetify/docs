@@ -1,0 +1,65 @@
+---
+interface Props {
+  groupId?: string;
+}
+
+const { groupId } = Astro.props;
+---
+
+<div class="tabs-container" data-tab-group={groupId || undefined}>
+  <div class="tab-list" role="tablist"></div>
+  <div class="tab-panels">
+    <slot />
+  </div>
+</div>
+
+<script>
+  function initTabs() {
+    document.querySelectorAll('.tabs-container').forEach((container) => {
+      const tabList = container.querySelector('.tab-list');
+      if (!tabList || tabList.children.length > 0) return;
+
+      const panels = container.querySelectorAll<HTMLElement>('.tab-panel');
+      if (panels.length === 0) return;
+
+      let defaultIndex = 0;
+
+      panels.forEach((panel, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = panel.dataset.tabLabel || `Tab ${i + 1}`;
+        btn.role = 'tab';
+        btn.type = 'button';
+        btn.className = 'tab-button';
+        btn.dataset.tabValue = panel.dataset.tabValue || String(i);
+
+        if (panel.dataset.tabDefault !== undefined) {
+          defaultIndex = i;
+        }
+
+        tabList.appendChild(btn);
+      });
+
+      const buttons = tabList.querySelectorAll<HTMLElement>('.tab-button');
+      buttons[defaultIndex]?.classList.add('active');
+      panels.forEach((panel, i) => {
+        panel.hidden = i !== defaultIndex;
+      });
+
+      tabList.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLElement>(
+          '.tab-button',
+        );
+        if (!btn) return;
+
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        panels.forEach((p) => {
+          p.hidden = p.dataset.tabValue !== btn.dataset.tabValue;
+        });
+      });
+    });
+  }
+
+  initTabs();
+</script>

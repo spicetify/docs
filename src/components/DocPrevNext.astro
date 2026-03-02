@@ -1,0 +1,88 @@
+---
+import { flattenSidebar, sidebar } from '../config/sidebar';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const flat = flattenSidebar(sidebar);
+const currentIndex = flat.findIndex((item) => item.href === currentPath);
+const prev = currentIndex > 0 ? flat[currentIndex - 1] : null;
+const next = currentIndex < flat.length - 1 ? flat[currentIndex + 1] : null;
+---
+
+{
+  (prev || next) && (
+    <nav class="doc-prev-next" aria-label="Page navigation">
+      {prev ? (
+        <a href={prev.href} class="nav-link prev">
+          <span class="direction">Previous</span>
+          <span class="title">{prev.label}</span>
+        </a>
+      ) : (
+        <div />
+      )}
+      {next ? (
+        <a href={next.href} class="nav-link next">
+          <span class="direction">Next</span>
+          <span class="title">{next.label}</span>
+        </a>
+      ) : (
+        <div />
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .doc-prev-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+  }
+
+  .nav-link:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+  }
+
+  .next {
+    text-align: right;
+  }
+
+  .direction {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  .title {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 480px) {
+    .doc-prev-next {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

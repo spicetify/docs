@@ -1,0 +1,313 @@
+<div id="search-modal" class="search-modal" aria-hidden="true">
+  <div class="search-backdrop"></div>
+  <div class="search-dialog" role="dialog" aria-label="Search documentation">
+    <div class="search-header">
+      <svg
+        class="search-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search documentation..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <kbd class="search-kbd">Esc</kbd>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
+
+<script is:inline>
+  function setupSearch() {
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    const backdrop = modal?.querySelector('.search-backdrop');
+    let pagefind = null;
+    let pagefindLoading = null;
+    let debounceTimer;
+    let searchCounter = 0;
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      if (pagefindLoading) return pagefindLoading;
+      pagefindLoading = import(/* @vite-ignore */ '/pagefind/pagefind.js')
+        .then(function(pf) { return pf.init().then(function() { pagefind = pf; return pf; }); })
+        .catch(function() { pagefindLoading = null; return null; });
+      return pagefindLoading;
+    }
+
+    function openModal() {
+      if (!modal) return;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      input?.focus();
+      loadPagefind();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      clearTimeout(debounceTimer);
+      searchCounter++;
+      if (input) input.value = '';
+      if (resultsContainer) resultsContainer.innerHTML = '';
+    }
+
+    function isOpen() {
+      return modal?.getAttribute('aria-hidden') === 'false';
+    }
+
+    async function performSearch(query) {
+      if (!resultsContainer) return;
+      if (!query.trim()) {
+        resultsContainer.innerHTML = '<div class="search-empty">Start typing to search...</div>';
+        return;
+      }
+
+      var thisSearch = ++searchCounter;
+
+      var pf = await loadPagefind();
+      if (!pf) {
+        resultsContainer.innerHTML = '<div class="search-empty">Search unavailable</div>';
+        return;
+      }
+
+      var search = await pf.search(query);
+      if (thisSearch !== searchCounter) return;
+
+      if (search.results.length === 0) {
+        resultsContainer.innerHTML = '<div class="search-empty">No results found</div>';
+        return;
+      }
+
+      var items = await Promise.all(
+        search.results.slice(0, 10).map(function(r) { return r.data(); }),
+      );
+      if (thisSearch !== searchCounter) return;
+
+      resultsContainer.innerHTML = '';
+      items.forEach(function(item) {
+        var url = item.url.replace(/\.html$/, '');
+        var link = document.createElement('a');
+        link.href = url;
+        link.className = 'search-result';
+        link.tabIndex = -1;
+
+        var titleEl = document.createElement('span');
+        titleEl.className = 'search-result-title';
+        titleEl.textContent = item.meta?.title || url;
+        link.appendChild(titleEl);
+
+        var excerptEl = document.createElement('span');
+        excerptEl.className = 'search-result-excerpt';
+        excerptEl.innerHTML = item.excerpt;
+        link.appendChild(excerptEl);
+
+        resultsContainer.appendChild(link);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (isOpen()) {
+          closeModal();
+        } else {
+          openModal();
+        }
+      }
+      if (e.key === 'Escape' && isOpen()) {
+        closeModal();
+      }
+    });
+
+    backdrop?.addEventListener('click', closeModal);
+
+    input?.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        performSearch(input.value);
+      }, 200);
+    });
+
+    input?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const results = resultsContainer?.querySelectorAll('.search-result');
+        if (!results?.length) return;
+        const focused = resultsContainer?.querySelector('.search-result:focus');
+        let index = focused ? Array.from(results).indexOf(focused) : -1;
+        if (e.key === 'ArrowDown') index = Math.min(index + 1, results.length - 1);
+        else index = Math.max(index - 1, 0);
+        results[index].focus();
+      }
+    });
+
+    resultsContainer?.addEventListener('keydown', (e) => {
+      const target = e.target;
+      if (e.key === 'Enter' && target.classList.contains('search-result')) {
+        target.click();
+      }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const results = resultsContainer.querySelectorAll('.search-result');
+        const index = Array.from(results).indexOf(target);
+        if (e.key === 'ArrowDown' && index < results.length - 1) {
+          results[index + 1].focus();
+        } else if (e.key === 'ArrowUp') {
+          if (index === 0) input?.focus();
+          else results[index - 1].focus();
+        }
+      }
+    });
+
+    document.querySelectorAll('[data-search-trigger]').forEach((btn) => {
+      btn.addEventListener('click', openModal);
+    });
+  }
+
+  setupSearch();
+</script>
+
+<style>
+  .search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: min(15vh, 120px);
+    transition: opacity 0.15s, visibility 0.15s;
+  }
+
+  .search-modal[aria-hidden='true'] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .search-modal[aria-hidden='false'] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .search-dialog {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 70vh;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .search-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .search-icon {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+  }
+
+  #search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: var(--color-text);
+    outline: none;
+    font-family: var(--font-sans);
+  }
+
+  #search-input::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  .search-kbd {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.4rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+  }
+
+  .search-results {
+    overflow-y: auto;
+    padding: 0.5rem;
+    max-height: calc(70vh - 60px);
+  }
+
+  .search-results :global(.search-result) {
+    display: block;
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+    outline: none;
+  }
+
+  .search-results :global(.search-result:hover),
+  .search-results :global(.search-result:focus) {
+    background: var(--color-bg-secondary);
+    text-decoration: none;
+  }
+
+  .search-results :global(.search-result-title) {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .search-results :global(.search-result-excerpt) {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+
+  .search-results :global(.search-result-excerpt mark) {
+    background: rgba(235, 90, 55, 0.2);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  .search-results :global(.search-empty) {
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+</style>

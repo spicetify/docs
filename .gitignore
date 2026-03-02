@@ -2,6 +2,9 @@
 .docusaurus
 build
 
+# Astro
+.astro/
+
 # Logs
 logs
 *.log

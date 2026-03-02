@@ -1,0 +1,128 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-column">
+      <h3>Docs</h3>
+      <ul>
+        <li><a href="/docs/getting-started">Getting Started</a></li>
+        <li><a href="/docs/customization">Customization</a></li>
+        <li><a href="/docs/development">Development</a></li>
+        <li><a href="/docs/faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Community</h3>
+      <ul>
+        <li>
+          <a
+            href="https://github.com/spicetify/spicetify-themes"
+            target="_blank"
+            rel="noopener noreferrer">Community Themes</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/spicetify/docs"
+            target="_blank"
+            rel="noopener noreferrer">Documentation</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://discord.gg/VnevqPp2Rr"
+            target="_blank"
+            rel="noopener noreferrer">Discord</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.reddit.com/r/spicetify"
+            target="_blank"
+            rel="noopener noreferrer">Reddit</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Supporters</h3>
+      <p class="supporters-label">Open Collective</p>
+      <a
+        href="https://opencollective.com/spicetify"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36"
+          alt="Open Collective supporters"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; {year} Spicetify. Built with &#127926; and &#128640;.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #242526;
+    color: #e3e3e3;
+    padding: 3rem 1rem 1.5rem;
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: #a8a8a8;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  .supporters-label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #3e4042;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #a8a8a8;
+  }
+</style>

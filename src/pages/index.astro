@@ -1,0 +1,772 @@
+---
+import { Image } from 'astro:assets';
+import theme1 from '../assets/homepage/1.png';
+import theme2 from '../assets/homepage/2.png';
+import theme3 from '../assets/homepage/3.png';
+import theme4 from '../assets/homepage/4.png';
+import theme5 from '../assets/homepage/5.png';
+import theme7 from '../assets/homepage/7.png';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const themes = [
+  {
+    src: theme1,
+    alt: 'Spotify with Sleek Elementary theme — a minimal dark interface with warm orange accents',
+    label: 'Sleek',
+  },
+  {
+    src: theme2,
+    alt: 'Spotify with Sleek Wealthy theme — a dark interface with green accent colors',
+    label: 'Sleek Wealthy',
+  },
+  {
+    src: theme3,
+    alt: 'Spotify with Nord theme — a cool blue-toned interface inspired by the Nord color palette',
+    label: 'Nord',
+  },
+  {
+    src: theme4,
+    alt: 'Spotify with Comfy theme — a rounded, cozy interface with soft colors',
+    label: 'Comfy',
+  },
+  {
+    src: theme5,
+    alt: 'Spotify with Dribbblish theme — a colorful sidebar with gradient playbar',
+    label: 'Dribbblish',
+  },
+  {
+    src: theme7,
+    alt: 'Spotify with Nord theme showing the Marketplace themes browser',
+    label: 'Marketplace',
+  },
+];
+---
+
+<BaseLayout title="Spicetify" description="Powerful CLI tool to take control of the Spotify client.">
+  <section id="hero" class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <h1>Make Spotify yours.</h1>
+      <p class="hero-subtitle">
+        A powerful CLI tool to customize themes, inject extensions, and unlock the full potential of your Spotify client.
+      </p>
+      <div class="hero-actions">
+        <a href="#install" class="btn btn-primary">Install Now</a>
+        <a
+          href="https://github.com/spicetify/cli"
+          class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes" class="section themes-section">
+    <div class="section-container">
+      <h2 class="section-title">Themes for every taste</h2>
+      <p class="section-subtitle">Explore community-made themes that transform your Spotify experience.</p>
+      <div class="bento-grid">
+        {themes.map((theme, i) => (
+          <div class:list={['bento-item', `bento-${i + 1}`]}>
+            <Image
+              src={theme.src}
+              alt={theme.alt}
+              widths={[400, 800, 1200]}
+              sizes="(max-width: 768px) 50vw, (max-width: 1100px) 33vw, 400px"
+              format="webp"
+              quality={80}
+              loading="lazy"
+            />
+            <span class="theme-label">{theme.label}</span>
+          </div>
+        ))}
+      </div>
+      <a href="/docs/customization/themes" class="browse-link">
+        Browse all themes
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+      </a>
+    </div>
+  </section>
+
+  <section id="features" class="section features-section">
+    <div class="section-container">
+      <h2 class="section-title">Everything you need</h2>
+      <p class="section-subtitle">Customize every corner of your Spotify client.</p>
+      <div class="features-grid">
+        <a href="/docs/customization/themes" class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="13.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="10.5" r="2.5" /><circle cx="8.5" cy="7.5" r="2.5" /><circle cx="6.5" cy="12.5" r="2.5" />
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+            </svg>
+          </div>
+          <h3>Themes</h3>
+          <p>Transform your Spotify client with community-made color schemes, layouts, and visual overhauls.</p>
+        </a>
+        <a href="/docs/customization/extensions" class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-3.17-6.83-2.83 2.83m-4 4-2.83 2.83M6.83 5.17l2.83 2.83m4 4 2.83 2.83" />
+            </svg>
+          </div>
+          <h3>Extensions</h3>
+          <p>Add new features like keyboard shortcuts, playback controls, and integrations with other services.</p>
+        </a>
+        <a href="/docs/customization/custom-apps" class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+          </div>
+          <h3>Custom Apps</h3>
+          <p>Build entirely new pages inside Spotify for lyrics, stats, library management, and more.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" class="section install-section">
+    <div class="section-container">
+      <h2 class="section-title">Install in seconds</h2>
+      <p class="section-subtitle">One command to get started.</p>
+      <div class="install-block">
+        <div class="install-tabs" role="tablist">
+          <button role="tab" aria-selected="true" aria-controls="panel-windows" id="tab-windows" class="install-tab active">Windows</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-macos" id="tab-macos" class="install-tab">macOS / Linux</button>
+        </div>
+        <div class="install-panels">
+          <div role="tabpanel" id="panel-windows" aria-labelledby="tab-windows" class="install-panel active">
+            <code>iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex</code>
+          </div>
+          <div role="tabpanel" id="panel-macos" aria-labelledby="tab-macos" class="install-panel" hidden>
+            <code>curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh</code>
+          </div>
+          <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy to clipboard">
+            <svg class="icon-copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="section stats-section">
+    <div class="section-container">
+      <div class="stats-grid">
+        <div class="stat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <span class="stat-number">18k+</span>
+          <span class="stat-label">GitHub Stars</span>
+        </div>
+        <div class="stat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          <span class="stat-number">50k+</span>
+          <span class="stat-label">Discord Members</span>
+        </div>
+        <div class="stat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
+          </svg>
+          <span class="stat-number">200+</span>
+          <span class="stat-label">Marketplace Items</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="section cta-section">
+    <div class="section-container">
+      <div class="cta-glow"></div>
+      <h2>Ready to customize Spotify?</h2>
+      <p>Join thousands of users who have made Spotify their own.</p>
+      <div class="cta-actions">
+        <a href="/docs/getting-started" class="btn btn-primary">Get Started</a>
+        <a
+          href="https://discord.gg/VnevqPp2Rr"
+          class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Join Discord
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    function setupInstallTabs() {
+      var tabs = document.querySelectorAll('.install-tab');
+      var panels = document.querySelectorAll('.install-panel');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          panels.forEach(function (p) {
+            p.classList.remove('active');
+            p.hidden = true;
+          });
+
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          var panelId = tab.getAttribute('aria-controls');
+          var panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('active');
+            panel.hidden = false;
+          }
+        });
+      });
+    }
+
+    function setupCopyButton() {
+      var btn = document.querySelector('.copy-btn');
+      if (!btn) return;
+
+      btn.addEventListener('click', function () {
+        var activePanel = document.querySelector('.install-panel.active');
+        if (!activePanel) return;
+        var code = activePanel.querySelector('code');
+        if (!code) return;
+
+        var iconCopy = btn.querySelector('.icon-copy');
+        var iconCheck = btn.querySelector('.icon-check');
+
+        navigator.clipboard.writeText(code.textContent.trim()).then(function () {
+          iconCopy.style.display = 'none';
+          iconCheck.style.display = 'block';
+          setTimeout(function () {
+            iconCopy.style.display = 'block';
+            iconCheck.style.display = 'none';
+          }, 2000);
+        }).catch(function () {
+          // Fallback: select text
+          var range = document.createRange();
+          range.selectNodeContents(code);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
+      });
+    }
+
+    setupInstallTabs();
+    setupCopyButton();
+  })();
+</script>
+
+<style>
+  .section {
+    padding: 5rem 1.5rem;
+  }
+
+  .section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-dark);
+    box-shadow: 0 4px 20px rgba(235, 90, 55, 0.3);
+  }
+
+  .btn-secondary {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-secondary);
+  }
+
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--navbar-height) + 4rem) 1.5rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .themes-section {
+    background: var(--color-bg-secondary);
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .bento-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    line-height: 0;
+  }
+
+  .bento-item :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .bento-item:hover :global(img) {
+    transform: scale(1.02);
+  }
+
+  .theme-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+
+  .bento-1 { grid-column: span 2; }
+  .bento-5 { grid-row: span 2; }
+
+  .browse-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  .browse-link:hover {
+    text-decoration: underline;
+  }
+
+  .browse-link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+  }
+
+  .feature-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(235, 90, 55, 0.1);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .install-block {
+    max-width: 640px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: #1a1a2e;
+  }
+
+  .install-tabs {
+    display: flex;
+    background: #151525;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .install-tab {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: color 0.15s;
+  }
+
+  .install-tab:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .install-tab.active {
+    color: #fff;
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+  }
+
+  .install-tab:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+
+  .install-panels {
+    position: relative;
+    padding: 1.25rem 1.25rem;
+    padding-right: 3.5rem;
+  }
+
+  .install-panel {
+    display: none;
+  }
+
+  .install-panel.active {
+    display: block;
+  }
+
+  .install-panel code {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    background: none;
+    padding: 0;
+    word-break: break-all;
+    line-height: 1.6;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  .copy-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .stats-section {
+    background: var(--color-bg-secondary);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat svg {
+    color: var(--color-text-secondary);
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .cta-section {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-container {
+    position: relative;
+  }
+
+  .cta-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-section p {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .section-title,
+    .section-subtitle,
+    .bento-item,
+    .feature-card,
+    .install-block,
+    .stat,
+    .cta-section h2,
+    .cta-section p,
+    .cta-actions {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fade-in-up 0.5s ease forwards;
+    }
+
+    .hero-content {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fade-in-up 0.6s ease 0.1s forwards;
+    }
+
+    .bento-1 { animation-delay: 0.05s; }
+    .bento-2 { animation-delay: 0.1s; }
+    .bento-3 { animation-delay: 0.15s; }
+    .bento-4 { animation-delay: 0.2s; }
+    .bento-5 { animation-delay: 0.25s; }
+    .bento-6 { animation-delay: 0.3s; }
+
+    @keyframes fade-in-up {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 3.5rem 1rem;
+    }
+
+    .hero {
+      min-height: auto;
+      padding: calc(var(--navbar-height) + 3rem) 1rem 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+    }
+
+    .bento-1 { grid-column: span 2; }
+    .bento-5 { grid-row: span 1; }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-number {
+      font-size: 1.75rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bento-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .bento-1 { grid-column: span 2; }
+    .bento-5 { grid-row: span 1; }
+  }
+</style>

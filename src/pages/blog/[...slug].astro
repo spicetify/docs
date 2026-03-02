@@ -1,0 +1,202 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.data.slug || post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const authors = await getCollection('authors');
+const authorMap = new Map(authors.map((a) => [a.id, a.data]));
+const postAuthors = (post.data.authors || [])
+  .map((id: string) => authorMap.get(id))
+  .filter((a): a is NonNullable<typeof a> => Boolean(a));
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="blog-post" data-pagefind-body>
+    <header>
+      <a href="/blog" class="back-link">&larr; Back to blog</a>
+      <time datetime={post.data.date.toISOString()}>
+        {formatDate(post.data.date)}
+      </time>
+      <h1 data-pagefind-weight="10" data-pagefind-meta="title">{post.data.title}</h1>
+      {postAuthors.length > 0 && (
+        <div class="authors">
+          {postAuthors.map((author) => (
+            <a
+              href={author.url}
+              class="author"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {author.image_url && (
+                <img
+                  src={author.image_url}
+                  alt={author.name}
+                  width="36"
+                  height="36"
+                  loading="lazy"
+                />
+              )}
+              <div class="author-info">
+                <span class="author-name">{author.name}</span>
+                {author.title && (
+                  <span class="author-title">{author.title}</span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+    {post.data.tags && post.data.tags.length > 0 && (
+      <footer>
+        <div class="tags">
+          {post.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      </footer>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: calc(var(--navbar-height) + 2rem) 1.5rem 4rem;
+  }
+
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .back-link:hover {
+    color: var(--color-link);
+  }
+
+  time {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    margin: 0.5rem 0 1.5rem;
+    line-height: 1.2;
+  }
+
+  .authors {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .author:hover {
+    text-decoration: none;
+  }
+
+  .author img {
+    border-radius: 50%;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .author-title {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .content :global(h2) {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .content :global(h3) {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .content :global(img) {
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+    color: var(--color-text-secondary);
+  }
+</style>

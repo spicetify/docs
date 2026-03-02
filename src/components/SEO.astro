@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description = 'Powerful CLI tool to take control of the Spotify client.',
+  image = '/images/spicetify-full.png',
+  type = 'website',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
+---
+
+<link rel="canonical" href={canonicalURL} />
+<meta name="description" content={description} />
+<meta
+  name="keywords"
+  content="spicetify, spotify, customization, documentation, blog"
+/>
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Spicetify" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

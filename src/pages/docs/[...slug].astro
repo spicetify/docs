@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import { existsSync } from 'node:fs';
+import DocsLayout from '../../layouts/DocsLayout.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+
+const ext = existsSync(`src/content/docs/${doc.id}.mdx`) ? 'mdx' : 'md';
+const editUrl = `https://github.com/spicetify/docs/edit/main/src/content/docs/${doc.id}.${ext}`;
+---
+
+<DocsLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  headings={headings}
+  editUrl={editUrl}
+>
+  <Content />
+</DocsLayout>
