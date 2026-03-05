@@ -13,8 +13,9 @@ const {
   type = 'website',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image, Astro.site);
+const siteBase = Astro.site ?? Astro.url.origin;
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const ogImage = new URL(image, siteBase);
 const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
 ---
 
