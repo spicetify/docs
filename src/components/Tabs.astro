@@ -14,12 +14,53 @@ const { groupId } = Astro.props;
 </div>
 
 <script>
+  function detectOS(): 'windows' | 'linux' | 'macos' {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes('mac')) return 'macos';
+    if (ua.includes('linux')) return 'linux';
+    return 'windows';
+  }
+
+  function findOSTabIndex(
+    panels: NodeListOf<HTMLElement>,
+    os: 'windows' | 'linux' | 'macos',
+  ): number {
+    const panelArray = Array.from(panels);
+
+    // Try exact OS match first
+    const exactMatch = panelArray.findIndex((p) => {
+      const value = (p.dataset.tabValue || '').toLowerCase();
+      const label = (p.dataset.tabLabel || '').toLowerCase();
+      if (os === 'windows') return value.includes('windows') || label.includes('windows');
+      if (os === 'macos') return value.includes('macos') || value.includes('mac') || label.includes('macos');
+      return value.includes('linux') || label.includes('linux');
+    });
+
+    if (exactMatch !== -1) return exactMatch;
+
+    // For macOS/Linux, fall back to combined "Linux / macOS" tabs
+    if (os === 'macos' || os === 'linux') {
+      const combined = panelArray.findIndex((p) => {
+        const value = (p.dataset.tabValue || '').toLowerCase();
+        const label = (p.dataset.tabLabel || '').toLowerCase();
+        return (value.includes('linux') && value.includes('mac')) ||
+               (label.includes('linux') && label.includes('mac'));
+      });
+      if (combined !== -1) return combined;
+    }
+
+    return -1;
+  }
+
   function initTabs() {
+    const userOS = detectOS();
+
     document.querySelectorAll('.tabs-container').forEach((container) => {
-      const tabList = container.querySelector('.tab-list');
+      const el = container as HTMLElement;
+      const tabList = el.querySelector('.tab-list');
       if (!tabList || tabList.children.length > 0) return;
 
-      const panels = container.querySelectorAll<HTMLElement>('.tab-panel');
+      const panels = el.querySelectorAll<HTMLElement>('.tab-panel');
       if (panels.length === 0) return;
 
       let defaultIndex = 0;
@@ -38,6 +79,12 @@ const { groupId } = Astro.props;
 
         tabList.appendChild(btn);
       });
+
+      // Auto-select OS tab if this is an OS tab group
+      if (el.dataset.tabGroup === 'os') {
+        const osIndex = findOSTabIndex(panels, userOS);
+        if (osIndex !== -1) defaultIndex = osIndex;
+      }
 
       const buttons = tabList.querySelectorAll<HTMLElement>('.tab-button');
       buttons[defaultIndex]?.classList.add('active');
