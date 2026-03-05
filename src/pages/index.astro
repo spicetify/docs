@@ -6,6 +6,11 @@ import theme3 from '../assets/homepage/3.png';
 import theme4 from '../assets/homepage/4.png';
 import theme5 from '../assets/homepage/5.png';
 import theme7 from '../assets/homepage/7.png';
+import heroFullApp from '../assets/homepage/full-app-display.png';
+import heroLyrics from '../assets/homepage/lyrics-plus.png';
+import heroMarketplace from '../assets/homepage/marketplace.png';
+import DiscordIcon from '../components/icons/DiscordIcon.astro';
+import GitHubIcon from '../components/icons/GitHubIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const themes = [
@@ -40,29 +45,73 @@ const themes = [
     label: 'Marketplace',
   },
 ];
+
+const heroShowcase = [
+  {
+    src: heroMarketplace,
+    alt: 'Spicetify Marketplace — browse and install themes, extensions, and custom apps',
+    label: 'Marketplace',
+  },
+  {
+    src: heroLyrics,
+    alt: 'Lyrics Plus — a custom app that displays synced lyrics inside Spotify',
+    label: 'Custom Apps',
+  },
+  {
+    src: heroFullApp,
+    alt: 'Full App Display — an extension showing immersive album art with live lyrics',
+    label: 'Extensions',
+  },
+];
 ---
 
 <BaseLayout title="Spicetify" description="Powerful CLI tool to take control of the Spotify client.">
   <section id="hero" class="hero">
     <div class="hero-glow"></div>
+    <div class="hero-grid-pattern"></div>
     <div class="hero-content">
-      <h1>Make Spotify yours.</h1>
+      <div class="hero-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+        Open Source &middot; 22k+ Stars on GitHub &middot; 18M+ Downloads
+      </div>
+      <h1><span class="hero-gradient">Make Spotify</span> yours.</h1>
       <p class="hero-subtitle">
-        A powerful CLI tool to customize themes, inject extensions, and unlock the full potential of your Spotify client.
+        Customize themes, inject extensions, and unlock the full potential of your Spotify client.
       </p>
       <div class="hero-actions">
-        <a href="#install" class="btn btn-primary">Install Now</a>
+        <a href="#install" class="btn btn-primary">
+          Get Started
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+        </a>
         <a
           href="https://github.com/spicetify/cli"
           class="btn btn-secondary"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
+          <GitHubIcon />
           GitHub
         </a>
+      </div>
+    </div>
+    <div class="hero-showcase">
+      <div class="hero-showcase-track">
+        {heroShowcase.map((item) => (
+          <div class="hero-showcase-card">
+            <Image
+              src={item.src}
+              alt={item.alt}
+              widths={[400, 700]}
+              sizes="(max-width: 768px) 280px, 380px"
+              format="webp"
+              quality={80}
+              loading="eager"
+            />
+            <span class="hero-showcase-label">{item.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -87,10 +136,13 @@ const themes = [
           </div>
         ))}
       </div>
-      <a href="/docs/customization/themes" class="browse-link">
-        Browse all themes
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-      </a>
+      <div class="browse-row">
+        <a href="/docs/customization/themes" class="browse-link">
+          Browse all themes
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+        </a>
+        <span class="browse-stat">200+ items in the Marketplace</span>
+      </div>
     </div>
   </section>
 
@@ -132,9 +184,11 @@ const themes = [
   </section>
 
   <section id="install" class="section install-section">
+    <div class="install-glow"></div>
     <div class="section-container">
-      <h2 class="section-title">Install in seconds</h2>
+      <h2 class="section-title install-title">Install in seconds</h2>
       <p class="section-subtitle">One command to get started.</p>
+      <p class="section-subtitle section-subtitle-secondary">Join thousands of users who have made Spotify their own.</p>
       <div class="install-block">
         <div class="install-tabs" role="tablist">
           <button role="tab" aria-selected="true" aria-controls="panel-windows" id="tab-windows" class="install-tab active">Windows</button>
@@ -157,43 +211,7 @@ const themes = [
           </button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="community" class="section stats-section">
-    <div class="section-container">
-      <div class="stats-grid">
-        <div class="stat">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-          </svg>
-          <span class="stat-number">18k+</span>
-          <span class="stat-label">GitHub Stars</span>
-        </div>
-        <div class="stat">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
-          <span class="stat-number">20k+</span>
-          <span class="stat-label">Discord Members</span>
-        </div>
-        <div class="stat">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
-          </svg>
-          <span class="stat-number">200+</span>
-          <span class="stat-label">Marketplace Items</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="cta" class="section cta-section">
-    <div class="section-container">
-      <div class="cta-glow"></div>
-      <h2>Ready to customize Spotify?</h2>
-      <p>Join thousands of users who have made Spotify their own.</p>
-      <div class="cta-actions">
+      <div class="install-actions">
         <a href="/docs/getting-started" class="btn btn-primary">Get Started</a>
         <a
           href="https://discord.gg/VnevqPp2Rr"
@@ -201,6 +219,7 @@ const themes = [
           target="_blank"
           rel="noopener noreferrer"
         >
+          <DiscordIcon />
           Join Discord
         </a>
       </div>
@@ -341,22 +360,34 @@ const themes = [
 
   .hero {
     position: relative;
-    min-height: calc(100vh - var(--navbar-height));
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: calc(var(--navbar-height) + 4rem) 1.5rem 4rem;
+    padding: calc(var(--navbar-height) + 4rem) 1.5rem 0;
     overflow: hidden;
   }
 
   .hero-glow {
     position: absolute;
-    top: -40%;
+    top: -20%;
     left: 50%;
     transform: translateX(-50%);
-    width: 800px;
-    height: 600px;
-    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.12) 0%, transparent 70%);
+    width: 900px;
+    height: 700px;
+    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.15) 0%, rgba(235, 90, 55, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(235, 90, 55, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(235, 90, 55, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 20%, transparent 70%);
     pointer-events: none;
   }
 
@@ -366,19 +397,46 @@ const themes = [
     max-width: 700px;
   }
 
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: rgba(235, 90, 55, 0.08);
+    border: 1px solid rgba(235, 90, 55, 0.15);
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  [data-theme='dark'] .hero-badge {
+    background: rgba(235, 90, 55, 0.12);
+    border-color: rgba(235, 90, 55, 0.2);
+  }
+
   .hero h1 {
-    font-size: clamp(2.75rem, 5vw, 4.25rem);
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     margin-bottom: 1.25rem;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ff8a65 50%, var(--color-primary) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .hero-subtitle {
     font-size: 1.15rem;
     color: var(--color-text-secondary);
     line-height: 1.6;
-    max-width: 560px;
+    max-width: 520px;
     margin: 0 auto 2rem;
   }
 
@@ -387,6 +445,79 @@ const themes = [
     gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .hero-showcase {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 3.5rem;
+    perspective: 1200px;
+  }
+
+  .hero-showcase-track {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    transform: rotateX(4deg);
+    transform-origin: center bottom;
+    padding: 0 1rem;
+  }
+
+  .hero-showcase-card {
+    position: relative;
+    flex: 0 0 340px;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    line-height: 0;
+  }
+
+  [data-theme='dark'] .hero-showcase-card {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .hero-showcase-card :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+  }
+
+  .hero-showcase-label {
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    border-radius: 6px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .hero-showcase::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 90%);
+    pointer-events: none;
   }
 
   .themes-section {
@@ -605,79 +736,56 @@ const themes = [
     outline-offset: 2px;
   }
 
-  .stats-section {
-    background: var(--color-bg-secondary);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .stat {
+  .browse-row {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  .stat svg {
-    color: var(--color-text-secondary);
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.85rem;
+  .browse-stat {
+    font-size: 0.8rem;
     color: var(--color-text-secondary);
     font-weight: 500;
   }
 
-  .cta-section {
+  .install-section {
     position: relative;
-    text-align: center;
     overflow: hidden;
+    padding-top: 0;
   }
 
-  .cta-glow {
+  .install-glow {
     position: absolute;
-    bottom: -30%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
     background: radial-gradient(ellipse, rgba(235, 90, 55, 0.1) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  .cta-section .section-container {
+  .install-section .section-container {
     position: relative;
   }
 
-  .cta-section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
+  .install-title {
+    color: var(--color-primary);
   }
 
-  .cta-section p {
-    color: var(--color-text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 2rem;
-  }
-
-  .cta-actions {
+  .install-actions {
     display: flex;
     gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .section-subtitle-secondary {
+    margin-top: -2.5rem;
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -685,11 +793,7 @@ const themes = [
     .section-subtitle,
     .bento-item,
     .feature-card,
-    .install-block,
-    .stat,
-    .cta-section h2,
-    .cta-section p,
-    .cta-actions {
+    .install-block {
       opacity: 0;
       transform: translateY(20px);
       animation: fade-in-up 0.5s ease forwards;
@@ -699,6 +803,12 @@ const themes = [
       opacity: 0;
       transform: translateY(20px);
       animation: fade-in-up 0.6s ease 0.1s forwards;
+    }
+
+    .hero-showcase {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fade-in-up 0.7s ease 0.25s forwards;
     }
 
     .bento-1 { animation-delay: 0.05s; }
@@ -722,8 +832,7 @@ const themes = [
     }
 
     .hero {
-      min-height: auto;
-      padding: calc(var(--navbar-height) + 3rem) 1rem 3rem;
+      padding: calc(var(--navbar-height) + 2.5rem) 1rem 0;
     }
 
     .hero h1 {
@@ -732,6 +841,20 @@ const themes = [
 
     .hero-subtitle {
       font-size: 1rem;
+    }
+
+    .hero-showcase {
+      margin-top: 2.5rem;
+    }
+
+    .hero-showcase-track {
+      transform: rotateX(2deg);
+      gap: 0.6rem;
+      padding: 0 0.5rem;
+    }
+
+    .hero-showcase-card {
+      flex: 0 0 260px;
     }
 
     .bento-grid {
@@ -745,15 +868,6 @@ const themes = [
     .features-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-
-    .stat-number {
-      font-size: 1.75rem;
     }
 
     .section-title {
