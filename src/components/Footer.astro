@@ -1,4 +1,8 @@
 ---
+interface Props {
+  discordMembers?: string;
+}
+const { discordMembers = '20k+' } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
@@ -35,7 +39,7 @@ const year = new Date().getFullYear();
             href="https://discord.gg/VnevqPp2Rr"
             target="_blank"
             rel="noopener noreferrer">Discord</a
-          ><span class="footer-tag">20k+ members</span>
+          ><span class="footer-tag">{discordMembers} members</span>
         </li>
         <li>
           <a

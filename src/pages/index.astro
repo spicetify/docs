@@ -13,6 +13,16 @@ import DiscordIcon from '../components/icons/DiscordIcon.astro';
 import GitHubIcon from '../components/icons/GitHubIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+// Community stats — update these periodically
+// Downloads: ~18.8M from GitHub release asset downloads as of March 2026
+//   (gh api repos/spicetify/cli/releases --paginate --jq '[.[].assets[].download_count] | add')
+const stats = {
+  githubStars: '22k+',
+  downloads: '18M+',
+  discordMembers: '20k+',
+  marketplaceItems: '200+',
+};
+
 const themes = [
   {
     src: theme1,
@@ -74,7 +84,7 @@ const heroShowcase = [
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
-        Open Source &middot; 22k+ Stars on GitHub &middot; 18M+ Downloads
+        Open Source &middot; {stats.githubStars} Stars on GitHub &middot; {stats.downloads} Downloads
       </div>
       <h1><span class="hero-gradient">Make Spotify</span> yours.</h1>
       <p class="hero-subtitle">
@@ -141,7 +151,7 @@ const heroShowcase = [
           Browse all themes
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
         </a>
-        <span class="browse-stat">200+ items in the Marketplace</span>
+        <span class="browse-stat">{stats.marketplaceItems} items in the Marketplace</span>
       </div>
     </div>
   </section>
