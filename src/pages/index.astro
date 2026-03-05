@@ -782,10 +782,13 @@ const heroShowcase = [
     margin-top: 2rem;
   }
 
-  .section-subtitle-secondary {
-    margin-top: -2.5rem;
+  .section-subtitle + .section-subtitle-secondary {
     margin-bottom: 3rem;
     font-size: 0.95rem;
+  }
+
+  .section-subtitle:has(+ .section-subtitle-secondary) {
+    margin-bottom: 0.25rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
