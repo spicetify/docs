@@ -8,7 +8,7 @@ import TabItem from '@/components/TabItem.astro';
 
 ## Quick Uninstall
 
-<Tabs>
+<Tabs groupId="os">
 <TabItem value="windows" label="Windows" default>
 
 ```powershell
@@ -43,7 +43,7 @@ This returns Spotify to its vanilla state.
 
 ### 2. Remove Spicetify Files
 
-<Tabs>
+<Tabs groupId="os">
 <TabItem value="windows-files" label="Windows" default>
 
 Remove the config and data directories:
@@ -80,7 +80,7 @@ If you installed via a package manager, use it to uninstall:
 
 If you used the install script, the binary is in your PATH. You can find and remove it:
 
-<Tabs>
+<Tabs groupId="os">
 <TabItem value="windows-binary" label="Windows" default>
 
 ```powershell

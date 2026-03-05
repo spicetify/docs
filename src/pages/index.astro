@@ -243,25 +243,36 @@ const heroShowcase = [
       var tabs = document.querySelectorAll('.install-tab');
       var panels = document.querySelectorAll('.install-panel');
 
+      function activateTab(tab) {
+        tabs.forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(function (p) {
+          p.classList.remove('active');
+          p.hidden = true;
+        });
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        var panelId = tab.getAttribute('aria-controls');
+        var panel = document.getElementById(panelId);
+        if (panel) {
+          panel.classList.add('active');
+          panel.hidden = false;
+        }
+      }
+
+      // Auto-select based on OS
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.includes('mac') || ua.includes('linux')) {
+        var macTab = document.getElementById('tab-macos');
+        if (macTab) activateTab(macTab);
+      }
+
       tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
-          tabs.forEach(function (t) {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-          });
-          panels.forEach(function (p) {
-            p.classList.remove('active');
-            p.hidden = true;
-          });
-
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected', 'true');
-          var panelId = tab.getAttribute('aria-controls');
-          var panel = document.getElementById(panelId);
-          if (panel) {
-            panel.classList.add('active');
-            panel.hidden = false;
-          }
+          activateTab(tab);
         });
       });
     }
