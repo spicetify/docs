@@ -9,9 +9,16 @@ interface Props {
   description?: string;
   headings?: { depth: number; slug: string; text: string }[];
   editUrl?: string;
+  pagefindWeight?: string;
 }
 
-const { title, description, headings = [], editUrl } = Astro.props;
+const {
+  title,
+  description,
+  headings = [],
+  editUrl,
+  pagefindWeight,
+} = Astro.props;
 const currentPath =
   Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 ---
@@ -21,9 +28,9 @@ const currentPath =
     <aside class="docs-sidebar">
       <Sidebar currentPath={currentPath} />
     </aside>
-    <article class="docs-content" data-pagefind-body>
+    <article class="docs-content" data-pagefind-body data-pagefind-weight={pagefindWeight || undefined}>
       <Breadcrumbs currentPath={currentPath} />
-      <h1 data-pagefind-weight="10" data-pagefind-meta="title">{title}</h1>
+      <h1 data-pagefind-weight={pagefindWeight ? "2" : "10"} data-pagefind-meta="title">{title}</h1>
       <slot />
       {editUrl && (
         <div class="edit-link">
