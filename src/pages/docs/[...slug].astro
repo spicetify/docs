@@ -16,6 +16,14 @@ const { Content, headings } = await render(doc);
 
 const ext = existsSync(`src/content/docs/${doc.id}.mdx`) ? 'mdx' : 'md';
 const editUrl = `https://github.com/spicetify/docs/edit/main/src/content/docs/${doc.id}.${ext}`;
+
+const lowWeightPrefixes = [
+  'development/api-wrapper/',
+  'development/spicetify-creator/',
+];
+const pagefindWeight = lowWeightPrefixes.some((p) => doc.id.startsWith(p))
+  ? '0.5'
+  : undefined;
 ---
 
 <DocsLayout
@@ -23,6 +31,7 @@ const editUrl = `https://github.com/spicetify/docs/edit/main/src/content/docs/${
   description={doc.data.description}
   headings={headings}
   editUrl={editUrl}
+  pagefindWeight={pagefindWeight}
 >
   <Content />
 </DocsLayout>
