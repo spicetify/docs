@@ -70,7 +70,7 @@ type Props = {};
       var tabs = Array.from(document.querySelectorAll('.install-tab'));
       var panels = document.querySelectorAll('.install-panel');
 
-      function activateTab(tab) {
+      function activateTab(tab, shouldFocus) {
         tabs.forEach(function (t) {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
@@ -84,7 +84,7 @@ type Props = {};
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
         tab.setAttribute('tabindex', '0');
-        tab.focus();
+        if (shouldFocus) tab.focus();
         var panelId = tab.getAttribute('aria-controls');
         var panel = document.getElementById(panelId);
         if (panel) {
@@ -97,12 +97,12 @@ type Props = {};
       var ua = navigator.userAgent.toLowerCase();
       if (ua.includes('mac') || ua.includes('linux')) {
         var macTab = document.getElementById('tab-macos');
-        if (macTab) activateTab(macTab);
+        if (macTab) activateTab(macTab, false);
       }
 
       tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {
-          activateTab(tab);
+          activateTab(tab, true);
         });
       });
 
@@ -125,7 +125,7 @@ type Props = {};
             return;
           }
           e.preventDefault();
-          activateTab(tabs[nextIndex]);
+          activateTab(tabs[nextIndex], true);
         });
       }
     }
