@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import theme1 from '../assets/homepage/1.png';
 import theme2 from '../assets/homepage/2.png';
 import theme3 from '../assets/homepage/3.png';
@@ -9,8 +8,10 @@ import theme6 from '../assets/homepage/6.png';
 import heroFullApp from '../assets/homepage/full-app-display.png';
 import heroLyrics from '../assets/homepage/lyrics-plus.png';
 import heroMarketplace from '../assets/homepage/marketplace.png';
-import DiscordIcon from '../components/icons/DiscordIcon.astro';
-import GitHubIcon from '../components/icons/GitHubIcon.astro';
+import FeaturesGrid from '../components/homepage/FeaturesGrid.astro';
+import HeroSection from '../components/homepage/HeroSection.astro';
+import InstallSection from '../components/homepage/InstallSection.astro';
+import ThemesBento from '../components/homepage/ThemesBento.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Community stats — update these periodically
@@ -73,838 +74,186 @@ const heroShowcase = [
     label: 'Extensions',
   },
 ];
+
+const features = [
+  {
+    icon: 'palette',
+    title: 'Themes',
+    description:
+      'Transform your Spotify with community color schemes, layouts, and visual overhauls.',
+    href: '/docs/customization/themes',
+  },
+  {
+    icon: 'puzzle',
+    title: 'Extensions',
+    description:
+      'Add keyboard shortcuts, playback controls, and integrations with other services.',
+    href: '/docs/customization/extensions',
+  },
+  {
+    icon: 'grid',
+    title: 'Custom Apps',
+    description:
+      'Build entirely new pages inside Spotify for lyrics, stats, and more.',
+    href: '/docs/customization/custom-apps',
+  },
+  {
+    icon: 'terminal',
+    title: 'Powerful CLI',
+    description:
+      'Full control from the command line. Apply, backup, restore, and update with ease.',
+    href: '/docs/getting-started',
+  },
+];
 ---
 
 <BaseLayout title="Spicetify" description="Powerful CLI tool to take control of the Spotify client.">
-  <section id="hero" class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-grid-pattern"></div>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-        Open Source &middot; {stats.githubStars} Stars on GitHub &middot; {stats.downloads} Downloads
-      </div>
-      <h1><span class="hero-gradient">Make Spotify</span> yours.</h1>
-      <p class="hero-subtitle">
-        Customize themes, inject extensions, and unlock the full potential of your Spotify client.
-      </p>
-      <div class="hero-actions">
-        <a href="#install" class="btn btn-primary">
-          Get Started
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-        </a>
-        <a
-          href="https://github.com/spicetify/cli"
-          class="btn btn-secondary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GitHubIcon />
-          GitHub
-        </a>
-      </div>
-    </div>
-    <div class="hero-showcase">
-      <div class="hero-showcase-track">
-        {heroShowcase.map((item) => (
-          <div class="hero-showcase-card">
-            <Image
-              src={item.src}
-              alt={item.alt}
-              widths={[400, 700]}
-              sizes="(max-width: 768px) 280px, 380px"
-              format="webp"
-              quality={80}
-              loading="eager"
-            />
-            <span class="hero-showcase-label">{item.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="themes" class="section themes-section">
-    <div class="section-container">
-      <h2 class="section-title">Themes for every taste</h2>
-      <p class="section-subtitle">Explore community-made themes that transform your Spotify experience.</p>
-      <div class="bento-grid">
-        {themes.map((theme, i) => (
-          <div class:list={['bento-item', `bento-${i + 1}`]}>
-            <Image
-              src={theme.src}
-              alt={theme.alt}
-              widths={[400, 800, 1200]}
-              sizes="(max-width: 768px) 50vw, (max-width: 1100px) 33vw, 400px"
-              format="webp"
-              quality={80}
-              loading="lazy"
-            />
-            <span class="theme-label">{theme.label}</span>
-          </div>
-        ))}
-      </div>
-      <div class="browse-row">
-        <a href="/docs/customization/themes" class="browse-link">
-          Browse all themes
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-        </a>
-        <span class="browse-stat">{stats.marketplaceItems} items in the Marketplace</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" class="section features-section">
-    <div class="section-container">
-      <h2 class="section-title">Everything you need</h2>
-      <p class="section-subtitle">Customize every corner of your Spotify client.</p>
-      <div class="features-grid">
-        <a href="/docs/customization/themes" class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="13.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="10.5" r="2.5" /><circle cx="8.5" cy="7.5" r="2.5" /><circle cx="6.5" cy="12.5" r="2.5" />
-              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
-            </svg>
-          </div>
-          <h3>Themes</h3>
-          <p>Transform your Spotify client with community-made color schemes, layouts, and visual overhauls.</p>
-        </a>
-        <a href="/docs/customization/extensions" class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 2v4m0 12v4M2 12h4m12 0h4m-3.17-6.83-2.83 2.83m-4 4-2.83 2.83M6.83 5.17l2.83 2.83m4 4 2.83 2.83" />
-            </svg>
-          </div>
-          <h3>Extensions</h3>
-          <p>Add new features like keyboard shortcuts, playback controls, and integrations with other services.</p>
-        </a>
-        <a href="/docs/customization/custom-apps" class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
-            </svg>
-          </div>
-          <h3>Custom Apps</h3>
-          <p>Build entirely new pages inside Spotify for lyrics, stats, library management, and more.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="install" class="section install-section">
-    <div class="install-glow"></div>
-    <div class="section-container">
-      <h2 class="section-title install-title">Install in seconds</h2>
-      <p class="section-subtitle">One command to get started.</p>
-      <p class="section-subtitle section-subtitle-secondary">Join thousands of users who have made Spotify their own.</p>
-      <div class="install-block">
-        <div class="install-tabs" role="tablist">
-          <button role="tab" aria-selected="true" aria-controls="panel-windows" id="tab-windows" class="install-tab active">Windows</button>
-          <button role="tab" aria-selected="false" aria-controls="panel-macos" id="tab-macos" class="install-tab">macOS / Linux</button>
-        </div>
-        <div class="install-panels">
-          <div role="tabpanel" id="panel-windows" aria-labelledby="tab-windows" class="install-panel active">
-            <code>iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex</code>
-          </div>
-          <div role="tabpanel" id="panel-macos" aria-labelledby="tab-macos" class="install-panel" hidden>
-            <code>curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh</code>
-          </div>
-          <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy to clipboard">
-            <svg class="icon-copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-            <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="install-actions">
-        <a href="/docs/getting-started" class="btn btn-primary">Get Started</a>
-        <a
-          href="https://discord.gg/VnevqPp2Rr"
-          class="btn btn-secondary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <DiscordIcon />
-          Join Discord
-        </a>
-      </div>
-    </div>
-  </section>
+  <div class="home-page">
+    <HeroSection stats={stats} heroShowcase={heroShowcase} />
+    <ThemesBento themes={themes} marketplaceItems={stats.marketplaceItems} />
+    <FeaturesGrid features={features} />
+    <InstallSection />
+  </div>
 </BaseLayout>
 
-<script is:inline>
-  (function () {
-    function setupInstallTabs() {
-      var tabs = document.querySelectorAll('.install-tab');
-      var panels = document.querySelectorAll('.install-panel');
-
-      function activateTab(tab) {
-        tabs.forEach(function (t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        panels.forEach(function (p) {
-          p.classList.remove('active');
-          p.hidden = true;
-        });
-
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        var panelId = tab.getAttribute('aria-controls');
-        var panel = document.getElementById(panelId);
-        if (panel) {
-          panel.classList.add('active');
-          panel.hidden = false;
-        }
-      }
-
-      // Auto-select based on OS
-      var ua = navigator.userAgent.toLowerCase();
-      if (ua.includes('mac') || ua.includes('linux')) {
-        var macTab = document.getElementById('tab-macos');
-        if (macTab) activateTab(macTab);
-      }
-
-      tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          activateTab(tab);
-        });
-      });
-    }
-
-    function setupCopyButton() {
-      var btn = document.querySelector('.copy-btn');
-      if (!btn) return;
-
-      btn.addEventListener('click', function () {
-        var activePanel = document.querySelector('.install-panel.active');
-        if (!activePanel) return;
-        var code = activePanel.querySelector('code');
-        if (!code) return;
-
-        var iconCopy = btn.querySelector('.icon-copy');
-        var iconCheck = btn.querySelector('.icon-check');
-
-        navigator.clipboard.writeText(code.textContent.trim()).then(function () {
-          iconCopy.style.display = 'none';
-          iconCheck.style.display = 'block';
-          setTimeout(function () {
-            iconCopy.style.display = 'block';
-            iconCheck.style.display = 'none';
-          }, 2000);
-        }).catch(function () {
-          // Fallback: select text
-          var range = document.createRange();
-          range.selectNodeContents(code);
-          var sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-        });
-      });
-    }
-
-    setupInstallTabs();
-    setupCopyButton();
-  })();
-</script>
-
 <style>
-  .section {
-    padding: 5rem 1.5rem;
+  .home-page {
+    --font-display: 'Syne', system-ui, sans-serif;
+    --accent: var(--color-primary);
+    --accent-soft: rgba(235, 90, 55, 0.15);
+    --accent-glow: rgba(235, 90, 55, 0.4);
+    --accent-border: rgba(235, 90, 55, 0.2);
+    --accent-border-hover: rgba(235, 90, 55, 0.3);
+    --accent-subtle: rgba(235, 90, 55, 0.04);
+    --noise-bg: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    overflow: hidden;
   }
 
-  .section-container {
+  /* ── Shared section styles ── */
+  .home-page :global(.section) {
+    position: relative;
+    padding: 6rem 1.5rem;
+  }
+
+  .home-page :global(.section-container) {
     max-width: 1100px;
     margin: 0 auto;
   }
 
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
+  .home-page :global(.section-header) {
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 3.5rem;
   }
 
-  .section-subtitle {
-    text-align: center;
-    color: var(--color-text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 3rem;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.5rem;
-    font-size: 0.95rem;
+  .home-page :global(.section-tag) {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
     font-weight: 600;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
-  }
-
-  .btn:hover {
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-
-  .btn:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
-  .btn-primary {
-    background: var(--color-primary);
-    color: #fff;
-  }
-
-  .btn-primary:hover {
-    background: var(--color-primary-dark);
-    box-shadow: 0 4px 20px rgba(235, 90, 55, 0.3);
-  }
-
-  .btn-secondary {
-    background: var(--color-bg-secondary);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--color-text-secondary);
-  }
-
-  .hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: calc(var(--navbar-height) + 4rem) 1.5rem 0;
-    overflow: hidden;
-  }
-
-  .hero-glow {
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    height: 700px;
-    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.15) 0%, rgba(235, 90, 55, 0.05) 40%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-grid-pattern {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(235, 90, 55, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(235, 90, 55, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 20%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    text-align: center;
-    max-width: 700px;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    background: rgba(235, 90, 55, 0.08);
-    border: 1px solid rgba(235, 90, 55, 0.15);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    padding: 0.3rem 0.75rem;
     border-radius: 100px;
-    margin-bottom: 1.5rem;
-  }
-
-  [data-theme='dark'] .hero-badge {
-    background: rgba(235, 90, 55, 0.12);
-    border-color: rgba(235, 90, 55, 0.2);
-  }
-
-  .hero h1 {
-    font-size: clamp(2.75rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
     margin-bottom: 1.25rem;
   }
 
-  .hero-gradient {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #ff8a65 50%, var(--color-primary) 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .home-page :global(.section-tag-bright) {
+    background: rgba(235, 90, 55, 0.2);
+    border-color: rgba(235, 90, 55, 0.35);
   }
 
-  .hero-subtitle {
-    font-size: 1.15rem;
+  .home-page :global(.section-header h2) {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .home-page :global(.section-header p) {
     color: var(--color-text-secondary);
-    line-height: 1.6;
-    max-width: 520px;
-    margin: 0 auto 2rem;
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
-  .hero-actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .hero-showcase {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    margin-top: 3.5rem;
-    perspective: 1200px;
-  }
-
-  .hero-showcase-track {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    transform: rotateX(4deg);
-    transform-origin: center bottom;
-    padding: 0 1rem;
-  }
-
-  .hero-showcase-card {
-    position: relative;
-    flex: 0 0 340px;
-    aspect-ratio: 16 / 10;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    line-height: 0;
-  }
-
-  [data-theme='dark'] .hero-showcase-card {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-showcase-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
-
-  .hero-showcase-card :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
-    display: block;
-  }
-
-  .hero-showcase-label {
-    position: absolute;
-    top: 0.6rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    color: #fff;
-    border-radius: 6px;
-    line-height: 1.4;
-    white-space: nowrap;
-  }
-
-  .hero-showcase::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 90%);
-    pointer-events: none;
-  }
-
-  .themes-section {
-    background: var(--color-bg-secondary);
-  }
-
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .bento-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-    line-height: 0;
-  }
-
-  .bento-item :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .bento-item:hover :global(img) {
-    transform: scale(1.02);
-  }
-
-  .theme-label {
-    position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    color: #fff;
-    border-radius: 6px;
-    line-height: 1.4;
-  }
-
-  .bento-1 { grid-column: span 2; }
-  .bento-5 { grid-row: span 2; }
-
-  .browse-link {
+  /* ── Shared button styles ── */
+  .home-page :global(.btn) {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
     font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--color-link);
-    text-decoration: none;
-  }
-
-  .browse-link:hover {
-    text-decoration: underline;
-  }
-
-  .browse-link:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  .feature-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.75rem;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-    background: var(--color-bg);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    text-decoration: none;
-  }
-
-  .feature-card:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
-  .feature-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
+    font-weight: 600;
     border-radius: 10px;
-    background: rgba(235, 90, 55, 0.1);
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .feature-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .feature-card p {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .install-block {
-    max-width: 640px;
-    margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    background: #1a1a2e;
-  }
-
-  .install-tabs {
-    display: flex;
-    background: #151525;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .install-tab {
-    flex: 1;
-    padding: 0.6rem 1rem;
-    border: none;
-    background: none;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.8rem;
-    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
-    font-family: var(--font-sans);
-    transition: color 0.15s;
-  }
-
-  .install-tab:hover {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .install-tab.active {
-    color: #fff;
-    box-shadow: inset 0 -2px 0 var(--color-primary);
-  }
-
-  .install-tab:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: -2px;
-  }
-
-  .install-panels {
-    position: relative;
-    padding: 1.25rem 1.25rem;
-    padding-right: 3.5rem;
-  }
-
-  .install-panel {
-    display: none;
-  }
-
-  .install-panel.active {
-    display: block;
-  }
-
-  .install-panel code {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: #e2e8f0;
-    background: none;
-    padding: 0;
-    word-break: break-all;
-    line-height: 1.6;
-  }
-
-  .copy-btn {
-    position: absolute;
-    top: 0.85rem;
-    right: 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
     border: none;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.5);
-    transition: color 0.15s, background 0.15s;
   }
 
-  .copy-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-  }
+  .home-page :global(.btn:hover) { text-decoration: none; }
 
-  .copy-btn:focus-visible {
-    outline: 2px solid var(--color-primary);
+  .home-page :global(.btn:focus-visible) {
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
-  .browse-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .home-page :global(.btn-primary) {
+    background: var(--accent);
+    color: #fff;
   }
 
-  .browse-stat {
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-    font-weight: 500;
+  .home-page :global(.btn-primary:hover) {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
   }
 
-  .install-section {
-    position: relative;
-    overflow: hidden;
-    padding-top: 0;
+  .home-page :global(.btn-glow) {
+    box-shadow: 0 0 20px rgba(235, 90, 55, 0.25), 0 0 60px rgba(235, 90, 55, 0.08);
   }
 
-  .install-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 500px;
-    background: radial-gradient(ellipse, rgba(235, 90, 55, 0.1) 0%, transparent 70%);
-    pointer-events: none;
+  .home-page :global(.btn-glow:hover) {
+    box-shadow: 0 0 30px var(--accent-glow), 0 0 80px rgba(235, 90, 55, 0.12);
   }
 
-  .install-section .section-container {
-    position: relative;
+  .home-page :global(.btn-ghost) {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
   }
 
-  .install-title {
-    color: var(--color-primary);
+  .home-page :global(.btn-ghost:hover) {
+    border-color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
   }
 
-  .install-actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  [data-theme='light'] .home-page :global(.btn-ghost) {
+    background: rgba(0, 0, 0, 0.03);
   }
 
-  .section-subtitle + .section-subtitle-secondary {
-    margin-bottom: 3rem;
-    font-size: 0.95rem;
+  [data-theme='light'] .home-page :global(.btn-ghost:hover) {
+    background: rgba(0, 0, 0, 0.06);
   }
 
-  .section-subtitle:has(+ .section-subtitle-secondary) {
-    margin-bottom: 0.25rem;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .section-title,
-    .section-subtitle,
-    .bento-item,
-    .feature-card,
-    .install-block {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fade-in-up 0.5s ease forwards;
-    }
-
-    .hero-content {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fade-in-up 0.6s ease 0.1s forwards;
-    }
-
-    .hero-showcase {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fade-in-up 0.7s ease 0.25s forwards;
-    }
-
-    .bento-1 { animation-delay: 0.05s; }
-    .bento-2 { animation-delay: 0.1s; }
-    .bento-3 { animation-delay: 0.15s; }
-    .bento-4 { animation-delay: 0.2s; }
-    .bento-5 { animation-delay: 0.25s; }
-    .bento-6 { animation-delay: 0.3s; }
-
-    @keyframes fade-in-up {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  @media (prefers-reduced-motion: reduce) {
+    .home-page :global(.btn) {
+      transition: none !important;
     }
   }
 
   @media (max-width: 768px) {
-    .section {
-      padding: 3.5rem 1rem;
+    .home-page :global(.section) {
+      padding: 4rem 1rem;
     }
 
-    .hero {
-      padding: calc(var(--navbar-height) + 2.5rem) 1rem 0;
+    .home-page :global(.section-header h2) {
+      font-size: 1.6rem;
     }
-
-    .hero h1 {
-      font-size: 2.25rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-    }
-
-    .hero-showcase {
-      margin-top: 2.5rem;
-    }
-
-    .hero-showcase-track {
-      transform: rotateX(2deg);
-      gap: 0.6rem;
-      padding: 0 0.5rem;
-    }
-
-    .hero-showcase-card {
-      flex: 0 0 260px;
-    }
-
-    .bento-grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: auto;
-    }
-
-    .bento-1 { grid-column: span 2; }
-    .bento-5 { grid-row: span 1; }
-
-    .features-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .bento-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .bento-1 { grid-column: span 2; }
-    .bento-5 { grid-row: span 1; }
   }
 </style>

@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ArrowIcon from '../icons/ArrowIcon.astro';
+
+interface Props {
+  themes: { src: ImageMetadata; alt: string; label: string }[];
+  marketplaceItems: string;
+}
+
+const { themes, marketplaceItems } = Astro.props;
+---
+
+<section id="themes" class="section themes-section" aria-labelledby="themes-heading">
+  <div class="section-header">
+    <span class="section-tag">Showcase</span>
+    <h2 id="themes-heading">Themes for every taste</h2>
+    <p>Browse community-made themes that completely transform Spotify.</p>
+  </div>
+
+  <div class="themes-bento">
+    {themes.map((theme, i) => (
+      <div class:list={['bento-card', `bento-${i + 1}`]}>
+        <Image
+          src={theme.src}
+          alt={theme.alt}
+          widths={[600, 900, 1400]}
+          sizes={`(max-width: 768px) 90vw, ${i === 0 ? '66vw' : '33vw'}`}
+          format="webp"
+          quality={90}
+          loading="lazy"
+        />
+        <span class="bento-label">{theme.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="themes-cta">
+    <a href="/docs/customization/themes" class="browse-link">
+      Browse all themes
+      <ArrowIcon size={16} />
+    </a>
+    <span class="themes-count">{marketplaceItems} items in the Marketplace</span>
+  </div>
+</section>
+
+<style>
+  .themes-section {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .themes-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0.75rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .bento-1 { grid-column: span 2; grid-row: span 2; }
+
+  .bento-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+    line-height: 0;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-border-hover);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme='dark'] .bento-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .bento-card :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .bento-card:hover :global(img) {
+    transform: scale(1.03);
+  }
+
+  .bento-label {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0.6rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    line-height: 1.4;
+  }
+
+  .bento-1 .bento-label {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .themes-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+
+  .browse-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .browse-link:hover {
+    text-decoration: none;
+    gap: 0.6rem;
+  }
+
+  .browse-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .themes-count {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--color-border);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bento-card,
+    .bento-card :global(img) {
+      transition: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .themes-bento {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+    }
+
+    .bento-1 { grid-column: span 2; grid-row: span 2; }
+
+    .themes-count {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+</style>
