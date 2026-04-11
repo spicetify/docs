@@ -15,7 +15,7 @@ Extensions are JavaScript files that run alongside Spotify's main code. They can
 └── ...
 ```
 
-Extensions are single JavaScript files. For complex extensions with multiple files, use [Spicetify Creator](/docs/development/spicetify-creator).
+Extensions are single JavaScript files. For complex extensions with multiple files, use [Spicetify Creator](/docs/development/spicetify-creator/the-basics).
 
 ## Getting Started
 
