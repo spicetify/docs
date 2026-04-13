@@ -134,7 +134,7 @@ Custom apps are React applications. A basic app needs:
 - `index.js`: Main application code with a `render()` function
 - `manifest.json`: Metadata including name, icons, and optional subfiles
 
-For a streamlined development experience, check out **[Spicetify Creator](/docs/development/spicetify-creator)** which supports TypeScript, JSX, and hot reloading.
+For a streamlined development experience, check out **[Spicetify Creator](/docs/development/spicetify-creator/the-basics)** which supports TypeScript, JSX, and hot reloading.
 
 ---
 
