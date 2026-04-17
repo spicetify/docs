@@ -51,6 +51,26 @@ const { stats, heroShowcase } = Astro.props;
         View on GitHub
       </a>
     </div>
+
+    <p class="hero-supporters">
+      Supported by
+      <a
+        href="https://boostmania.gg"
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        class="hero-supporter-link"
+      >
+        <img
+          src="/images/sponsors/boostmania.png"
+          alt=""
+          width="16"
+          height="16"
+          loading="lazy"
+          aria-hidden="true"
+        />
+        <span>Boost<span class="hero-supporter-accent">Mania</span></span>
+      </a>
+    </p>
   </div>
 
   <div class="hero-showcase">
@@ -239,6 +259,44 @@ const { stats, heroShowcase } = Astro.props;
     animation: fade-in-up 0.7s ease 0.45s both;
   }
 
+  .hero-supporters {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.4rem;
+    row-gap: 0.2rem;
+    margin: 1.75rem auto 0;
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    animation: fade-in-up 0.7s ease 0.55s both;
+  }
+
+  .hero-supporter-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .hero-supporter-link:hover {
+    border-bottom-color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .hero-supporter-link img {
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+
+  .hero-supporter-accent {
+    color: #e325f5;
+  }
+
   .hero-showcase {
     position: relative;
     width: 100%;
@@ -343,6 +401,7 @@ const { stats, heroShowcase } = Astro.props;
     .hero h1,
     .hero-subtitle,
     .hero-actions,
+    .hero-supporters,
     .hero-showcase {
       animation: none !important;
       opacity: 1 !important;
