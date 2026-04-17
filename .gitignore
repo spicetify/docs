@@ -112,3 +112,7 @@ dist
 
 # MacOS directory
 .DS_Store
+
+# Local planning artifacts
+docs/brainstorms/
+docs/plans/

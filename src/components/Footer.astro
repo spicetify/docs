@@ -1,4 +1,6 @@
 ---
+import GitHubIcon from './icons/GitHubIcon.astro';
+
 interface Props {
   discordMembers?: string;
 }
@@ -50,20 +52,38 @@ const year = new Date().getFullYear();
         </li>
       </ul>
     </div>
-    <div class="footer-column">
+    <div class="footer-column footer-column--supporters">
       <h3>Supporters</h3>
-      <p class="supporters-label">Open Collective</p>
-      <a
-        href="https://opencollective.com/spicetify"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36"
-          alt="Open Collective supporters"
-          loading="lazy"
-        />
-      </a>
+      <div class="supporters-row">
+        <div class="supporter-block">
+          <p class="supporters-label">Open Collective</p>
+          <a
+            href="https://opencollective.com/spicetify"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://opencollective.com/spicetify/tiers/supporter.svg?avatarHeight=36"
+              alt="Open Collective supporters"
+              loading="lazy"
+              width="200"
+              height="36"
+            />
+          </a>
+        </div>
+        <div class="supporter-block">
+          <p class="supporters-label">GitHub Sponsors</p>
+          <a
+            href="https://github.com/sponsors/spicetify"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sponsor-button"
+          >
+            <GitHubIcon size={16} />
+            Sponsor on GitHub
+          </a>
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -131,6 +151,42 @@ const year = new Date().getFullYear();
     font-weight: 500;
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
+  }
+
+  .footer-column--supporters {
+    min-width: 0;
+  }
+
+  .supporters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .supporter-block {
+    min-width: 0;
+  }
+
+  .sponsor-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 36px;
+    padding: 0 0.85rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #e3e3e3;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .sponsor-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
   }
 
   .footer-bottom {
