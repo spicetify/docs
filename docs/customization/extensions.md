@@ -242,4 +242,4 @@ spicetify apply
 
 ## Creating Extensions
 
-Want to build your own extension? See the **[Development Guide](/docs/development)** and **[Spicetify Creator](/docs/development/spicetify-creator)** for tools and tutorials.
+Want to build your own extension? See the **[Development Guide](/docs/development)** and **[Spicetify Creator](/docs/development/spicetify-creator/the-basics)** for tools and tutorials.

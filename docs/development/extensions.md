@@ -15,7 +15,7 @@ Extensions are JavaScript files that run alongside Spotify's main code. They can
 └── ...
 ```
 
-Extensions are single JavaScript files. For complex extensions with multiple files, use [Spicetify Creator](/docs/development/spicetify-creator).
+Extensions are single JavaScript files. For complex extensions with multiple files, use [Spicetify Creator](/docs/development/spicetify-creator/the-basics).
 
 ## Getting Started
 
@@ -218,7 +218,7 @@ Spicetify.PopupModal.display({
 
 ## Spicetify Creator
 
-For a better development experience with TypeScript, JSX, and hot reloading, use **[Spicetify Creator](/docs/development/spicetify-creator)**.
+For a better development experience with TypeScript, JSX, and hot reloading, use **[Spicetify Creator](/docs/development/spicetify-creator/the-basics)**.
 
 ```bash
 npx spicetify-creator
@@ -283,6 +283,6 @@ To share your extension:
 ## Resources
 
 - **[API Wrapper Reference](/docs/development/api-wrapper)**: Complete API documentation
-- **[Spicetify Creator](/docs/development/spicetify-creator)**: TypeScript development tool
+- **[Spicetify Creator](/docs/development/spicetify-creator/the-basics)**: TypeScript development tool
 - **[Built-in Extensions](https://github.com/spicetify/cli/tree/main/Extensions)**: Reference implementations
 - **[Marketplace Extensions](https://github.com/spicetify/marketplace)**: Community examples
