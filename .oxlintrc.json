@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {},
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "**/.astro/**",
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/*.css"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.astro", "**/*.svelte", "**/*.vue"],
+      "rules": {
+        "no-unused-vars": "off",
+        "typescript/no-unused-vars": "off"
+      }
+    }
+  ]
+}
