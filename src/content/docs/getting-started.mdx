@@ -202,6 +202,18 @@ When setting config values, use the full absolute path (e.g., `/home/username/..
 </details>
 
 <details>
+<summary>Spotify from APT</summary>
+
+Grant write permissions to Spotify's directory:
+
+```bash
+sudo chmod a+wr /usr/share/spotify
+sudo chmod a+wr /usr/share/spotify/Apps -R
+```
+
+</details>
+
+<details>
 <summary>Spotify from Snap</summary>
 
 Snap apps cannot be modified. You'll need to switch to the apt version:
