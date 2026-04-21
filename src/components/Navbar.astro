@@ -157,6 +157,10 @@ const isBlogActive = currentPath.startsWith('/blog');
       const current = document.documentElement.dataset.theme;
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.dataset.theme = next;
+      document.documentElement.style.colorScheme = next;
+      document.documentElement.style.backgroundColor = getComputedStyle(
+        document.body
+      ).backgroundColor;
       localStorage.setItem('theme', next);
     });
   }
