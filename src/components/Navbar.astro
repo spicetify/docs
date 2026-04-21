@@ -156,7 +156,11 @@ const isBlogActive = currentPath.startsWith('/blog');
     toggle?.addEventListener('click', () => {
       const current = document.documentElement.dataset.theme;
       const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.dataset.theme = next;
+      if (window.__setTheme) {
+        window.__setTheme(next);
+      } else {
+        document.documentElement.dataset.theme = next;
+      }
       localStorage.setItem('theme', next);
     });
   }

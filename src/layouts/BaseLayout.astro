@@ -29,6 +29,13 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
     <title>{fullTitle}</title>
     <SEO title={title} description={description} image={image} type={type} />
     <script is:inline>
+      const applyTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.documentElement.style.backgroundColor =
+          theme === 'dark' ? '#1b1b1d' : '#ffffff';
+      };
+      window.__setTheme = applyTheme;
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -38,7 +45,7 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
         }
         return 'light';
       })();
-      document.documentElement.dataset.theme = theme;
+      applyTheme(theme);
     </script>
   </head>
   <body>
