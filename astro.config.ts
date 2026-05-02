@@ -11,6 +11,10 @@ import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs';
 export default defineConfig({
   site: 'https://spicetify.app',
   trailingSlash: 'never',
+  // `<ClientRouter />` defaults to prefetch-all links, which spams fetches and can make
+  // the tab title / URL bar look like they’re constantly updating. Opt out; navigations
+  // are still client-side on click.
+  prefetch: false,
   build: {
     format: 'file',
   },
