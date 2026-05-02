@@ -151,37 +151,49 @@ const isBlogActive = currentPath.startsWith('/blog');
 </header>
 
 <script>
-  function setupThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    toggle?.addEventListener('click', () => {
-      const current = document.documentElement.dataset.theme;
-      const next = current === 'dark' ? 'light' : 'dark';
-      if (window.__setTheme) {
-        window.__setTheme(next);
-      } else {
-        document.documentElement.dataset.theme = next;
-      }
-      localStorage.setItem('theme', next);
-    });
+  let navListenersAbort = new AbortController();
+
+  function setupNavbarInteractions() {
+    navListenersAbort.abort();
+    navListenersAbort = new AbortController();
+    const { signal } = navListenersAbort;
+
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle?.addEventListener(
+      'click',
+      () => {
+        const current = document.documentElement.dataset.theme;
+        const next = current === 'dark' ? 'light' : 'dark';
+        if (window.__setTheme) {
+          window.__setTheme(next);
+        } else {
+          document.documentElement.dataset.theme = next;
+        }
+        localStorage.setItem('theme', next);
+      },
+      { signal },
+    );
+
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    menuToggle?.addEventListener(
+      'click',
+      () => {
+        const sidebar = document.querySelector('.docs-sidebar');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!expanded));
+        if (sidebar) {
+          sidebar.classList.toggle('open');
+        } else if (mobileNav) {
+          mobileNav.classList.toggle('open');
+        }
+      },
+      { signal },
+    );
   }
 
-  function setupMobileMenu() {
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    toggle?.addEventListener('click', () => {
-      const sidebar = document.querySelector('.docs-sidebar');
-      const mobileNav = document.querySelector('.mobile-nav');
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      if (sidebar) {
-        sidebar.classList.toggle('open');
-      } else if (mobileNav) {
-        mobileNav.classList.toggle('open');
-      }
-    });
-  }
-
-  setupThemeToggle();
-  setupMobileMenu();
+  setupNavbarInteractions();
+  document.addEventListener('astro:page-load', setupNavbarInteractions);
 </script>
 
 <style>

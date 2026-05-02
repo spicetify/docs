@@ -66,6 +66,11 @@ type Props = {};
 
 <script is:inline>
   (function () {
+    function bindInstallSection() {
+      var root = document.querySelector('.install-section');
+      if (!root || root.dataset.interactiveInit) return;
+      root.dataset.interactiveInit = '1';
+
     function setupInstallTabs() {
       var tabs = Array.from(document.querySelectorAll('.install-tab'));
       var panels = document.querySelectorAll('.install-panel');
@@ -164,6 +169,10 @@ type Props = {};
 
     setupInstallTabs();
     setupCopyButton();
+    }
+
+    document.addEventListener('astro:page-load', bindInstallSection);
+    bindInstallSection();
   })();
 </script>
 

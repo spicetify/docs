@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import SEO from '../components/SEO.astro';
@@ -63,6 +64,9 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
           applyTheme(resolveTheme());
         }
       });
+      document.addEventListener('astro:after-swap', () => {
+        applyTheme(resolveTheme());
+      });
     </script>
     <style is:inline>
       /* Beat UA default body background until global CSS loads */
@@ -79,6 +83,7 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" />
     <title>{fullTitle}</title>
     <SEO title={title} description={description} image={image} type={type} />
+    <ClientRouter />
   </head>
   <body>
     <a href="#main-content" class="skip-to-content">Skip to content</a>

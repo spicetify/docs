@@ -29,51 +29,72 @@
 </div>
 
 <script is:inline>
-  function setupSearch() {
-    const modal = document.getElementById('search-modal');
-    const input = document.getElementById('search-input');
-    const resultsContainer = document.getElementById('search-results');
-    const backdrop = modal?.querySelector('.search-backdrop');
-    let pagefind = null;
-    let pagefindLoading = null;
-    let debounceTimer;
-    let searchCounter = 0;
+  /* One-time document listeners: survives Astro client navigations (body swap)
+     where this inline script would not run again. */
+  (function () {
+    if (window.__spicetifySearchInit) return;
+    window.__spicetifySearchInit = true;
+
+    var pagefind = null;
+    var pagefindLoading = null;
+    var debounceTimer;
+    var searchCounter = 0;
+
+    function getEls() {
+      return {
+        modal: document.getElementById('search-modal'),
+        input: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+      };
+    }
 
     async function loadPagefind() {
       if (pagefind) return pagefind;
       if (pagefindLoading) return pagefindLoading;
       pagefindLoading = import(/* @vite-ignore */ '/pagefind/pagefind.js')
-        .then(function(pf) { return pf.init().then(function() { pagefind = pf; return pf; }); })
-        .catch(function() { pagefindLoading = null; return null; });
+        .then(function (pf) {
+          return pf.init().then(function () {
+            pagefind = pf;
+            return pf;
+          });
+        })
+        .catch(function () {
+          pagefindLoading = null;
+          return null;
+        });
       return pagefindLoading;
     }
 
     function openModal() {
-      if (!modal) return;
-      modal.setAttribute('aria-hidden', 'false');
+      var els = getEls();
+      if (!els.modal) return;
+      els.modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      input?.focus();
+      els.input?.focus();
       loadPagefind();
     }
 
     function closeModal() {
-      if (!modal) return;
-      modal.setAttribute('aria-hidden', 'true');
+      var els = getEls();
+      if (!els.modal) return;
+      els.modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       clearTimeout(debounceTimer);
       searchCounter++;
-      if (input) input.value = '';
-      if (resultsContainer) resultsContainer.innerHTML = '';
+      if (els.input) els.input.value = '';
+      if (els.resultsContainer) els.resultsContainer.innerHTML = '';
     }
 
     function isOpen() {
-      return modal?.getAttribute('aria-hidden') === 'false';
+      return getEls().modal?.getAttribute('aria-hidden') === 'false';
     }
 
     async function performSearch(query) {
-      if (!resultsContainer) return;
+      var els = getEls();
+      if (!els.resultsContainer) return;
       if (!query.trim()) {
-        resultsContainer.innerHTML = '<div class="search-empty">Start typing to search...</div>';
+        els.resultsContainer.innerHTML =
+          '<div class="search-empty">Start typing to search...</div>';
         return;
       }
 
@@ -81,7 +102,8 @@
 
       var pf = await loadPagefind();
       if (!pf) {
-        resultsContainer.innerHTML = '<div class="search-empty">Search unavailable</div>';
+        els.resultsContainer.innerHTML =
+          '<div class="search-empty">Search unavailable</div>';
         return;
       }
 
@@ -89,17 +111,20 @@
       if (thisSearch !== searchCounter) return;
 
       if (search.results.length === 0) {
-        resultsContainer.innerHTML = '<div class="search-empty">No results found</div>';
+        els.resultsContainer.innerHTML =
+          '<div class="search-empty">No results found</div>';
         return;
       }
 
       var items = await Promise.all(
-        search.results.slice(0, 10).map(function(r) { return r.data(); }),
+        search.results.slice(0, 10).map(function (r) {
+          return r.data();
+        }),
       );
       if (thisSearch !== searchCounter) return;
 
-      resultsContainer.innerHTML = '';
-      items.forEach(function(item) {
+      els.resultsContainer.innerHTML = '';
+      items.forEach(function (item) {
         var url = item.url.replace(/\.html$/, '');
         var link = document.createElement('a');
         link.href = url;
@@ -116,70 +141,77 @@
         excerptEl.innerHTML = item.excerpt;
         link.appendChild(excerptEl);
 
-        resultsContainer.appendChild(link);
+        els.resultsContainer.appendChild(link);
       });
     }
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        if (isOpen()) {
-          closeModal();
-        } else {
-          openModal();
-        }
+        if (isOpen()) closeModal();
+        else openModal();
       }
-      if (e.key === 'Escape' && isOpen()) {
+      if (e.key === 'Escape' && isOpen()) closeModal();
+    });
+
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t && t.closest && t.closest('[data-search-trigger]')) {
+        e.preventDefault();
+        openModal();
+        return;
+      }
+      if (t && t.closest && t.closest('.search-backdrop')) {
         closeModal();
       }
     });
 
-    backdrop?.addEventListener('click', closeModal);
-
-    input?.addEventListener('input', () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        performSearch(input.value);
-      }, 200);
+    document.addEventListener('input', function (e) {
+      if (e.target && e.target.id === 'search-input') {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          performSearch(e.target.value);
+        }, 200);
+      }
     });
 
-    input?.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    document.addEventListener('keydown', function (e) {
+      var els = getEls();
+      if (e.target === els.input && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
         e.preventDefault();
-        const results = resultsContainer?.querySelectorAll('.search-result');
+        var results = els.resultsContainer?.querySelectorAll('.search-result');
         if (!results?.length) return;
-        const focused = resultsContainer?.querySelector('.search-result:focus');
-        let index = focused ? Array.from(results).indexOf(focused) : -1;
+        var focused = els.resultsContainer?.querySelector('.search-result:focus');
+        var index = focused ? Array.from(results).indexOf(focused) : -1;
         if (e.key === 'ArrowDown') index = Math.min(index + 1, results.length - 1);
         else index = Math.max(index - 1, 0);
         results[index].focus();
+        return;
       }
-    });
 
-    resultsContainer?.addEventListener('keydown', (e) => {
-      const target = e.target;
-      if (e.key === 'Enter' && target.classList.contains('search-result')) {
-        target.click();
-      }
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const results = resultsContainer.querySelectorAll('.search-result');
-        const index = Array.from(results).indexOf(target);
-        if (e.key === 'ArrowDown' && index < results.length - 1) {
-          results[index + 1].focus();
-        } else if (e.key === 'ArrowUp') {
-          if (index === 0) input?.focus();
-          else results[index - 1].focus();
+      if (
+        e.target &&
+        e.target.classList &&
+        e.target.classList.contains('search-result')
+      ) {
+        if (e.key === 'Enter') {
+          e.target.click();
+        }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!els.resultsContainer) return;
+          var res = els.resultsContainer.querySelectorAll('.search-result');
+          var idx = Array.from(res).indexOf(e.target);
+          if (e.key === 'ArrowDown' && idx < res.length - 1) {
+            res[idx + 1].focus();
+          } else if (e.key === 'ArrowUp') {
+            if (idx === 0) els.input?.focus();
+            else res[idx - 1].focus();
+          }
         }
       }
     });
-
-    document.querySelectorAll('[data-search-trigger]').forEach((btn) => {
-      btn.addEventListener('click', openModal);
-    });
-  }
-
-  setupSearch();
+  })();
 </script>
 
 <style>

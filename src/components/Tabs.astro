@@ -109,4 +109,5 @@ const { groupId } = Astro.props;
   }
 
   initTabs();
+  document.addEventListener('astro:page-load', initTabs);
 </script>
