@@ -162,8 +162,16 @@ type Props = {};
       });
     }
 
-    setupInstallTabs();
-    setupCopyButton();
+    function bindInstallSection() {
+      var root = document.querySelector('.install-section');
+      if (!root || root.dataset.interactiveInit) return;
+      root.dataset.interactiveInit = '1';
+      setupInstallTabs();
+      setupCopyButton();
+    }
+
+    document.addEventListener('astro:page-load', bindInstallSection);
+    bindInstallSection();
   })();
 </script>
 

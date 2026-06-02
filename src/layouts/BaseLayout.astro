@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import SEO from '../components/SEO.astro';
@@ -22,31 +23,83 @@ const fullTitle = title === 'Spicetify' ? title : `${title} | Spicetify`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Theme must run before any render-blocking stylesheets (e.g. fonts) or the
+         page can paint once with the UA / :root light palette before data-theme is set. -->
+    <script is:inline>
+      const applyTheme = (theme) => {
+        const t = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+        document.documentElement.style.colorScheme = t;
+        const bg = t === 'dark' ? '#1b1b1d' : '#ffffff';
+        document.documentElement.style.backgroundColor = bg;
+        if (document.body) {
+          document.body.style.backgroundColor = bg;
+        }
+      };
+      window.__setTheme = applyTheme;
+      const resolveTheme = () => {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') {
+            return stored;
+          }
+        } catch {
+          /* private mode / disabled storage */
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      };
+      applyTheme(resolveTheme());
+      document.addEventListener(
+        'DOMContentLoaded',
+        () => {
+          applyTheme(resolveTheme());
+        },
+        { once: true },
+      );
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+          applyTheme(resolveTheme());
+        }
+      });
+      document.addEventListener('astro:after-swap', () => {
+        applyTheme(resolveTheme());
+      });
+    </script>
+    <script>
+      // Carry the docs sidebar scroll offset across client-side navigations. The
+      // sidebar still re-renders each nav (so the active link stays correct); only
+      // its scroll position would otherwise reset to the top on every click.
+      let docsSidebarScroll = 0;
+      document.addEventListener('astro:before-swap', () => {
+        const sidebar = document.querySelector('.docs-sidebar');
+        docsSidebarScroll = sidebar ? sidebar.scrollTop : 0;
+      });
+      document.addEventListener('astro:after-swap', () => {
+        const sidebar = document.querySelector('.docs-sidebar');
+        if (sidebar) {
+          sidebar.scrollTop = docsSidebarScroll;
+        }
+      });
+    </script>
+    <style is:inline>
+      /* Beat UA default body background until global CSS loads */
+      html[data-theme='dark'] body {
+        background-color: #1b1b1d;
+      }
+      html[data-theme='light'] body {
+        background-color: #ffffff;
+      }
+    </style>
     <link rel="icon" href="/images/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" />
     <title>{fullTitle}</title>
     <SEO title={title} description={description} image={image} type={type} />
-    <script is:inline>
-      const applyTheme = (theme) => {
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-        document.documentElement.style.backgroundColor =
-          theme === 'dark' ? '#1b1b1d' : '#ffffff';
-      };
-      window.__setTheme = applyTheme;
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
-      })();
-      applyTheme(theme);
-    </script>
+    <ClientRouter />
   </head>
   <body>
     <a href="#main-content" class="skip-to-content">Skip to content</a>
