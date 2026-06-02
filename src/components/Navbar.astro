@@ -169,7 +169,11 @@ const isBlogActive = currentPath.startsWith('/blog');
         } else {
           document.documentElement.dataset.theme = next;
         }
-        localStorage.setItem('theme', next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch {
+          /* private mode / disabled storage */
+        }
       },
       { signal },
     );
