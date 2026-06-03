@@ -54,7 +54,7 @@ const isBlogActive = currentPath.startsWith('/blog');
         data-search-trigger
         class="search-trigger"
         aria-label="Search"
-        title="Search (Cmd+K)"
+        title="Search (Ctrl+K)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -69,9 +69,7 @@ const isBlogActive = currentPath.startsWith('/blog');
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
         <span class="search-label">Search</span>
-        <kbd>
-          <span class="kbd-meta">&#8984;</span>K
-        </kbd>
+        <kbd data-search-shortcut>Ctrl+K</kbd>
       </button>
       <button
         id="theme-toggle"
@@ -194,6 +192,16 @@ const isBlogActive = currentPath.startsWith('/blog');
       },
       { signal },
     );
+
+    const searchTrigger = document.querySelector('[data-search-trigger]');
+    const searchShortcut = searchTrigger?.querySelector('[data-search-shortcut]');
+    const platform = navigator.userAgentData?.platform || navigator.platform || '';
+    const isApplePlatform = /Mac|iPhone|iPad|iPod/.test(platform);
+    const shortcutLabel = isApplePlatform ? '⌘K' : 'Ctrl+K';
+    searchTrigger?.setAttribute('title', `Search (${shortcutLabel})`);
+    if (searchShortcut) {
+      searchShortcut.textContent = shortcutLabel;
+    }
   }
 
   setupNavbarInteractions();
@@ -318,10 +326,6 @@ const isBlogActive = currentPath.startsWith('/blog');
     border-radius: 4px;
     font-family: var(--font-sans);
     line-height: 1.4;
-  }
-
-  .kbd-meta {
-    font-size: 0.8rem;
   }
 
   .github-link {
