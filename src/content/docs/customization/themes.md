@@ -9,7 +9,7 @@ Themes let you customize Spotify's colors, fonts, and visual styling. From subtl
 
 ### Via Marketplace
 
-The easiest way to install themes is through the **[Marketplace](./marketplace.md)**. Open Marketplace from Spotify's sidebar and browse the Themes tab.
+The easiest way to install themes is through the **[Marketplace](./marketplace)**. Open Marketplace from Spotify's sidebar and browse the Themes tab.
 
 ### Manual Installation
 
