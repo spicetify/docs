@@ -1,4 +1,4 @@
----
+https://open.spotify.com/playlist/3ep2sYjWX1oj59XokDcOMZ?si=eH69M4hcQWKtMJkikhereg---
 title: Custom Apps
 description: Add new pages to Spotify's sidebar with custom apps.
 ---
