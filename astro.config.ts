@@ -31,5 +31,15 @@ export default defineConfig({
   ],
   redirects: {
     '/docs/blog/authors': '/blog',
+    // Preserve the URL equity of the pre-2026 Docusaurus information
+    // architecture. These pages moved rather than disappeared.
+    '/docs/advanced-usage': '/docs/customization',
+    '/docs/advanced-usage/installation': '/docs/getting-started',
+    '/docs/advanced-usage/uninstallation': '/docs/uninstallation',
+    '/docs/advanced-usage/command-line-interface': '/docs/cli',
+    '/docs/advanced-usage/themes': '/docs/customization/themes',
+    '/docs/advanced-usage/extensions': '/docs/customization/extensions',
+    '/docs/advanced-usage/custom-apps': '/docs/customization/custom-apps',
+    '/docs/customization/marketplace.md': '/docs/customization/marketplace',
   },
 });
