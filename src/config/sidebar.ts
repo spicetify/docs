@@ -7,18 +7,15 @@ export interface SidebarItem {
 
 export const sidebar: SidebarItem[] = [
   { label: 'Getting Started', href: '/docs/getting-started' },
+  { label: 'What Changes in v3', href: '/docs/whats-new' },
   {
-    label: 'Customization',
-    href: '/docs/customization',
+    label: 'Modules & the Store',
+    href: '/docs/modules',
     collapsed: false,
     items: [
-      { label: 'Marketplace', href: '/docs/customization/marketplace' },
-      { label: 'Themes', href: '/docs/customization/themes' },
-      { label: 'Extensions', href: '/docs/customization/extensions' },
-      { label: 'Custom Apps', href: '/docs/customization/custom-apps' },
       {
         label: 'Configuration Reference',
-        href: '/docs/customization/config-file',
+        href: '/docs/modules/config-file',
       },
     ],
   },
@@ -31,36 +28,16 @@ export const sidebar: SidebarItem[] = [
     label: 'Development',
     href: '/docs/development',
     items: [
+      {
+        label: 'Building a Module',
+        href: '/docs/development/building-a-module',
+      },
+      { label: 'Publishing a Module', href: '/docs/development/publishing' },
       { label: 'Compiling', href: '/docs/development/compiling' },
-      { label: 'Themes', href: '/docs/development/themes' },
-      { label: 'Extensions', href: '/docs/development/extensions' },
-      { label: 'Custom Apps', href: '/docs/development/custom-apps' },
-      { label: 'JS Modules', href: '/docs/development/js-modules' },
       { label: 'React DevTools', href: '/docs/development/react-devtools' },
       {
         label: 'Spotify CLI Flags',
         href: '/docs/development/spotify-cli-flags',
-      },
-      {
-        label: 'Spicetify Creator',
-        items: [
-          {
-            label: 'The Basics',
-            href: '/docs/development/spicetify-creator/the-basics',
-          },
-          {
-            label: 'Create Extensions',
-            href: '/docs/development/spicetify-creator/create-extensions',
-          },
-          {
-            label: 'Create Custom Apps',
-            href: '/docs/development/spicetify-creator/create-custom-apps',
-          },
-          {
-            label: 'Building & Testing',
-            href: '/docs/development/spicetify-creator/building-and-testing',
-          },
-        ],
       },
       {
         label: 'API Wrapper',
@@ -367,8 +344,79 @@ export const sidebar: SidebarItem[] = [
       },
     ],
   },
-  { label: 'FAQ', href: '/docs/faq' },
   { label: 'Uninstallation', href: '/docs/uninstallation' },
+  { label: 'FAQ', href: '/docs/faq' },
+  {
+    label: 'Spicetify v2 (legacy)',
+    href: '/docs/legacy',
+    collapsed: true,
+    items: [
+      { label: 'Getting Started', href: '/docs/legacy/getting-started' },
+      {
+        label: 'Customization',
+        href: '/docs/legacy/customization',
+        items: [
+          {
+            label: 'Marketplace',
+            href: '/docs/legacy/customization/marketplace',
+          },
+          { label: 'Themes', href: '/docs/legacy/customization/themes' },
+          {
+            label: 'Extensions',
+            href: '/docs/legacy/customization/extensions',
+          },
+          {
+            label: 'Custom Apps',
+            href: '/docs/legacy/customization/custom-apps',
+          },
+          {
+            label: 'Configuration Reference',
+            href: '/docs/legacy/customization/config-file',
+          },
+        ],
+      },
+      {
+        label: 'CLI Reference',
+        href: '/docs/legacy/cli',
+        items: [{ label: 'Commands', href: '/docs/legacy/cli/commands' }],
+      },
+      {
+        label: 'Development',
+        items: [
+          { label: 'Themes', href: '/docs/legacy/development/themes' },
+          { label: 'Extensions', href: '/docs/legacy/development/extensions' },
+          {
+            label: 'Custom Apps',
+            href: '/docs/legacy/development/custom-apps',
+          },
+          { label: 'JS Modules', href: '/docs/legacy/development/js-modules' },
+          {
+            label: 'Spicetify Creator',
+            items: [
+              {
+                label: 'The Basics',
+                href: '/docs/legacy/spicetify-creator/the-basics',
+              },
+              {
+                label: 'Create Extensions',
+                href: '/docs/legacy/spicetify-creator/create-extensions',
+              },
+              {
+                label: 'Create Custom Apps',
+                href: '/docs/legacy/spicetify-creator/create-custom-apps',
+              },
+              {
+                label: 'Building & Testing',
+                href: '/docs/legacy/spicetify-creator/building-and-testing',
+              },
+            ],
+          },
+        ],
+      },
+      { label: 'Uninstallation', href: '/docs/legacy/uninstallation' },
+      { label: 'FAQ', href: '/docs/legacy/faq' },
+    ],
+  },
 ];
 
 /** Flatten sidebar into ordered list of hrefs for prev/next navigation */

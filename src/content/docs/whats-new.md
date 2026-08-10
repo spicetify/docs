@@ -1,0 +1,87 @@
+---
+title: What changes in v3
+description: How Spicetify v3 differs from v2, and what to do with an existing v2 install.
+sidebar_position: 2
+---
+
+v3 is a different model, not a faster v2. The short version: one kind of add-on instead of four, a store inside Spotify instead of a CLI-only flow, and a client that repairs itself after Spotify updates.
+
+---
+
+## Modules replace themes, extensions, custom apps and snippets
+
+In v2 you managed four things in four ways: a theme folder, an extension `.js`, a custom app directory, and CSS snippets, each wired up through `config-xpui.ini` and re-applied by hand.
+
+In v3 all four are the same thing, a **module**: a directory with a `metadata.json`, optionally some JavaScript, optionally some CSS, and a declared dependency on the standard library. One format, one install path, one lifecycle. A module can add a button, register a whole route, restyle the client, or all three.
+
+What that buys you: modules load and unload at runtime, so most installs take effect without restarting Spotify, and a module that fails is contained instead of taking the client with it.
+
+---
+
+## A store inside Spotify
+
+The [Marketplace](/docs/legacy/customization/marketplace) was a custom app you installed separately. In v3 the store ships with Spicetify and is the normal way to find and install things, with the CLI (`spicetify pkg`) as the equivalent path for people who prefer a terminal.
+
+Every module in the store comes from one registry, and every entry in it was checked before it merged: the artifact is downloaded and re-hashed, published versions can never be rewritten, and a module id stays with the account that first published it. Installs verify the checksum before unpacking.
+
+---
+
+## Spotify updates stop breaking things
+
+In v2, Spotify updating itself left you with a stock client until you re-ran `spicetify backup apply`, and often waiting for a new Spicetify release that understood the new build.
+
+v3 installs a small daemon that notices the update and re-applies afterwards. Support for a new Spotify build no longer needs a new Spicetify release either: the mapping between Spicetify and Spotify's internals is fetched per apply, so a new client version usually just works. When something genuinely is not supported yet, the client says which part is degraded rather than looking silently wrong.
+
+---
+
+## Going back is cheap
+
+Installed versions are kept side by side. If an update misbehaves:
+
+```bash
+spicetify pkg enable my-module@1.2.0
+spicetify apply
+```
+
+No hunting for an old download.
+
+---
+
+## Command changes
+
+| v2 | v3 |
+| --- | --- |
+| `spicetify backup apply` | `spicetify apply` |
+| `spicetify restore backup apply` | `spicetify apply` |
+| `spicetify update` | `spicetify self-update` |
+| `spicetify upgrade` | `spicetify self-update` |
+| `spicetify config <key> <value>` | edit `config.toml` |
+| `spicetify config-dir` | `spicetify config open` |
+| `spicetify enable-devtools` | `spicetify dev` |
+| `spicetify watch` | `spicetify-kit dev <module>` |
+| `spicetify auto` | not needed; the daemon re-applies |
+| Marketplace | the built-in store, or `spicetify pkg` |
+
+`spicetify restore` still restores stock Spotify, and `spicetify path` still prints where things live.
+
+---
+
+## Upgrading from v2
+
+v3 is a reinstall, not an in-place upgrade, and the two must never share a client.
+
+1. **Restore with v2 first.** Run `spicetify restore` with the v2 binary you have installed. This matters: v2 consumes `xpui.spa` while v3 renames it, so v3 cannot undo a v2 apply and vice versa.
+2. **Install v3** ([getting started](/docs/getting-started)).
+3. **Apply**: `spicetify apply`.
+4. **Reinstall what you had** from the store. Your v2 themes and extensions do not carry over: they are a different format, and most popular ones already exist as modules.
+
+Your v2 config (`config-xpui.ini`) is left alone. v3 reads `config.toml` and ignores it, so nothing is lost if you go back.
+
+---
+
+## What is not in v3 yet
+
+- **Source transforms.** v2 extensions that rewrote the client bundle are off by default; features built on that degrade.
+- **Spicetify Creator.** Superseded by [`spicetify-kit`](/docs/development/building-a-module). The [old guides](/docs/legacy/spicetify-creator/the-basics) stay for v2.
+
+The [v2 documentation](/docs/legacy) remains available for as long as v2 is the released binary.

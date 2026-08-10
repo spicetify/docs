@@ -3,6 +3,12 @@ title: GraphQL
 description: GraphQL API Wrapper
 ---
 
+:::warning
+`Spicetify.GraphQL.Definitions` is empty in Spicetify v3, verified against a running client. v2 filled it by scanning the client bundle for query definitions; the v3 wrapper initialises it empty and nothing populates it, so the `const { someQuery } = Spicetify.GraphQL.Definitions` pattern below yields `undefined`.
+
+`Context`, `Handler` and `Request` are all present, so a definition you hold yourself still works. Until definitions are captured again, get the data through a native `Spicetify.Platform.*API` where one exists.
+:::
+
 GraphQL API Wrapper used throughout the Spotify client. It is used to communicate with their GraphQL API endpoints for tailored operations such as fetching data, or making mutations.
 
 :::caution
