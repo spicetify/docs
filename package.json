@@ -45,7 +45,7 @@
       "oxlint --fix",
       "oxfmt"
     ],
-    "*.{json,jsonc,json5,md,mdx,yaml,yml,html}": "oxfmt"
+    "*.{json,jsonc,json5}": "oxfmt"
   },
   "browserslist": {
     "production": [
