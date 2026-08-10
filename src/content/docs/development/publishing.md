@@ -33,7 +33,7 @@ Your `metadata.json` needs four things the registry will not accept an entry wit
 Call the publish action from your own release workflow instead:
 
 ```yaml
-- uses: spicetify/modules/.github/actions/submit@main
+- uses: spicetify/actions/publish@v1
   with:
     dist: dist/my-module@1.0.0
     release-tag: ${{ github.ref_name }}
