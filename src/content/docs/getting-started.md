@@ -8,14 +8,10 @@ Spicetify customizes the official Spotify desktop client. v3 is a rewrite: every
 
 If you are coming from v2, read [what changes in v3](/docs/whats-new) first: it is a reinstall rather than an upgrade, and the two must not share a client.
 
----
-
 ## Requirements
 
 - The official Spotify desktop client, from Spotify's own installer. Sandboxed builds (Microsoft Store, Snap, Flatpak) hide the files Spicetify has to patch.
 - If Spotify is a fresh install, open it and log in for a minute before running Spicetify, so it writes the files that get patched.
-
----
 
 ## Install
 
@@ -66,8 +62,6 @@ spicetify self-update
 
 Downloads are checksum-verified. If you installed through a package manager, update through that instead.
 
----
-
 ## Apply
 
 ```bash
@@ -76,13 +70,13 @@ spicetify apply
 
 That is the whole setup. `apply` stops Spotify, patches the client, installs and starts the background daemon, registers the `spicetify://` handler, and starts Spotify again.
 
+On a fresh install it also downloads the store and the standard library from the registry, so the store is waiting in your sidebar the first time Spotify reopens. Nothing to install by hand.
+
 There is no separate backup step. v3 renames Spotify's own `xpui.spa` to `xpui.spa.backup` in place, and that rename **is** the backup, which is why `spicetify restore` needs nothing from you.
 
 :::warning
 Never point the v2 (Go) and v3 (Rust) binaries at the same client. They keep their backups differently, and running one over the other's state corrupts the install. Both detect a foreign apply and refuse, but restore with the same CLI that applied before switching.
 :::
-
----
 
 ## Add your first module
 
@@ -91,16 +85,14 @@ Open Spotify and click **Module Store** in the sidebar. Browse, click install, a
 From the terminal instead:
 
 ```bash
-spicetify pkg install trashbin
-spicetify pkg enable trashbin@0.2.0
+spicetify pkg install trashbin        # prints the version it unpacked
+spicetify pkg enable trashbin@<version>
 spicetify apply
 ```
 
 :::warning
-Installing does not enable. `pkg install` unpacks the module, `pkg enable` is what points the client at it, and `apply` stages it. An install with no enable sits on disk doing nothing.
+Installing does not enable. `pkg install` unpacks the module and prints its version, `pkg enable` points the client at that version, and `apply` stages it. An install with no enable sits on disk doing nothing.
 :::
-
----
 
 ## Keeping it working
 
@@ -120,8 +112,6 @@ To keep Spotify on the build you have:
 spicetify spotify-updates block
 ```
 
----
-
 ## Where things live
 
 ```bash
@@ -129,8 +119,6 @@ spicetify path
 ```
 
 Configuration lives in `config.toml` under Spicetify's config folder, with `modules/` and `store/` beside it. `spicetify config open` opens that folder.
-
----
 
 ## Next
 

@@ -6,8 +6,6 @@ sidebar_position: 2
 
 v3 is a different model, not a faster v2. The short version: one kind of add-on instead of four, a store inside Spotify instead of a CLI-only flow, and a client that repairs itself after Spotify updates.
 
----
-
 ## Modules replace themes, extensions, custom apps and snippets
 
 In v2 you managed four things in four ways: a theme folder, an extension `.js`, a custom app directory, and CSS snippets, each wired up through `config-xpui.ini` and re-applied by hand.
@@ -16,23 +14,17 @@ In v3 all four are the same thing, a **module**: a directory with a `metadata.js
 
 What that buys you: modules load and unload at runtime, so most installs take effect without restarting Spotify, and a module that fails is contained instead of taking the client with it.
 
----
-
 ## A store inside Spotify
 
 The [Marketplace](/docs/legacy/customization/marketplace) was a custom app you installed separately. In v3 the store ships with Spicetify and is the normal way to find and install things, with the CLI (`spicetify pkg`) as the equivalent path for people who prefer a terminal.
 
 Every module in the store comes from one registry, and every entry in it was checked before it merged: the artifact is downloaded and re-hashed, published versions can never be rewritten, and a module id stays with the account that first published it. Installs verify the checksum before unpacking.
 
----
-
 ## Spotify updates stop breaking things
 
 In v2, Spotify updating itself left you with a stock client until you re-ran `spicetify backup apply`, and often waiting for a new Spicetify release that understood the new build.
 
 v3 installs a small daemon that notices the update and re-applies afterwards. Support for a new Spotify build no longer needs a new Spicetify release either: the mapping between Spicetify and Spotify's internals is fetched per apply, so a new client version usually just works. When something genuinely is not supported yet, the client says which part is degraded rather than looking silently wrong.
-
----
 
 ## Going back is cheap
 
@@ -44,8 +36,6 @@ spicetify apply
 ```
 
 No hunting for an old download.
-
----
 
 ## Command changes
 
@@ -64,8 +54,6 @@ No hunting for an old download.
 
 `spicetify restore` still restores stock Spotify, and `spicetify path` still prints where things live.
 
----
-
 ## Upgrading from v2
 
 v3 is a reinstall, not an in-place upgrade, and the two must never share a client.
@@ -76,8 +64,6 @@ v3 is a reinstall, not an in-place upgrade, and the two must never share a clien
 4. **Reinstall what you had** from the store. Your v2 themes and extensions do not carry over: they are a different format, and most popular ones already exist as modules.
 
 Your v2 config (`config-xpui.ini`) is left alone. v3 reads `config.toml` and ignores it, so nothing is lost if you go back.
-
----
 
 ## What is not in v3 yet
 

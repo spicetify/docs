@@ -14,8 +14,6 @@ That undoes the patch and returns the stock client. Restore with the same CLI th
 
 If you only wanted to stop a module misbehaving, you do not need any of this: disable it from the store's Installed tab, or `spicetify pkg delete <id>`.
 
----
-
 ## Stop the daemon
 
 ```bash
@@ -24,8 +22,6 @@ spicetify daemon uninstall
 ```
 
 `stop` also unloads the service, so it does not come back on its own. `uninstall` removes it entirely.
-
----
 
 ## Remove the files
 
@@ -41,8 +37,6 @@ On Windows, delete the folder `spicetify path` names.
 If you plan to reinstall, keep the folder. Reinstalling with it intact brings back every module you had, at the versions you had.
 :::
 
----
-
 ## Remove the binary
 
 If you installed with the script, everything lives in one directory:
@@ -54,8 +48,6 @@ rm -rf ~/.spicetify
 Then remove the `PATH` entry the installer added to your shell profile. If you installed through a package manager, uninstall through it instead.
 
 On macOS, `apply` also created `~/Applications/Spicetify.app`, the small bundle that receives `spicetify://` links. Delete it too.
-
----
 
 ## Going back to v2
 

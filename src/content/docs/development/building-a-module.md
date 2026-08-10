@@ -6,8 +6,6 @@ sidebar_position: 2
 
 A module is the one thing you build for Spicetify v3. It can add a button, register a whole page, restyle the client, or all three. This page is the path from nothing to something running in your client; [the module standard](https://github.com/spicetify/modules/blob/main/docs/module-standard.md) is the contract it has to meet.
 
----
-
 ## Scaffold and run
 
 ```bash
@@ -26,8 +24,6 @@ Spicetify.Modules.removeLocal('my-module');
 
 Templates: `--template basic` (a button and a route), `extension` (behaviour only), `app` (a nav entry and a full page), `theme` (CSS only, no TypeScript).
 
----
-
 ## What the scaffold gives you
 
 | File | Role |
@@ -37,8 +33,6 @@ Templates: `--template basic` (a button and a route), `extension` (behaviour onl
 | `mod.tsx` | your module |
 | `logic.ts` | dependency-free logic, unit testable in Node |
 | `index.scss` | styles, adopted as a stylesheet and removed on unload |
-
----
 
 ## The entry point
 
@@ -67,8 +61,6 @@ Two rules that matter more than they look:
 **Undo everything on unload.** Modules load and unload at runtime. The registrar removes what you registered and the stylesheet it adopted; the timers, subscriptions and overlays you created yourself are yours to clear through `ctx.defer`. A module that lingers after a reload is a bug.
 :::
 
----
-
 ## Adding UI
 
 **Buttons** go through `placeButton`, which handles ordering and placement for you:
@@ -96,15 +88,11 @@ registrar.registerRoute(ROUTE, <Page />);
 
 **Settings** rows from every module render together under one Spicetify section in Spotify's own settings page, so a module with a single toggle does not need a page of its own.
 
----
-
 ## The Spicetify global
 
 `Spicetify` is typed and available without importing anything, and it is the same surface v2 extensions used: `Player`, `Platform`, `URI`, `React`, `SVGIcons`, `CosmosAsync`, `GraphQL`, `Menu`, `PopupModal`, `LocalStorage` and the rest. See the [API reference](/docs/development/api-wrapper).
 
 Reach for a native `Platform.*API` before making an HTTP call of your own.
-
----
 
 ## Class names
 
@@ -116,8 +104,6 @@ const cls = MAP.main.topbar.right.button_t.wrapper;
 
 Modules ship with those references intact and the CLI resolves them at apply time against the exact Spotify version installed, which is why one build of your module works on every supported client. `classmap.d.ts` is generated for you, so the paths autocomplete.
 
----
-
 ## Testing
 
 Put anything worth testing in `logic.ts`, free of client imports, and inject the client objects from `mod.tsx`. Then:
@@ -128,8 +114,6 @@ npm run test    # unit tests
 ```
 
 UI is verified live through the dev loop, because JSX and the client's runtime URLs do not resolve in Node.
-
----
 
 ## Build and pack
 
@@ -145,8 +129,6 @@ To sideload a packed build into a running client without publishing:
 ```bash
 spicetify-kit install my-module@1.0.0.zip
 ```
-
----
 
 ## Then publish
 

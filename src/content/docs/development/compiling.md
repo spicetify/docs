@@ -3,7 +3,7 @@ title: Compiling
 description: Build the Spicetify CLI from source.
 ---
 
-v3 is written in Rust. Most people should [install a release](/docs/getting-started); build from source to work on Spicetify itself, or to run it on a platform with no published build.
+v3 is written in Rust. Most people are better off with a [prebuilt release](/docs/getting-started); build from source to work on Spicetify itself, or to run it on a platform with no published build.
 
 ## Requirements
 

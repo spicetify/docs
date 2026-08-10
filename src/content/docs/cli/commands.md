@@ -6,8 +6,6 @@ sidebar_position: 2
 
 Every command accepts the [global options](/docs/cli#global-options), so they are not repeated below. `spicetify <command> --help` is the authority if this page ever falls behind the binary.
 
----
-
 ## Core
 
 ### `apply`
@@ -19,6 +17,8 @@ spicetify apply
 Patches Spotify. This is the whole setup on a fresh install, and the fix for almost anything that looks wrong afterwards.
 
 It stops Spotify, unpacks the client, renames Spotify's own archive to `xpui.spa.backup` (that rename is the backup), injects Spicetify's payload, fetches the mapping for your exact Spotify version, stages every enabled module, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify again.
+
+On a fresh install, where no modules are present yet, it first seeds the standard library and the store from the registry, so the client can manage itself instead of booting empty. Once they exist, the store updates them, and this step does nothing.
 
 Safe to run repeatedly. If the fetch for a new Spotify version fails, whatever is already cached still applies, so `apply` works offline.
 
@@ -45,8 +45,6 @@ spicetify init [--yes]
 ```
 
 Writes a fresh `config.toml` from what it detects, and **deletes `hooks/`, `modules/` and `store/`**, so every installed module goes with it. It asks first unless you pass `--yes`. This is a clean slate, not a repair.
-
----
 
 ## Modules
 
@@ -87,8 +85,6 @@ spicetify pkg delete <id>
 
 Removes the module and its store entry.
 
----
-
 ## Configuration
 
 ### `config`
@@ -118,8 +114,6 @@ spicetify support
 
 Prints diagnostics to paste into a bug report. Start here before opening an issue.
 
----
-
 ## Daemon
 
 The daemon is what re-applies Spicetify after Spotify updates itself, and it serves the local proxy the client uses for hosts it cannot fetch directly. `apply` installs and starts it unless `daemon = false` in your config.
@@ -134,8 +128,6 @@ spicetify daemon uninstall   # remove it
 
 `daemon status` reports the version it is running. If you have just updated Spicetify and behaviour has not changed, check that first: an old daemon serving old behaviour looks exactly like a fix that did not work.
 
----
-
 ## Spotify updates
 
 ```bash
@@ -145,8 +137,6 @@ spicetify spotify-updates status
 ```
 
 Blocking patches Spotify's own binary, so Spotify has to be stopped to do it. Run from the terminal it stops the client and leaves it stopped; run from inside the client (through the store) it starts it again for you.
-
----
 
 ## Development
 

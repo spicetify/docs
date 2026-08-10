@@ -6,8 +6,6 @@ sidebar_position: 3
 
 The store reads one registry: `vault.json` in [spicetify/modules](https://github.com/spicetify/modules). Your code stays in your own repository under your own license; what you submit is the entry that points at it. That is what makes every module in the store reviewable, checksummed and revocable.
 
----
-
 ## Submit
 
 Build, pack, upload the zip to your own release, then record the entry:
@@ -30,8 +28,6 @@ Your `metadata.json` needs four things the registry will not accept an entry wit
 | `license` | an SPDX identifier, shown next to the install button |
 | `name`, `version` | must match the entry, and the id is permanent |
 
----
-
 ## Automate it
 
 Call the publish action from your own release workflow instead:
@@ -45,8 +41,6 @@ Call the publish action from your own release workflow instead:
 ```
 
 The token is one with `public_repo` scope on your own account: the action pushes a branch to your fork and opens the pull request with it. Leave it out and the action prints the exact entry for you to submit by hand, which is a fine way to start.
-
----
 
 ## What gets checked
 
@@ -63,32 +57,22 @@ Nothing in the pull request is taken on trust. CI downloads the artifact and che
 
 A red check is something to fix, not a conversation to have. First submission gets a human review as well; after that a green check is the gate.
 
----
-
 ## Updating
 
 Same flow with a new version key. The old versions stay exactly as they are, which is what makes rolling back possible for the people who installed them.
-
----
 
 ## After the merge
 
 1. CI rebuilds the aggregate registry, and your module appears in the store.
 2. Your artifact is copied to a mirror release in the registry repository and the mirror URL is appended to your entry. Installers try your host first and fall back to the mirror, so a release asset that disappears later does not break every install of that version.
 
----
-
 ## Choosing an id
 
 Ids are global and permanent. The first submission binds the id to your account and nothing else can publish it afterwards, so pick something you would be happy to keep. Make it describe what the module does; suffix themes with `-theme` and snippet collections with `-snippets`.
 
----
-
 ## Snippets
 
 A CSS-only module small enough to have no artifact can ship inline in the registry entry. Inline entries install with no download, so they are restricted to `.css` files: anything executable arrives as a checksummed zip.
-
----
 
 ## Distributing outside the store
 

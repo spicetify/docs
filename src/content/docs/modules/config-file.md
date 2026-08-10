@@ -13,8 +13,6 @@ spicetify path          # print the paths spicetify is using
 
 The file is written for you by `spicetify init`, and every key has a working default, so an empty file is a valid file.
 
----
-
 ## Keys
 
 ```toml
@@ -45,8 +43,6 @@ Mirror mode, off by default. Also settable per invocation with `--mirror`.
 
 Where Spotify's data folder, executable and offline cache are. Spicetify finds all three on its own; set them only when it cannot, which usually means a non-standard install location. `spicetify path` prints what it resolved.
 
----
-
 ## Overriding for one command
 
 Every path key has a matching flag, which takes precedence over the file for that invocation and does not change it:
@@ -58,8 +54,6 @@ spicetify --offline-bnk-dir ~/custom/bnk apply
 spicetify --mirror true apply
 ```
 
----
-
 ## Resetting
 
 ```bash
@@ -67,8 +61,6 @@ spicetify init
 ```
 
 `init` writes a fresh `config.toml` from what it detects and **deletes `hooks/`, `modules/` and `store/`**, which means every installed module goes with it. It asks first; `--yes` skips the prompt. Use it to start clean, not to fix a config typo.
-
----
 
 ## What happened to `config-xpui.ini`
 

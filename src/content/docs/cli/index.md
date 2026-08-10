@@ -14,8 +14,6 @@ spicetify restore   # put stock Spotify back
 
 Everything else is for a specific situation. [Commands](/docs/cli/commands) documents all of them.
 
----
-
 ## First run
 
 ```bash
@@ -23,8 +21,6 @@ spicetify apply
 ```
 
 There is no backup step and no config generation step to remember. `apply` stops Spotify, patches it, sets up the daemon, registers the `spicetify://` handler and starts Spotify again. The backup is Spotify's own archive renamed in place, which is why `restore` needs nothing from you.
-
----
 
 ## Getting help
 
@@ -35,8 +31,6 @@ spicetify --help
 spicetify pkg --help
 spicetify pkg install --help
 ```
-
----
 
 ## Global options
 
@@ -52,8 +46,6 @@ These work on any command:
 | `-V`, `--version` | Print the version |
 
 The path options exist because auto-detection can be wrong on unusual installs. They override [`config.toml`](/docs/modules/config-file) for that one command without changing it.
-
----
 
 ## Do not mix v2 and v3
 
