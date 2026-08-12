@@ -26,6 +26,10 @@ Spicetify.Modules.removeLocal('my-module');
 
 Templates: `--template basic` (a button and a route), `extension` (behaviour only), `app` (a nav entry and a full page), `theme` (CSS only, no TypeScript).
 
+:::tip
+If the implementation needs copied Spotify class hashes, repeated DOM polling, private webpack searches, or another workaround that feels hacky, [tell us what capability is missing](https://github.com/spicetify/cli/issues). A shared client capability, register, primitive or classmap path is better than making every module author carry the same workaround.
+:::
+
 ## What the scaffold gives you
 
 | File | Role |
@@ -90,6 +94,8 @@ registrar.registerRoute(ROUTE, <Page />);
 
 **Settings** rows from every module render together under one Spicetify section in Spotify's own settings page, so a module with a single toggle does not need a page of its own.
 
+The same register system covers menus, top-bar and playbar controls, panels, overlays and root-level UI. Prefer those owned surfaces and stdlib's React or vanilla primitives over inserting raw DOM into Spotify's private structure: the register handles placement and cleanup, while the primitives share the native-looking control contract.
+
 ## The client capability surface
 
 Import `client` from stdlib instead of reading the ambient compatibility global throughout module code:
@@ -115,6 +121,22 @@ const cls = MAP.main.topbar.right.button_t.wrapper;
 ```
 
 Modules ship with those references intact and the CLI resolves them at apply time against the exact Spotify version installed, which is why one build of your module works on every supported client. `classmap.d.ts` is generated for you, so the paths autocomplete.
+
+## Themes
+
+Start a new CSS-only theme module from the scaffold:
+
+```bash
+npm create spicetify-module my-theme -- --template theme
+```
+
+Or migrate a classic theme containing `color.ini` and `user.css`:
+
+```bash
+spicetify-kit from-theme /path/to/classic-theme --name my-theme
+```
+
+The migration copies the classic CSS and `color.ini`; at runtime, each INI section becomes a switchable scheme whose colours are exposed as `--spice-*` variables. Treat the result as a starting point: run it through the live dev loop, update selectors that no longer match, and never replace them with Spotify's generated class hashes.
 
 ## Testing
 

@@ -4,7 +4,7 @@ description: Submit a module to the Spicetify store, and what gets checked befor
 sidebar_position: 3
 ---
 
-The store reads one registry: `vault.json` in [spicetify/modules](https://github.com/spicetify/modules). Your code stays in your own repository under your own license; what you submit is the entry that points at it. That is what makes every module in the store reviewable, checksummed and revocable.
+The store reads one registry: `vault.json` in [spicetify/modules](https://github.com/spicetify/modules). Most authors keep source and release artifacts in their own repository and submit the entry that points at them. A module that makes sense as part of Spicetify's maintained collection can instead live under `modules/` in that repository and use its shared release automation. Either way, the store consumes a reviewed, checksummed and revocable registry entry.
 
 ## Submit
 
@@ -18,6 +18,8 @@ spicetify-kit vault add dist/my-module@1.0.0 --artifact <url> --zip my-module@1.
 ```
 
 That writes `vault/my-module.json`, one file holding your module and nothing else. Open a pull request with it.
+
+If you are proposing that the module itself be hosted in `spicetify/modules`, submit its source under `modules/<id>/` instead. Repository-hosted modules are versioned and published by the shared release workflow after they merge; do not upload a separate artifact or hand-edit their generated vault entry.
 
 Your `metadata.json` needs four things the registry will not accept an entry without:
 

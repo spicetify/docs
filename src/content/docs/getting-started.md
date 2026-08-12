@@ -8,6 +8,10 @@ Spicetify customizes the official Spotify desktop client. v3 is a rewrite: every
 
 If you are coming from v2, read [what changes in v3](/docs/whats-new) first: it is a reinstall rather than an upgrade, and the two must not share a client.
 
+:::caution
+v3 is currently a beta. Expect rough edges and [report anything that breaks or feels unsupported](https://github.com/spicetify/cli/issues), especially during first installation, after a Spotify update, or while porting an existing extension or theme.
+:::
+
 ## Requirements
 
 - The official Spotify desktop client, from Spotify's own installer. Sandboxed builds (Microsoft Store, Snap, Flatpak) hide the files Spicetify has to patch.
@@ -18,7 +22,7 @@ If you are coming from v2, read [what changes in v3](/docs/whats-new) first: it 
 ### macOS and Linux
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh -s -- --v3
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/v3-beta/install.sh | sh -s -- --v3
 ```
 
 The script installs into `~/.spicetify`, and prints the two lines to add to your shell profile if it cannot put itself on your `PATH`. It needs `zstd` to unpack the archive: `brew install zstd` or `apt install zstd`.
@@ -28,7 +32,7 @@ Builds are published for macOS on x86_64 and arm64, and Linux on x86_64. On any 
 ### Windows
 
 ```powershell
-$v3 = $true; iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex
+$v3 = $true; iwr -useb https://raw.githubusercontent.com/spicetify/cli/v3-beta/install.ps1 | iex
 ```
 
 Setting `$v3` before piping is what selects v3; without it the script installs the v2 release. It unpacks into `%LOCALAPPDATA%\spicetify` and adds that folder to your `PATH`.
@@ -42,7 +46,7 @@ To install by hand instead, download `spicetify-<version>-windows-x86_64.zip` fr
 Works on any platform Rust supports:
 
 ```bash
-git clone https://github.com/spicetify/cli
+git clone --branch v3-beta https://github.com/spicetify/cli
 cd cli
 pnpm install && pnpm build:payload
 cargo build --release -p cli -p daemon
@@ -70,7 +74,7 @@ spicetify apply
 
 That is the whole setup. `apply` stops Spotify, patches the client, installs and starts the background daemon, registers the `spicetify://` handler, and starts Spotify again.
 
-On a fresh install it also downloads the store and the standard library from the registry, so the store is waiting in your sidebar the first time Spotify reopens. Nothing to install by hand.
+On a fresh install it also downloads the store and the standard library from the registry, so the **Module Store** button is waiting in Spotify's top bar the first time it reopens. Nothing to install by hand.
 
 There is no separate backup step. v3 renames Spotify's own `xpui.spa` to `xpui.spa.backup` in place, and that rename **is** the backup, which is why `spicetify restore` needs nothing from you.
 
@@ -80,7 +84,7 @@ Never point the v2 (Go) and v3 (Rust) binaries at the same client. They keep the
 
 ## Add your first module
 
-Open Spotify and click **Module Store** in the sidebar. Browse, click install, and most modules take effect immediately. The few that need a restart say so.
+Open Spotify and click **Module Store** in the top bar. Browse, click install, and most modules take effect immediately. The few that need a restart say so.
 
 From the terminal instead:
 

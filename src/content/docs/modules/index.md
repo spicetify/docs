@@ -9,7 +9,7 @@ Everything you add to Spotify in v3 is a **module**. A theme, a small tweak like
 
 ## The store
 
-The store ships with Spicetify. Open Spotify and click **Module Store** in the sidebar.
+The store ships with Spicetify. Open Spotify and click **Module Store** in the top bar.
 
 - **Browse** by tab (extensions, themes, snippets, apps), search, or sort by installs.
 - **Install** with one click. Most modules load immediately; a module that has to run before the client boots says it needs a restart.
@@ -21,6 +21,8 @@ Every module in the store comes from a single registry, and every entry in it wa
 ### Updates
 
 The store shows what has a newer version, and **Update all** installs them in dependency order. Nothing updates behind your back.
+
+Modules declare compatible dependency ranges, so installing or updating one first resolves the exact versions it needs. Dependencies are installed before their dependants, and an incompatible set is reported instead of relying on whichever module happened to load first.
 
 ### Backups
 

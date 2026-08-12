@@ -10,13 +10,17 @@ v3 is a different model, not a faster v2. The short version: one kind of add-on 
 
 In v2 you managed four things in four ways: a theme folder, an extension `.js`, a custom app directory, and CSS snippets, each wired up through `config-xpui.ini` and re-applied by hand.
 
-In v3 all four are the same thing, a **module**: a directory with a `metadata.json`, optionally some JavaScript, optionally some CSS, and a declared dependency on the standard library. One format, one install path, one lifecycle. A module can add a button, register a whole route, restyle the client, or all three.
+In v3 all four are the same thing, a **module**: a directory with a `metadata.json`, optionally some JavaScript, optionally some CSS, and declared dependencies on the standard library or other modules. Reusable libraries are modules too. One format, one install path, one lifecycle. A module can add a button, register a whole route, restyle the client, or all three.
 
-What that buys you: modules load and unload at runtime, so most installs take effect without restarting Spotify, and a module that fails is contained instead of taking the client with it.
+What that buys you: modules can be enabled, disabled, updated and reloaded at runtime, so most changes take effect without restarting Spotify. Themes and colour schemes switch live too. Each module owns the UI, styles, listeners and other state it creates, and removes them again when it unloads. Ordinary load failures are reported per module so an unrelated module does not have to take the client with it.
+
+## Dependencies have versions and an order
+
+Modules declare compatible dependency ranges in `metadata.json`. The store resolves those ranges and installs or updates dependencies before the modules that use them; the loader follows the same dependency order. Missing or incompatible dependencies are reported rather than leaving authors to coordinate load order by hand.
 
 ## A store inside Spotify
 
-The [Marketplace](/docs/legacy/customization/marketplace) was a custom app you installed separately. In v3 the store ships with Spicetify and is the normal way to find and install things, with the CLI (`spicetify pkg`) as the equivalent path for people who prefer a terminal.
+The [Marketplace](/docs/legacy/customization/marketplace) was a custom app you installed separately. In v3 the store ships with Spicetify, opens from the **Module Store** button in Spotify's top bar, and is the normal way to find and install things. The CLI (`spicetify pkg`) is the equivalent path for people who prefer a terminal.
 
 Every module in the store comes from one registry, and every entry in it was checked before it merged: the artifact is downloaded and re-hashed, published versions can never be rewritten, and a module id stays with the account that first published it. Installs verify the checksum before unpacking.
 
@@ -24,7 +28,15 @@ Every module in the store comes from one registry, and every entry in it was che
 
 In v2, Spotify updating itself left you with a stock client until you re-ran `spicetify backup apply`, and often waiting for a new Spicetify release that understood the new build.
 
-v3 installs a small daemon that notices the update and re-applies afterwards. Support for a new Spotify build no longer needs a new Spicetify release either: the mapping between Spicetify and Spotify's internals is fetched per apply, so a new client version usually just works. When something genuinely is not supported yet, the client says which part is degraded rather than looking silently wrong.
+v3 installs a small daemon that notices the update and re-applies afterwards. Support for a new Spotify build no longer needs a new Spicetify release either: semantic classmaps are distributed independently and fetched per apply. A compatible patch release can inherit the previous map after verification, while a genuinely changed client only needs a new map rather than a new CLI binary. When something is not supported yet, the client says which part is degraded rather than looking silently wrong.
+
+## A module developer workflow
+
+`npm create spicetify-module` scaffolds a typed project. The kit can hot-push a build into a running Spotify client in about a second, and stdlib provides shared registers for routes, settings, menus, top-bar and playbar controls, panels and overlays. UI primitives give modules native-looking controls without copying Spotify's generated classes, while semantic `MAP.*` references let one artifact target multiple Spotify builds.
+
+Classic themes can start from the theme template or migrate `color.ini` and `user.css` with `spicetify-kit from-theme`. Existing v2 extensions have a separate [migration guide](/docs/development/migrating-v2-extensions).
+
+If a port needs repeated DOM polling, copied class hashes, private webpack searches or another workaround that feels hacky, [report the missing capability](https://github.com/spicetify/cli/issues). The right fix may be a new typed client capability, register, primitive or classmap path that every module can share.
 
 ## Going back is cheap
 
