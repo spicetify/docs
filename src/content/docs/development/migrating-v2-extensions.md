@@ -4,7 +4,7 @@ description: Move a classic Spicetify extension into the v3 module lifecycle.
 sidebar_position: 3
 ---
 
-A v2 extension does not need to be rewritten all at once. The `Spicetify` global is still available in v3, so playback, navigation, URI, storage, notification, and many menu APIs can move over largely unchanged. What must change is the code around them: how the add-on starts, owns UI and side effects, cleans up, refers to Spotify classes, and ships.
+A v2 extension does not need to be rewritten all at once. v3 preserves the old wrapper behavior behind stdlib's typed `client` capability surface, so playback, navigation, URI, storage, notification, and many menu calls translate directly. What must change is the code around them: how the add-on starts, owns UI and side effects, cleans up, refers to Spotify classes, and ships.
 
 This guide takes a classic single-file extension and turns it into a module. For a new module, start with [Building a module](/docs/development/building-a-module) instead.
 
@@ -44,7 +44,7 @@ Before moving code, list what the extension owns. Search for:
 
 That list becomes the teardown checklist. A v3 module can be reloaded several times in one Spotify process, so anything left behind produces duplicate buttons, listeners, and behavior.
 
-Keep the existing storage keys unless you intentionally want to reset users. `Spicetify.LocalStorage` and browser `localStorage` remain available.
+Keep the existing storage keys unless you intentionally want to reset users. `client.storage` preserves the classic `Spicetify.LocalStorage` behavior; `createStorage(ctx)` is namespaced and is better for new modules, but requires an explicit data migration when replacing old keys.
 
 ## 2. Scaffold an extension module
 
@@ -96,16 +96,16 @@ export async function load(ctx: ModuleRuntimeContext) {
 Move the extension body into `mod.tsx` and register its cleanup with the context:
 
 ```ts
-import type { ModuleRuntimeContext } from '/modules/stdlib/mod.ts';
+import { client, type ModuleRuntimeContext } from '/modules/stdlib/mod.ts';
 
 export default async function (ctx: ModuleRuntimeContext) {
   const onSongChange = () => {
-    console.log(Spicetify.Player.data?.item?.name);
+    console.log(client.player.data?.item?.name);
   };
 
-  Spicetify.Player.addEventListener('songchange', onSongChange);
+  client.player.addEventListener('songchange', onSongChange);
   ctx.defer(() => {
-    Spicetify.Player.removeEventListener('songchange', onSongChange);
+    client.player.removeEventListener('songchange', onSongChange);
   });
 }
 ```
@@ -138,10 +138,10 @@ export default async function (ctx: ModuleRuntimeContext) {
 The same rule applies to compatibility helpers that still expose their v2 API:
 
 ```ts
-const item = new Spicetify.ContextMenu.Item(
+const item = new client.contextMenu.Item(
   'Do something',
   ([uri]) => actOn(uri),
-  ([uri]) => Spicetify.URI.fromString(uri).type === Spicetify.URI.Type.TRACK,
+  ([uri]) => client.uri.fromString(uri).type === client.uri.Type.TRACK,
 );
 
 item.register();
@@ -176,7 +176,7 @@ Prefer the v3 surface that matches the old UI:
 | App-like page | `navlink` plus `registerRoute()` |
 | Panel | `panel` register; `Spicetify.Panel` is not available in v3 |
 | Body-level popup or overlay | `rootChild` register, or an owned host disposed through `ctx.defer` |
-| Selected-track context action | The compatible `Spicetify.ContextMenu` API, explicitly deregistered on unload |
+| Selected-track context action | `client.contextMenu`, explicitly deregistered on unload |
 
 ### Top-bar and playbar buttons
 
@@ -304,13 +304,13 @@ Use `--spice-*` variables for theme-aware colors. Test at least one light and on
 
 ## 9. Treat webpack and source patches as a redesign point
 
-Wrapper APIs such as `Player`, `Platform`, `URI`, `LocalStorage`, and notifications are the easiest part of a port because v3 preserves the `Spicetify` global. Direct client internals are different:
+Wrapper APIs such as player, platform, URI, storage, and notifications are the easiest part of a port because stdlib exposes them through `client`. Direct client internals are different:
 
 - Prefer a typed stdlib exposure over scanning webpack yourself.
 - Let a missing optional export disable one feature rather than throw at module import time.
 - Do not destructure a finder result at the top level; the entire module then fails when that result drifts.
 - Source transforms are disabled by default in the beta. A v2 extension that rewrites Spotify's bundle cannot be mechanically ported; redesign around a public wrapper or stdlib surface, or make the feature degrade until a safe surface exists.
-- `Spicetify.GraphQL.Definitions` is currently empty in v3. Use a known persisted query deliberately or prefer a native `Platform.*API` when one provides the data.
+- `client.graphQL.Definitions` is currently empty in v3. Use a known persisted query deliberately or prefer a native `client.platform.*API` when one provides the data.
 
 If the extension reaches an external service, prefer the client's authenticated native APIs first. External requests can be rate-limited or CORS-blocked and should not be the only path to a usable UI.
 
@@ -322,17 +322,17 @@ Reuse the old extension's storage prefix to preserve settings:
 
 ```ts
 const KEY = 'my-extension:settings';
-const saved = Spicetify.LocalStorage.get(KEY);
+const saved = client.storage.get(KEY);
 ```
 
-Move parsing, filtering, state transitions, and formatting into named exports in `logic.ts`. Keep browser, React, and `Spicetify.*` access in `mod.tsx`. This is usually the cleanest seam in an old single-file extension and gives the port useful tests without mocking the whole client.
+Move parsing, filtering, state transitions, and formatting into named exports in `logic.ts`. Keep browser, React, and `client.*` access in `mod.tsx`. This is usually the cleanest seam in an old single-file extension and gives the port useful tests without mocking the whole client.
 
 Declare every runtime module dependency in `metadata.json`. The scaffold adds stdlib; add other modules with semver ranges rather than assuming load order:
 
 ```json
 {
   "dependencies": {
-    "stdlib": "^1.0.0"
+    "stdlib": "^1.5.0"
   }
 }
 ```

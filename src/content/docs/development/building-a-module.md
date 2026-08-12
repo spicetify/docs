@@ -90,11 +90,21 @@ registrar.registerRoute(ROUTE, <Page />);
 
 **Settings** rows from every module render together under one Spicetify section in Spotify's own settings page, so a module with a single toggle does not need a page of its own.
 
-## The Spicetify global
+## The client capability surface
 
-`Spicetify` is typed and available without importing anything, and it is the same surface v2 extensions used: `Player`, `Platform`, `URI`, `React`, `SVGIcons`, `CosmosAsync`, `GraphQL`, `Menu`, `PopupModal`, `LocalStorage` and the rest. See the [API reference](/docs/development/api-wrapper).
+Import `client` from stdlib instead of reading the ambient compatibility global throughout module code:
 
-Reach for a native `Platform.*API` before making an HTTP call of your own.
+```ts
+import { client } from '/modules/stdlib/mod.ts';
+
+client.player.next();
+client.platform.History.push('/search');
+client.notify('Done');
+```
+
+It provides typed, lazy capabilities for player, platform, URI, icons, networking, storage, keyboard, context menus, notifications, and the other client services. stdlib currently adapts the compatibility wrapper internally, but keeping that access behind one boundary lets the implementation change without rewriting every module. See the [API reference](/docs/development/api-wrapper) for the underlying behavior.
+
+Reach for a native `client.platform.*API` before making an HTTP call of your own.
 
 ## Class names
 
@@ -108,7 +118,7 @@ Modules ship with those references intact and the CLI resolves them at apply tim
 
 ## Testing
 
-Put anything worth testing in `logic.ts`, free of client imports, and inject the client objects from `mod.tsx`. Then:
+Put anything worth testing in `logic.ts`, free of client imports, and pass plain values from `client` into it from `mod.tsx`. Then:
 
 ```bash
 npm run check   # typecheck

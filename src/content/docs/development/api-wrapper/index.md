@@ -4,7 +4,7 @@ description: 🧰 Everything you need to know about the Spicetify object and API
 ---
 
 :::note
-This reference covers the `Spicetify` global, which both v2 extensions and v3 modules use: v3 serves the same surface through its compatibility wrapper. Pages carry a warning where v3 differs, checked against a running v3 client on Spotify 1.2.94.
+This reference covers the `Spicetify` compatibility wrapper. v2 extensions access it directly; v3 modules import stdlib's typed `client` capability surface, whose members adapt the same underlying APIs. Pages carry a warning where v3 differs, checked against a running v3 client on Spotify 1.2.94.
 
 If you are writing a new v3 module, [Building a module](/docs/development/building-a-module) is the place to start. If you have existing v2 extension code, use the [migration guide](/docs/development/migrating-v2-extensions). This page is the reference for what you can call once you are there.
 :::
