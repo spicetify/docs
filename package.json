@@ -28,7 +28,9 @@
     "react-dom": "19.2.5",
     "reading-time": "^1.5.0",
     "remark-directive": "^4.0.0",
-    "swiper": "^12.1.3"
+    "sharp": "^0.34.0",
+    "swiper": "^12.1.3",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
@@ -58,5 +60,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "packageManager": "pnpm@11.9.0"
 }
