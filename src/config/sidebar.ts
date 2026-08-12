@@ -32,6 +32,10 @@ export const sidebar: SidebarItem[] = [
         label: 'Building a Module',
         href: '/docs/development/building-a-module',
       },
+      {
+        label: 'Porting a v2 Extension',
+        href: '/docs/development/migrating-v2-extensions',
+      },
       { label: 'Publishing a Module', href: '/docs/development/publishing' },
       { label: 'Compiling', href: '/docs/development/compiling' },
       { label: 'React DevTools', href: '/docs/development/react-devtools' },

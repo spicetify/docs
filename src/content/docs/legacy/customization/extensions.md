@@ -4,7 +4,7 @@ description: Add features to Spotify with extensions.
 ---
 
 :::note
-This is a **v2** extension. In v3, extensions are [modules](/docs/modules).
+This is a **v2** extension. In v3, extensions are [modules](/docs/modules). If you maintain one, follow [Porting a v2 extension to v3](/docs/development/migrating-v2-extensions).
 :::
 
 Extensions are JavaScript files that add new features to Spotify. They run alongside Spotify's main code and can add buttons, modify behavior, and integrate with external services.

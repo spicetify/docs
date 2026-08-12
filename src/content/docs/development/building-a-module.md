@@ -6,6 +6,8 @@ sidebar_position: 2
 
 A module is the one thing you build for Spicetify v3. It can add a button, register a whole page, restyle the client, or all three. This page is the path from nothing to something running in your client; [the module standard](https://github.com/spicetify/modules/blob/main/docs/module-standard.md) is the contract it has to meet.
 
+Already have a classic extension? Follow [Porting a v2 extension to v3](/docs/development/migrating-v2-extensions) for the lifecycle, cleanup, UI, classmap, and packaging changes.
+
 ## Scaffold and run
 
 ```bash

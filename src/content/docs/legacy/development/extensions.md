@@ -4,7 +4,7 @@ description: Creating extensions for Spicetify.
 ---
 
 :::note
-This builds a **v2** extension. In v3, see [Building a module](/docs/development/building-a-module).
+This builds a **v2** extension. To move existing code to v3, see [Porting a v2 extension to v3](/docs/development/migrating-v2-extensions). For a new module, see [Building a module](/docs/development/building-a-module).
 :::
 
 Extensions are JavaScript files that run alongside Spotify's main code. They can add UI elements, modify behavior, integrate with external services, and more.
