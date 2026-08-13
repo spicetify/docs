@@ -92,7 +92,103 @@ registrar.register(
 registrar.registerRoute(ROUTE, <Page />);
 ```
 
-**Settings** rows from every module render together under one Spicetify section in Spotify's own settings page, so a module with a single toggle does not need a page of its own.
+**Settings** from every module render together on the standalone Spicetify
+Settings page. Register a single preference with `settingsRow`, or a named
+group with `settingsSection`.
+
+Choose the surface by asking whether the control still makes sense when its
+feature is not visible:
+
+- Put durable module-wide behavior, provider/integration choices, credentials,
+  caches, and defaults in Spicetify Settings.
+- Keep filters, sorting, layout, appearance, and other controls that manipulate
+  the current page or presentation beside that surface. Use its toolbar for a
+  small set or a feature-owned modal for a larger set.
+- Put infrastructure shared by every module, such as CORS routing, in its own
+  global Spicetify section rather than under an arbitrary module.
+
+A module can use both surfaces. For example, a lyrics module can keep provider
+selection and its token in Spicetify Settings while opening font, alignment,
+and background controls from the lyrics view. Do not duplicate a contextual
+control globally for discoverability; give the feature a clear local settings
+button or context-menu entry instead.
+
+Use the React settings primitives from stdlib instead of rebuilding their
+layout in module CSS:
+
+| Primitive | Use it for |
+| --- | --- |
+| `SettingsToggleRow` | One boolean preference registered through `settingsRow` |
+| `SettingsSection` | A named group registered through `settingsSection` |
+| `SettingsButtonRow` | A labelled action, with an optional description |
+| `SettingsTextInputRow` | A controlled text input and optional action button |
+| `SettingsProviderRow` | A compact provider row with description, ordering controls, and toggle |
+| `SettingsRow` | A custom control that does not fit one of the patterns above |
+
+For one boolean setting:
+
+```tsx
+import { SettingsToggleRow } from '/modules/stdlib/lib/primitives.js';
+
+registrar.register(
+  'settingsRow',
+  <SettingsToggleRow
+    label="Skip music videos"
+    getValue={() => localStorage.getItem(KEY) !== '0'}
+    onChange={(enabled) => localStorage.setItem(KEY, enabled ? '1' : '0')}
+  />,
+);
+```
+
+For a module with several related settings:
+
+```tsx
+import {
+  SettingsButtonRow,
+  SettingsProviderRow,
+  SettingsSection,
+  SettingsTextInputRow,
+} from '/modules/stdlib/lib/primitives.js';
+import { SETTINGS_SECTION_SUBHEADING_CLASS } from '/modules/stdlib/lib/primitives-classes.js';
+
+registrar.register(
+  'settingsSection',
+  <SettingsSection title="Lyrics">
+    <SettingsButtonRow
+      label="Lyrics cache"
+      description="Loaded lyrics are cached in memory for faster reloading."
+      buttonLabel="Clear cached lyrics"
+      onClick={clearCache}
+    />
+    <h3 className={SETTINGS_SECTION_SUBHEADING_CLASS}>Providers</h3>
+    {providers.map((provider, index) => (
+      <SettingsProviderRow
+        key={provider.id}
+        label={provider.name}
+        description={provider.description}
+        value={provider.enabled}
+        index={index}
+        total={providers.length}
+        onMove={(direction) => moveProvider(provider.id, direction)}
+        onChange={(enabled) => setProviderEnabled(provider.id, enabled)}
+      />
+    ))}
+    <SettingsTextInputRow
+      label="Provider token"
+      value={token}
+      onInput={setToken}
+      actionLabel="Refresh token"
+      onAction={refreshToken}
+    />
+  </SettingsSection>,
+);
+```
+
+The primitives own label hierarchy, descriptions, native control styling,
+keyboard semantics, and spacing between actions. Do not target their inputs,
+buttons, rows, or action groups from module CSS. If a recurring settings
+layout is missing, propose or add a stdlib primitive instead of copying the
+pattern into another module.
 
 The same register system covers menus, top-bar and playbar controls, panels, overlays and root-level UI. Prefer those owned surfaces and stdlib's React or vanilla primitives over inserting raw DOM into Spotify's private structure: the register handles placement and cleanup, while the primitives share the native-looking control contract.
 
