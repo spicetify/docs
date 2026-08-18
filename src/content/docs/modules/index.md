@@ -22,7 +22,7 @@ Every module in the store comes from a single registry, and every entry in it wa
 
 The store shows what has a newer version, and **Update all** installs them in dependency order. Nothing updates behind your back.
 
-Modules declare compatible dependency ranges, so installing or updating one first resolves the exact versions it needs. Dependencies are installed before their dependants, and an incompatible set is reported instead of relying on whichever module happened to load first.
+Modules declare compatible dependency ranges, so installing or updating one first resolves the exact versions it needs. Dependencies are installed before their dependants, and an incompatible set is reported instead of relying on whichever module happened to load first. When a dependency only takes effect on the next boot (the standard library works this way), the modules that need it install fine and say they will activate after you restart Spotify; that message is the install working, not failing.
 
 ### Backups
 
