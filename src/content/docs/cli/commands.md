@@ -138,6 +138,13 @@ spicetify spotify-updates status
 
 Blocking patches Spotify's own binary, so Spotify has to be stopped to do it. Run from the terminal it stops the client and leaves it stopped; run from inside the client (through the store) it starts it again for you.
 
+The exact protection is platform-specific. Current Windows clients protect the
+update staging directory. macOS and Linux patch the update endpoint, and macOS
+also signs the changed app bundle. One-step **Update & Apply** in Manager is
+currently available only on macOS.
+
+Read [Spotify updates](/docs/spotify-updates) before unblocking a pinned client.
+
 ## Development
 
 ### `dev`
@@ -164,4 +171,7 @@ On macOS the handler is a small app bundle, because macOS delivers URL activatio
 spicetify self-update
 ```
 
-Updates the CLI and TUI to the latest release. Downloads are checksum-verified. If you installed through a package manager, update through that instead.
+Updates the Spicetify CLI and TUI to the latest release. It does not update
+Spotify. Downloads are checksum-verified. If you installed through a package
+manager, update through that instead. See
+[Spotify updates](/docs/spotify-updates) to update the client.

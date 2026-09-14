@@ -19,6 +19,7 @@ export const sidebar: SidebarItem[] = [
       },
     ],
   },
+  { label: 'Spotify Updates', href: '/docs/spotify-updates' },
   {
     label: 'CLI Reference',
     href: '/docs/cli',

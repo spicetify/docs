@@ -4,7 +4,7 @@ description: How Spicetify v3 differs from v2, and what to do with an existing v
 sidebar_position: 2
 ---
 
-v3 is a different model, not a faster v2. The short version: one kind of add-on instead of four, a store inside Spotify instead of a CLI-only flow, and a client that repairs itself after Spotify updates.
+v3 is a different model, not a faster v2. The short version: one kind of add-on instead of four, a store inside Spotify instead of a CLI-only flow, and a daemon that can repair the client after Spotify updates.
 
 ## Modules replace themes, extensions, custom apps and snippets
 
@@ -24,11 +24,16 @@ The [Marketplace](/docs/legacy/customization/marketplace) was a custom app you i
 
 Every module in the store comes from one registry, and every entry in it was checked before it merged: the artifact is downloaded and re-hashed, published versions can never be rewritten, and a module id stays with the account that first published it. Installs verify the checksum before unpacking.
 
-## Spotify updates stop breaking things
+## Spotify updates are recoverable
 
 In v2, Spotify updating itself left you with a stock client until you re-ran `spicetify backup apply`, and often waiting for a new Spicetify release that understood the new build.
 
-v3 installs a small daemon that notices the update and re-applies afterwards. Support for a new Spotify build no longer needs a new Spicetify release either: semantic classmaps are distributed independently and fetched per apply. A compatible patch release can inherit the previous map after verification, while a genuinely changed client only needs a new map rather than a new CLI binary. When something is not supported yet, the client says which part is degraded rather than looking silently wrong.
+v3 installs a small daemon that notices a stock client and normally re-applies after Spotify exits. Support for a new Spotify build no longer needs a new Spicetify release either: semantic classmaps are distributed independently and fetched per apply. A compatible patch release can inherit the previous map after verification, while a genuinely changed client only needs a new map rather than a new CLI binary. When something is not supported yet, the client reports the limitation instead of silently applying an unrelated map.
+
+Spicetify can also pin the installed client. macOS has an experimental one-step
+**Update & Apply** transaction; Windows and Linux use the manual flow. See
+[Spotify updates](/docs/spotify-updates) for the platform boundaries and
+recovery commands.
 
 ## A module developer workflow
 
