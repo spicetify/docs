@@ -100,7 +100,10 @@ Installing does not enable. `pkg install` unpacks the module and prints its vers
 
 ## Keeping it working
 
-A Spotify update no longer breaks your client. The daemon notices Spotify updating itself and re-applies afterwards, so in the normal case there is nothing to do.
+The daemon notices when Spotify replaces the patched client and reapplies
+Spicetify after the update. On macOS, **Spicetify Settings** also offers a
+one-step **Update & Apply** action when the target Spotify version is verified.
+Windows and Linux use the manual update flow.
 
 If something does look wrong after an update:
 
@@ -116,6 +119,9 @@ To keep Spotify on the build you have:
 spicetify spotify-updates block
 ```
 
+See [Spotify updates](/docs/spotify-updates) for the platform limits, version
+badges, manual flow, and recovery commands.
+
 ## Where things live
 
 ```bash
@@ -129,4 +135,5 @@ Configuration lives in `config.toml` under Spicetify's config folder, with `modu
 - [What changes in v3](/docs/whats-new) if you are coming from v2
 - [Modules and the store](/docs/modules) for what you can install and how to manage it
 - [CLI reference](/docs/cli) for every command
+- [Spotify updates](/docs/spotify-updates) for controlled and manual updates
 - [Building a module](/docs/development/building-a-module) if you want to make one

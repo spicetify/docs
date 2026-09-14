@@ -40,6 +40,22 @@ spicetify spotify-updates block
 
 Usually not. v3 fetches the mapping for your exact Spotify version at apply time rather than baking it into the binary, so a new client build normally works with the Spicetify you already have. When something genuinely is not supported yet, the client tells you which part is degraded instead of looking silently wrong.
 
+Manager's **available** badge only reports the newest version the project has
+observed. The **supported** badge comes from verified classmaps and decides
+whether Spicetify can offer an update. A missing exact map can fall back to an
+older patch in the same Spotify minor release, but it never falls back across a
+minor release.
+
+## Can Manager update Spotify for me?
+
+On macOS, Manager shows **Update & Apply** when the daemon, Spotify's updater
+API, and a verified target are all available. The daemon validates the exact
+offered version, reapplies Spicetify, and restores the update block.
+
+Windows and Linux don't offer the one-step action yet. Follow the
+[manual Spotify update flow](/docs/spotify-updates#update-spotify-manually)
+instead.
+
 ## Spicetify cannot find Spotify
 
 Check what it resolved:
