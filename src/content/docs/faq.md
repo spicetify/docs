@@ -46,6 +46,25 @@ whether Spicetify can offer an update. A missing exact map can fall back to an
 older patch in the same Spotify minor release, but it never falls back across a
 minor release.
 
+## A published theme fix still looks broken after applying
+
+A download cache can briefly serve older compatibility data after a fix is
+published. If your `spicetify apply --help` lists `--no-cache`, run:
+
+```bash
+spicetify apply --no-cache
+```
+
+This requires network access and downloads fresh compatibility files. If the
+refresh fails, Spotify stays as it was. On success, return to the restarted
+client and check the affected control. If the fix also includes a theme or
+module update, install that update from the Store before applying.
+
+See the [apply command reference](/docs/cli/commands#apply) for what the option
+refreshes and how it interacts with developer overrides. If your CLI does not
+have the option yet, wait a few minutes for the download cache to refresh, then
+run `spicetify apply` again.
+
 ## Can Manager update Spotify for me?
 
 On macOS, Manager shows **Update & Apply** when the daemon, Spotify's updater

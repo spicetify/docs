@@ -11,16 +11,39 @@ Every command accepts the [global options](/docs/cli#global-options), so they ar
 ### `apply`
 
 ```bash
-spicetify apply
+spicetify apply [--no-cache]
 ```
 
 Patches Spotify. This is the whole setup on a fresh install, and the fix for almost anything that looks wrong afterwards.
 
-It stops Spotify, unpacks the client, renames Spotify's own archive to `xpui.spa.backup` (that rename is the backup), injects Spicetify's payload, fetches the mapping for your exact Spotify version, stages every enabled module, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify again.
+It refreshes compatibility data for your Spotify version, stops Spotify, unpacks the client, renames Spotify's own archive to `xpui.spa.backup` (that rename is the backup), injects Spicetify's payload, stages every enabled module, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify again.
 
 On a fresh install, where no modules are present yet, it first seeds the standard library and the store from the registry, so the client can manage itself instead of booting empty. Once they exist, the store updates them, and this step does nothing.
 
 Safe to run repeatedly. If the fetch for a new Spotify version fails, whatever is already cached still applies, so `apply` works offline.
+
+Use `--no-cache` when a newly published compatibility fix has not reached your
+client after a normal apply. This option requires a v3 build whose
+`spicetify apply --help` lists it.
+
+```bash
+spicetify apply --no-cache
+```
+
+It bypasses local file reuse and CDN caches for the compatibility index,
+classmap, CSS-map overlay, verification metadata, and exposure patches. The
+downloaded compatibility files must match the checksums in the index and are
+saved for later applies. If the refresh fails, the command exits before
+stopping or changing Spotify. Retry when the network or published files are
+available.
+
+After it finishes, return to the restarted Spotify client and check the fix.
+Update themes and modules through the Store separately when needed.
+`--no-cache` does not clear Spotify's music cache or update Spotify or the CLI.
+
+For development, unset `SPICETIFY_CLASSMAPS_DIR` before using `--no-cache`;
+combining them is an error. Explicit local CSS-map and exposure-patch overrides
+still take priority, so unset those when testing published compatibility data.
 
 ### `restore`
 
