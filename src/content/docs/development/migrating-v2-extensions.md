@@ -310,7 +310,7 @@ Wrapper APIs such as player, platform, URI, storage, and notifications are the e
 - Let a missing optional export disable one feature rather than throw at module import time.
 - Do not destructure a finder result at the top level; the entire module then fails when that result drifts.
 - Source transforms are disabled by default in the beta. A v2 extension that rewrites Spotify's bundle cannot be mechanically ported; redesign around a public wrapper or stdlib surface, or make the feature degrade until a safe surface exists.
-- `client.graphQL.Definitions` is currently empty in v3. Use a known persisted query deliberately or prefer a native `client.platform.*API` when one provides the data.
+- `client.graphQL.Definitions` uses a read-only registry of operations discovered in the running client. Check availability near the request; do not assume a v2 operation name or persisted hash still works. See [GraphQL](/docs/development/api-wrapper/methods/graphql) for the required CLI fix and its release status. Prefer a native `client.platform.*API` when one provides the data.
 
 If the extension reaches an external service, prefer the client's authenticated native APIs first. External requests can be rate-limited or CORS-blocked and should not be the only path to a usable UI.
 
