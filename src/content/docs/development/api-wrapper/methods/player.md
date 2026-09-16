@@ -70,7 +70,7 @@ Spicetify.Player.data;
 
 #### Return
 
-[`PlayerState`](/docs/development/api-wrapper/types/player-state.md)
+[`PlayerState`](/docs/development/api-wrapper/types/player-state)
 
 
 #### Example

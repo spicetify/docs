@@ -77,6 +77,10 @@ const DraggableComponent = () => {
 
 ### `usePanelState`
 
+:::warning
+Not available in Spicetify v3, which exposes only `DragHandler` and `useExtractedColor` on `Spicetify.ReactHook`. Verified against a running client.
+:::
+
 React Hook to use panel state.
 
 ```ts

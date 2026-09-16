@@ -305,12 +305,11 @@ Contains data about the current platform, such as the current Spotify client ver
 interface PlatformData {
     app_platform: string;
     client_capabilities: Record<string, any>;
-    client_version_triple: string;
-    client_version_quadruple: string;
-    client_version_quintuple: string;
+    client_variant: string;
     event_sender_context_information: Record<string, any>;
-    os_name: string;
+    is_developer_mode: boolean;
     os_version: string;
+    remote_config_client_id: string;
 }
 ```
 
@@ -328,9 +327,13 @@ Spicetify.Platform.PlatformData.app_platform; // "win32"
 
 An object containing the current client capabilities. This usually contains information relating to functionality inside the Spotify client, such as whether or not the client can autostart.
 
-#### `client_version_triple`, `client_version_quadruple`, `client_version_quintuple`
+#### `client_variant` and `is_developer_mode`
 
-The current Spotify client version. Usually in the format `1.2.8`, `1.2.8.923`, or `1.2.8.923.g4f94bf0d`.
+Which build of the client is running, and whether developer mode is on (`spicetify dev` turns it on).
+
+:::note
+The `client_version_triple`, `client_version_quadruple` and `client_version_quintuple` fields documented here previously are not on this object on current clients. Read `Spicetify.Platform.version` for the client version instead. Verified against a running client.
+:::
 
 #### `event_sender_context_information`
 
@@ -344,14 +347,19 @@ Spicetify.Platform.PlatformData.event_sender_context_information; // { "platform
 
 This could also help you diagnose issues with your custom apps. For example, if you're using a custom app on Windows and you're getting an error, you can check the `event_sender_context_information` object to see if the `platform_type` is `windows` or `macos`.
 
-#### `os_name`
+#### `os_version` and `app_platform`
+
+:::note
+There is no `os_name`. The platform is carried by `app_platform` (`OSX_ARM64`, `WIN32_X86_64`, and so on), with `os_version` beside it. Verified against a running client.
+:::
 
 The current operating system.
 
 Example:
 
 ```ts
-Spicetify.Platform.PlatformData.os_name; // "windows"
+Spicetify.Platform.PlatformData.os_version; // "26.5.2"
+Spicetify.Platform.PlatformData.app_platform; // "OSX_ARM64"
 ```
 
 #### `os_version`

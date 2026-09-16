@@ -370,6 +370,10 @@ const Slider = () => {
 
 ### `PanelSkeleton`, `PanelContent`, `PanelHeader`
 
+:::warning
+Not available in Spicetify v3, along with the rest of the panel surface. Verified against a running client.
+:::
+
 Components to render Spotify-style panel. Used by Spotify on their right sidebar panels (e.g. BuddyFeed, Now Playing, etc).
 
 Refer to [`Panel.Components`](/docs/development/api-wrapper/methods/panel#components) for more details.

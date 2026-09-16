@@ -3,6 +3,10 @@ title: Panel
 description: API wrapper to interact with Spotify's panel/right sidebar.
 ---
 
+:::warning
+Not available in Spicetify v3. The v3 wrapper exposes no `Spicetify.Panel` and no `Platform.PanelAPI`, verified against a running client. Modules register a panel through stdlib's panel register instead: see [Building a module](/docs/development/building-a-module). This page documents the v2 API.
+:::
+
 Spicetify provides a wrapper for the Spotify `PanelAPI` method to make it easier to use, as well as providing a method to help you register your own panel.
 
 ```ts

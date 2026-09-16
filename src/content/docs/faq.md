@@ -1,90 +1,154 @@
 ---
 title: FAQ
+sidebar_position: 7
 ---
+
+Answers for v3. If you are running the released v2 CLI, see the [v2 FAQ](/docs/legacy/faq).
 
 ## Where is the config file?
 
-The config file is generally located at:
-
-| Platform            | Path                                       |
-| ------------------- | ------------------------------------------ |
-| **Windows**         | `%appdata%\spicetify\config-xpui.ini`      |
-| **Linux**/**macOS** | `~/.config/spicetify/config-xpui.ini`      |
-
-However, you can know specifically where it is with:
-
-```
-spicetify -c
-```
-
-Or, you can open the folder where it is located by entering the following in your terminal:
-
-```
-spicetify config-dir
-```
-
-For details about each config field, please run:
+`config.toml`, in Spicetify's config folder. To see exactly where:
 
 ```bash
-spicetify --help config
+spicetify config        # prints the resolved paths
+spicetify config open   # opens the folder
+spicetify path
 ```
 
-## Cannot find `pref_file`
+Every key is documented in the [configuration reference](/docs/modules/config-file). v3 has no `spicetify config <key> <value>`: edit the file.
 
-### Windows
+## Spotify updated and my client looks stock again
 
-1. There is a great chance that you are using Microsoft Store Spotify. Please double check that in Spotify About page.
-2. If you are actually using Microsoft Store Spotify, remove it completely. Go to Spotify website to download the normal version installer.
-3. If you are not using the Microsoft Store Spotify, and are using the one from the Spotify website, check to see if you have a "prefs" file in `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify`.
-4. If so, open your `config-xpui.ini` and set `prefs_path` to the absolute path of that prefs file. (e.g. `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify\prefs`) Then try running `spicetify` again.
+Usually it fixes itself. The daemon notices Spotify updating and re-applies afterwards, so give it a moment and restart Spotify.
 
-### Linux
+If it does not:
 
-1. In `bash`, run `cd ~` and `find | grep "spotify/prefs$"`
-2. If it returns a path to prefs file, copy its absolute path to `prefs_path` field in `config-xpui.ini`.
+```bash
+spicetify daemon status   # running? which version?
+spicetify apply
+```
 
-## After Spotify's update, running `spicetify apply` or `spicetify update` breaks Spotify.
+`daemon status` first is worth the extra second: a daemon that is not running, or one still on an old version after you updated Spicetify, looks exactly like an apply that did not work.
 
-After any Spotify update, always run `spicetify backup apply`.  
-Optionally, set the Spotify shortcut to run `spicetify auto` (instead of direct path to Spotify executable), so that Spicetify can backup and apply, when it needs to, then launch Spotify automatically.
+To stay on the build you have:
 
-It may be the case that Spicetify does not yet support a new Spotify update. In that case, please check the Spicetify issue tracker.
+```bash
+spicetify spotify-updates block
+```
+
+## A new Spotify version came out. Do I have to wait for a Spicetify release?
+
+Usually not. v3 fetches the mapping for your exact Spotify version at apply time rather than baking it into the binary, so a new client build normally works with the Spicetify you already have. When something genuinely is not supported yet, the client tells you which part is degraded instead of looking silently wrong.
+
+Manager's **available** badge only reports the newest version the project has
+observed. The **supported** badge comes from verified classmaps and decides
+whether Spicetify can offer an update. A missing exact map can fall back to an
+older patch in the same Spotify minor release, but it never falls back across a
+minor release.
+
+## A published theme fix still looks broken after applying
+
+A download cache can briefly serve older compatibility data after a fix is
+published. If your `spicetify apply --help` lists `--no-cache`, run:
+
+```bash
+spicetify apply --no-cache
+```
+
+This requires network access and downloads fresh compatibility files. If the
+refresh fails, Spotify stays as it was. On success, return to the restarted
+client and check the affected control. If the fix also includes a theme or
+module update, install that update from the Store before applying.
+
+See the [apply command reference](/docs/cli/commands#apply) for what the option
+refreshes and how it interacts with developer overrides. If your CLI does not
+have the option yet, wait a few minutes for the download cache to refresh, then
+run `spicetify apply` again.
+
+## Can Manager update Spotify for me?
+
+On macOS, Manager shows **Update & Apply** when the daemon, Spotify's updater
+API, and a verified target are all available. The daemon validates the exact
+offered version, reapplies Spicetify, and restores the update block.
+
+Windows and Linux don't offer the one-step action yet. Follow the
+[manual Spotify update flow](/docs/spotify-updates#update-spotify-manually)
+instead.
+
+## Spicetify cannot find Spotify
+
+Check what it resolved:
+
+```bash
+spicetify config
+```
+
+If the Spotify path is wrong, set `spotify_data_dir` and `spotify_exec` in `config.toml`, or pass `--spotify-exec` for one command.
+
+If you installed Spotify from the Microsoft Store, Snap or Flatpak, that is the problem: those builds are sandboxed and Spicetify cannot patch them. Remove it and install Spotify from Spotify's own installer.
+
+## I installed a module and nothing happened
+
+From the CLI, installing is only the first of three steps:
+
+```bash
+spicetify pkg install <id>
+spicetify pkg enable <id>@<version>
+spicetify apply
+```
+
+`pkg install` unpacks the module, `pkg enable` points the client at it, and `apply` stages it. From the store inside Spotify all three happen for you.
+
+## A module broke my client
+
+Disable it from the store's Installed tab, or:
+
+```bash
+spicetify pkg delete <id>
+spicetify apply
+```
+
+If the client is too broken to reach the store, `spicetify restore` returns stock Spotify, and re-applying afterwards brings back the modules you kept.
+
+## Can I go back to an older version of a module?
+
+Yes. Installed versions are kept side by side:
+
+```bash
+spicetify pkg enable my-module@1.2.0
+spicetify apply
+```
+
+## Why did my theme stop when I enabled another one?
+
+Exactly one theme is active at a time. Enabling a theme unloads the previous one, so you never end up with two fighting over the same client chrome.
+
+## Do my v2 themes and extensions work?
+
+No. v3 modules are a different format, and v2's themes, extensions and custom apps are all modules now. Most popular ones already exist as modules in the store. See [what changes in v3](/docs/whats-new).
+
+## Can I install something that is not in the store?
+
+Yes, by naming its artifact:
+
+```bash
+spicetify pkg install my-module https://example.com/my-module@1.0.0.zip
+```
+
+Nothing verifies those bytes, because there is no registry entry with a checksum to hold them to, and the CLI says so. Prefer the store for anything you did not build yourself.
 
 ## I can't play some songs after downgrading Spotify
 
-Delete all files in the following folder and launch spotify again.
+Delete everything in Spotify's own cache folder and start Spotify again:
 
 - **Windows**: `%LOCALAPPDATA%\Spotify`
 - **Linux**: `~/.config/spotify`
 - **macOS**: `~/Library/Application Support/Spotify`
 
-## Sometimes **Popup Lyrics** and/or **Lyrics Plus** seem to not work
+## How do I report a bug?
 
-This problem happens in the extension [Popup Lyrics](https://github.com/spicetify/cli/wiki/Extensions#pop-up-lyrics) and custom app [Lyrics Plus](https://github.com/spicetify/cli/wiki/Custom-Apps#lyrics-plus) mostly because your Musixmatch token has been flagged for doing too many requests. This can be fixed by just waiting without skipping songs too much, however, if it is still a problem for you, all you need to do is to install the Musixmatch official app, which is a web-based app like Spotify.
-
-1. **Linux:** find an archive online
-   **Windows:** go to [store.rg-adguard.net](https://store.rg-adguard.net/) and then select ProductID and enter `9wzdncrfj235` and click done. Download the .appxbundle and install.
-
-2. **You don't need to log in!**
-
-3. Now in Musixmatch app, hit `Ctrl + Shift + i` to bring up DevTools.
-
-![mxm1](/images/faq/mxm1.png)
-
-4. Switch to Network tab. Hit `Ctrl + R`. Filter results with "apic":
-
-![mxm2](/images/faq/mxm2.png)
-
-5. Click on any result. Click on the Headers tab. Scroll all the way down. Note down `usertoken`
-
-![mxm3](/images/faq/mxm3.png)
-
-It should look like this:
-
-```
-200501593b603a3fdc5c9b4a696389f6589dd988e5a1cf02dfdce1
+```bash
+spicetify support
 ```
 
-6. You can open the config for Popup Lyrics by right clicking on the Popup Lyrics button. Or if you're using Lyrics Plus, open the config by clicking on Lyrics in the sidebar and clicking on the profile menu and then clicking 'Lyrics Plus config'. You can then paste your personal token in the input field in the Musixmatch section and turn the switch on.
-
-![mxm4](/images/faq/mxm4.png)
+Paste that output into the issue. It carries the versions and paths that most questions would otherwise be about.

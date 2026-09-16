@@ -3,6 +3,10 @@ title: Query
 description: List of GraphQL definitions used by Spotify.
 ---
 
+:::warning
+This is a historical list, not an exhaustive v3 union or an availability guarantee. V3 discovers operation names from the running client's loaded factories; inspect `Object.keys(Spicetify.GraphQL.Definitions)` and check each definition before requesting it. See [GraphQL](/docs/development/api-wrapper/methods/graphql) for the required CLI fix and its release status.
+:::
+
 :::note
 
 This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.

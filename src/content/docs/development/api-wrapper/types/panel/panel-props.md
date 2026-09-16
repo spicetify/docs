@@ -3,6 +3,10 @@ title: PanelProps
 description: Properties that are used by the `registerPanel` function.
 ---
 
+:::warning
+Not available in Spicetify v3. The v3 wrapper exposes no `Spicetify.Panel` and no `Platform.PanelAPI`, verified against a running client. Modules register a panel through stdlib's panel register instead: see [Building a module](/docs/development/building-a-module). This page documents the v2 API.
+:::
+
 ```ts
 type PanelProps = {
     label?: string;
