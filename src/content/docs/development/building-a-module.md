@@ -13,16 +13,19 @@ Already have a classic extension? Follow [Porting a v2 extension to v3](/docs/de
 ```bash
 npm create spicetify-module my-module
 cd my-module
-npm run dev -- --launch
+npm install
+npm run dev
 ```
 
-`dev` rebuilds on every save and pushes the result into a running Spotify in about a second, with no re-apply and no restart. `--launch` starts (or reuses) Spotify with the remote debugging port; without it, start Spotify yourself with `--remote-debugging-port=9229`.
+`dev` starts Spotify with the remote debugging port (or reuses a client already running with it), then rebuilds on every save and pushes the result in about a second, with no re-apply and no restart. Spotify needs Spicetify v3 applied first.
 
-Drop the pushed override when you are done:
+Stopping `dev` with ctrl-c removes the pushed override, so Spotify falls back to whatever copy of the module is installed. To keep the override, run `npm run dev -- --keep`, and drop it later with `npm run remove`.
 
-```js
-Spicetify.Modules.removeLocal('my-module');
-```
+To start Spotify yourself, launch it with `--remote-debugging-port=9229` and run `npm run dev -- --no-launch`; `dev` waits for it.
+
+:::note
+Port 9229 is also the default for Node's inspector (`node --inspect`, `wrangler dev`). If another process holds it, `dev` stops with a message naming that process instead of restarting Spotify. Choose another port with `npm run dev -- --port 9230` or `SPICETIFY_CDP_PORT=9230`.
+:::
 
 Templates: `--template basic` (a button and a route), `extension` (behaviour only), `app` (a nav entry and a full page), `theme` (CSS only, no TypeScript).
 

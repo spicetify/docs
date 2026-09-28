@@ -54,7 +54,7 @@ Create a project beside the old source rather than editing the only copy:
 npm create spicetify-module my-extension -- --template extension
 cd my-extension
 npm install
-npm run dev -- --launch
+npm run dev
 ```
 
 The generated project contains:
@@ -343,7 +343,7 @@ The loader starts dependencies first and refuses an incompatible version with an
 
 Do not stop after the first successful load. The v3-specific test is a full lifecycle:
 
-1. Start the dev loop with `npm run dev -- --launch`.
+1. Start the dev loop with `npm run dev`.
 2. Exercise every button, menu item, setting, route, and player listener.
 3. Disable or reload the module from the Module Store or module manager.
 4. Confirm its UI, styles, listeners, observers, timers, and overlays disappear.
@@ -367,11 +367,7 @@ Spicetify.Modules.report
 
 Depending on the beta build, `report` may be a property or a function. A failed module should appear there with its reason while unrelated modules continue loading.
 
-When the hot-pushed build is no longer needed, remove the local override:
-
-```js
-Spicetify.Modules.removeLocal('my-extension');
-```
+Stopping `npm run dev` removes the hot-pushed override. If you ran it with `-- --keep`, remove the override with `npm run remove` when you no longer need it.
 
 ## 12. Package and publish
 
