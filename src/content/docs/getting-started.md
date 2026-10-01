@@ -1,139 +1,97 @@
 ---
-title: Getting Started
+title: Getting started
 description: Install Spicetify v3, patch Spotify, and add your first module.
 sidebar_position: 1
 ---
 
-Spicetify customizes the official Spotify desktop client. v3 is a rewrite: everything you add to Spotify (themes, extensions, whole apps) is a **module**, and you browse and install modules from a store inside Spotify itself.
-
-If you are coming from v2, read [what changes in v3](/docs/whats-new) first: it is a reinstall rather than an upgrade, and the two must not share a client.
+Spicetify customizes the official Spotify desktop client. In v3, everything you add to Spotify is a module: themes, extensions, and whole apps. You install modules from the Module Store inside Spotify. If you use Spicetify v2 today, read [what changes in v3](/docs/whats-new) first.
 
 :::caution
-v3 is currently a beta. Expect rough edges and [report anything that breaks or feels unsupported](https://github.com/spicetify/cli/issues), especially during first installation, after a Spotify update, or while porting an existing extension or theme.
+v3 is a release candidate (`v3.0.0-rc.1`), published as a GitHub prerelease. [Report anything that breaks](https://github.com/spicetify/cli/issues), especially during the first install or after a Spotify update.
 :::
 
 ## Requirements
 
-- The official Spotify desktop client, from Spotify's own installer. Sandboxed builds (Microsoft Store, Snap, Flatpak) hide the files Spicetify has to patch.
-- If Spotify is a fresh install, open it and log in for a minute before running Spicetify, so it writes the files that get patched.
+The Spotify client you patch must meet these conditions:
+
+- It's Spotify 1.2.80 or newer.
+- It came from Spotify's own installer. Spicetify can't patch the sandboxed Microsoft Store, Snap, and Flatpak builds. On Linux, `spicetify spotify install` gives you a copy it can patch (see [Spotify updates](/docs/spotify-updates)).
+- If you just installed Spotify, you opened it and signed in once.
 
 ## Install
 
+Each install method puts two binaries on your `PATH`: `spicetify` and `spicetify-daemon`.
+
 ### macOS and Linux
+
+Run the install script with `--v3`. Without the flag, it installs v2.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/spicetify/cli/v3-beta/install.sh | sh -s -- --v3
 ```
 
-The script installs into `~/.spicetify`, and prints the two lines to add to your shell profile if it cannot put itself on your `PATH`. It needs `zstd` to unpack the archive: `brew install zstd` or `apt install zstd`.
+The script installs the newest v3 release into `~/.spicetify`, adds it to your `PATH` in your shell profile, and sets up shell completion. It needs `zstd` (`brew install zstd` or `apt install zstd`). To pick a release, add its version, for example `--v3 3.0.0-rc.1`.
 
-Builds are published for macOS on x86_64 and arm64, and Linux on x86_64. On any other architecture, [build from source](#build-from-source).
+Builds exist for macOS on x86_64 and arm64, and Linux on x86_64. On other systems, [compile Spicetify](/docs/development/compiling).
 
 ### Windows
+
+Run this in PowerShell. Without `$v3 = $true`, the script installs v2.
 
 ```powershell
 $v3 = $true; iwr -useb https://raw.githubusercontent.com/spicetify/cli/v3-beta/install.ps1 | iex
 ```
 
-Setting `$v3` before piping is what selects v3; without it the script installs the v2 release. It unpacks into `%LOCALAPPDATA%\spicetify` and adds that folder to your `PATH`.
+The script downloads the x86_64 or ARM64 build that matches your Spotify, checks its SHA-256, and installs it into `%LOCALAPPDATA%\spicetify`. It adds that folder to your `PATH`, sets up PowerShell completion, and runs `spicetify apply`. It also deletes the `css-map.json`, `globals.d.ts`, and `jsHelper` files that v2 left in that folder.
 
-Windows builds are published for x86_64. On ARM, [build from source](#build-from-source).
+To install by hand, download the `windows-x86_64` or `windows-aarch64` zip from the [releases page](https://github.com/spicetify/cli/releases), unpack it into a permanent folder, and add that folder to your `PATH`. Each asset has a `.sha256` file next to it.
 
-To install by hand instead, download `spicetify-<version>-windows-x86_64.zip` from the [releases page](https://github.com/spicetify/cli/releases), unpack it somewhere permanent, and add that folder to your `PATH`. Every asset ships a `.sha256` beside it if you want to check the download first.
+### mise
 
-### Build from source
-
-Works on any platform Rust supports:
+With [mise](https://mise.jdx.dev), run:
 
 ```bash
-git clone --branch v3-beta https://github.com/spicetify/cli
-cd cli
-pnpm install && pnpm build:payload
-cargo build --release -p cli -p daemon
+mise use -g 'packslip:github.com/spicetify/cli[prerelease=true]'
 ```
 
-The binaries land in `rust/target/release/` as `spicetify` and `spicetify-daemon`. Put that directory on your `PATH`, or call the binary by its full path.
-
-:::note
-`pnpm build:payload` is not optional. The browser-side payload is compiled into the binary, so a build without it refuses to apply rather than patching Spotify with nothing in it.
-:::
-
-### Staying up to date
-
-```bash
-spicetify self-update
-```
-
-Downloads are checksum-verified. If you installed through a package manager, update through that instead.
+mise skips prereleases unless you set `prerelease=true`, so drop it once 3.0.0 ships. To pin a version, use `packslip:github.com/spicetify/cli@3.0.0-rc.1`. mise verifies the download against the release's signed packslip manifest. A copy installed with mise doesn't update itself, so run `mise upgrade` instead.
 
 ## Apply
 
+Run `apply` to patch Spotify:
+
 ```bash
 spicetify apply
 ```
 
-That is the whole setup. `apply` stops Spotify, patches the client, installs and starts the background daemon, registers the `spicetify://` handler, and starts Spotify again.
+`apply` closes Spotify, patches it, starts the daemon, registers the `spicetify://` link handler, and opens Spotify again. The first run also installs the Module Store and the standard library.
 
-On a fresh install it also downloads the store and the standard library from the registry, so the **Module Store** button is waiting in Spotify's top bar the first time it reopens. Nothing to install by hand.
-
-There is no separate backup step. v3 renames Spotify's own `xpui.spa` to `xpui.spa.backup` in place, and that rename **is** the backup, which is why `spicetify restore` needs nothing from you.
-
-:::warning
-Never point the v2 (Go) and v3 (Rust) binaries at the same client. They keep their backups differently, and running one over the other's state corrupts the install. Both detect a foreign apply and refuse, but restore with the same CLI that applied before switching.
-:::
+`apply` renames Spotify's `xpui.spa` to `xpui.spa.backup`, and `spicetify restore` renames it back, so there's no separate backup step. If Spicetify v2 patched this client, `apply` first restores Spotify from v2's backup (see [upgrade from v2](/docs/whats-new#upgrade-from-v2)).
 
 ## Add your first module
 
-Open Spotify and click **Module Store** in the top bar. Browse, click install, and most modules take effect immediately. The few that need a restart say so.
+In Spotify, select **Module Store** in the top bar and install a module. Most modules work right away, and one that needs a restart says so.
 
-From the terminal instead:
+To install from the terminal, use `spicetify pkg install`, then enable the version it prints and apply, as [from the terminal](/docs/modules#from-the-terminal) shows. A module you don't enable does nothing.
 
-```bash
-spicetify pkg install trashbin        # prints the version it unpacked
-spicetify pkg enable trashbin@<version>
-spicetify apply
-```
+## Keep Spicetify up to date
 
-:::warning
-Installing does not enable. `pkg install` unpacks the module and prints its version, `pkg enable` points the client at that version, and `apply` stages it. An install with no enable sits on disk doing nothing.
-:::
+The daemon updates Spicetify by default. It checks 10 minutes after it starts and then once a day, and runs `spicetify self-update` when a release is out. It only updates a copy in the installer's folder (`~/.spicetify` or `%LOCALAPPDATA%\spicetify`), and it waits while an apply or an Update & Apply runs. The last run's output is in `self-update.log` in the config folder.
 
-## Keeping it working
+The update doesn't restart Spotify, and the new client code reaches Spotify on your next apply. Until then, **Spicetify Settings** shows "Spicetify X is installed. Apply to use it in Spotify." with an **apply** button.
 
-The daemon notices when Spotify replaces the patched client and reapplies
-Spicetify after the update. On macOS, **Spicetify Settings** also offers a
-one-step **Update & Apply** action when the target Spotify version is verified.
-Windows and Linux use the manual update flow.
+To turn automatic updates off, use one of these:
 
-If something does look wrong after an update:
+- `spicetify auto-update off` (`spicetify auto-update status` shows the setting)
+- **Install Spicetify updates automatically** in **Spicetify Settings**, which you open from Spotify's profile menu
+- `auto_update = false` in `config.toml`
 
-```bash
-spicetify apply          # re-patch
-spicetify daemon status  # is the daemon running, and which version
-spicetify support        # diagnostics to paste into a bug report
-```
+To update by hand, run [`spicetify self-update`](/docs/cli/commands#self-update).
 
-To keep Spotify on the build you have:
+To control Spotify's own updates, see [Spotify updates](/docs/spotify-updates).
 
-```bash
-spicetify spotify-updates block
-```
+## Next steps
 
-See [Spotify updates](/docs/spotify-updates) for the platform limits, version
-badges, manual flow, and recovery commands.
-
-## Where things live
-
-```bash
-spicetify path
-```
-
-Configuration lives in `config.toml` under Spicetify's config folder, with `modules/` and `store/` beside it. `spicetify config open` opens that folder.
-
-## Next
-
-- [What changes in v3](/docs/whats-new) if you are coming from v2
-- [Modules and the store](/docs/modules) for what you can install and how to manage it
-- [CLI reference](/docs/cli) for every command
-- [Spotify updates](/docs/spotify-updates) for controlled and manual updates
-- [Building a module](/docs/development/building-a-module) if you want to make one
+- [Modules and the Module Store](/docs/modules)
+- [CLI reference](/docs/cli)
+- [Building a module](/docs/development/building-a-module)

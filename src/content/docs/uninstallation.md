@@ -4,51 +4,32 @@ description: Remove Spicetify v3 and put stock Spotify back.
 sidebar_position: 6
 ---
 
-## Put Spotify back
+To remove Spicetify, restore Spotify, then delete Spicetify's files. If you only want to stop one module, disable it in the Module Store instead.
+
+## Restore Spotify
+
+Run `restore`:
 
 ```bash
 spicetify restore
 ```
 
-That undoes the patch and returns the stock client. Restore with the same CLI that applied: v2 and v3 keep their backups differently, so the v2 binary cannot undo a v3 apply.
+`restore` stops the daemon, removes its auto-start entry, and puts back the stock client, including one that Spicetify v2 patched. The v2 CLI can't undo a v3 apply.
 
-If you only wanted to stop a module misbehaving, you do not need any of this: disable it from the store's Installed tab, or `spicetify pkg delete <id>`.
-
-## Stop the daemon
-
-```bash
-spicetify daemon stop
-spicetify daemon uninstall
-```
-
-`stop` also unloads the service, so it does not come back on its own. `uninstall` removes it entirely.
+If Spotify is already stock, `restore` says so and leaves the daemon in place. Run `spicetify daemon stop` to stop it and remove its auto-start entry.
 
 ## Remove the files
 
-`spicetify path` prints where everything is. Removing the config folder removes your configuration, every installed module and the store's record of them.
+`spicetify path` prints the config folder. Delete these:
 
-```bash
-rm -rf ~/.config/spicetify   # Linux and macOS, if that is what `spicetify path` reported
-```
-
-On Windows, delete the folder `spicetify path` names.
-
-:::note
-If you plan to reinstall, keep the folder. Reinstalling with it intact brings back every module you had, at the versions you had.
-:::
-
-## Remove the binary
-
-If you installed with the script, everything lives in one directory:
-
-```bash
-rm -rf ~/.spicetify
-```
-
-Then remove the `PATH` entry the installer added to your shell profile. If you installed through a package manager, uninstall through it instead.
-
-On macOS, `apply` also created `~/Applications/Spicetify.app`, the small bundle that receives `spicetify://` links. Delete it too.
+1. The config folder: `~/.config/spicetify` on macOS and Linux. It holds `config.toml`, every installed module, and the Module Store's records. To reinstall later with the same modules, keep it.
+2. The install folder: `~/.spicetify`, or `%LOCALAPPDATA%\spicetify` on Windows. On Windows, this is also the config folder. If you installed with mise, run `mise unuse -g 'packslip:github.com/spicetify/cli[prerelease=true]'` instead.
+3. The `PATH` entry the installer added to your shell profile. On Windows, it's in your user `PATH` environment variable.
+4. The `spicetify://` link handler that `apply` registered:
+   - macOS: `~/Applications/Spicetify.app`
+   - Linux: `~/.local/share/applications/spicetify-protocol.desktop`
+   - Windows: the registry key `HKEY_CURRENT_USER\Software\Classes\spicetify`
 
 ## Going back to v2
 
-Restore with v3 first, then install v2 and apply with it. Your v2 configuration (`config-xpui.ini`) was never touched, so it is exactly as you left it. See the [v2 guide](/docs/legacy/getting-started).
+Restore with v3 first, then install v2 and apply with it. v3 never changes v2's `config-xpui.ini`. See the [v2 guide](/docs/legacy/getting-started).
