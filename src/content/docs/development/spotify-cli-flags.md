@@ -1,106 +1,53 @@
 ---
-title: Spotify CLI Flags
-description: 🚩 Flags to alter the behavior of the Spotify.
+title: Spotify CLI flags
+description: Command-line flags that change how the Spotify client behaves.
 ---
+
+Spotify accepts command-line flags that change how the client starts. Most names and descriptions here come from the Spotify executable.
+
+## Pass a flag
+
+Spicetify v3 has no setting for launch flags, so you add them where you start Spotify:
+
+- On macOS, run `open -a Spotify --args --remote-debugging-port=9229`.
+- On Windows, add the flags to the end of the Target field of your Spotify shortcut.
+- On Linux, add them to the `Exec` line of your Spotify `.desktop` file, or pass them when you start `spotify` from a terminal.
+
+`spicetify-kit dev` starts Spotify with `--remote-debugging-port` for you.
 
 ## List of flags
 
-**When adding flags to your spicetify config, separate each one with `|`.**
+These flags have a known effect:
 
-| Flag                                   | Description                                                                                                                                                                                          |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--allow-upgrades`                     |                                                                                                                                                                                                      |
-| `--append-log-file`                    |                                                                                                                                                                                                      |
-| `--app-directory=<path>`               | Specify the "Apps" directory path. Used by spicetify for modifying Spotify from Microsoft Store.                                                                                                      |
-| `--app-icon-overlay`                   |                                                                                                                                                                                                      |
-| `--apr`                                |                                                                                                                                                                                                      |
-| `--audio-api`                          |                                                                                                                                                                                                      |
-| `--autostart`                          |                                                                                                                                                                                                      |
-| `--bridge-log-filename`                |                                                                                                                                                                                                      |
-| `--cache-path=<path>`                  | Use as root for the cache directory.                                                                                                                                                                 |
-| `--campaign-id`                        |                                                                                                                                                                                                      |
-| `--connect-debug-level`                |                                                                                                                                                                                                      |
-| `--disable-cef-views`                  |                                                                                                                                                                                                      |
-| `--disable-crash-reporting`            |                                                                                                                                                                                                      |
-| `--disable-update-restarts`            |                                                                                                                                                                                                      |
-| `--disallow-multiple-instances`        |                                                                                                                                                                                                      |
-| `--enable-audio-graph`                 |                                                                                                                                                                                                      |
-| `--enable-cef-views`                   |                                                                                                                                                                                                      |
-| `--enable-chrome-runtime`              | Switches runtime from Alloy to Chrome on Spotify versions below 1.2.34. See [this issue on GitHub](https://github.com/chromiumembedded/cef/issues/3685) for details about the differences.           |
-| `--enable-developer-mode`              | Used to enable the developer mode like `spicetify enable-devtools`. Stopped working long time ago.                                                                                                   |
-| `--event-sender-send-interval`         |                                                                                                                                                                                                      |
-| `--experimental-languages`             |                                                                                                                                                                                                      |
-| `--experimental-network`               |                                                                                                                                                                                                      |
-| `--force-auto-update`                  |                                                                                                                                                                                                      |
-| `--force-cef-http`                     |                                                                                                                                                                                                      |
-| `--immediate-widevine-cdm-download`    |                                                                                                                                                                                                      |
-| `--log-detailed-request-account`       |                                                                                                                                                                                                      |
-| `--log-file=<path>`                    | Save log output to file (extension needs to be '.log').                                                                                                                                              |
-| `--maximized`                          |                                                                                                                                                                                                      |
-| `--minimum-update-request-interval`    |                                                                                                                                                                                                      |
-| `--minimized`                          | Start the app with the window minimized. Only works on Windows.                                                                                                                                      |
-| `--mu=<value>`                         | Start with a special cache directory. Allows you to run multiple clients at the same time. Value can be anything (will be used as part of the cache name).                                           |
-| `--password=<password>`                | Use to automatically sign in on startup. Use together with `--username`. No longer works.                                                                                                            |
-| `--performance-tracing`                |                                                                                                                                                                                                      |
-| `--product-version`                    |                                                                                                                                                                                                      |
-| `--protocol-uri=<uri>`                 | Identical to --uri, but only used from the Windows protocol handler, so we can apply extra security restrictions.                                                                                    |
-| `--remote-allow-origins=<url>`         | Required to use remote debugging since Spotify 1.2.8 due to security changes in Chromium 111. Example configuration: `--remote-debugging-port=8088 \| --remote-allow-origins=http://localhost:8088`. |
-| `--remote-app-config`                  |                                                                                                                                                                                                      |
-| `--remote-debugging-port=<port>`       | Enable remote debugging. Use together with `--remote-allow-origins`.                                                                                                                                 |
-| `--remember-cmd-login`                 |                                                                                                                                                                                                      |
-| `--show-console`                       | Show more log output.                                                                                                                                                                                |
-| `--startup-success-file-path`          |                                                                                                                                                                                                      |
-| `--test-auto-update-success-file-path` |                                                                                                                                                                                                      |
-| `--trace-file=<path>`                  | Save a trace file to this path.                                                                                                                                                                      |
-| `--trigger-ta-crash`                   |                                                                                                                                                                                                      |
-| `--update-endpoint-override=<url>`     | Can be used to disable Spotify updates. Example configuration: `--update-endpoint-override=http://localhost`.                                                                                        |
-| `--update-immediately`                 |                                                                                                                                                                                                      |
-| `--upgrade-failed`                     |                                                                                                                                                                                                      |
-| `--uri=<uri>`                          | Start the client normally, but automatically navigate to the URI when initialized.                                                                                                                   |
-| `--use-event-sender-test-transport`    |                                                                                                                                                                                                      |
-| `--user-agent-product`                 |                                                                                                                                                                                                      |
-| `--username=<username>`                | Use to automatically sign in on startup. Use together with `--password`. No longer works.                                                                                                            |
-| `--weblogin-endpoint`                  |                                                                                                                                                                                                      |
+| Flag | Description |
+| --- | --- |
+| `--app-directory=<path>` | Sets the Apps directory path. v2 used it to patch Spotify from the Microsoft Store. |
+| `--cache-path=<path>` | Uses this path as the root of the cache directory. |
+| `--enable-chrome-runtime` | Switched the runtime from Alloy to Chrome on Spotify versions older than 1.2.34, which v3 doesn't support. See [this CEF issue](https://github.com/chromiumembedded/cef/issues/3685) for the differences. |
+| `--enable-developer-mode` | Turned on developer mode. It no longer works, so use `spicetify dev`. |
+| `--log-file=<path>` | Saves log output to this file. The extension must be `.log`. |
+| `--minimized` | Starts with the window minimized. Windows only. |
+| `--mu=<value>` | Starts with a separate cache directory named after the value, so you can run several clients at once. |
+| `--password=<password>` | Signed in on startup together with `--username`. It no longer works. |
+| `--protocol-uri=<uri>` | The same as `--uri`, but used only by the Windows protocol handler so Spotify can apply extra security restrictions. |
+| `--remote-allow-origins=<url>` | Since Spotify 1.2.8 (Chromium 111), the debugging port rejects connections from a web page unless its origin is listed here, for example `--remote-allow-origins=http://localhost:8088`. Tools that connect without an origin, such as `spicetify-kit dev`, don't need it. |
+| `--remote-debugging-port=<port>` | Opens the Chrome DevTools Protocol on this port. The dev loop uses 9229. |
+| `--show-console` | Shows more log output. |
+| `--trace-file=<path>` | Saves a trace file to this path. |
+| `--update-endpoint-override=<url>` | Points Spotify's updater at another server. `--update-endpoint-override=http://localhost` stops updates. |
+| `--uri=<uri>` | Starts the client and opens the URI once it loads. |
+| `--username=<username>` | Signed in on startup together with `--password`. It no longer works. |
 
-**When added to spicetify config, the flags will only be applied when you launch Spotify using spicetify.** But you can also add them to the Spotify shortcut (on Windows) or `.desktop` file (on Linux) and use it to launch Spotify.
+These flags have no documented effect: `--allow-upgrades`, `--append-log-file`, `--app-icon-overlay`, `--apr`, `--audio-api`, `--autostart`, `--bridge-log-filename`, `--campaign-id`, `--connect-debug-level`, `--disable-cef-views`, `--disable-crash-reporting`, `--disable-update-restarts`, `--disallow-multiple-instances`, `--enable-audio-graph`, `--enable-cef-views`, `--event-sender-send-interval`, `--experimental-languages`, `--experimental-network`, `--force-auto-update`, `--force-cef-http`, `--immediate-widevine-cdm-download`, `--log-detailed-request-account`, `--maximized`, `--minimum-update-request-interval`, `--performance-tracing`, `--product-version`, `--remote-app-config`, `--remember-cmd-login`, `--startup-success-file-path`, `--test-auto-update-success-file-path`, `--trigger-ta-crash`, `--update-immediately`, `--upgrade-failed`, `--use-event-sender-test-transport`, `--user-agent-product`, `--weblogin-endpoint`.
 
-Most of the flags with some descriptions are taken directly from the Spotify executable.
+Spotify also accepts many Chromium and CEF switches, but not all of them work:
 
-## See also
-
-- [General documentation on Chromium command-line switches](https://www.chromium.org/developers/how-tos/run-chromium-with-flags)
-
+- [Chromium command-line switches, general documentation](https://www.chromium.org/developers/how-tos/run-chromium-with-flags)
 - [List of Chromium command-line switches](https://peter.sh/experiments/chromium-command-line-switches)
-
-- List of CEF command-line switches in the source code: [1](https://github.com/chromiumembedded/cef/blob/master/tests/shared/common/client_switches.cc), [2](https://github.com/chromiumembedded/cef/blob/master/libcef/common/cef_switches.cc)
-
-Don't expect every switch to work.
+- CEF switches in the source code: [client_switches.cc](https://github.com/chromiumembedded/cef/blob/master/tests/shared/common/client_switches.cc) and [cef_switches.cc](https://github.com/chromiumembedded/cef/blob/master/libcef/common/cef_switches.cc)
 
 ## Experimental features
 
-Some Chromium experimental features can be enabled with `--enable-features=<comma-separated feature list>`, some require both a switch and a feature. Smooth scrolling is an example: `--enable-smooth-scrolling | --enable-features=WindowsScrollingPersonality`.
-There is no list of experimental features and they vary from version to version.
+Turn on Chromium experimental features with `--enable-features=<comma-separated list>`. Some need a switch as well, as in `--enable-smooth-scrolling --enable-features=WindowsScrollingPersonality` for smooth scrolling. No list of these features exists, and they change between versions.
 
-To enable experimental features in **Spotify newer than 1.2.33**:
-
-1. Launch it in the developer mode
-2. Press *Ctrl + Shift + T*
-3. Press *Ctrl + N*
-4. Navigate to the `chrome://flags` page using the address bar
-5. Enable the ones you want
-6. Press the "Relaunch" button
-
-If you are using **Spotify older than 1.2.34**:
-
-1. Launch it with the `--enable-chrome-runtime` switch and developer mode enabled
-2. Press *Ctrl + Shift + T*
-3. Press *Ctrl + N*
-4. Navigate to the `chrome://flags` page using the address bar
-5. Enable the ones you want
-6. Press the "Relaunch" button
-7. Restart Spotify with the `--enable-chrome-runtime` switch and developer mode enabled
-8. Press *Ctrl + Shift + T*
-9. Click the `chrome://version` link
-10. Copy and paste the flags between `--flag-switches-begin` `--flag-switches-end` into your spicetify config and/or the shortcut/`.desktop` file you use to launch Spotify
-
-The `--enable-chrome-runtime` switch and developer mode are not required for experimental features to work.
+To turn features on from the client instead, run `spicetify dev`, press Ctrl+Shift+T and then Ctrl+N in Spotify, open `chrome://flags`, turn on the features, and select **Relaunch**.
