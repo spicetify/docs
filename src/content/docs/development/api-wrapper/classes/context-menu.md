@@ -92,3 +92,39 @@ const shareMenu = new Spicetify.ContextMenu.SubMenu(
 
 shareMenu.register();
 ```
+
+## `Spicetify.ContextMenuV2`
+
+`Spicetify.ContextMenuV2` is the layer `ContextMenu` and `Menu` are built on. Its `Item` and `ItemSubMenu` classes take one options object, and the functions register any React element as a context-menu entry.
+
+```ts
+namespace ContextMenuV2 {
+  class Item {
+    constructor(options: {
+      children: React.ReactNode;
+      disabled?: boolean;
+      leadingIcon?: Icon | string;
+      trailingIcon?: Icon | string;
+      divider?: "before" | "after" | "both";
+      onClick: (context: Context, self: Item, event: React.MouseEvent) => void;
+      shouldAdd?: ShouldAddCallback;
+    });
+  }
+  class ItemSubMenu {
+    constructor(options: {
+      text: string;
+      disabled?: boolean;
+      leadingIcon?: Icon | string;
+      divider?: "before" | "after" | "both";
+      items: SubMenuItems; // an array or a Set
+      shouldAdd?: ShouldAddCallback;
+    });
+    addItem(item: Item | ItemSubMenu): void;
+    removeItem(item: Item | ItemSubMenu): void;
+  }
+  function registerItem(item: React.ReactElement, shouldAdd?: ShouldAddCallback): void;
+  function unregisterItem(item: React.ReactElement): void;
+}
+```
+
+Both classes have `register()` and `deregister()`, and setters for each option. Use `ContextMenuV2` when you need an option the `ContextMenu` constructors don't take, such as `divider`.

@@ -12,7 +12,9 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
-    "format:check": "oxfmt --check"
+    "format:check": "oxfmt --check",
+    "check:cli-commands": "node scripts/check-cli-commands.mjs",
+    "check:api-wrapper": "node scripts/check-api-wrapper.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

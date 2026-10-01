@@ -81,6 +81,10 @@ export const sidebar: SidebarItem[] = [
                 href: '/docs/development/api-wrapper/methods/uri',
               },
               {
+                label: 'Locale',
+                href: '/docs/development/api-wrapper/methods/locale',
+              },
+              {
                 label: 'PopupModal',
                 href: '/docs/development/api-wrapper/methods/popup-modal',
               },
@@ -109,6 +113,10 @@ export const sidebar: SidebarItem[] = [
                 label: 'Playbar',
                 href: '/docs/development/api-wrapper/classes/playbar',
               },
+              {
+                label: 'Color',
+                href: '/docs/development/api-wrapper/classes/color',
+              },
             ],
           },
           {
@@ -127,6 +135,10 @@ export const sidebar: SidebarItem[] = [
                 href: '/docs/development/api-wrapper/functions/color-extractor',
               },
               {
+                label: 'extractColorPreset',
+                href: '/docs/development/api-wrapper/functions/extract-color-preset',
+              },
+              {
                 label: 'getAudioData',
                 href: '/docs/development/api-wrapper/functions/get-audio-data',
               },
@@ -142,6 +154,10 @@ export const sidebar: SidebarItem[] = [
               {
                 label: 'SVGIcons',
                 href: '/docs/development/api-wrapper/properties/svgicons',
+              },
+              {
+                label: 'Events',
+                href: '/docs/development/api-wrapper/properties/events',
               },
               {
                 label: 'Queue',
