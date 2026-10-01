@@ -1,28 +1,26 @@
 ---
 title: KeysDefine
-description: Keyboard KeyDefine type definition.
+description: The keyboard shortcut argument that Spicetify.Keyboard accepts.
 ---
 
+`KeysDefine` describes a keyboard shortcut for [`Spicetify.Keyboard`](/docs/development/api-wrapper/methods/keyboard).
+
 ```ts
-type KeysDefine = string | {
-    key: string;
-    ctrl?: boolean;
-    shift?: boolean;
-    alt?: boolean;
-    meta?: boolean;
-};
+type KeysDefine =
+  | string
+  | {
+      key: string;
+      ctrl?: boolean;
+      shift?: boolean;
+      alt?: boolean;
+      meta?: boolean;
+    };
 ```
 
-`KeysDefine` is a type that defines a keyboard shortcut. It can be a string or an object.
+A string must be a single key name from [`KEYS`](/docs/development/api-wrapper/types/keyboard/validkey), such as `"f8"`. A combined string such as `"ctrl+shift+p"` throws. Use the object form for a key with modifiers.
 
-In the string format, it should be a list of keys separated by `+`. For example, `ctrl+shift+p` is a valid shortcut.
+In the object form, `key` must also be a key name from `KEYS`. `ctrl` binds Mousetrap's `mod` modifier, which is <kbd>Cmd</kbd> on macOS and <kbd>Ctrl</kbd> on Windows and Linux. `meta` binds the <kbd>Cmd</kbd> or <kbd>Windows</kbd> key.
 
-In the object format, it should be an object with the following properties:
-
-| Property | Type | Description |
-| --- | --- | --- |
-| `key` | `string` | Key name. Refer to [this table](/docs/development/api-wrapper/types/keyboard/validkey) for a list of valid keys. |
-| `ctrl` | `boolean` &#124; `undefined` | Whether to require `CTRL` key. |
-| `shift` | `boolean` &#124; `undefined` | Whether to require `SHIFT` key. |
-| `alt` | `boolean` &#124; `undefined` | Whether to require `ALT` key. |
-| `meta` | `boolean` &#124; `undefined` | Whether to require the meta key. This could be the <kbd>🪟</kbd> key on Windows or the <kbd>⌘</kbd> key on Mac. |
+```ts
+const openSearch: Spicetify.Keyboard.KeysDefine = { key: 'k', ctrl: true };
+```

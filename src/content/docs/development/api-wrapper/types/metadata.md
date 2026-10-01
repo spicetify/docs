@@ -1,66 +1,22 @@
 ---
 title: Metadata
-description: Type of metadata object.
+description: The string metadata Spotify attaches to tracks and contexts.
 ---
 
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`Metadata` is a map of string values. Spotify chooses the keys, and every value is a string, including numbers and booleans.
 
 ```ts
 type Metadata = Partial<Record<string, string>>;
 ```
 
-An example of metadata object, **not** a type definition, may not include all properties.
+Track metadata often includes these keys:
+
+- `title`, `artist_name`, `artist_uri`, `album_title`, `album_uri` and `album_artist_name` name the track and where it comes from.
+- `duration`, `album_track_number`, `album_disc_number` and `popularity` hold numbers as strings.
+- `image_url`, `image_small_url`, `image_large_url` and `image_xlarge_url` point to the artwork in different sizes.
+- `collection.in_collection`, `collection.can_add` and `has_lyrics` hold `"true"` or `"false"`.
+- Keys that start with `canvas.` describe the track's Canvas video, when it has one.
 
 ```ts
-type Metadata = {
-    actions.skipping_next_past_track: string;
-    actions.skipping_prev_past_track: string;
-    added_at: `${bigint}`;
-    album_artist_name: string;
-    album_disc_count: `${number}`;
-    album_disc_number: `${number}`;
-    album_title: string;
-    album_track_count: `${number}`;
-    album_track_number: `${number}`;
-    album_uri: string;
-    artist_name: string;
-    artist_uri: string;
-    // URL
-    canvas.artist.avatar: string;
-    canvas.artist.name: string;
-    canvas.artist.uri: string;
-    canvas.canvasUri: string;
-    canvas.entityUri: string;
-    canvas.explicit: "true" | "false";
-    canvas.fileId: string;
-    canvas.id: string;
-    canvas.type: string;
-    canvas.uploadedBy: string;
-    // URL
-    canvas.url: string;
-    collection.can_add: "true" | "false";
-    collection.can_ban: "true" | "false";
-    collection.in_collection: "true" | "false";
-    collection.is_banned: "true" | "false";
-    context_uri: string;
-    duration: `${bigint}`;
-    entity_uri: string;
-    has_lyrics: "true" | "false";
-    // Internal URL paths, not URLs
-    image_large_url: string;
-    image_small_url: string;
-    image_url: string;
-    image_xlarge_url: string;
-    interaction_id: string;
-    iteration: `${number}`;
-    marked_for_download:  "true" | "false";
-    page_instance_id: string;
-    popularity: `${number}`;
-    title: string;
-    track_player: string;
-}
+const liked = Spicetify.Player.data?.item.metadata['collection.in_collection'] === 'true';
 ```

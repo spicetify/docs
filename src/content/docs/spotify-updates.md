@@ -1,110 +1,53 @@
 ---
 title: Spotify updates
-description: Keep Spotify pinned or update it without leaving Spicetify unpatched.
+description: Keep Spotify on its current version, or update it without losing Spicetify.
 sidebar_position: 4
 ---
 
-Spicetify can keep Spotify on its current version and reapply your setup after
-an update. On macOS, Manager can run the supported update as one transaction.
-Windows and Linux use the manual flow below.
-
-:::note
-One-step **Update & Apply** is experimental and currently available only on
-macOS. The ordinary block, unblock, status, and apply commands remain available
-on supported native Spotify installations on every platform.
-:::
+A Spotify update replaces the patched client, and the daemon applies Spicetify again. To update Spicetify itself, see [keep Spicetify up to date](/docs/getting-started#keep-spicetify-up-to-date).
 
 ## Read the version badges
 
-Open Spotify's profile menu, select **Spicetify Settings**, and find
-**Updates**. Manager reports three different facts:
+In Spotify, open the profile menu and select **Spicetify Settings**. The **Updates** section shows three versions:
 
-- **installed** is the Spotify version currently on disk.
-- **supported** is the newest Spotify version with a verified published
-  classmap.
-- **available** is the newest Spotify version observed by the project. This
-  badge does not prove that Spicetify supports the version.
+- **installed** is the Spotify version on disk.
+- **supported** is the newest Spotify version with a verified classmap.
+- **available** is the newest Spotify version the project has seen. It doesn't mean Spicetify supports it.
 
-Manager offers **Update & Apply** only when the daemon supports the transaction,
-Spotify exposes its complete updater API, and a newer verified version exists.
-The daemon also checks the exact version Spotify offers. It rejects an offer
-above the verified support ceiling even if the **available** badge is stale.
+## Block Spotify updates
 
-## Keep the installed Spotify version
+Run `spicetify spotify-updates block` to keep the installed version, and `spicetify spotify-updates status` to check the setting. `block` may close Spotify to patch it, and `unblock` allows updates again. Manager's **block** and **allow** buttons do the same. Spicetify saves your choice in `config.toml` and sets it again on every apply, because a Spotify update removes the block. Each platform blocks updates differently:
 
-Run the block command while Spotify is closed:
+- macOS patches Spotify's update endpoint, signs the app bundle again, and locks the update cache.
+- Windows protects Spotify's update staging folder. Older clients get the endpoint patch instead. The Microsoft Store manages its own updates.
+- Linux patches Spotify's update endpoint. Your package manager can still replace the package.
 
-```bash
-spicetify spotify-updates block
-spicetify spotify-updates status
-```
+## Update & Apply on macOS
 
-Spicetify records the block in `config.toml`. A Spotify update replaces the
-file or directory protection that enforces the block, so each successful
-`spicetify apply` restores the recorded setting.
+On macOS, Manager can update Spotify and apply Spicetify in one step. In **Spicetify Settings**, under **Updates**, select **update & apply**. Manager shows the button when the daemon and Spotify support it and **supported** is newer than **installed**.
 
-The protection mechanism depends on the platform:
+The daemon allows Spotify's updater, refuses an offer newer than **supported**, waits for the install, applies Spicetify, blocks updates again, and restarts Spotify. If Spotify restarts during the update, Manager reconnects to the same job.
 
-- macOS patches Spotify's update endpoint, signs the changed app bundle, and
-  locks the update cache as a secondary measure.
-- Windows protects Spotify's update staging directory. Older client layouts
-  can use the endpoint patch instead.
-- Linux patches Spotify's update endpoint. Your package manager can still
-  replace the installed package.
+Spotify must be signed in. A signed-out Spotify restarts to its login screen, and within about 3 minutes the job stops and tells you to sign in and choose Update & Apply again.
 
-Microsoft Store, Snap, and Flatpak builds are sandboxed and aren't supported.
+If Manager reports that it couldn't block updates again, fix the reported error, then run `spicetify spotify-updates block`.
 
-## Update and apply on macOS
+## Managed Spotify on Linux
 
-Use Manager when it shows **Update & Apply**:
-
-1. Run `spicetify daemon status` and confirm that the daemon is current.
-2. Open **Spicetify Settings** in Spotify and find **Updates**.
-3. Confirm that **supported** is newer than **installed**.
-4. Select **Update & Apply**.
-
-The daemon temporarily allows Spotify's updater, validates the offered version,
-waits for installation, reapplies Spicetify, restores the update block, and
-restarts Spotify. If Spotify restarts during the process, Manager reconnects to
-the existing job instead of starting another one.
-
-If Manager reports that it couldn't restore the block, fix the reported error
-and run:
-
-```bash
-spicetify spotify-updates block
-```
+On Linux, `spicetify spotify install` installs a copy of Spotify from Spotify's official Debian repository, separate from your system packages, and patches it. It points the Spotify desktop entry and `~/.local/bin/spotify` at that copy. Manager then shows **Update Spotify & Apply** when a newer package has a verified classmap. [Spotify on Linux](/docs/cli/commands#spotify-on-linux) lists the commands and channels.
 
 ## Update Spotify manually
 
-Use this flow on Windows, Linux, or macOS when Manager doesn't show
-**Update & Apply**:
+Use these steps on Windows and Linux, or when Manager doesn't offer **update & apply**:
 
-1. Allow Spotify updates:
+1. Allow Spotify updates with `spicetify spotify-updates unblock`.
+2. Update Spotify with its own updater or installer.
+3. The daemon applies Spicetify for you. To make sure, run `spicetify apply`.
+4. To stay on the new version, run `spicetify spotify-updates block`.
 
-   ```bash
-   spicetify spotify-updates unblock
-   ```
+## Check an interrupted update
 
-2. Update Spotify through its normal installer or updater.
-3. Reapply Spicetify:
-
-   ```bash
-   spicetify apply
-   ```
-
-4. To pin the new Spotify version, restore the block:
-
-   ```bash
-   spicetify spotify-updates block
-   ```
-
-If the daemon is running, it normally reapplies Spicetify after it detects the
-new stock client. Running `spicetify apply` remains a safe manual check.
-
-## Diagnose an interrupted update
-
-Run these commands before opening an issue:
+Include the output of these commands when you open an issue:
 
 ```bash
 spicetify spotify-updates status
@@ -112,8 +55,4 @@ spicetify daemon status
 spicetify support
 ```
 
-If Spotify looks stock, run `spicetify apply`. If the update status is allowed
-when you expected it to be blocked, run `spicetify spotify-updates block`.
-
-`spicetify self-update` updates the Spicetify CLI and TUI. It does not update
-Spotify.
+If Spotify looks stock, run `spicetify apply`. If `status` says updates are allowed and you expected them blocked, run `spicetify spotify-updates block`.

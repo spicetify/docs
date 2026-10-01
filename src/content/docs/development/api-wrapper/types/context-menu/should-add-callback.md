@@ -1,24 +1,17 @@
 ---
 title: ShouldAddCallback
-description: Type definition for callback function to determine if menu item should be added.
+description: The callback that decides whether a ContextMenu item appears.
 ---
 
+`ShouldAddCallback` runs each time the menu opens and returns `true` to show the item or submenu.
+
 ```ts
-type ShouldAddCallback = (
-    uris: string[],
-    uids?: string[],
-    contextUri?: string
-) => boolean;
+type ShouldAddCallback = (uris: string[], uids?: string[], contextUri?: string) => boolean;
 ```
 
-#### Parameters
+It receives the same arguments as [`OnClickCallback`](/docs/development/api-wrapper/types/context-menu/onclick-callback).
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uris | `string[]` | List of URIs of the selected items. |
-| uids | `string[]` &#124; `undefined` | List of UIDs of the selected items. **Note:** Not all context menu items have UIDs. |
-| contextUri | `string` &#124; `undefined` | URI of the context menu where the item was called from. This could be a playlist, album, artist, or a track. |
-
-#### Return value
-
-`boolean` - Whether the menu item should be added.
+```ts
+const isSingleTrack: Spicetify.ContextMenu.ShouldAddCallback = (uris) =>
+  uris.length === 1 && Spicetify.URI.isTrack(uris[0]);
+```

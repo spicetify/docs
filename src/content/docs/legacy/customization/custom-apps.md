@@ -82,7 +82,7 @@ spicetify apply
 ![Lyrics Plus](/images/apps/lyrics-plus.png)
 
 :::note
-If lyrics aren't loading, see the [FAQ](/docs/faq#sometimes-popup-lyrics-andor-lyrics-plus-seem-to-not-work) for Musixmatch token instructions.
+If lyrics aren't loading, see the [FAQ](/docs/legacy/faq#sometimes-popup-lyrics-andor-lyrics-plus-seem-to-not-work) for Musixmatch token instructions.
 :::
 
 Learn more: [Lyrics Plus on GitHub](https://github.com/spicetify/cli/tree/main/CustomApps/lyrics-plus)

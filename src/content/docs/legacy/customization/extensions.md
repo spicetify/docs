@@ -186,7 +186,7 @@ spicetify apply
 ![Pop-up Lyrics](/images/extensions/popup-lyrics.png)
 
 :::note
-If lyrics aren't loading, see the [FAQ](/docs/faq#sometimes-popup-lyrics-andor-lyrics-plus-seem-to-not-work) for Musixmatch token instructions.
+If lyrics aren't loading, see the [FAQ](/docs/legacy/faq#sometimes-popup-lyrics-andor-lyrics-plus-seem-to-not-work) for Musixmatch token instructions.
 :::
 
 ---

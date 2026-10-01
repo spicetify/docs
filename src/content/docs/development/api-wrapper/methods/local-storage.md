@@ -1,96 +1,27 @@
 ---
 title: LocalStorage
-description: Get and set data in local storage.
+description: Read and write string values in localStorage.
 ---
 
-Spicetify provides a wrapper for `localStorage` to make it easier to use.
-
-:::tip
-
-All keys created via this method are generic and stored as-is.
-
-If you wish to store values that are specific for each user account, you can use [`Platform.LocalStorageAPI`](/docs/development/api-wrapper/methods/platform#localstorageapi) instead.
-
-:::
+`Spicetify.LocalStorage` calls `window.localStorage` with the key you pass, so values are shared across Spotify accounts. For values stored per account, use [`Platform.LocalStorageAPI`](/docs/development/api-wrapper/methods/platform#localstorageapi). In a module, use `client.storage`, or stdlib's storage helpers.
 
 ```ts
 namespace LocalStorage {
-    function clear(): void;
-    function get(key: string): string | null;
-    function remove(key: string): void;
-    function set(key: string, value: string): void;
-};
+  function get(key: string): string | null;
+  function set(key: string, value: string): void;
+  function remove(key: string): void;
+  function clear(): void;
+}
 ```
 
-## Methods
+`get` returns `null` for a missing key. `set` stores the value as a string.
 
-### `clear`
-
-Empties the list associated with the object of all key/value pairs, if there are any.
-
-:::warning
-
-This method will remove all data in local storage, not just the data that Spicetify uses. This essentially resets the client to its default state.
-
-It will also wipe all data stored by extensions and custom apps (e.g. Marketplace, Lyrics Plus, etc.)
-
+:::caution
+`clear` empties all of `localStorage`, including Spotify's settings and the data of every installed module.
 :::
 
 ```ts
-clear(): void
-```
-
-### `get`
-
-Get key value from local storage.
-
-```ts
-get(key: string): string | null
-```
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| key | `string` | Key to get value from. |
-
-#### Example
-
-```ts
-const value = Spicetify.LocalStorage.get("foo");
-```
-
-### `remove`
-
-Delete key from local storage.
-
-```ts
-remove(key: string): void
-```
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| key | `string` | Key to delete. |
-
-#### Example
-
-```ts
-Spicetify.LocalStorage.remove("foo");
-```
-
-### `set`
-
-Set new value for key in local storage.
-
-```ts
-set(key: string, value: string): void
-```
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| key | `string` | Key to set value for. |
-| value | `string` | Value to set. |
-
-#### Example
-
-```ts
-Spicetify.LocalStorage.set("foo", "bar");
+Spicetify.LocalStorage.set('my-module:theme', 'dark');
+Spicetify.LocalStorage.get('my-module:theme'); // "dark"
+Spicetify.LocalStorage.remove('my-module:theme');
 ```

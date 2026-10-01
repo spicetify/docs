@@ -1,9 +1,9 @@
 ---
 title: Headers
-description: CosmosAsync Headers type definition.
+description: The header type of CosmosAsync.
 ---
 
-Equivalent to `XMLHttpRequest`'s `headers` property.
+`Headers` maps HTTP header names to values for [`CosmosAsync`](/docs/development/api-wrapper/methods/cosmos-async).
 
 ```ts
 type Headers = Record<string, string>;

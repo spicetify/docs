@@ -4,27 +4,29 @@ description: Build modules for Spicetify v3, and work on Spicetify itself.
 category_index: true
 ---
 
-Everything you can add to Spotify in v3 is a module: a theme, an extension, a whole page in the sidebar. One format, one toolchain.
+In v3, everything you add to Spotify is a module: a theme, an extension, or a page in the sidebar. All of them use the same format and the same toolchain, `@spicetify/kit`.
 
 ## Building modules
 
-- [Building a module](/docs/development/building-a-module) takes you from `npm create spicetify-module` to something running in your client, through a dev loop that pushes changes in about a second.
-- [Porting a v2 extension](/docs/development/migrating-v2-extensions) maps the classic IIFE, wrapper UI, listeners, styles and packaging onto the v3 lifecycle.
-- [Publishing a module](/docs/development/publishing) covers submitting it to the store and what CI checks before it merges.
-- [The API reference](/docs/development/api-wrapper) documents the `Spicetify` global your module talks to.
+These pages take a module from scaffold to the Module Store:
 
-The rules a module has to follow live in the [module standard](https://github.com/spicetify/modules/blob/main/docs/module-standard.md), next to the code that enforces them.
+- [Building a module](/docs/development/building-a-module) covers the scaffold, the dev loop, stdlib, dependencies, tests, and the build.
+- [Porting a v2 extension](/docs/development/migrating-v2-extensions) moves a classic extension onto the v3 lifecycle.
+- [Publishing a module](/docs/development/publishing) covers the vault submission, the checks CI runs, and new versions.
+- [The API reference](/docs/development/api-wrapper) documents the `Spicetify` wrapper that stdlib's `client` object wraps.
+
+The rules `spicetify-kit check` enforces are in the [module standard](https://github.com/spicetify/modules/blob/main/docs/module-standard.md).
 
 ## Debugging the client
 
-- [React DevTools](/docs/development/react-devtools) for inspecting the client's component tree.
-- [Spotify CLI flags](/docs/development/spotify-cli-flags) for the switches Spotify itself understands, including the remote debugging port the dev loop uses.
-- `spicetify dev` turns on Inspect Element in the client.
+These pages help you inspect Spotify while you develop:
+
+- [React DevTools](/docs/development/react-devtools) inspects the client's component tree.
+- [Spotify CLI flags](/docs/development/spotify-cli-flags) lists the switches Spotify accepts.
+
+`spicetify dev` turns on Spotify's developer mode, which adds Inspect Element to the client.
 
 ## Working on Spicetify
 
-- [Compiling](/docs/development/compiling) builds the CLI from source, which is currently how you run v3.
+[Compiling](/docs/development/compiling) builds the CLI and daemon from source.
 
-## Coming from v2
-
-Extensions, custom apps and Spicetify Creator are v2 concepts. They still work with v2 and their guides are in the [legacy section](/docs/legacy); in v3 all three are modules. [What changes in v3](/docs/whats-new) maps the old model onto the new one, and the [extension migration guide](/docs/development/migrating-v2-extensions) walks through a real port.

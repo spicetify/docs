@@ -1,41 +1,38 @@
 ---
 title: SemanticColor
-description: Semantic color names used in the Spotify app.
+description: Spotify's semantic color names.
 ---
 
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`SemanticColor` names a color in Spotify's Encore theme. Components such as `IconComponent` and `TextComponent` take one in their `semanticColor` prop.
 
 ```ts
-type SemanticColor = "textBase" |
-    "textSubdued" |
-    "textBrightAccent" |
-    "textNegative" |
-    "textWarning" |
-    "textPositive" |
-    "textAnnouncement" |
-    "essentialBase" |
-    "essentialSubdued" |
-    "essentialBrightAccent" |
-    "essentialNegative" |
-    "essentialWarning" |
-    "essentialPositive" |
-    "essentialAnnouncement" |
-    "decorativeBase" |
-    "decorativeSubdued" |
-    "backgroundBase" |
-    "backgroundHighlight" |
-    "backgroundPress" |
-    "backgroundElevatedBase" |
-    "backgroundElevatedHighlight" |
-    "backgroundElevatedPress" |
-    "backgroundTintedBase" |
-    "backgroundTintedHighlight" |
-    "backgroundTintedPress" |
-    "backgroundUnsafeForSmallTextBase" |
-    "backgroundUnsafeForSmallTextHighlight" |
-    "backgroundUnsafeForSmallTextPress";
+type SemanticColor =
+  | 'textBase'
+  | 'textSubdued'
+  | 'textBrightAccent'
+  | 'textNegative'
+  | 'textWarning'
+  | 'textPositive'
+  | 'textAnnouncement'
+  | 'essentialBase'
+  | 'essentialSubdued'
+  | 'essentialBrightAccent'
+  | 'essentialNegative'
+  | 'essentialWarning'
+  | 'essentialPositive'
+  | 'essentialAnnouncement'
+  | 'decorativeBase'
+  | 'decorativeSubdued'
+  | 'backgroundBase'
+  | 'backgroundHighlight'
+  | 'backgroundPress'
+  | 'backgroundElevatedBase'
+  | 'backgroundElevatedHighlight'
+  | 'backgroundElevatedPress'
+  | 'backgroundTintedBase'
+  | 'backgroundTintedHighlight'
+  | 'backgroundTintedPress'
+  | 'backgroundUnsafeForSmallTextBase'
+  | 'backgroundUnsafeForSmallTextHighlight'
+  | 'backgroundUnsafeForSmallTextPress';
 ```

@@ -1,17 +1,9 @@
 ---
 title: Query
-description: List of GraphQL definitions used by Spotify.
+description: A historical list of GraphQL operation names from Spotify.
 ---
 
-:::warning
-This is a historical list, not an exhaustive v3 union or an availability guarantee. V3 discovers operation names from the running client's loaded factories; inspect `Object.keys(Spicetify.GraphQL.Definitions)` and check each definition before requesting it. See [GraphQL](/docs/development/api-wrapper/methods/graphql) for the required CLI fix and its release status.
-:::
-
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`Query` lists GraphQL operation names that Spotify has used. It is a historical list, so an operation on it may be missing from your client, and your client may have operations it does not list. To see what the running client offers, read `Object.keys(Spicetify.GraphQL.Definitions)` and check each definition before you request it. See [GraphQL](/docs/development/api-wrapper/methods/graphql).
 
 ```ts
 type Query = "decorateItemsForEnhance" |

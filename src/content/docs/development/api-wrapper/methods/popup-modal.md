@@ -1,68 +1,28 @@
 ---
 title: PopupModal
-description: Set of methods to create and control popup modals.
+description: Show a modal dialog over the Spotify client.
 ---
 
-Spicetify provides a set of methods to create and control popup modals. This will display a modal on top of the client, which can be used to display information or ask for user input.
+`Spicetify.PopupModal` shows one modal over the client. In a module, import `displayModal` and `hideModal` from `/modules/stdlib/mod.ts` instead. `client.popupModal` is a deprecated alias of them.
 
 ```ts
 namespace PopupModal {
-    interface Content {
-        title: string;
-        content: string | Element;
-        isLarge?: boolean;
-    }
-
-    function display(content: Content): void;
-    function hide(): void;
-};
+  interface Content {
+    title: string;
+    content: string | Element | React.ReactElement;
+    isLarge?: boolean;
+  }
+  function display(content: Content): void;
+  function hide(): void;
+}
 ```
 
-## Interface
-
-### `Content`
-
-`Content` is an object that contains the information needed to display the modal.
-
-| Property | Type | Description |
-| --- | --- | --- |
-| `title` | `string` | Title of the modal. |
-| `content` | `string` | Content of the modal. You can specify a string for simple text display or an HTML element for interactive config/setting menu. |
-| `isLarge` | `boolean` &#124; `undefined` | Bigger modal. |
-
-## Methods
-
-### `display`
-
-Displays a modal on top of the client.
-
-:::note
-
-This method will replace the current modal if there is one.
-
-:::
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `content` | [`Content`](#content) | Information about the modal. |
+- `display` shows the modal and replaces any modal it already shows. A string `content` is set as HTML, and a React element renders with `ReactDOM.render`. `isLarge` uses the wider layout.
+- `hide` closes the modal. The modal also closes when the user clicks the close button or outside the dialog.
 
 ```ts
 Spicetify.PopupModal.display({
-    title: 'Hello World',
-    content: 'This is a simple text',
+  title: 'Keyboard shortcuts',
+  content: '<p>Press Ctrl+K to search.</p>',
 });
-```
-
-### `hide`
-
-Hides the current modal.
-
-:::note
-
-This method will hide *any* modal currently displayed via `Spicetify.PopupModal.display`.
-
-:::
-
-```ts
-Spicetify.PopupModal.hide();
 ```

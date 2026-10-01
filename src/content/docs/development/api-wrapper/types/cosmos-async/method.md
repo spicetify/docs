@@ -1,10 +1,10 @@
 ---
 title: Method
-description: CosmosAsync Method type definition.
+description: The HTTP methods that CosmosAsync.request accepts.
 ---
 
-Equivalent to `XMLHttpRequest`'s `method` property.
+`Method` is the first argument of `CosmosAsync.request` and `CosmosAsync.resolve`. `SUB` subscribes to an endpoint.
 
 ```ts
-type Method = "DELETE" | "GET" | "HEAD" | "PATCH" | "POST" | "PUT" | "SUB";
+type Method = 'DELETE' | 'GET' | 'HEAD' | 'PATCH' | 'POST' | 'PUT' | 'SUB';
 ```
