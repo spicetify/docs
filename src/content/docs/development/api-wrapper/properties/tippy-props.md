@@ -1,64 +1,27 @@
 ---
 title: TippyProps
-description: Predefined props for Tippy.js tooltips.
+description: Tippy.js props that match Spotify's tooltip style.
 ---
 
-Spicetify provides a set of predefined props for Tippy.js tooltips. This is aimed to create tooltips that mimic the style of Spotify's tooltips.
-
-This is utilized for [`Topbar`](/docs/development/api-wrapper/classes/topbar) and [`Playbar`](/docs/development/api-wrapper/classes/playbar) tooltips.
+`Spicetify.TippyProps` is a read-only set of [Tippy.js](https://atomiks.github.io/tippyjs/) props that renders a tooltip in Spotify's style. [`Topbar`](/docs/development/api-wrapper/classes/topbar) and [`Playbar`](/docs/development/api-wrapper/classes/playbar) buttons use it. In a module, use `client.tippyProps`.
 
 ```ts
-Spicetify.TippyProps = {
-    delay: [200, 0],
-    animation: true,
-    render(instance) {
-        const popper = document.createElement('div');
-        const box = document.createElement('div');
-
-        popper.id = "context-menu";
-        popper.appendChild(box);
-
-        box.className = "main-contextMenu-tippy"
-        box.textContent = instance.props.content;
-
-        function onUpdate(prevProps, nextProps) {
-            if (prevProps.content !== nextProps.content) {
-            if (nextProps.allowHTML) box.innerHTML = nextProps.content;
-            else box.textContent = nextProps.content;
-            }
-        }
-
-        return { popper, onUpdate }
-    },
-    onShow(instance) {
-        instance.popper.firstChild.classList.add("main-contextMenu-tippyEnter");
-    },
-    onMount(instance) {
-        requestAnimationFrame(() => {
-            instance.popper.firstChild.classList.remove("main-contextMenu-tippyEnter");
-            instance.popper.firstChild.classList.add("main-contextMenu-tippyEnterActive");
-        });
-    },
-    onHide(instance) {
-        requestAnimationFrame(() => {
-            instance.popper.firstChild.classList.remove("main-contextMenu-tippyEnterActive");
-            instance.unmount();
-        });
-    },
-},
+const TippyProps: {
+  delay: [number, number];
+  animation: boolean;
+  render(instance: any): { popper: HTMLElement; onUpdate: (prevProps: any, nextProps: any) => void };
+  onShow(instance: any): void;
+  onMount(instance: any): void;
+  onHide(instance: any): void;
+};
 ```
 
-#### Usage
-
-If you want to use this set of props for your own Tippy.js tooltips, you can simply spread the `Spicetify.TippyProps` object into your Tippy.js instance.
+The props wait 200 milliseconds before showing and render the content as text, or as HTML when you set `allowHTML`. Spread them into your own Tippy.js call and override what you need.
 
 ```ts
-const element = document.createElement("div");
-
-const tooltip = tippy(element, {
-    ...Spicetify.TippyProps,
-    content: "Tooltip content",
-    // For example, if you want to override the delay
-    delay: [100, 0],
+Spicetify.Tippy(element, {
+  ...Spicetify.TippyProps,
+  content: 'Open settings',
+  delay: [100, 0],
 });
 ```

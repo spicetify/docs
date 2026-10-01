@@ -1,32 +1,21 @@
 ---
 title: showNotification
-description: Show a toast notification inside Spotify.
+description: Show a toast notification in Spotify.
 ---
 
-Show a toast notification inside Spotify.
+`Spicetify.showNotification` shows a toast through Spotify's snackbar. In a module, use `client.notify`.
 
 ```ts
-function showNotification(text: string, isError?: boolean, msTimeout?: number): void;
+function showNotification(message: React.ReactNode, isError?: boolean, msTimeout?: number): void;
 ```
 
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| text | `string` | Message to display. Can use inline HTML for styling. |
-| isError | `boolean` | If true, toast will be red. Defaults to false. |
-| msTimeout | `number` | Time in milliseconds to display the toast. Defaults to Spotify's value. |
-
-#### Example
+| --- | --- | --- |
+| `message` | `React.ReactNode` | The message. A string renders as plain text. |
+| `isError` | `boolean` &#124; `undefined` | Shows the error style when `true`. Defaults to `false`. |
+| `msTimeout` | `number` &#124; `undefined` | How long the toast stays, in milliseconds. Defaults to Spotify's duration. |
 
 ```ts
-// Display a notification
-Spicetify.showNotification("My Menu Item clicked!");
-
-// Display a notification with a custom timeout
-Spicetify.showNotification("My Menu Item clicked!", false, 1000);
-
-// Display an error notification
-Spicetify.showNotification("Something wrong happened", true);
-
-// Display a bolded error notification
-Spicetify.showNotification("<b>Something wrong happened</b>", true);
+Spicetify.showNotification('Playlist saved');
+Spicetify.showNotification('Could not reach the lyrics provider', true, 5000);
 ```

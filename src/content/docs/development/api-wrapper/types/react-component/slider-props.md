@@ -1,44 +1,33 @@
 ---
 title: SliderProps
-description: Type definition for props of ReactComponent.PanelSkeleton.
+description: The props of ReactComponent.Slider.
 ---
 
-The `SliderProps` object is used to render a slider.
-
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`SliderProps` are the props of [`ReactComponent.Slider`](/docs/development/api-wrapper/properties/react-components#toggle-and-slider).
 
 ```ts
 type SliderProps = {
-    value: number;
-    max: number;
-    step: number;
-    labelText?: string;
-    isInteractive?: boolean;
-    forceActiveStyles?: boolean;
-    onDragStart: (value: number) => void;
-    onDragMove: (value: number) => void;
-    onDragEnd: (value: number) => void;
-    onStepForward?: (value: number) => void;
-    onStepBackward?: (value: number) => void;
-}
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  labelText?: string;
+  isInteractive?: boolean;
+  forceActiveStyles?: boolean;
+  onDragStart: (value: number) => void;
+  onDragMove: (value: number) => void;
+  onDragEnd: (value: number) => void;
+  onStepForward?: () => void;
+  onStepBackward?: () => void;
+};
 ```
 
-#### Properties
-
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| value | `number` | The current value of the slider. |
-| max | `number` | The maximum value the slider can have. |
-| step | `number` | The increment/decrement value when the slider is moved. |
-| labelText | `string` &#124; `undefined` | The label text displayed for the slider. |
-| isInteractive | `boolean` &#124; `undefined` | Determines if the slider is interactive. |
-| forceActiveStyles | `boolean` &#124; `undefined` | Forces the active styles regardless of interaction state. |
-| onDragStart | `(value: number) => void` | Callback function when dragging starts. |
-| onDragMove | `(value: number) => void` | Callback function when the slider is being dragged. |
-| onDragEnd | `(value: number) => void` | Callback function when dragging ends. |
-| onStepForward | `(value: number) => void` &#124; `undefined` | Callback function when the slider steps forward. **Deprecated.** |
-| onStepBackward | `(value: number) => void` &#124; `undefined` | Callback function when the slider steps backward. **Deprecated.** |
+| Prop | Description |
+| --- | --- |
+| `value`, `min`, `max` | The current value and its range. |
+| `step` | The amount one keyboard step changes the value. |
+| `labelText` | The accessible label. |
+| `isInteractive` | Lets the user drag the slider. |
+| `forceActiveStyles` | Shows the active style when the user is not dragging. |
+| `onDragStart`, `onDragMove`, `onDragEnd` | Run with the value when a drag starts, moves and ends. |
+| `onStepForward`, `onStepBackward` | Deprecated step callbacks. |

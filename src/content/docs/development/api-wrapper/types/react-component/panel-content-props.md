@@ -1,19 +1,13 @@
 ---
 title: PanelContentProps
-description: Type definition for props of ReactComponent.PanelContent.
+description: The props of the v2 ReactComponent.PanelContent.
 ---
 
 :::warning
-Not available in Spicetify v3. The v3 wrapper exposes no `Spicetify.Panel` and no `Platform.PanelAPI`, verified against a running client. Modules register a panel through stdlib's panel register instead: see [Building a module](/docs/development/building-a-module). This page documents the v2 API.
+Not available in Spicetify v3, which has no `Spicetify.Panel` and no panel components. In a v3 module, use stdlib's `registerPanel`, described on the [Panel](/docs/development/api-wrapper/methods/panel) page.
 :::
 
-The `PanelContentProps` object is used to render a panel content wrapper.
-
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`PanelContentProps` were the props of the v2 `PanelContent`, which wrapped the body of a panel.
 
 ```ts
 type PanelContentProps = {
@@ -22,9 +16,7 @@ type PanelContentProps = {
 };
 ```
 
-#### Properties
-
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| className | `string` &#124; `undefined` | Additional class name to apply to the panel. |
-| children | `React.ReactNode` &#124; `undefined` | Children to render inside the panel. |
+| Prop | Description |
+| --- | --- |
+| `className` | Extra class names. |
+| `children` | The panel body. |

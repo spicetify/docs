@@ -1,28 +1,22 @@
 ---
 title: Response
-description: CosmosAsync Response type definition.
+description: The full response that CosmosAsync.request returns.
 ---
 
-Represents a response from a CosmosAsync request.
-
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`Response` is what `CosmosAsync.request` and `CosmosAsync.resolve` return. The other methods return only its `body`.
 
 ```ts
 interface Response {
-    body: any;
-    headers: Headers;
-    status: number;
-    uri?: string;
+  body: any;
+  headers: Headers;
+  status: number;
+  uri?: string;
 }
 ```
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `body` | [`Body`](./body.md) | Parsed JSON response body. |
-| `headers` | [`Headers`](./headers.md) | Response headers. |
-| `status` | `number` | HTTP status code. |
-| `uri` | `string` &#124; `undefined` | Request URI. |
+| `body` | [`Body`](/docs/development/api-wrapper/types/cosmos-async/body) | The parsed response body. |
+| `headers` | [`Headers`](/docs/development/api-wrapper/types/cosmos-async/headers) | The response headers. |
+| `status` | `number` | The HTTP status code. |
+| `uri` | `string` &#124; `undefined` | The request URI. |

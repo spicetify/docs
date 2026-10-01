@@ -1,188 +1,74 @@
 ---
 title: ReactHook
-description: Set of React hooks used by the Spotify client.
+description: React hooks from the Spotify client.
 ---
 
-Spicetify provides a set of React hooks used by the Spotify client. You can use these hooks to create a React component interactive with the client.
-
-:::note
-
-It is recommended that you be familiar with [`React`](https://react.dev/) before using these hooks.
-
-:::
+`Spicetify.ReactHook` holds React hooks that the wrapper finds in Spotify's bundle. Call them only inside React components rendered by the client's React.
 
 ```ts
 namespace ReactHook {
-    function DragHandler(
-        uris?: string[],
-        label?: string,
-        contextUri?: string,
-        sectionIndex?: number,
-        dropOriginUri?: string
-    ): (event: React.DragEvent, uris?: string[], label?: string, contextUri?: string, sectionIndex?: number) => void;
-    function usePanelState(id: number): { toggle: () => void, isActive: boolean };
-    function useExtractedColor(uri: string, fallbackColor?: string, variant?: "colorRaw" | "colorLight" | "colorDark"): string;
-}
-```
-
-## Hooks
-
-### `DragHandler`
-
-React Hook to create interactive drag-and-drop element.
-
-Used to create a draggable element that can be dropped into Spotify's components (e.g. Playlist, Folder, Sidebar, Queue)
-
-```ts
-function DragHandler(
+  function DragHandler(
     uris?: string[],
     label?: string,
     contextUri?: string,
     sectionIndex?: number,
-    dropOriginUri?: string
-): (event: React.DragEvent, uris?: string[], label?: string, contextUri?: string, sectionIndex?: number) => void;
-```
-
-#### Parameters
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uris | `string[]` &#124; `undefined` | List of URIs to be dragged. |
-| label | `string` &#124; `undefined` | Label to be displayed when dragging. |
-| contextUri | `string` &#124; `undefined` | Context URI of the element from which the drag originated (e.g. Playlist URI). |
-| sectionIndex | `number` &#124; `undefined` | Index of the section in which the drag originated. |
-| dropOriginUri | `string` &#124; `undefined` | URI of the desired drop target. Leave empty to allow drop anywhere. |
-
-#### Returns
-
-Function to handle drag event. Should be passed to `onDragStart` prop of the element. All parameters passed onto the hook will be passed onto the handler unless declared otherwise.
-
-#### Example
-
-```tsx
-const DraggableComponent = () => {
-    // Do I Wanna Know? by Arctic Monkeys
-    const uri = "spotify:track:5FVd6KXrgO9B3JPmC8OPst";
-    const label = "Do I Wanna Know? - Arctic Monkeys";
-
-    const handleDragStart = Spicetify.ReactHook.DragHandler([uri], label);
-
-    return (
-        <div draggable onDragStart={handleDragStart}>
-            {label}
-        </div>
-    );
+    dropOriginUri?: string,
+  ): (event: React.DragEvent, uris?: string[], label?: string, contextUri?: string, sectionIndex?: number) => void;
+  function useExtractedColor(uri: string, fallbackColor?: string, variant?: 'colorRaw' | 'colorLight' | 'colorDark'): string;
 }
 ```
 
-### `usePanelState`
+v3 has no `usePanelState`. See [Panel](/docs/development/api-wrapper/methods/panel) for the v3 panel controller.
 
-:::warning
-Not available in Spicetify v3, which exposes only `DragHandler` and `useExtractedColor` on `Spicetify.ReactHook`. Verified against a running client.
-:::
+## `DragHandler`
 
-React Hook to use panel state.
-
-```ts
-function usePanelState(id: number): { toggle: () => void, isActive: boolean };
-```
-
-#### Parameters
+`DragHandler` returns an `onDragStart` handler that lets the user drag items onto Spotify's playlists, folders, sidebar and queue.
 
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| id | `number` | ID of the panel to use. |
-
-#### Returns
-
-Object with methods of the panel.
-
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| toggle | `() => void` | Toggle the panel. |
-| isActive | `boolean` | Whether the panel is active. |
-
-#### Example
+| --- | --- | --- |
+| `uris` | `string[]` &#124; `undefined` | The URIs to drag. |
+| `label` | `string` &#124; `undefined` | The text shown while dragging. |
+| `contextUri` | `string` &#124; `undefined` | The URI of the context the drag starts from, such as a playlist. |
+| `sectionIndex` | `number` &#124; `undefined` | The index of the section the drag starts from. |
+| `dropOriginUri` | `string` &#124; `undefined` | The only target that accepts the drop. Leave it empty to allow any target. |
 
 ```tsx
-const PanelComponent = () => {
-    // The ID can be either Spotify's default panel IDs or your custom panel ID registered via `Spicetify.Panel.registerPanel`
-    const { toggle, isActive } = Spicetify.ReactHook.usePanelState(5);
+function DraggableTrack() {
+  const onDragStart = Spicetify.ReactHook.DragHandler(['spotify:track:5FVd6KXrgO9B3JPmC8OPst'], 'Do I Wanna Know?');
 
-    return (
-        <div>
-            <button onClick={toggle}>
-                {isActive ? "Close" : "Open"} Panel
-            </button>
-        </div>
-    );
+  return (
+    <div draggable onDragStart={onDragStart}>
+      Do I Wanna Know?
+    </div>
+  );
 }
 ```
 
-### `useExtractedColor`
+## `useExtractedColor`
 
-React Hook to use extracted color from GraphQL.
-
-```ts
-function useExtractedColor(uri: string, fallbackColor?: string, variant?: "colorRaw" | "colorLight" | "colorDark"): string;
-```
-
-:::note
-
-This is a wrapper of ReactQuery's `useQuery` hook. The component using this hook must be wrapped in a `QueryClientProvider` component.
-
-Look into the example below for more information.
-
-:::
-
-#### Parameters
+`useExtractedColor` returns a hex color extracted from an image, through Spotify's GraphQL API. It uses React Query, so the component must render inside a `QueryClientProvider`.
 
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uri | `string` | URI of the Spotify image to extract color from. |
-| fallbackColor | `string` &#124; `undefined` | Fallback color to use if the image is not available. Defaults to `#535353`. |
-| variant | `"colorRaw"` &#124; `"colorLight"` &#124; `"colorDark"` &#124; `undefined` | Variant of the color to use. Defaults to `colorRaw`. |
-
-#### Returns
-
-Extracted color hex code.
-
-#### Example
+| --- | --- | --- |
+| `uri` | `string` | The URI or URL of a Spotify image. |
+| `fallbackColor` | `string` &#124; `undefined` | The color to return when the image has none. Defaults to `#535353`. |
+| `variant` | `'colorRaw'` &#124; `'colorLight'` &#124; `'colorDark'` &#124; `undefined` | The variant to return. Defaults to `colorRaw`. |
 
 ```tsx
-import { useEffect, useState } from "react";
-
 const { QueryClient, QueryClientProvider } = Spicetify.ReactQuery;
-const { useExtractedColor } = Spicetify.ReactHook;
-
 const queryClient = new QueryClient();
 
-const Component = () => {
-    const [imageUri, setImageUri] = useState(Spicetify.Player.data?.item?.metadata?.image_xlarge_url ?? "");
-    const color = useExtractedColor(imageUri);
-
-    useEffect(() => {
-        // Listen to track change
-        const listener = () => {
-            setImageUri(Spicetify.Player.data?.item?.metadata?.image_xlarge_url ?? "");
-        };
-        Spicetify.Player.addEventListener("songchange", listener);
-
-        return () => Spicetify.Player.removeEventListener("songchange", listener);
-    }, []);
-
-    return (
-        <div style={{ backgroundColor: color }}>
-            Hello World
-        </div>
-    );
+function ArtworkBackground({ imageUri }: { imageUri: string }) {
+  const color = Spicetify.ReactHook.useExtractedColor(imageUri);
+  return <div style={{ backgroundColor: color }} />;
 }
 
-const App = () => {
-    return (
-        <QueryClientProvider client={queryClient}>
-            <Component />
-        </QueryClientProvider>
-    );
+function App() {
+  const imageUri = Spicetify.Player.data?.item.metadata.image_xlarge_url ?? '';
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ArtworkBackground imageUri={imageUri} />
+    </QueryClientProvider>
+  );
 }
 ```

@@ -1,9 +1,19 @@
 ---
 title: Config
-description: 🛠️ Accessing a copy of Spicetify's `config-xpui.ini` file inside your extension.
+description: The v2 copy of the user's Spicetify configuration, which v3 does not set.
 ---
 
-To make it easier for you to validate and debug your extensions, Spicetify provides a filtered copy of the user's `config-xpui.ini` in the `Spicetify` object.
+:::warning
+Spicetify v3 does not set `Spicetify.Config`. The v3 `spicetify apply` writes no configuration into the page, so `Spicetify.Config` is `undefined` and `client.config` returns `undefined`.
+:::
+
+For the CLI version in v3, read `client.spicetifyVersion` in a module, or `Spicetify.Modules.manifest.cliVersion`. To check whether a module is installed and loaded, use [`Spicetify.Modules.list()`](/docs/development/api-wrapper/modules#spicetifymodules).
+
+```ts
+const lyricsLoaded = Spicetify.Modules.list().some((module) => module.identifier === 'lyrics-plus' && module.loaded);
+```
+
+In v2, `Spicetify.Config` held a filtered copy of `config-xpui.ini`:
 
 ```ts
 interface Config {
@@ -14,25 +24,3 @@ interface Config {
   custom_apps: string[];
 }
 ```
-
-| Property | Type | Description |
-| --- | --- | --- |
-| `version` | `string` | Spicetify version. |
-| `current_theme` | `string` | Current theme name. |
-| `color_scheme` | `string` | Current color scheme name. |
-| `extensions` | `string[]` | List of enabled extensions. |
-| `custom_apps` | `string[]` | List of enabled custom apps. |
-
-## Usage
-
-You can validate if the user currently has a custom app or a theme enabled by checking if the app or theme's name is included in the `custom_apps` or `current_theme` property of the `Config` object.
-
-```ts
-const { Config } = Spicetify;
-
-if (Config.custom_apps.includes("lyrics-plus")) {
-    // Do something
-}
-```
-
-This can ensure that your extension doesn't break if the user doesn't have the required app or theme installed.

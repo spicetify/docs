@@ -1,43 +1,20 @@
 ---
 title: SVGIcons
-description: A set of SVG icons used throughout the Spotify client.
+description: The icon set that Spicetify's buttons and menu items use.
 ---
 
-Spicetify has a predefined set of SVG icons that are used by Spotify throughout the client. These are strings of SVG `innerHTML` that are used to create `<svg>` elements.
+`Spicetify.SVGIcons` maps each [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) name to the inner markup of a 16 by 16 `<svg>`. In a module, use `client.icons`.
 
 ```ts
-const SVGIcons = Record<SVGIcon, string>;
+const SVGIcons: Record<SVGIcon, string>;
 ```
 
-| Property | Type | Description |
-| --- | --- | --- |
-| `key` | [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) | SVG icon name. |
-
-## Usage
-
-You can use these icons to create custom menu items or other custom components.
-
-In vanilla JavaScript, you can create an `<svg>` element and set its `innerHTML` to the SVG icon string.
+Wrapper classes such as [`Topbar.Button`](/docs/development/api-wrapper/classes/topbar), [`Playbar.Button`](/docs/development/api-wrapper/classes/playbar) and [`ContextMenu.Item`](/docs/development/api-wrapper/classes/context-menu) accept the name and build the `<svg>` for you. Anywhere else, wrap the markup yourself.
 
 ```ts
-const icon = document.createElement("svg");
-icon.innerHTML = Spicetify.SVGIcons["play"];
+const icon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">${Spicetify.SVGIcons.play}</svg>`;
 ```
-
-In React, you can use the `dangerouslySetInnerHTML` prop to set the SVG icon string as the inner HTML of the `<svg>` element.
 
 ```tsx
-const icon = <svg dangerouslySetInnerHTML={{ __html: Spicetify.SVGIcons["play"] }} />;
-```
-
-In Spicetify's own methods, you can simply pass an [`SVGIcon`](/docs/development/api-wrapper/types/svgicon) to the `icon` parameter.
-
-```ts
-new Spicetify.ContextMenu.Item(
-  name: "My Custom Item".
-  onClick: () => Spicetify.showNotification("Hello World!"),
-  shouldAdd: () => true,
-  icon: "play",
-  disabled: false,
-)
+<svg width={16} height={16} viewBox="0 0 16 16" fill="currentColor" dangerouslySetInnerHTML={{ __html: Spicetify.SVGIcons.play }} />
 ```

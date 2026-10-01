@@ -1,38 +1,21 @@
 ---
 title: getAudioData
-description: Get the audio data from a track.
+description: Fetch the audio analysis of a track.
 ---
 
-Fetch track analyzed audio data.
-
-Under the hood, it uses the `wg://audio-attributes/v1/audio-analysis/` endpoint, which is identical to Spotify Web API's [Get Track's Audio Analysis](https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis). The only difference is that it doesn't require authentication.
-
-:::caution
-
-Beware, not all tracks have audio data.
-
-:::
+`Spicetify.getAudioData` fetches a track's audio analysis from Spotify's `audio-attributes/v1/audio-analysis` endpoint. The response has the shape of the Web API's [audio analysis](https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis). Not every track has an analysis.
 
 ```ts
 function getAudioData(uri?: string): Promise<any>;
 ```
 
-#### Parameters
-
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uri | `string` &#124; `undefined` | URI of the track. If not provided, it will use the current track. |
+| --- | --- | --- |
+| `uri` | `string` &#124; `undefined` | A track URI. Defaults to the current track. |
 
-#### Returns
-
-An object containing the audio data. See the [Spotify Web API reference](https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis) for more details.
-
-#### Example
+The promise rejects with the string `"URI is invalid."` when `uri` is not a track URI.
 
 ```ts
-// Get audio data from current track
-const audioData = await Spicetify.getAudioData();
-
-// Get audio data from a specific track
-const audioData = await Spicetify.getAudioData("spotify:track:1qDrWA6lyx8cLECdZE7TV7");
+const analysis = await Spicetify.getAudioData('spotify:track:1qDrWA6lyx8cLECdZE7TV7');
+console.log(analysis.track.tempo);
 ```

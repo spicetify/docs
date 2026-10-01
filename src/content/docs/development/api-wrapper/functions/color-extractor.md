@@ -1,42 +1,30 @@
 ---
 title: colorExtractor
-description: Extracts colors from a playlist, track, album, artist, show, etc.
+description: Get the color presets Spotify extracts from an item's artwork.
 ---
 
-Extracts colors from a playlist, track, album, artist, show, etc.
+`Spicetify.colorExtractor` asks Spotify's color extractor service for the color presets of an item's artwork. It resolves `null` when the service returns no colors.
 
 ```ts
 function colorExtractor(uri: string): Promise<{
-    DARK_VIBRANT: string;
-    DESATURATED: string;
-    LIGHT_VIBRANT: string;
-    PROMINENT: string;
-    VIBRANT: string;
-    VIBRANT_NON_ALARMING: string;
-}>;
+  DARK_VIBRANT: string;
+  DESATURATED: string;
+  LIGHT_VIBRANT: string;
+  PROMINENT: string;
+  VIBRANT: string;
+  VIBRANT_NON_ALARMING: string;
+} | null>;
 ```
-
-#### Parameters
 
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uri | `string` | URI of anything that has artwork (playlist, track, album, artist, show, etc.) |
+| --- | --- | --- |
+| `uri` | `string` | The URI of an item with artwork, such as a track, album, artist, playlist or show. |
 
-#### Returns
-
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| DARK_VIBRANT | `string` | Dark vibrant color in hex format. |
-| DESATURATED | `string` | Desaturated color in hex format. |
-| LIGHT_VIBRANT | `string` | Light vibrant color in hex format. |
-| PROMINENT | `string` | Prominent color in hex format. |
-| VIBRANT | `string` | Vibrant color in hex format. |
-| VIBRANT_NON_ALARMING | `string` | Vibrant non alarming color in hex format. |
-
-#### Example
+Each value is a hex color such as `#1db954`. The keys come from the service's response, so check a key before you use it.
 
 ```ts
-// Get color from current track
-const currentTrack = Spicetify.Player.data.item;
-const colors = await Spicetify.colorExtractor(currentTrack.uri);
+const colors = await Spicetify.colorExtractor('spotify:album:1Je1IMUlBXcx1Fz0WE7oPT');
+const accent = colors?.VIBRANT ?? '#1db954';
 ```
+
+For the colors Spotify's own UI uses, see `Spicetify.extractColorPreset` and [`ReactHook.useExtractedColor`](/docs/development/api-wrapper/properties/react-hook#useextractedcolor).

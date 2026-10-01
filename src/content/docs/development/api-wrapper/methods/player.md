@@ -1,529 +1,111 @@
 ---
 title: Player
-description: A collection of methods to interact with the Spotify player.
+description: Read and control playback in the Spotify client.
 ---
 
-Spicetify provides a collection of methods to interact with the Spotify player. You can get the current player state, play/pause, skip to next/previous track, set repeat/shuffle mode, and more.
-
-This is mostly a wrapper of the `Spicetify.Platform.PlayerAPI` object.
+`Spicetify.Player` reads and controls playback. Most methods call [`Platform.PlayerAPI`](/docs/development/api-wrapper/methods/platform#playerapi), which `Spicetify.Player.origin` returns. In a module, use `client.player`.
 
 ```ts
 namespace Player {
-    function addEventListener(type: string, callback: (event?: Event) => void): void;
-    function addEventListener(type: "songchange", callback: (event?: Event & { data: PlayerState }) => void): void;
-    function addEventListener(type: "onplaypause", callback: (event?: Event & { data: PlayerState }) => void): void;
-    function addEventListener(type: "onprogress", callback: (event?: Event & { data: number }) => void): void;
-    function back(): void;
-    const data?: PlayerState;
-    function decreaseVolume(): void;
-    function dispatchEvent(event: Event): void;
-    const eventListeners: {
-        [key: string]: Array<(event?: Event) => void>
-    };
-    function formatTime(milisecond: number): string;
-    function getDuration(): number;
-    function getMute(): boolean;
-    function getProgress(): number;
-    function getProgressPercent(): number;
-    function getRepeat(): number;
-    function getShuffle(): boolean;
-    function getHeart(): boolean;
-    function getVolume(): number;
-    function increaseVolume(): void;
-    function isPlaying(): boolean;
-    function next(): void;
-    function pause(): void;
-    function play(): void;
-    function playUri(uri: string, context?: any, options?: any): Promise<void>;
-    function removeEventListener(type: string, callback: (event?: Event) => void): void;
-    function seek(position: number): void;
-    function setHeart(status: boolean): void;
-    function setMute(state: boolean): void;
-    function setRepeat(mode: number): void;
-    function setShuffle(state: boolean): void;
-    function setVolume(level: number): void;
-    function skipBack(amount?: number): void;
-    function skipForward(amount?: number): void;
-    function toggleHeart(): void;
-    function toggleMute(): void;
-    function togglePlay(): void;
-    function toggleRepeat(): void;
-    function toggleShuffle(): void;
+  const data: PlayerState | null | undefined;
+  const origin: PlayerAPI;
+  const eventListeners: Record<string, Array<(event?: Event) => void>>;
+  function addEventListener(type: 'songchange' | 'onplaypause', callback: (event?: Event & { data: PlayerState | null }) => void): void;
+  function addEventListener(type: 'onprogress', callback: (event?: Event & { data: number }) => void): void;
+  function addEventListener(type: string, callback: (event?: Event) => void): void;
+  function removeEventListener(type: string, callback: (event?: Event) => void): void;
+  function dispatchEvent(event: Event): boolean;
+  function play(): void;
+  function pause(): void;
+  function togglePlay(): void;
+  function isPlaying(): boolean;
+  function playUri(uri: string, context?: any, options?: any): Promise<void>;
+  function next(): void;
+  function back(): void;
+  function seek(position: number): void;
+  function skipForward(amount?: number): void;
+  function skipBack(amount?: number): void;
+  function getProgress(): number;
+  function getProgressPercent(): number;
+  function getDuration(): number;
+  function formatTime(milliseconds: number): string;
+  function getVolume(): number;
+  function setVolume(level: number): void;
+  function increaseVolume(): void;
+  function decreaseVolume(): void;
+  function getMute(): boolean;
+  function setMute(state: boolean): void;
+  function toggleMute(): void;
+  function getRepeat(): number;
+  function setRepeat(mode: number): void;
+  function toggleRepeat(): void;
+  function getShuffle(): boolean;
+  function setShuffle(state: boolean): void;
+  function toggleShuffle(): void;
+  function getHeart(): boolean;
+  function setHeart(state: boolean): void;
+  function toggleHeart(): void;
 }
 ```
 
-## Properties
+## State
 
-### data
-
-An object contains all information about current track and player.
-
-:::caution
-
-If the current player doesn't have any track, `data` will be `null`. Always check for `null` before using `data` to avoid errors.
-
-:::
+`data` is the current [`PlayerState`](/docs/development/api-wrapper/types/player-state). It is `undefined` until the first track loads and `null` when the player has no track, so check it before you read it.
 
 ```ts
-Spicetify.Player.data;
+const trackUri = Spicetify.Player.data?.item.uri;
 ```
 
-#### Return
+## Events
 
-[`PlayerState`](/docs/development/api-wrapper/types/player-state)
+`addEventListener` registers a listener for one of the events the wrapper dispatches:
 
+- `songchange` fires when the current track changes. `event.data` is the new `PlayerState`, or `null`.
+- `onplaypause` fires when playback pauses or resumes. `event.data` is the `PlayerState`.
+- `onprogress` fires every 100 milliseconds while a track plays. `event.data` is the position in milliseconds.
 
-#### Example
+`removeEventListener` removes a listener you registered. `dispatchEvent` calls every listener for `event.type` and returns `false` when a listener called `preventDefault`.
 
 ```ts
-// Get current track URI
-const currentURI = Spicetify.Player.data?.item.uri;
-if (currentURI) {
-    console.log(currentURI);
+function logTrack(event) {
+  console.log(event?.data?.item.name);
 }
+
+Spicetify.Player.addEventListener('songchange', logTrack);
+Spicetify.Player.removeEventListener('songchange', logTrack);
 ```
 
-### eventListeners
+## Playback
 
-An object containing all registered event listeners.
+These methods start, stop and move playback.
 
-```ts
-Spicetify.Player.eventListeners;
-```
-
-#### Return
-
-```ts
-{
-    [key: string]: Array<(event?: Event) => void>
-}
-```
-
-| Key | Description |
-| --- | ----------- |
-| `key` | Event type |
-| `value` | Array of registered event listeners |
-
-## Methods
-
-### addEventListener
-
-Register a listener of `type` on Spicetify.Player. You can use this method to listen to events that are fired throughout the app, including:
-
-  * `songchange` type when player changes track.
-  * `onplaypause` type when player plays or pauses.
-  * `onprogress` type when track progress changes.
+- `play` resumes playback, `pause` pauses it, and `togglePlay` switches between the two.
+- `playUri` starts playback of a URI. `context` and `options` default to empty objects and go to `PlayerAPI.play`.
+- `next` and `back` skip to the next or previous track.
+- `seek` takes milliseconds. A value between 0 and 1 that is not an integer is a fraction of the track, so `seek(0.5)` seeks to the middle.
+- `skipForward` and `skipBack` move by `amount` milliseconds, which defaults to 15000.
 
 ```ts
-// Register a listener that will be called when player changes track
-Spicetify.Player.addEventListener("songchange", (event) => {
-    // Do something
-    console.log(event.data);
-});
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `type` | `string` | Event type |
-| `callback` | `(event?: Event) => void` | Event listener. Includes relevant information about the event (e.g. `data` for `songchange` event) |
-
-### dispatchEvent
-
-Dispatches an event at `Spicetify.Player`.
-
-By default, `Spicetify.Player` always dispatch
-
-  * `songchange` type when player changes track.
-  * `onplaypause` type when player plays or pauses.
-  * `onprogress` type when track progress changes.
-
-```ts
-Spicetify.Player.dispatchEvent(event);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `event` | `Event` | Event to dispatch. Includes relevant information about the event (e.g. `data` for `songchange` event) |
-
-### back
-
-Skip to previous track.
-
-```ts
-Spicetify.Player.back();
-```
-
-### decreaseVolume
-
-Decrease a small amount of volume. The value is automatically determined by the client.
-
-```ts
-Spicetify.Player.decreaseVolume();
-```
-
-### formatTime
-
-Format a time in milliseconds to a string in `mm:ss` format.
-
-```ts
-Spicetify.Player.formatTime(time);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `time` | `number` | Time in milliseconds |
-
-#### Return
-
-`string`
-
-#### Example
-
-```ts
-Spicetify.Player.formatTime(1000); // "00:01"
-
-// Get current track duration
-const duration = Spicetify.Player.getDuration();
-const formattedDuration = Spicetify.Player.formatTime(duration);
-console.log(formattedDuration); // "03:45"
-```
-
-### getDuration
-
-Return the duration of current track in milliseconds.
-
-```ts
-Spicetify.Player.getDuration();
-```
-
-#### Return
-
-`number`
-
-#### Example
-
-```ts
-// Get current track duration
-const duration = Spicetify.Player.getDuration();
-console.log(duration); // 225000
-```
-
-### getMute
-
-Return the mute state of player.
-
-```ts
-Spicetify.Player.getMute();
-```
-
-#### Return
-
-`boolean`
-
-### getProgress
-
-Return the progress of current track in milliseconds.
-
-```ts
-Spicetify.Player.getProgress();
-```
-
-#### Return
-
-`number`
-
-#### Example
-
-```ts
-// Get current track progress
-const progress = Spicetify.Player.getProgress();
-console.log(progress); // 10000
-```
-
-### getProgressPercent
-
-Return the progress of current track in percentage, from 0 to 1.
-
-```ts
-Spicetify.Player.getProgressPercent();
-```
-
-#### Return
-
-`number`
-
-#### Example
-
-```ts
-// Get current track progress
-const progress = Spicetify.Player.getProgressPercent();
-console.log(progress); // 0.04
-```
-
-### getRepeat
-
-Return the repeat mode of player. The value can be:
-
-  * `0` for no repeat.
-  * `1` for repeat all.
-  * `2` for repeat one.
-
-```ts
-Spicetify.Player.getRepeat();
-```
-
-#### Return
-
-`number`
-
-### getShuffle
-
-Return the shuffle state of player.
-
-```ts
-Spicetify.Player.getShuffle();
-```
-
-#### Return
-
-`boolean`
-
-### getHeart
-
-Return the heart state of player.
-
-```ts
-Spicetify.Player.getHeart();
-```
-
-#### Return
-
-`boolean`
-
-### getVolume
-
-Return the volume of player. The value is from 0 to 1.
-
-```ts
-Spicetify.Player.getVolume();
-```
-
-#### Return
-
-`number`
-
-### increaseVolume
-
-Increase a small amount of volume. The value is automatically determined by the client.
-
-```ts
-Spicetify.Player.increaseVolume();
-```
-
-### next
-
-Skip to next track.
-
-```ts
-Spicetify.Player.next();
-```
-
-### pause
-
-Pause the player.
-
-```ts
-Spicetify.Player.pause();
-```
-
-### play
-
-Resume the player.
-
-```ts
-Spicetify.Player.play();
-```
-
-### playUri
-
-Start playback of the specified track.
-
-```ts
-Spicetify.Player.playUri(uri, context?: any, options?: any);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `uri` | `string` | Track URI string |
-| `context` | `any` | Context of the track. Default is `{}` |
-| `options` | `any` | Options of the track. Default is `{}` |
-
-#### Example
-
-```ts
-// 505 - Arctic Monkeys
-const trackURI = "spotify:track:0BxE4FqsDD1Ot4YuBXwAPp";
-
-await Spicetify.Player.playUri(trackURI);
-```
-
-### removeEventListener
-
-Unregister added event listener `type`.
-
-```ts
-Spicetify.Player.removeEventListener(type, callback);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `type` | `string` | Event type |
-| `callback` | `(event?: Event) => void` | Event listener |
-
-### seek
-
-Seek track to position. Position can be in percentage (0 to 1) or in milliseconds.
-
-```ts
-Spicetify.Player.seek(position);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `position` | `number` | Position to seek. Can be in percentage (0 to 1) or in milliseconds |
-
-#### Example
-
-```ts
-// Seek to 50% of track
-Spicetify.Player.seek(0.5);
-
-// Seek to 1 minute of track
+await Spicetify.Player.playUri('spotify:track:0BxE4FqsDD1Ot4YuBXwAPp');
 Spicetify.Player.seek(60000);
 ```
 
-### setHeart
+## Position
 
-Set the heart status of the currently playing track.
-
-```ts
-Spicetify.Player.setHeart(status);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `status` | `boolean` | Heart status |
-
-### setMute
-
-Set the mute state of player.
+`getProgress` and `getDuration` return milliseconds. `getProgressPercent` returns the position as a fraction from 0 to 1. `formatTime` formats milliseconds as minutes and seconds.
 
 ```ts
-Spicetify.Player.setMute(state);
+Spicetify.Player.formatTime(Spicetify.Player.getDuration()); // "3:45"
 ```
 
-#### Parameters
+## Volume
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `state` | `boolean` | Mute state |
+`getVolume` and `setVolume` use a level from 0 to 1. `increaseVolume` and `decreaseVolume` change it by the client's step. `getMute` is `true` when the volume is 0. `setMute` and `toggleMute` click the volume button in the now playing bar.
 
-### setRepeat
+## Repeat and shuffle
 
-Set the repeat mode of player. The value can be:
+The repeat mode is `0` for off, `1` for repeat all and `2` for repeat one. `toggleRepeat` moves to the next mode. `getShuffle`, `setShuffle` and `toggleShuffle` read and change shuffle.
 
-  * `0` for no repeat.
-  * `1` for repeat all.
-  * `2` for repeat one.
+## Liked state
 
-```ts
-Spicetify.Player.setRepeat(mode);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `mode` | `number` | Repeat mode |
-
-### setShuffle
-
-Set the shuffle state of player.
-
-```ts
-Spicetify.Player.setShuffle(state);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `state` | `boolean` | Shuffle state |
-
-### setVolume
-
-Set the volume of player. The value is from 0 to 1.
-
-```ts
-Spicetify.Player.setVolume(level);
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `level` | `number` | Volume |
-
-### toggleHeart
-
-Toggle the heart state of player / save / unsave the current track from user's library.
-
-```ts
-Spicetify.Player.toggleHeart();
-```
-
-### toggleMute
-
-Toggle the mute state of player.
-
-```ts
-Spicetify.Player.toggleMute();
-```
-
-### togglePlay
-
-Toggle the play state of player.
-
-```ts
-Spicetify.Player.togglePlay();
-```
-
-### toggleRepeat
-
-Toggle the repeat mode of player. The value switches between: No repeat, Repeat all, Repeat one.
-
-```ts
-Spicetify.Player.toggleRepeat();
-```
-
-### toggleShuffle
-
-Toggle the shuffle state of player.
-
-```ts
-Spicetify.Player.toggleShuffle();
-```
+`getHeart` returns `true` when the current track is in the user's library. `setHeart` adds it to or removes it from the library, and `toggleHeart` flips the state.

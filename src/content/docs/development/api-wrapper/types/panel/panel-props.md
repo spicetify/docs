@@ -1,11 +1,13 @@
 ---
 title: PanelProps
-description: Properties that are used by the `registerPanel` function.
+description: The props of the v2 Spicetify.Panel.registerPanel.
 ---
 
 :::warning
-Not available in Spicetify v3. The v3 wrapper exposes no `Spicetify.Panel` and no `Platform.PanelAPI`, verified against a running client. Modules register a panel through stdlib's panel register instead: see [Building a module](/docs/development/building-a-module). This page documents the v2 API.
+Not available in Spicetify v3, which has no `Spicetify.Panel` and no panel components. In a v3 module, use stdlib's `registerPanel`, described on the [Panel](/docs/development/api-wrapper/methods/panel) page.
 :::
+
+`PanelProps` were the argument of the v2 `Spicetify.Panel.registerPanel`.
 
 ```ts
 type PanelProps = {
@@ -25,18 +27,16 @@ type PanelProps = {
 };
 ```
 
-| Property | Type | Description |
-| --- | --- | --- |
-| `label` | `string` &#124; `undefined` | Label of the Panel. |
-| `children` | `React.ReactNode` | Children to render inside the Panel.<br />Must be a React Component. |
-| `isCustom` | `boolean` &#124; `undefined` | Determine if the children passed is a custom Panel.<br />If true, the children will be rendered as is.<br />**Note**: All passed props except `children` will be ignored if enabled. |
-| `style` | `React.CSSProperties` &#124; `undefined` | Inline styles to apply to the Panel skeleton. |
-| `wrapperClassname` | `string` &#124; `undefined` | Additional class name to apply to the Panel content wrapper. |
-| `headerClassname` | `string` &#124; `undefined` | Additional class name to apply to the Panel header. |
-| `headerVariant` | [`Variant`](/docs/development/api-wrapper/types/variant) &#124; `undefined` | Font variant for the Panel header title. |
-| `headerSemanticColor` | [`SemanticColor`](/docs/development/api-wrapper/types/semantic-color) &#124; `undefined` | Semantic color name for the Panel header title. |
-| `headerLink` | `string` &#124; `undefined` | Href for the header link.<br />Can be either a URI, a path within the app, or a URL for an external link. |
-| `headerActions` | `React.ReactNode` &#124; `undefined` | Additional actions to render in the header.<br />Will be rendered next to the close button. |
-| `headerOnClose` | `() => void` &#124; `undefined` | Function to call when clicking on the header close button.<br />Called before the panel is closed. |
-| `headerPreventDefaultClose` | `boolean` &#124; `undefined` | Prevent the panel from closing when clicking on the header close button. |
-| `headerOnBack` | `(event: React.MouseEvent<HTMLButtonElement>) => void` &#124; `undefined` | Function to call when clicking on the header back button.<br />If not provided, the back button will not be rendered. |
+| Prop | Description |
+| --- | --- |
+| `label` | The panel's accessible label. |
+| `children` | The panel body. |
+| `isCustom` | Renders `children` as the whole panel and ignores every other prop. |
+| `style` | Inline styles for the panel frame. |
+| `wrapperClassname`, `headerClassname` | Extra class names for the body wrapper and the header. |
+| `headerVariant`, `headerSemanticColor` | The type style and color of the header title. |
+| `headerLink` | A URI, client path or URL that the header title links to. |
+| `headerActions` | Controls shown next to the close button. |
+| `headerOnClose` | Runs before the panel closes from the header's close button. |
+| `headerPreventDefaultClose` | Keeps the panel open when the user clicks the close button. |
+| `headerOnBack` | Runs when the user clicks the back button. Without it, the header has no back button. |

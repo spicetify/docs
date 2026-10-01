@@ -1,19 +1,13 @@
 ---
 title: PanelHeaderProps
-description: Type definition for props of ReactComponent.PanelHeader.
+description: The props of the v2 ReactComponent.PanelHeader.
 ---
 
 :::warning
-Not available in Spicetify v3. The v3 wrapper exposes no `Spicetify.Panel` and no `Platform.PanelAPI`, verified against a running client. Modules register a panel through stdlib's panel register instead: see [Building a module](/docs/development/building-a-module). This page documents the v2 API.
+Not available in Spicetify v3, which has no `Spicetify.Panel` and no panel components. In a v3 module, use stdlib's `registerPanel`, described on the [Panel](/docs/development/api-wrapper/methods/panel) page.
 :::
 
-The `PanelHeaderProps` object is used to render a panel header.
-
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`PanelHeaderProps` were the props of the v2 `PanelHeader`, which rendered a panel's title bar.
 
 ```ts
 type PanelHeaderProps = {
@@ -30,17 +24,14 @@ type PanelHeaderProps = {
 };
 ```
 
-#### Properties
-
-| Property | Type | Description |
-| :--- | :--- | :--- |
-| link | `string` &#124; `undefined` | Href for the header link.<br />Can be either a URI, a path within the app, or a URL for an external link. |
-| title | `string` &#124; `undefined` | Title of the header. |
-| panel | `number` | Panel ID. Used to toggle panel open/closed state. |
-| isAdvert | `boolean` &#124; `undefined` | Whether or not the panel contains advertisements. Defaults to `false` |
-| actions | `React.ReactNode` &#124; `undefined` | Actions to render in the header. |
-| onClose | `() => void` &#124; `undefined` | Function to call when clicking on the close button.<br />Called before the panel is closed. |
-| preventDefaultClose | `boolean` &#124; `undefined` | Prevent the panel from closing when clicking on the header close button. Defaults to `false` |
-| onBack | `(event: React.MouseEvent<HTMLButtonElement>) => void` &#124; `undefined` | Function to call when clicking on the header back button.<br />If not provided, the back button will not be rendered. |
-| titleVariant | [`Variant`](/docs/development/api-wrapper/types/variant) &#124; `undefined` | Font variant for the header title. Defaults to `"balladBold"` |
-| titleSemanticColor | [`SemanticColor`](/docs/development/api-wrapper/types/semantic-color) &#124; `undefined` | Semantic color name for the header title. Defaults to `"textBase"` |
+| Prop | Description |
+| --- | --- |
+| `link` | A URI, client path or URL that the title links to. |
+| `title` | The title. |
+| `panel` | The panel ID that the close button toggles. |
+| `isAdvert` | Marks a panel that shows ads. Defaults to `false`. |
+| `actions` | Controls shown in the header. |
+| `onClose` | Runs before the panel closes from the close button. |
+| `preventDefaultClose` | Keeps the panel open when the user clicks the close button. Defaults to `false`. |
+| `onBack` | Runs when the user clicks the back button. Without it, the header has no back button. |
+| `titleVariant`, `titleSemanticColor` | The type style and color of the title. Default to `balladBold` and `textBase`. |

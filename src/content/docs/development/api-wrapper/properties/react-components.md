@@ -1,379 +1,156 @@
 ---
 title: ReactComponent
-description: Set of stock React components used by Spotify.
+description: React components from the Spotify client.
 ---
 
-Spicetify provides a set of stock React components used by Spotify. You can use these components to create your own custom UI.
+`Spicetify.ReactComponent` holds React components that the wrapper finds in Spotify's bundle. Render them with the client's React, `Spicetify.React`. In a module, we recommend stdlib's primitives from `/modules/stdlib/lib/primitives.js`, which stdlib keeps working across Spotify versions.
 
-:::note
-
-It is recommended that you be familiar with [`React`](https://react.dev/) and [`spicetify-creator`](/docs/development/spicetify-creator/the-basics) before using these components.
-
-:::
+The wrapper finds each component by matching Spotify's code, so any component can be `undefined` on a given client. `Slider`, `Toggle`, `Dropdown` and the `Artist`, `Audiobook`, `Profile`, `Show` and `Track` cards load later than the rest. Check a component before you render it.
 
 ```ts
 namespace ReactComponent {
-    const ContextMenu: any;
-    const RightClickMenu: any;
-    const Menu: any;
-    const MenuItem: any;
-    const AlbumMenu: any;
-    const PodcastShowMenu: any;
-    const ArtistMenu: any;
-    const PlaylistMenu: any;
-    const TooltipWrapper: any;
-    const IconComponent: any;
-    const TextComponent: any;
-    const ConfirmDialog: any;
-    const PanelSkeleton: any;
-    const PanelContent: any;
-    const PanelHeader: any;
-    const Toggle: any;
-    const Slider: any
-};
-```
-
-## Components
-
-:::info
-
-These components may be wrappers for other components such as [`Tippy`](https://atomiks.github.io/tippyjs/) or [`styled-components`](https://styled-components.com/). They may accept additional props that are not listed here.
-
-As such, type definitions are not forced for these components but they act as a guideline for what you can use and what Spotify uses.
-
-Refer to the underlying library's documentation for more information.
-
-:::
-
-### `ContextMenu`
-
-Generic context menu provider. It is used by Spotify on a variety of elements, such as right-click menu, dropdown menu, etc.
-
-#### Props
-
-See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/context-menu-props).
-
-#### Example
-
-```tsx
-// See Menu section for more details
-const menuWrapper = React.memo((props: MenuProps) =>
-    <Spicetify.ReactComponent.Menu {...props}>
-        <Spicetify.ReactComponent.MenuItem
-            label="Hello World"
-            onClick={() => Spicetify.showNotification('Hello World')}
-        />
-    </Spicetify.ReactComponent.Menu>
-});
-
-const contextMenu = React.memo((props: ContextMenuProps) => {
-    return (
-        <Spicetify.ReactComponent.ContextMenu {...props}
-            trigger="click"
-            menu={<menuWrapper {...props} />}
-        >
-            <div>Click me</div>
-        </Spicetify.ReactComponent.ContextMenu>
-    );
-});
-```
-
-### `RightClickMenu`
-
-Wrapper of [`ContextMenu`](#contextmenu) with predefined props: `action = 'toggle'` and `trigger = 'right-click'`.
-
-#### Props
-
-See [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/context-menu-props).
-
-#### Example
-
-```tsx
-const menuWrapper = React.memo((props: MenuProps) =>
-    <Spicetify.ReactComponent.Menu {...props}>
-        <Spicetify.ReactComponent.MenuItem
-            label="Hello World"
-            onClick={() => Spicetify.showNotification('Hello World')}
-        />
-    </Spicetify.ReactComponent.Menu>
-});
-// Same as ContextMenu example, but appears on right-click
-const contextMenu = React.memo((props: ContextMenuProps) => {
-    return (
-        <Spicetify.ReactComponent.RightClickMenu {...props}
-            menu={<menuWrapper {...props} />}
-        >
-            <div>Right-click me</div>
-        </Spicetify.ReactComponent.RightClickMenu>
-    );
-});
-```
-
-### `Menu`
-
-Outer layer containing [`MenuItem`](#menuitem)s.
-
-#### Props
-
-See [`MenuProps`](/docs/development/api-wrapper/types/react-component/menu-props).
-
-#### Example
-
-```tsx
-const menuWrapper = React.memo((props: MenuProps) =>
-    <Spicetify.ReactComponent.Menu {...props} onClose={() => Spicetify.showNotification('Menu closed')}>
-        <Spicetify.ReactComponent.MenuItem
-            label="Hello World"
-            onClick={() => Spicetify.showNotification('Hello World')}
-        />
-    </Spicetify.ReactComponent.Menu>
-});
-```
-
-### `MenuItem`
-
-Component to construct menu item. Used as [`Menu`](#menu) children.
-
-#### Props
-
-See [`MenuItemProps`](/docs/development/api-wrapper/types/react-component/menu-item-props).
-
-#### Example
-
-```tsx
-const icon = React.memo((props: IconComponentProps) =>
-    <Spicetify.ReactComponent.IconComponent {...props}
-        semanticColor="textBase"
-        dangerouslySetInnerHTML={{ __html: Spicetify.SVGIcons["play"] }}
-        iconSize={16}
-    />
-);
-
-const menuItem = React.memo((props: MenuItemProps) =>
-    <Spicetify.ReactComponent.MenuItem {...props}
-        onClick={() => Spicetify.showNotification('Hello World')}
-        disabled={false}
-        divider="after"
-        {/* It is recommended that you use both `icon` and `trailingIcon` for compatibility between older versions */}
-        icon={<icon />}
-        trailingIcon={<icon />}
-    >
-        Hello World
-    </Spicetify.ReactComponent.MenuItem>
-);
-```
-
-### `AlbumMenu`, `PodcastShowMenu`, `ArtistMenu`, `PlaylistMenu`
-
-Tailored [`Menu`](#menu) for specific type of object.
-
-#### Props
-
-Accepts `uri` and `onRemoveCallback` props along with [`MenuProps`](/docs/development/api-wrapper/types/react-component/menu-props).
-
-```ts
-interface AlbumMenuProps extends MenuProps {
-    uri: string;
-    onRemoveCallback?: (uri: string) => void;
-};
-```
-
-#### Example
-
-```tsx
-const currentAlbumURI = Spicetify.Player.data.item.metadata.album_uri;
-
-const albumMenu = React.memo((props: AlbumMenuProps) =>
-    <Spicetify.ReactComponent.AlbumMenu {...props}
-        onClose={() => Spicetify.showNotification('Menu closed')}
-        uri={currentAlbumURI}
-    />
-);
-```
-
-### `TooltipWrapper`
-
-Component to display tooltip when hovering over element. Useful for accessibility.
-
-:::info
-
-This component is a wrapper for [`Tippy`](https://atomiks.github.io/tippyjs/). It may accept additional props that are not listed here.
-
-:::
-
-#### Props
-
-See [`TooltipProps`](/docs/development/api-wrapper/types/react-component/tooltip-props).
-
-#### Example
-
-```tsx
-const elementHasTooltip = React.memo((props: TooltipProps) =>
-    <Spicetify.ReactComponent.TooltipWrapper {...props}
-        label="Hello World"
-        placement="bottom"
-    >
-        <div>Hover me</div>
-    </Spicetify.ReactComponent.TooltipWrapper>
-);
-```
-
-### `IconComponent`
-
-Component to render Spotify-style icon. It is used by Spotify on a variety of elements, such as buttons, icons, etc.
-
-:::info
-
-This component is a wrapper for [`styled-components`](https://styled-components.com/). It may accept additional props that are not listed here.
-
-:::
-
-#### Props
-
-See [`IconComponentProps`](/docs/development/api-wrapper/types/react-component/icon-component-props).
-
-#### Example
-
-```tsx
-const icon = React.memo((props: IconComponentProps) =>
-    <Spicetify.ReactComponent.IconComponent {...props}
-        semanticColor="textBase"
-        dangerouslySetInnerHTML={{ __html: Spicetify.SVGIcons["play"] }}
-        iconSize={16}
-    />
-);
-```
-
-### `TextComponent`
-
-Component to render text. It is used by Spotify on a variety of elements, such as buttons, text, etc.
-
-:::info
-
-This component is a wrapper for [`styled-components`](https://styled-components.com/). It may accept additional props that are not listed here.
-
-:::
-
-#### Props
-
-See [`TextComponentProps`](/docs/development/api-wrapper/types/react-component/text-component-props).
-
-#### Example
-
-```tsx
-const text = React.memo((props: TextComponentProps) =>
-    <Spicetify.ReactComponent.TextComponent {...props}
-        semanticColor="textBase"
-        variant="viola"
-        weight="book"
-    >
-        Hello World
-    </Spicetify.ReactComponent.TextComponent>
-);
-```
-
-### `ConfirmDialog`
-
-Component to display Spotify-style confirmation dialog. Used by Spotify on playlist, track removal, etc.
-
-:::info
-
-For each of the `onConfirm`, `onCancel`, and `onOutsideClick` props, the dialog will not close automatically. You must manually handle the state of the dialog.
-
-:::
-
-#### Props
-
-See [`ConfirmDialogProps`](/docs/development/api-wrapper/types/react-component/confirm-dialog-props).
-
-#### Example
-
-```tsx
-const ConfirmButton = () => {
-    // Modal open state must be handled manually
-    const [showModal, setShowModal] = React.useState(false);
-
-    return (
-        <Spicetify.ReactComponent.ConfirmDialog
-            isOpen={showModal}
-            onConfirm={() => {
-                setShowModal(false);
-                Spicetify.showNotification('Confirmed');
-            }}
-            onCancel={() => {
-                setShowModal(false);
-                Spicetify.showNotification('Cancelled');
-            }}
-            onOutsideClick={() => {
-                setShowModal(false);
-                Spicetify.showNotification('Clicked outside');
-            }}
-            titleText="Confirm Modal"
-            descriptionText="Are you sure you want to confirm?"
-            confirmText="Confirm"
-            cancelText="Cancel"
-        />
-        <button onClick={() => setShowModal(true)}>Click me</button>
-    );
+  const ContextMenu: any;
+  const RightClickMenu: any;
+  const Menu: any;
+  const MenuItem: any;
+  const MenuSubMenuItem: any;
+  const AlbumMenu: any;
+  const PodcastShowMenu: any;
+  const ArtistMenu: any;
+  const PlaylistMenu: any;
+  const TrackMenu: any;
+  const TooltipWrapper: any;
+  const IconComponent: any;
+  const TextComponent: any;
+  const ConfirmDialog: any;
+  const Slider: any;
+  const Toggle: any;
+  const Dropdown: any;
+  const ButtonPrimary: any;
+  const ButtonSecondary: any;
+  const ButtonTertiary: any;
+  const Chip: any;
+  const Cards: Record<'Default' | 'FeatureCard' | 'Hero' | 'CardImage' | 'Album' | 'Artist' | 'Audiobook' | 'Episode' | 'Playlist' | 'Profile' | 'Show' | 'Track', any>;
+  const Navigation: any;
+  const ScrollableContainer: any;
+  const Router: any;
+  const Routes: any;
+  const Route: any;
+  const StoreProvider: any;
+  const RemoteConfigProvider: any;
+  const Snackbar: { wrapper: any; simpleLayout: any; ctaText: any; styledImage: any };
 }
 ```
 
-### `Toggle`
+v3 has no `PanelSkeleton`, `PanelContent` or `PanelHeader`. See [Panel](/docs/development/api-wrapper/methods/panel).
 
-Component to display Spotify-style toggle. Used by Spotify on the settings page.
+## Menus
 
-#### Props
+`ContextMenu` opens a menu from its child element. `RightClickMenu` is `ContextMenu` with `trigger` set to `right-click` and `action` set to `toggle`. Both take [`ContextMenuProps`](/docs/development/api-wrapper/types/react-component/context-menu-props).
 
-See [`ToggleProps`](/docs/development/api-wrapper/types/react-component/toggle-props).
+`Menu` takes [`MenuProps`](/docs/development/api-wrapper/types/react-component/menu-props) and holds `MenuItem` children, which take [`MenuItemProps`](/docs/development/api-wrapper/types/react-component/menu-item-props). `MenuSubMenuItem` is an item that opens a nested menu.
+
+`AlbumMenu`, `PodcastShowMenu`, `ArtistMenu`, `PlaylistMenu` and `TrackMenu` are Spotify's own menus for each item type. They take `MenuProps` with a `uri` and an optional `onRemoveCallback(uri)`.
 
 ```tsx
-const Toggle = () => {
-    const [enabled, setEnabled] = React.useState(false);
+const { ContextMenu, Menu, MenuItem } = Spicetify.ReactComponent;
 
-    return (
-        <Spicetify.ReactComponent.Toggle
-            value={enabled}
-            onSelected={setEnabled}
-            id="my-toggle-id"
-            class="my-toggle-class"
-        ></Spicetify.ReactComponent.Toggle>
-    );
+function SortMenu() {
+  return (
+    <Menu>
+      <MenuItem onClick={() => Spicetify.showNotification('Sorted by title')}>Title</MenuItem>
+      <MenuItem onClick={() => Spicetify.showNotification('Sorted by date')}>Date added</MenuItem>
+    </Menu>
+  );
+}
+
+function SortButton() {
+  return (
+    <ContextMenu trigger="click" menu={<SortMenu />}>
+      <button>Sort</button>
+    </ContextMenu>
+  );
 }
 ```
 
-### `Slider`
+## `TooltipWrapper`
 
-Component to render sliders. It is used by Spotify for the volume/playing bars and on the settings page.
-
-#### Props
-
-See [`SliderProps`](/docs/development/api-wrapper/types/react-component/slider-props).
-
-#### Example
+`TooltipWrapper` shows a tooltip when the user hovers over its child. It takes [`TooltipProps`](/docs/development/api-wrapper/types/react-component/tooltip-props).
 
 ```tsx
-const Slider = () => {
-    const [value, setValue] = useState(0);
+<Spicetify.ReactComponent.TooltipWrapper label="Shuffle" placement="top">
+  <button>Shuffle</button>
+</Spicetify.ReactComponent.TooltipWrapper>
+```
 
-    return (
-        <Spicetify.ReactComponent.Slider
-            max={100}
-            step={1}
-            value={value}
-            onDragStart={() => {}}
-            onDragMove={setValue}
-            onDragEnd={(value) => {console.log(`final value is ${value}`)}}
-        ></Spicetify.ReactComponent.Slider>
-    );
+## `IconComponent` and `TextComponent`
+
+`IconComponent` renders an icon in Spotify's style and takes [`IconComponentProps`](/docs/development/api-wrapper/types/react-component/icon-component-props). `TextComponent` renders text in one of Spotify's type styles and takes [`TextComponentProps`](/docs/development/api-wrapper/types/react-component/text-component-props). Both accept more props than these types list.
+
+```tsx
+<Spicetify.ReactComponent.IconComponent
+  iconSize={16}
+  semanticColor="textBase"
+  dangerouslySetInnerHTML={{ __html: Spicetify.SVGIcons.play }}
+/>
+
+<Spicetify.ReactComponent.TextComponent variant="viola" semanticColor="textSubdued">
+  12 songs
+</Spicetify.ReactComponent.TextComponent>
+```
+
+## `ConfirmDialog`
+
+`ConfirmDialog` shows Spotify's confirmation dialog and takes [`ConfirmDialogProps`](/docs/development/api-wrapper/types/react-component/confirm-dialog-props). The dialog does not close by itself, so close it in each handler.
+
+```tsx
+function DeleteButton() {
+  const [isOpen, setIsOpen] = Spicetify.React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Delete</button>
+      <Spicetify.ReactComponent.ConfirmDialog
+        isOpen={isOpen}
+        titleText="Delete this preset?"
+        descriptionText="You cannot undo this."
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={() => setIsOpen(false)}
+        onClose={() => setIsOpen(false)}
+        onOutside={() => setIsOpen(false)}
+      />
+    </>
+  );
 }
 ```
 
-### `PanelSkeleton`, `PanelContent`, `PanelHeader`
+## `Toggle` and `Slider`
 
-:::warning
-Not available in Spicetify v3, along with the rest of the panel surface. Verified against a running client.
-:::
+`Toggle` is the switch from Spotify's settings page and takes [`ToggleProps`](/docs/development/api-wrapper/types/react-component/toggle-props). `Slider` is the bar used for volume and playback position and takes [`SliderProps`](/docs/development/api-wrapper/types/react-component/slider-props).
 
-Components to render Spotify-style panel. Used by Spotify on their right sidebar panels (e.g. BuddyFeed, Now Playing, etc).
+```tsx
+function Settings() {
+  const [enabled, setEnabled] = Spicetify.React.useState(false);
+  const [volume, setVolume] = Spicetify.React.useState(50);
 
-Refer to [`Panel.Components`](/docs/development/api-wrapper/methods/panel#components) for more details.
+  return (
+    <>
+      <Spicetify.ReactComponent.Toggle id="crossfade" value={enabled} onSelected={setEnabled} />
+      <Spicetify.ReactComponent.Slider
+        min={0}
+        max={100}
+        step={1}
+        value={volume}
+        onDragStart={() => {}}
+        onDragMove={setVolume}
+        onDragEnd={setVolume}
+      />
+    </>
+  );
+}
+```
+
+## Other components
+
+`ButtonPrimary`, `ButtonSecondary`, `ButtonTertiary`, `Chip` and `Dropdown` are Spotify's Encore controls. `Cards` holds Spotify's card components for each item type. `Navigation`, `ScrollableContainer`, `Router`, `Routes`, `Route`, `StoreProvider` and `RemoteConfigProvider` are parts of Spotify's app shell. These have no documented props. Inspect them in [React DevTools](/docs/development/react-devtools).
