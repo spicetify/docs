@@ -4,9 +4,11 @@ description: Every command in the Spicetify v3 CLI.
 sidebar_position: 2
 ---
 
-Every command accepts the [global options](/docs/cli#global-options), so they are not repeated below. `spicetify <command> --help` is the authority if this page ever falls behind the binary.
+Every command also accepts the [global options](/docs/cli#global-options), and `spicetify <command> --help` prints its usage.
 
 ## Core
+
+These commands patch, restore, and restart Spotify.
 
 ### `apply`
 
@@ -14,36 +16,13 @@ Every command accepts the [global options](/docs/cli#global-options), so they ar
 spicetify apply [--no-cache]
 ```
 
-Patches Spotify. This is the whole setup on a fresh install, and the fix for almost anything that looks wrong afterwards.
+Patches Spotify. Run it after setup, after `pkg` changes, and whenever the client looks wrong. It's safe to repeat.
 
-It refreshes compatibility data for your Spotify version, stops Spotify, unpacks the client, renames Spotify's own archive to `xpui.spa.backup` (that rename is the backup), injects Spicetify's payload, stages every enabled module, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify again.
+`apply` downloads the compatibility files for your Spotify version, stops Spotify, renames `xpui.spa` to `xpui.spa.backup`, and writes the patched client. It installs or updates the `stdlib`, `store`, and `manager` modules from the registry unless you disabled them, pinned an older version, or replaced them with a local build. It then stages every enabled module, restores a Spotify update block you set, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify.
 
-On a fresh install, where no modules are present yet, it first seeds the standard library and the store from the registry, so the client can manage itself instead of booting empty. Once they exist, the store updates them, and this step does nothing.
+When a download fails, `apply` uses the cached copy, so it works offline. It refuses Spotify versions older than 1.2.80 before changing anything. It also undoes a Spicetify v2 apply first (see [upgrade from v2](/docs/whats-new#upgrade-from-v2)).
 
-Safe to run repeatedly. If the fetch for a new Spotify version fails, whatever is already cached still applies, so `apply` works offline.
-
-Use `--no-cache` when a newly published compatibility fix has not reached your
-client after a normal apply. This option requires a v3 build whose
-`spicetify apply --help` lists it.
-
-```bash
-spicetify apply --no-cache
-```
-
-It bypasses local file reuse and CDN caches for the compatibility index,
-classmap, CSS-map overlay, verification metadata, and exposure patches. The
-downloaded compatibility files must match the checksums in the index and are
-saved for later applies. If the refresh fails, the command exits before
-stopping or changing Spotify. Retry when the network or published files are
-available.
-
-After it finishes, return to the restarted Spotify client and check the fix.
-Update themes and modules through the Store separately when needed.
-`--no-cache` does not clear Spotify's music cache or update Spotify or the CLI.
-
-For development, unset `SPICETIFY_CLASSMAPS_DIR` before using `--no-cache`;
-combining them is an error. Explicit local CSS-map and exposure-patch overrides
-still take priority, so unset those when testing published compatibility data.
+Use `--no-cache` when a newly published compatibility fix hasn't reached your client. It skips the local and CDN caches for the compatibility index, classmap, CSS-map overlay, verification metadata, and exposure patches, and checks each file against the index's checksum. If the refresh fails, `apply` exits before it stops or changes Spotify. It doesn't update modules, Spotify, or Spicetify, or clear Spotify's music cache. It refuses to run while `SPICETIFY_CLASSMAPS_DIR` is set, and local CSS-map and exposure-patch overrides still win over the downloaded files.
 
 ### `restore`
 
@@ -51,7 +30,7 @@ still take priority, so unset those when testing published compatibility data.
 spicetify restore
 ```
 
-Puts stock Spotify back from the backup taken at apply time. Restore with the same CLI that applied: v2 and v3 keep their backups differently.
+Stops the daemon, removes its login item, and puts stock Spotify back from `xpui.spa.backup`. In mirror mode it deletes the patched copy instead. It also undoes a Spicetify v2 apply from v2's backup.
 
 ### `restart`
 
@@ -59,7 +38,7 @@ Puts stock Spotify back from the backup taken at apply time. Restore with the sa
 spicetify restart
 ```
 
-Restarts the Spotify client. No patching.
+Restarts Spotify without patching it.
 
 ### `init`
 
@@ -67,9 +46,11 @@ Restarts the Spotify client. No patching.
 spicetify init [--yes]
 ```
 
-Writes a fresh `config.toml` from what it detects, and **deletes `hooks/`, `modules/` and `store/`**, so every installed module goes with it. It asks first unless you pass `--yes`. This is a clean slate, not a repair.
+Writes a new `config.toml` with default settings and the detected Spotify paths, and deletes `hooks/`, `modules/`, and `store/`, which removes every installed module. It asks first unless you pass `--yes`.
 
 ## Modules
+
+The `pkg` commands manage modules. Changes reach Spotify on the next `spicetify apply`. [Modules](/docs/modules#from-the-terminal) shows a full install.
 
 ### `pkg list`
 
@@ -77,20 +58,16 @@ Writes a fresh `config.toml` from what it detects, and **deletes `hooks/`, `modu
 spicetify pkg list
 ```
 
-What is installed, read from disk, with each module's version.
+Lists the enabled modules and local builds in `modules/`, with their versions.
 
 ### `pkg install`
 
 ```bash
 spicetify pkg install <id>
-spicetify pkg install <id> <url>
+spicetify pkg install <id>@<version> <url-or-path>
 ```
 
-Resolves the id in the registry, downloads the artifact, verifies it against the checksum the registry recorded, and unpacks it. A mismatch aborts the install. If the entry lists mirrors, a host that has gone away costs an attempt rather than the install.
-
-With a URL, the registry is bypassed entirely: nothing verifies those bytes, and the CLI says so and prints the digest it got.
-
-Installing does not enable. Follow with `pkg enable` and `apply`.
+With an id, it downloads the registry's current version and refuses it if the checksum doesn't match. If one mirror fails, it tries the next. With a URL or local path, it skips the registry, warns that nothing verifies the files, and prints their SHA-256 digest. Installing doesn't enable the module.
 
 ### `pkg enable`
 
@@ -98,28 +75,38 @@ Installing does not enable. Follow with `pkg enable` and `apply`.
 spicetify pkg enable <id>@<version>
 ```
 
-Points the client at that version, by linking it into the modules directory. This is also how you roll back: enable the older version you still have and re-apply.
+Enables an installed version by linking it into `modules/`. To roll back, enable an older version you still have.
+
+### `pkg update`
+
+```bash
+spicetify pkg update [id]
+```
+
+Updates installed modules to the registry's version, including a rollback the registry pins. Without an id, it skips and names disabled modules, pinned modules (enabled at an older version while a newer one is installed), local builds (a real folder in `modules/` or a link outside `store/`), modules installed from a URL or path, and modules the registry doesn't list.
+
+Naming a module overrides a pin or a URL install, and naming one that is disabled, a local build, or not in the registry is an error. The command fails when any module couldn't be updated. To pick a version, use `pkg enable`.
 
 ### `pkg delete`
 
 ```bash
-spicetify pkg delete <id>
+spicetify pkg delete <id>@<version>
 ```
 
-Removes the module and its store entry.
+Deletes that version and its store entry. Deleting the enabled version disables the module.
 
-## Configuration
+## Configuration and diagnostics
+
+These commands print what Spicetify uses and change nothing.
 
 ### `config`
 
 ```bash
 spicetify config        # print the resolved configuration
-spicetify config open   # open the configuration folder
+spicetify config open   # open the config folder
 ```
 
-With no subcommand it prints what Spicetify actually resolved: mirror mode, the config file, the config root, and the Spotify data directory, executable and offline cache it is using. That is the first thing to check when Spicetify is patching a Spotify you did not expect.
-
-There is no `config <key> <value>` in v3. Edit [`config.toml`](/docs/modules/config-file).
+`config` prints mirror mode, the config file and folder, and the Spotify data folder, executable, and `offline.bnk` folder in use. To change a setting, edit [`config.toml`](/docs/modules/config-file).
 
 ### `path`
 
@@ -127,7 +114,7 @@ There is no `config <key> <value>` in v3. Edit [`config.toml`](/docs/modules/con
 spicetify path
 ```
 
-Prints the paths Spicetify uses.
+Prints the config folder, config file, `modules/`, `hooks/`, Spotify's `Apps/` folder, and the patched client's location.
 
 ### `support`
 
@@ -135,58 +122,11 @@ Prints the paths Spicetify uses.
 spicetify support
 ```
 
-Prints diagnostics to paste into a bug report. Start here before opening an issue.
+Prints diagnostics for a bug report. [How do I report a bug?](/docs/faq#how-do-i-report-a-bug) lists what it includes.
 
-## Daemon
+## Updates
 
-The daemon is what re-applies Spicetify after Spotify updates itself, and it serves the local proxy the client uses for hosts it cannot fetch directly. `apply` installs and starts it unless `daemon = false` in your config.
-
-```bash
-spicetify daemon status      # running? which version?
-spicetify daemon start
-spicetify daemon stop        # also unloads the service, so it does not come back on its own
-spicetify daemon install     # install the service
-spicetify daemon uninstall   # remove it
-```
-
-`daemon status` reports the version it is running. If you have just updated Spicetify and behaviour has not changed, check that first: an old daemon serving old behaviour looks exactly like a fix that did not work.
-
-## Spotify updates
-
-```bash
-spicetify spotify-updates block     # keep Spotify on the build you have
-spicetify spotify-updates unblock
-spicetify spotify-updates status
-```
-
-Blocking patches Spotify's own binary, so Spotify has to be stopped to do it. Run from the terminal it stops the client and leaves it stopped; run from inside the client (through the store) it starts it again for you.
-
-The exact protection is platform-specific. Current Windows clients protect the
-update staging directory. macOS and Linux patch the update endpoint, and macOS
-also signs the changed app bundle. One-step **Update & Apply** in Manager is
-currently available only on macOS.
-
-Read [Spotify updates](/docs/spotify-updates) before unblocking a pinned client.
-
-## Development
-
-### `dev`
-
-```bash
-spicetify dev
-```
-
-Enables developer mode in the client, which is what gives you Inspect Element.
-
-### `protocol`
-
-```bash
-spicetify protocol "spicetify:<id>:<action>"
-```
-
-Handles a `spicetify://` URI. You rarely type this: `apply` registers a handler so links and in-client actions reach it. Actions are `add`, `install`, `enable`, `fast-install`, `fast-enable`, `delete`, `remove`, `fast-delete`, `fast-remove`, `apply`, `block-updates` and `unblock-updates`.
-
-On macOS the handler is a small app bundle, because macOS delivers URL activations as an Apple Event that a bare binary cannot receive. Its output goes to `protocol.log` in the config folder, which is the only place to see what an invocation did.
+These commands update Spicetify and control Spotify's updater.
 
 ### `self-update`
 
@@ -194,7 +134,70 @@ On macOS the handler is a small app bundle, because macOS delivers URL activatio
 spicetify self-update
 ```
 
-Updates the Spicetify CLI and TUI to the latest release. It does not update
-Spotify. Downloads are checksum-verified. If you installed through a package
-manager, update through that instead. See
-[Spotify updates](/docs/spotify-updates) to update the client.
+Updates the `spicetify` and `spicetify-daemon` binaries to the latest release, checking the download against the release's checksum file when there is one. Spotify uses the new version after your next `spicetify apply`. It waits up to 30 minutes for a running apply or Spotify update to finish. A daemon that launchd or systemd manages restarts through that service manager, and any other running daemon is stopped and started again. If a package manager installed Spicetify, update with it instead.
+
+### `auto-update`
+
+```bash
+spicetify auto-update on
+spicetify auto-update off
+spicetify auto-update status
+```
+
+Sets `auto_update` in `config.toml`, which is on by default. `status` also says when your install is outside the installer's folder and doesn't update itself. [Keep Spicetify up to date](/docs/getting-started#keep-spicetify-up-to-date) describes the daily check.
+
+### `spotify-updates`
+
+```bash
+spicetify spotify-updates block
+spicetify spotify-updates unblock
+spicetify spotify-updates status
+```
+
+Blocks or allows Spotify's own updater and saves the choice as `block_spotify_updates`, which `apply` restores after an update. Spotify must stop for the change, and it stays stopped when you run the command from a terminal. [Spotify updates](/docs/spotify-updates) explains each platform's method.
+
+## Daemon
+
+The daemon applies Spicetify again after Spotify updates itself, once you close Spotify. It also runs automatic updates and answers the client on `127.0.0.1:7967`, including a proxy for hosts the client can't reach. `apply` installs and starts it unless `daemon = false`.
+
+```bash
+spicetify daemon status      # running, version, uptime, and login item
+spicetify daemon start
+spicetify daemon stop        # also removes the login item until the next apply
+spicetify daemon install     # add the login item
+spicetify daemon uninstall   # remove the login item
+```
+
+The login item is a launchd agent on macOS, a systemd user service on Linux, and a `Run` registry entry on Windows. If an update seems to change nothing, check the version in `daemon status`, because an old daemon runs until `apply` replaces it.
+
+## Spotify on Linux
+
+On Linux x86_64 only, these commands install a Spotify your user owns from Spotify's official Debian packages.
+
+```bash
+spicetify spotify install [--channel stable|testing]
+spicetify spotify update [--channel stable|testing]
+spicetify spotify status
+```
+
+`install` verifies and unpacks the package under `~/.local/share/spicetify/spotify/`, applies Spicetify, points `config.toml` at it, and adds a desktop launcher. New installs use `stable`. `update` keeps the current channel unless you pass one. Both refuse a downgrade and a version without a verified classmap. `status` shows the installed version and channel and the latest official package.
+
+## Development
+
+These commands are for module authors and the client itself.
+
+### `dev`
+
+```bash
+spicetify dev
+```
+
+Turns on Spotify's developer mode, which adds Inspect Element. It patches `offline.bnk`, so Spotify restarts. If it can't find the marker, log out of Spotify and back in, then run it again.
+
+### `protocol`
+
+```bash
+spicetify protocol "<spicetify-uri>"
+```
+
+Internal. The `spicetify://` handler that `apply` registers runs it for links and for Module Store and Manager actions. On macOS the handler is an app bundle that logs to `protocol.log` in the config folder.
