@@ -1,278 +1,203 @@
 ---
 title: Commands
-description: Complete Spicetify command reference.
+description: Every command in the Spicetify v3 CLI.
+sidebar_position: 2
 ---
 
-This page documents all Spicetify CLI commands.
+Every command also accepts the [global options](/docs/cli#global-options), and `spicetify <command> --help` prints its usage.
 
-## Core Commands
+## Core
 
-### `spicetify` (no arguments)
-
-Run with no arguments to generate the config file on first run, or verify your setup.
-
-```bash
-spicetify
-```
-
-### `backup`
-
-Create a backup of vanilla Spotify files. Required before applying Spicetify for the first time.
-
-```bash
-spicetify backup
-```
+These commands patch, restore, and restart Spotify.
 
 ### `apply`
 
-Apply Spicetify modifications to Spotify.
-
 ```bash
-spicetify apply
+spicetify apply [--no-cache]
 ```
 
-This injects your theme, extensions, custom apps, and other modifications into Spotify.
+Patches Spotify. Run it after setup, after `pkg` changes, and whenever the client looks wrong. It's safe to repeat.
+
+`apply` downloads the compatibility files for your Spotify version, stops Spotify, renames `xpui.spa` to `xpui.spa.backup`, and writes the patched client. It installs or updates the `stdlib`, `store`, and `manager` modules from the registry unless you disabled them, pinned an older version, or replaced them with a local build. It then stages every enabled module, restores a Spotify update block you set, installs and starts the daemon, registers the `spicetify://` handler, and starts Spotify.
+
+When a download fails, `apply` uses the cached copy, so it works offline. It refuses Spotify versions older than 1.2.80 before changing anything. It also undoes a Spicetify v2 apply first (see [upgrade from v2](/docs/whats-new#upgrade-from-v2)).
+
+Use `--no-cache` when a newly published compatibility fix hasn't reached your client. It skips the local and CDN caches for the compatibility index, classmap, CSS-map overlay, verification metadata, and exposure patches, and checks each file against the index's checksum. If the refresh fails, `apply` exits before it stops or changes Spotify. It doesn't update modules, Spotify, or Spicetify, or clear Spotify's music cache. It refuses to run while `SPICETIFY_CLASSMAPS_DIR` is set, and local CSS-map and exposure-patch overrides still win over the downloaded files.
 
 ### `restore`
-
-Remove all Spicetify modifications and restore Spotify to vanilla state.
 
 ```bash
 spicetify restore
 ```
 
-Your config file and customization files are preserved.
+Stops the daemon, removes its login item, and puts stock Spotify back from `xpui.spa.backup`. In mirror mode it deletes the patched copy instead. It also undoes a Spicetify v2 apply from v2's backup.
 
-### `update`
-
-Hot-reload theme changes without full restart. Use this during theme development.
+### `restart`
 
 ```bash
-spicetify update
+spicetify restart
 ```
 
-After running, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> (or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on macOS) in Spotify to see changes.
+Restarts Spotify without patching it.
 
-### `upgrade`
-
-Upgrade Spicetify to the latest version (only works with script-based installations).
+### `init`
 
 ```bash
-spicetify upgrade
+spicetify init [--yes]
 ```
 
----
+Writes a new `config.toml` with default settings and the detected Spotify paths, and deletes `hooks/`, `modules/`, and `store/`, which removes every installed module. It asks first unless you pass `--yes`.
 
-## Configuration Commands
+## Modules
+
+The `pkg` commands manage modules. Changes reach Spotify on the next `spicetify apply`. [Modules](/docs/modules#from-the-terminal) shows a full install.
+
+### `pkg list`
+
+```bash
+spicetify pkg list
+```
+
+Lists the enabled modules and local builds in `modules/`, with their versions.
+
+### `pkg install`
+
+```bash
+spicetify pkg install <id>
+spicetify pkg install <id>@<version> <url-or-path>
+```
+
+With an id, it downloads the registry's current version and refuses it if the checksum doesn't match. If one mirror fails, it tries the next. With a URL or local path, it skips the registry, warns that nothing verifies the files, and prints their SHA-256 digest. Installing doesn't enable the module.
+
+### `pkg enable`
+
+```bash
+spicetify pkg enable <id>@<version>
+```
+
+Enables an installed version by linking it into `modules/`. To roll back, enable an older version you still have.
+
+### `pkg update`
+
+```bash
+spicetify pkg update [id]
+```
+
+Updates installed modules to the registry's version, including a rollback the registry pins. Without an id, it skips and names disabled modules, pinned modules (enabled at an older version while a newer one is installed), local builds (a real folder in `modules/` or a link outside `store/`), modules installed from a URL or path, and modules the registry doesn't list.
+
+Naming a module overrides a pin or a URL install, and naming one that is disabled, a local build, or not in the registry is an error. The command fails when any module couldn't be updated. To pick a version, use `pkg enable`.
+
+### `pkg delete`
+
+```bash
+spicetify pkg delete <id>@<version>
+```
+
+Deletes that version and its store entry. Deleting the enabled version disables the module.
+
+## Configuration and diagnostics
+
+These commands print what Spicetify uses and change nothing.
 
 ### `config`
 
-View or modify configuration values.
-
-**View all settings:**
-
 ```bash
-spicetify config
+spicetify config        # print the resolved configuration
+spicetify config open   # open the config folder
 ```
 
-**View a specific setting:**
-
-```bash
-spicetify config current_theme
-```
-
-**Set a value:**
-
-```bash
-spicetify config current_theme Sleek
-```
-
-**Set multiple values:**
-
-```bash
-spicetify config current_theme Sleek color_scheme Dark
-```
-
-**Add to a list (extensions, custom_apps):**
-
-```bash
-spicetify config extensions fullAppDisplay.js
-```
-
-This appends to existing extensions, not replaces.
-
-**Remove from a list:**
-
-```bash
-spicetify config extensions fullAppDisplay.js-
-```
-
-Note the trailing `-`.
-
-### `config-dir`
-
-Open the Spicetify config directory in your file manager.
-
-```bash
-spicetify config-dir
-```
-
-### `-c` / `--config`
-
-Print the config file path.
-
-```bash
-spicetify -c
-```
-
----
-
-## Utility Commands
-
-### `enable-devtools`
-
-Enable Chromium DevTools in Spotify. Useful for debugging themes and extensions.
-
-```bash
-spicetify enable-devtools
-```
-
-Access DevTools with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>.
-
-### `watch`
-
-Watch for theme changes and auto-apply. Useful during development.
-
-```bash
-spicetify watch
-```
-
-Monitors `color.ini` and `user.css` in your current theme folder.
+`config` prints mirror mode, the config file and folder, and the Spotify data folder, executable, and `offline.bnk` folder in use. To change a setting, edit [`config.toml`](/docs/modules/config-file).
 
 ### `path`
 
-Print various Spicetify-related paths.
-
 ```bash
 spicetify path
-spicetify path userdata   # Config directory
-spicetify path spotify    # Spotify installation
 ```
 
-### `auto`
+Prints the config folder, config file, `modules/`, `hooks/`, Spotify's `Apps/` folder, and the patched client's location.
 
-Automatically backup (if needed) and apply, then launch Spotify.
+### `support`
 
 ```bash
-spicetify auto
+spicetify support
 ```
 
-Useful as a shortcut target instead of the Spotify executable.
+Prints diagnostics for a bug report. [How do I report a bug?](/docs/faq#how-do-i-report-a-bug) lists what it includes.
 
----
+## Updates
 
-## Combined Commands
+These commands update Spicetify and control Spotify's updater.
 
-Commands can be combined in a single call:
+### `self-update`
 
 ```bash
-# First-time setup
-spicetify backup apply enable-devtools
-
-# After Spotify updates
-spicetify backup apply
-
-# Full restore and reapply
-spicetify restore backup apply
+spicetify self-update
 ```
 
----
+Updates the `spicetify` and `spicetify-daemon` binaries to the latest release, checking the download against the release's checksum file when there is one. Spotify uses the new version after your next `spicetify apply`. It waits up to 30 minutes for a running apply or Spotify update to finish. A daemon that launchd or systemd manages restarts through that service manager, and any other running daemon is stopped and started again. If a package manager installed Spicetify, update with it instead.
 
-## Flags
-
-### `--help` / `-h`
-
-Show help for a command.
+### `auto-update`
 
 ```bash
-spicetify --help
-spicetify --help config
+spicetify auto-update on
+spicetify auto-update off
+spicetify auto-update status
 ```
 
-### `--version` / `-v`
+Sets `auto_update` in `config.toml`, which is on by default. `status` also says when your install is outside the installer's folder and doesn't update itself. [Keep Spicetify up to date](/docs/getting-started#keep-spicetify-up-to-date) describes the daily check.
 
-Show Spicetify version.
+### `spotify-updates`
 
 ```bash
-spicetify --version
+spicetify spotify-updates block
+spicetify spotify-updates unblock
+spicetify spotify-updates status
 ```
 
-### `--no-restart`
+Blocks or allows Spotify's own updater and saves the choice as `block_spotify_updates`, which `apply` restores after an update. Spotify must stop for the change, and it stays stopped when you run the command from a terminal. [Spotify updates](/docs/spotify-updates) explains each platform's method.
 
-Apply changes without restarting Spotify.
+## Daemon
+
+The daemon applies Spicetify again after Spotify updates itself, once you close Spotify. It also runs automatic updates and answers the client on `127.0.0.1:7967`, including a proxy for hosts the client can't reach. `apply` installs and starts it unless `daemon = false`.
 
 ```bash
-spicetify apply --no-restart
+spicetify daemon status      # running, version, uptime, and login item
+spicetify daemon start
+spicetify daemon stop        # also removes the login item until the next apply
+spicetify daemon install     # add the login item
+spicetify daemon uninstall   # remove the login item
 ```
 
-### `--quiet` / `-q`
+The login item is a launchd agent on macOS, a systemd user service on Linux, and a `Run` registry entry on Windows. If an update seems to change nothing, check the version in `daemon status`, because an old daemon runs until `apply` replaces it.
 
-Suppress non-error output.
+## Spotify on Linux
+
+On Linux x86_64 only, these commands install a Spotify your user owns from Spotify's official Debian packages.
 
 ```bash
-spicetify apply -q
+spicetify spotify install [--channel stable|testing]
+spicetify spotify update [--channel stable|testing]
+spicetify spotify status
 ```
 
-### `--extension` / `-e`
+`install` verifies and unpacks the package under `~/.local/share/spicetify/spotify/`, applies Spicetify, points `config.toml` at it, and adds a desktop launcher. New installs use `stable`. `update` keeps the current channel unless you pass one. Both refuse a downgrade and a version without a verified classmap. `status` shows the installed version and channel and the latest official package.
 
-Specify a single extension to apply (useful for testing).
+## Development
+
+These commands are for module authors and the client itself.
+
+### `dev`
 
 ```bash
-spicetify apply -e myExtension.js
+spicetify dev
 ```
 
----
+Turns on Spotify's developer mode, which adds Inspect Element. It patches `offline.bnk`, so Spotify restarts. If it can't find the marker, log out of Spotify and back in, then run it again.
 
-## Examples
-
-### Fresh Install Workflow
+### `protocol`
 
 ```bash
-# Install Spicetify (see Installation page)
-# Generate config
-spicetify
-
-# First-time setup
-spicetify backup apply enable-devtools
+spicetify protocol "<spicetify-uri>"
 ```
 
-### Enable an Extension
-
-```bash
-spicetify config extensions fullAppDisplay.js
-spicetify apply
-```
-
-### Change Theme
-
-```bash
-spicetify config current_theme Sleek color_scheme Dark
-spicetify apply
-```
-
-### After Spotify Updates
-
-```bash
-spicetify backup apply
-```
-
-### Theme Development
-
-```bash
-# One-time: apply your theme
-spicetify config current_theme MyTheme
-spicetify apply
-
-# During development: watch for changes
-spicetify watch
-```
+Internal. The `spicetify://` handler that `apply` registers runs it for links and for Module Store and Manager actions. On macOS the handler is an app bundle that logs to `protocol.log` in the config folder.

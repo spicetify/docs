@@ -1,20 +1,16 @@
 ---
 title: OnClickCallback
-description: Type definition for callback function when menu item is clicked.
+description: The click callback of a ContextMenu item.
 ---
 
+`OnClickCallback` runs when the user clicks a [`ContextMenu.Item`](/docs/development/api-wrapper/classes/context-menu).
+
 ```ts
-type OnClickCallback = (
-    uris: string[],
-    uids?: string[],
-    contextUri?: string
-) => void;
+type OnClickCallback = (uris: string[], uids?: string[], contextUri?: string) => void;
 ```
 
-#### Parameters
-
 | Parameter | Type | Description |
-| :--- | :--- | :--- |
-| uris | `string[]` | List of URIs of the selected items. |
-| uids | `string[]` &#124; `undefined` | List of UIDs of the selected items. **Note:** Not all context menu items have UIDs. |
-| contextUri | `string` &#124; `undefined` | URI of the context menu where the item was called from. This could be a playlist, album, artist, or a track. |
+| --- | --- | --- |
+| `uris` | `string[]` | The URIs of the selected items. |
+| `uids` | `string[]` &#124; `undefined` | The UIDs of the selected items, when the menu has them. |
+| `contextUri` | `string` &#124; `undefined` | The URI of the context the menu opened in, such as a playlist or album. |

@@ -1,98 +1,89 @@
 ---
 title: Modules
-description: 🧩 Modules exposed via Spicetify object.
+description: The Spicetify.Modules loader manager and the libraries the wrapper exposes from Spotify's bundle.
 ---
 
-Spicetify exposes some modules via `Spicetify` object.
+This page covers `Spicetify.Modules`, which manages installed modules at runtime, and the third-party libraries that the wrapper takes from Spotify's own bundle.
 
-You can access them by typing `Spicetify.<module name>` in the DevTools console, inside your extension, or `window.top.Spicetify.<module name>` if you're developing an app inside an `iframe`.
+## `Spicetify.Modules`
 
-Utilizing these modules can help you create more powerful extensions without having to include the whole module in your extension.
+The module loader adds `Spicetify.Modules` after it has run every module's `load`, so the object is absent while modules load. In a module, read it through `client.modules`, which stdlib resolves when you access it.
 
-```js
-Spicetify.React;
+```ts
+interface ModuleState {
+  identifier: string;
+  version: string;
+  loaded: boolean;
+  mixedIn: boolean;
+  local: boolean;
+  failed?: string;
+}
+
+interface ModulesManifest {
+  spotifyVersion: string;
+  cliVersion?: string;
+  modules: Array<{ identifier: string; name: string; version: string }>;
+}
+
+interface LocalModuleRecord {
+  metadata: object;
+  files: Record<string, string>;
+  sidecar: object;
+}
+
+namespace Modules {
+  const report: { loaded: string[]; failed: Record<string, string> };
+  const manifest: ModulesManifest;
+  const registry: unknown;
+  function list(): ModuleState[];
+  function enable(id: string): Promise<boolean>;
+  function disable(id: string): Promise<boolean>;
+  function unload(id: string): Promise<boolean>;
+  function reload(id: string): Promise<boolean>;
+  function schemes(id: string): { active: string; names: string[] } | null;
+  function setScheme(id: string, name: string): boolean;
+  function entryUrl(identifier: string, entry: string): string;
+  function installLocal(id: string, record: LocalModuleRecord): Promise<boolean | { requiresRestart: true } | { disabled: true }>;
+  function removeLocal(id: string): Promise<void | { requiresRestart: true } | { revertedTo: string }>;
+  function listLocal(): LocalModuleRecord[];
+}
 ```
 
-For usage of these modules, please refer to their official documentation.
+- `report` lists the modules that loaded at boot and maps each failed module to its error message.
+- `manifest` is the manifest that `spicetify apply` staged. Its `cliVersion` field holds the CLI version.
+- `list` returns the state of every registered module.
+- `enable` loads a module and its dependencies, then clears the user's saved disable. `disable` unloads a module and saves that choice across restarts.
+- `unload` stops a module for this session without saving a choice. `reload` unloads and loads it again. Unloading a module also unloads the modules that depend on it.
+- `schemes` returns the color schemes of a theme module and the active one. `setScheme` switches the scheme, saves the choice, and returns `false` when the theme or scheme does not exist.
+- `entryUrl` returns the URL the loader serves a module file from, in the form `/modules/<identifier>/<entry>`.
+- `installLocal`, `removeLocal` and `listLocal` manage modules that the store installs into `localStorage`. A result with `requiresRestart` means the change takes effect after a restart. A result with `revertedTo` means the staged copy of that version is running again.
 
-### React
+`registry` is the loader's internal registry and has no stable interface. To remove a module that the CLI staged on disk, use [`Spicetify.Daemon.uninstallStaged`](/docs/development/api-wrapper#spicetifydaemon).
 
-[React](https://reactjs.org/) is a JavaScript library for building user interfaces. It is used by Spotify to build their UI.
-
-:::note
-
-Spotify versions *below* 1.2.26 use version **17.0.2**, *after* - **18.2.0**.
-
-:::
-
-```js
-Spicetify.React;
+```ts
+Spicetify.Modules.report.failed;
+Spicetify.Modules.list().filter((module) => !module.loaded);
 ```
 
-### ReactDOM
+## Libraries
 
-[ReactDOM](https://reactjs.org/docs/react-dom.html) is a package that provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. It is used by Spotify to render React components to the DOM.
+The wrapper finds these libraries in Spotify's webpack bundle and exposes them on `Spicetify`. They are the versions Spotify ships, which change with Spotify releases. In a module, import React from `/modules/stdlib/mod.ts` instead, so you never bundle a second copy.
 
-```js
-Spicetify.ReactDOM;
+| Member | Library |
+| --- | --- |
+| `Spicetify.React` | [React](https://react.dev/) |
+| `Spicetify.ReactDOM` | [ReactDOM](https://react.dev/reference/react-dom) |
+| `Spicetify.ReactDOMServer` | [ReactDOMServer](https://react.dev/reference/react-dom/server) |
+| `Spicetify.ReactJSX` | React's JSX runtime |
+| `Spicetify.Tippy` | [Tippy.js](https://atomiks.github.io/tippyjs/) |
+| `Spicetify.Mousetrap` | [Mousetrap](https://craig.is/killing/mice) |
+| `Spicetify.ReactFlipToolkit` | [React Flip Toolkit](https://github.com/aholachek/react-flip-toolkit), with `Flipper` and `Flipped` |
+| `Spicetify.ReactQuery` | [TanStack Query](https://tanstack.com/query) for React, in the version Spotify uses |
+| `Spicetify.classnames` | [classnames](https://github.com/JedWatson/classnames) |
+| `Spicetify.Snackbar` | [notistack](https://notistack.com/), with `enqueueSnackbar`, `SnackbarProvider` and `useSnackbar` |
+
+```ts
+const { useState } = Spicetify.React;
 ```
 
-### Tippy.js
-
-[Tippy.js](https://atomiks.github.io/tippyjs/) is a highly customizable tooltip and popover library powered by Popper.
-
-```js
-Spicetify.Tippy;
-```
-
-### Mousetrap
-
-[Mousetrap](https://craig.is/killing/mice) is a simple library for handling keyboard shortcuts in JavaScript.
-
-```js
-Spicetify.Mousetrap;
-```
-
-### React Flip Toolkit
-
-[React Flip Toolkit](https://github.com/aholachek/react-flip-toolkit) is a collection of easy-to-use animation effects and utilities that can be used to enhance your React project.
-
-```js
-Spicetify.ReactFlipToolkit;
-```
-
-### React Query (v3)
-
-[React Query](https://react-query.tanstack.com/) is a library for managing, caching, syncing, and refetching server state in React.
-
-:::note
-
-Spotify uses React Query v3, instead of the current latest version (v4). As such, the API may be different from the official documentation.
-
-:::
-
-```js
-Spicetify.ReactQuery;
-```
-
-### classnames
-
-[classnames](https://github.com/JedWatson/classnames) is a simple JavaScript utility for conditionally joining class names together.
-
-```js
-Spicetify.classnames;
-```
-
-### Snackbar
-
-[Notistack](https://github.com/iamhosseindhv/notistack) is a JavaScript library for creating highly customizable notification snackbars (toasts) that can be stacked on top of each other.
-
-:::note
-
-Be aware that only `SnackbarProvider` and `useSnackbar` work as described in the official Notistack documentation.
-
-:::
-
-```js
-Spicetify.Snackbar;
-```
+For a cached request in a module, stdlib's `/modules/stdlib/query.ts` gives each module its own query client. We recommend it over `Spicetify.ReactQuery`.

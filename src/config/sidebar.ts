@@ -6,24 +6,22 @@ export interface SidebarItem {
 }
 
 export const sidebar: SidebarItem[] = [
-  { label: 'Getting Started', href: '/docs/getting-started' },
+  { label: 'Getting started', href: '/docs/getting-started' },
+  { label: 'What changes in v3', href: '/docs/whats-new' },
   {
-    label: 'Customization',
-    href: '/docs/customization',
+    label: 'Modules and the Module Store',
+    href: '/docs/modules',
     collapsed: false,
     items: [
-      { label: 'Marketplace', href: '/docs/customization/marketplace' },
-      { label: 'Themes', href: '/docs/customization/themes' },
-      { label: 'Extensions', href: '/docs/customization/extensions' },
-      { label: 'Custom Apps', href: '/docs/customization/custom-apps' },
       {
-        label: 'Configuration Reference',
-        href: '/docs/customization/config-file',
+        label: 'Configuration reference',
+        href: '/docs/modules/config-file',
       },
     ],
   },
+  { label: 'Spotify updates', href: '/docs/spotify-updates' },
   {
-    label: 'CLI Reference',
+    label: 'CLI reference',
     href: '/docs/cli',
     items: [{ label: 'Commands', href: '/docs/cli/commands' }],
   },
@@ -31,39 +29,23 @@ export const sidebar: SidebarItem[] = [
     label: 'Development',
     href: '/docs/development',
     items: [
+      {
+        label: 'Building a module',
+        href: '/docs/development/building-a-module',
+      },
+      {
+        label: 'Porting a v2 extension',
+        href: '/docs/development/migrating-v2-extensions',
+      },
+      { label: 'Publishing a module', href: '/docs/development/publishing' },
       { label: 'Compiling', href: '/docs/development/compiling' },
-      { label: 'Themes', href: '/docs/development/themes' },
-      { label: 'Extensions', href: '/docs/development/extensions' },
-      { label: 'Custom Apps', href: '/docs/development/custom-apps' },
-      { label: 'JS Modules', href: '/docs/development/js-modules' },
       { label: 'React DevTools', href: '/docs/development/react-devtools' },
       {
-        label: 'Spotify CLI Flags',
+        label: 'Spotify CLI flags',
         href: '/docs/development/spotify-cli-flags',
       },
       {
-        label: 'Spicetify Creator',
-        items: [
-          {
-            label: 'The Basics',
-            href: '/docs/development/spicetify-creator/the-basics',
-          },
-          {
-            label: 'Create Extensions',
-            href: '/docs/development/spicetify-creator/create-extensions',
-          },
-          {
-            label: 'Create Custom Apps',
-            href: '/docs/development/spicetify-creator/create-custom-apps',
-          },
-          {
-            label: 'Building & Testing',
-            href: '/docs/development/spicetify-creator/building-and-testing',
-          },
-        ],
-      },
-      {
-        label: 'API Wrapper',
+        label: 'API wrapper',
         href: '/docs/development/api-wrapper',
         items: [
           { label: 'Modules', href: '/docs/development/api-wrapper/modules' },
@@ -99,12 +81,12 @@ export const sidebar: SidebarItem[] = [
                 href: '/docs/development/api-wrapper/methods/uri',
               },
               {
-                label: 'PopupModal',
-                href: '/docs/development/api-wrapper/methods/popup-modal',
+                label: 'Locale',
+                href: '/docs/development/api-wrapper/methods/locale',
               },
               {
-                label: 'Panel',
-                href: '/docs/development/api-wrapper/methods/panel',
+                label: 'PopupModal',
+                href: '/docs/development/api-wrapper/methods/popup-modal',
               },
               {
                 label: 'AppTitle',
@@ -131,6 +113,10 @@ export const sidebar: SidebarItem[] = [
                 label: 'Playbar',
                 href: '/docs/development/api-wrapper/classes/playbar',
               },
+              {
+                label: 'Color',
+                href: '/docs/development/api-wrapper/classes/color',
+              },
             ],
           },
           {
@@ -149,6 +135,10 @@ export const sidebar: SidebarItem[] = [
                 href: '/docs/development/api-wrapper/functions/color-extractor',
               },
               {
+                label: 'extractColorPreset',
+                href: '/docs/development/api-wrapper/functions/extract-color-preset',
+              },
+              {
                 label: 'getAudioData',
                 href: '/docs/development/api-wrapper/functions/get-audio-data',
               },
@@ -156,22 +146,18 @@ export const sidebar: SidebarItem[] = [
                 label: 'showNotification',
                 href: '/docs/development/api-wrapper/functions/show-notification',
               },
-              {
-                label: 'getFontStyle',
-                href: '/docs/development/api-wrapper/functions/get-font-style',
-              },
             ],
           },
           {
             label: 'Properties',
             items: [
               {
-                label: 'Config',
-                href: '/docs/development/api-wrapper/properties/config',
-              },
-              {
                 label: 'SVGIcons',
                 href: '/docs/development/api-wrapper/properties/svgicons',
+              },
+              {
+                label: 'Events',
+                href: '/docs/development/api-wrapper/properties/events',
               },
               {
                 label: 'Queue',
@@ -253,7 +239,7 @@ export const sidebar: SidebarItem[] = [
                     href: '/docs/development/api-wrapper/types/uri/type',
                   },
                   {
-                    label: 'Validation Functions',
+                    label: 'Validation functions',
                     href: '/docs/development/api-wrapper/types/uri/validation-functions',
                   },
                 ],
@@ -290,33 +276,12 @@ export const sidebar: SidebarItem[] = [
                     href: '/docs/development/api-wrapper/types/react-component/confirm-dialog-props',
                   },
                   {
-                    label: 'PanelSkeletonProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-skeleton-props',
-                  },
-                  {
-                    label: 'PanelContentProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-content-props',
-                  },
-                  {
-                    label: 'PanelHeaderProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-header-props',
-                  },
-                  {
                     label: 'ToggleProps',
                     href: '/docs/development/api-wrapper/types/react-component/toggle-props',
                   },
                   {
                     label: 'SliderProps',
                     href: '/docs/development/api-wrapper/types/react-component/slider-props',
-                  },
-                ],
-              },
-              {
-                label: 'Panel',
-                items: [
-                  {
-                    label: 'PanelProps',
-                    href: '/docs/development/api-wrapper/types/panel/panel-props',
                   },
                 ],
               },
@@ -367,8 +332,112 @@ export const sidebar: SidebarItem[] = [
       },
     ],
   },
-  { label: 'FAQ', href: '/docs/faq' },
   { label: 'Uninstallation', href: '/docs/uninstallation' },
+  { label: 'FAQ', href: '/docs/faq' },
+  {
+    label: 'Spicetify v2 (legacy)',
+    href: '/docs/legacy',
+    collapsed: true,
+    items: [
+      { label: 'Getting started', href: '/docs/legacy/getting-started' },
+      {
+        label: 'Customization',
+        href: '/docs/legacy/customization',
+        items: [
+          {
+            label: 'Marketplace',
+            href: '/docs/legacy/customization/marketplace',
+          },
+          { label: 'Themes', href: '/docs/legacy/customization/themes' },
+          {
+            label: 'Extensions',
+            href: '/docs/legacy/customization/extensions',
+          },
+          {
+            label: 'Custom apps',
+            href: '/docs/legacy/customization/custom-apps',
+          },
+          {
+            label: 'Configuration reference',
+            href: '/docs/legacy/customization/config-file',
+          },
+        ],
+      },
+      {
+        label: 'CLI reference',
+        href: '/docs/legacy/cli',
+        items: [{ label: 'Commands', href: '/docs/legacy/cli/commands' }],
+      },
+      {
+        label: 'Development',
+        items: [
+          { label: 'Themes', href: '/docs/legacy/development/themes' },
+          { label: 'Extensions', href: '/docs/legacy/development/extensions' },
+          {
+            label: 'Custom apps',
+            href: '/docs/legacy/development/custom-apps',
+          },
+          { label: 'JS modules', href: '/docs/legacy/development/js-modules' },
+          {
+            label: 'v2 API wrapper',
+            items: [
+              {
+                label: 'Panel',
+                href: '/docs/legacy/development/api-wrapper/methods/panel',
+              },
+              {
+                label: 'PanelProps',
+                href: '/docs/legacy/development/api-wrapper/types/panel/panel-props',
+              },
+              {
+                label: 'PanelSkeletonProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-skeleton-props',
+              },
+              {
+                label: 'PanelContentProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-content-props',
+              },
+              {
+                label: 'PanelHeaderProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-header-props',
+              },
+              {
+                label: 'getFontStyle',
+                href: '/docs/legacy/development/api-wrapper/functions/get-font-style',
+              },
+              {
+                label: 'Config',
+                href: '/docs/legacy/development/api-wrapper/properties/config',
+              },
+            ],
+          },
+          {
+            label: 'Spicetify Creator',
+            items: [
+              {
+                label: 'The basics',
+                href: '/docs/legacy/spicetify-creator/the-basics',
+              },
+              {
+                label: 'Create extensions',
+                href: '/docs/legacy/spicetify-creator/create-extensions',
+              },
+              {
+                label: 'Create custom apps',
+                href: '/docs/legacy/spicetify-creator/create-custom-apps',
+              },
+              {
+                label: 'Building and testing',
+                href: '/docs/legacy/spicetify-creator/building-and-testing',
+              },
+            ],
+          },
+        ],
+      },
+      { label: 'Uninstallation', href: '/docs/legacy/uninstallation' },
+      { label: 'FAQ', href: '/docs/legacy/faq' },
+    ],
+  },
 ];
 
 /** Flatten sidebar into ordered list of hrefs for prev/next navigation */

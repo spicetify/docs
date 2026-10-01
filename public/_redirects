@@ -6,3 +6,10 @@
 /docs/advanced-usage/extensions /docs/customization/extensions 301
 /docs/advanced-usage/custom-apps /docs/customization/custom-apps 301
 /docs/customization/marketplace.md /docs/customization/marketplace 301
+/docs/development/api-wrapper/methods/panel /docs/legacy/development/api-wrapper/methods/panel 301
+/docs/development/api-wrapper/types/panel/panel-props /docs/legacy/development/api-wrapper/types/panel/panel-props 301
+/docs/development/api-wrapper/types/react-component/panel-skeleton-props /docs/legacy/development/api-wrapper/types/react-component/panel-skeleton-props 301
+/docs/development/api-wrapper/types/react-component/panel-content-props /docs/legacy/development/api-wrapper/types/react-component/panel-content-props 301
+/docs/development/api-wrapper/types/react-component/panel-header-props /docs/legacy/development/api-wrapper/types/react-component/panel-header-props 301
+/docs/development/api-wrapper/functions/get-font-style /docs/legacy/development/api-wrapper/functions/get-font-style 301
+/docs/development/api-wrapper/properties/config /docs/legacy/development/api-wrapper/properties/config 301

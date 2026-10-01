@@ -1,32 +1,29 @@
 ---
 title: Variant
-description: Font variants used in the Spotify app.
+description: Spotify's font variant names.
 ---
 
-:::note
-
-This type is deducted from Spotify's internal usage. It may not be accurate and may change in the future.
-
-:::
+`Variant` names a type style in Spotify's Encore theme. `TextComponent` takes one in its `variant` prop.
 
 ```ts
-type Variant = "bass" |
-    "forte" |
-    "brio" |
-    "altoBrio" |
-    "alto" |
-    "canon" |
-    "celloCanon" |
-    "cello" |
-    "ballad" |
-    "balladBold" |
-    "viola" |
-    "violaBold" |
-    "mesto" |
-    "mestoBold" |
-    "metronome" |
-    "finale" |
-    "finaleBold" |
-    "minuet" |
-    "minuetBold";
+type Variant =
+  | 'bass'
+  | 'forte'
+  | 'brio'
+  | 'altoBrio'
+  | 'alto'
+  | 'canon'
+  | 'celloCanon'
+  | 'cello'
+  | 'ballad'
+  | 'balladBold'
+  | 'viola'
+  | 'violaBold'
+  | 'mesto'
+  | 'mestoBold'
+  | 'metronome'
+  | 'finale'
+  | 'finaleBold'
+  | 'minuet'
+  | 'minuetBold';
 ```
