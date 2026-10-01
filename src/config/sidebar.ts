@@ -6,22 +6,22 @@ export interface SidebarItem {
 }
 
 export const sidebar: SidebarItem[] = [
-  { label: 'Getting Started', href: '/docs/getting-started' },
-  { label: 'What Changes in v3', href: '/docs/whats-new' },
+  { label: 'Getting started', href: '/docs/getting-started' },
+  { label: 'What changes in v3', href: '/docs/whats-new' },
   {
-    label: 'Modules & the Store',
+    label: 'Modules and the Module Store',
     href: '/docs/modules',
     collapsed: false,
     items: [
       {
-        label: 'Configuration Reference',
+        label: 'Configuration reference',
         href: '/docs/modules/config-file',
       },
     ],
   },
-  { label: 'Spotify Updates', href: '/docs/spotify-updates' },
+  { label: 'Spotify updates', href: '/docs/spotify-updates' },
   {
-    label: 'CLI Reference',
+    label: 'CLI reference',
     href: '/docs/cli',
     items: [{ label: 'Commands', href: '/docs/cli/commands' }],
   },
@@ -30,22 +30,22 @@ export const sidebar: SidebarItem[] = [
     href: '/docs/development',
     items: [
       {
-        label: 'Building a Module',
+        label: 'Building a module',
         href: '/docs/development/building-a-module',
       },
       {
-        label: 'Porting a v2 Extension',
+        label: 'Porting a v2 extension',
         href: '/docs/development/migrating-v2-extensions',
       },
-      { label: 'Publishing a Module', href: '/docs/development/publishing' },
+      { label: 'Publishing a module', href: '/docs/development/publishing' },
       { label: 'Compiling', href: '/docs/development/compiling' },
       { label: 'React DevTools', href: '/docs/development/react-devtools' },
       {
-        label: 'Spotify CLI Flags',
+        label: 'Spotify CLI flags',
         href: '/docs/development/spotify-cli-flags',
       },
       {
-        label: 'API Wrapper',
+        label: 'API wrapper',
         href: '/docs/development/api-wrapper',
         items: [
           { label: 'Modules', href: '/docs/development/api-wrapper/modules' },
@@ -235,7 +235,7 @@ export const sidebar: SidebarItem[] = [
                     href: '/docs/development/api-wrapper/types/uri/type',
                   },
                   {
-                    label: 'Validation Functions',
+                    label: 'Validation functions',
                     href: '/docs/development/api-wrapper/types/uri/validation-functions',
                   },
                 ],
@@ -356,7 +356,7 @@ export const sidebar: SidebarItem[] = [
     href: '/docs/legacy',
     collapsed: true,
     items: [
-      { label: 'Getting Started', href: '/docs/legacy/getting-started' },
+      { label: 'Getting started', href: '/docs/legacy/getting-started' },
       {
         label: 'Customization',
         href: '/docs/legacy/customization',
@@ -371,17 +371,17 @@ export const sidebar: SidebarItem[] = [
             href: '/docs/legacy/customization/extensions',
           },
           {
-            label: 'Custom Apps',
+            label: 'Custom apps',
             href: '/docs/legacy/customization/custom-apps',
           },
           {
-            label: 'Configuration Reference',
+            label: 'Configuration reference',
             href: '/docs/legacy/customization/config-file',
           },
         ],
       },
       {
-        label: 'CLI Reference',
+        label: 'CLI reference',
         href: '/docs/legacy/cli',
         items: [{ label: 'Commands', href: '/docs/legacy/cli/commands' }],
       },
@@ -391,27 +391,27 @@ export const sidebar: SidebarItem[] = [
           { label: 'Themes', href: '/docs/legacy/development/themes' },
           { label: 'Extensions', href: '/docs/legacy/development/extensions' },
           {
-            label: 'Custom Apps',
+            label: 'Custom apps',
             href: '/docs/legacy/development/custom-apps',
           },
-          { label: 'JS Modules', href: '/docs/legacy/development/js-modules' },
+          { label: 'JS modules', href: '/docs/legacy/development/js-modules' },
           {
             label: 'Spicetify Creator',
             items: [
               {
-                label: 'The Basics',
+                label: 'The basics',
                 href: '/docs/legacy/spicetify-creator/the-basics',
               },
               {
-                label: 'Create Extensions',
+                label: 'Create extensions',
                 href: '/docs/legacy/spicetify-creator/create-extensions',
               },
               {
-                label: 'Create Custom Apps',
+                label: 'Create custom apps',
                 href: '/docs/legacy/spicetify-creator/create-custom-apps',
               },
               {
-                label: 'Building & Testing',
+                label: 'Building and testing',
                 href: '/docs/legacy/spicetify-creator/building-and-testing',
               },
             ],
