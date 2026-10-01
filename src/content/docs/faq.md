@@ -1,154 +1,90 @@
 ---
 title: FAQ
+description: Answers and fixes for common Spicetify v3 problems.
 sidebar_position: 7
 ---
 
-Answers for v3. If you are running the released v2 CLI, see the [v2 FAQ](/docs/legacy/faq).
+These answers are for Spicetify v3. For v2, see the [v2 FAQ](/docs/legacy/faq).
 
 ## Where is the config file?
 
-`config.toml`, in Spicetify's config folder. To see exactly where:
-
-```bash
-spicetify config        # prints the resolved paths
-spicetify config open   # opens the folder
-spicetify path
-```
-
-Every key is documented in the [configuration reference](/docs/modules/config-file). v3 has no `spicetify config <key> <value>`: edit the file.
+`spicetify config` prints the path to `config.toml`, and `spicetify config open` opens its folder. v3 has no `spicetify config <key> <value>`, so edit the file using the [configuration reference](/docs/modules/config-file).
 
 ## Spotify updated and my client looks stock again
 
-Usually it fixes itself. The daemon notices Spotify updating and re-applies afterwards, so give it a moment and restart Spotify.
+The daemon applies Spicetify again after a Spotify update, so wait a moment and restart Spotify. If it still looks stock, run `spicetify daemon status`, because a stopped or outdated daemon looks the same as a failed apply, then run `spicetify apply`. To keep Spotify on its current version, [block Spotify updates](/docs/spotify-updates#block-spotify-updates).
 
-If it does not:
+## Do I have to wait for a Spicetify release when Spotify updates?
 
-```bash
-spicetify daemon status   # running? which version?
-spicetify apply
-```
+Usually not. `apply` downloads the classmap for your Spotify version, so a new build works with the Spicetify you have once its classmap is published. Until then, Spicetify falls back to an [older patch's classmap](/docs/whats-new#spotify-updates-no-longer-leave-a-stock-client), and Manager says it's running on a fallback classmap.
 
-`daemon status` first is worth the extra second: a daemon that is not running, or one still on an old version after you updated Spicetify, looks exactly like an apply that did not work.
+## A published fix still looks broken after applying
 
-To stay on the build you have:
-
-```bash
-spicetify spotify-updates block
-```
-
-## A new Spotify version came out. Do I have to wait for a Spicetify release?
-
-Usually not. v3 fetches the mapping for your exact Spotify version at apply time rather than baking it into the binary, so a new client build normally works with the Spicetify you already have. When something genuinely is not supported yet, the client tells you which part is degraded instead of looking silently wrong.
-
-Manager's **available** badge only reports the newest version the project has
-observed. The **supported** badge comes from verified classmaps and decides
-whether Spicetify can offer an update. A missing exact map can fall back to an
-older patch in the same Spotify minor release, but it never falls back across a
-minor release.
-
-## A published theme fix still looks broken after applying
-
-A download cache can briefly serve older compatibility data after a fix is
-published. If your `spicetify apply --help` lists `--no-cache`, run:
+A download cache can serve old compatibility files for a short time after a fix is published. Run `apply` without caches:
 
 ```bash
 spicetify apply --no-cache
 ```
 
-This requires network access and downloads fresh compatibility files. If the
-refresh fails, Spotify stays as it was. On success, return to the restarted
-client and check the affected control. If the fix also includes a theme or
-module update, install that update from the Store before applying.
+If a download fails, `apply` stops before it touches Spotify. If the fix also needs a new theme or module version, update that in the Module Store too. [`apply`](/docs/cli/commands#apply) explains what `--no-cache` refreshes.
 
-See the [apply command reference](/docs/cli/commands#apply) for what the option
-refreshes and how it interacts with developer overrides. If your CLI does not
-have the option yet, wait a few minutes for the download cache to refresh, then
-run `spicetify apply` again.
+## Spotify didn't open again after `apply`
 
-## Can Manager update Spotify for me?
+Older v3 builds could wait on a Spotify process that wouldn't exit. Current builds kill Spotify if it hasn't closed after 15 seconds, and start a new one even if the old process survives. Update with `spicetify self-update`, then run `spicetify restart`.
 
-On macOS, Manager shows **Update & Apply** when the daemon, Spotify's updater
-API, and a verified target are all available. The daemon validates the exact
-offered version, reapplies Spicetify, and restores the update block.
+## Spicetify can't find Spotify
 
-Windows and Linux don't offer the one-step action yet. Follow the
-[manual Spotify update flow](/docs/spotify-updates#update-spotify-manually)
-instead.
+Run `spicetify config` to see the paths it found. If they're wrong, set [`spotify_data_dir` and `spotify_exec`](/docs/modules/config-file#spotify_data_dir-spotify_exec-offline_bnk_dir) in `config.toml`, or pass `--spotify-data-dir` and `--spotify-exec` for one command. Spicetify can't patch Spotify from the Microsoft Store, Snap, or Flatpak, so install it from Spotify's own installer.
 
-## Spicetify cannot find Spotify
+## "This client was patched by another tool"
 
-Check what it resolved:
-
-```bash
-spicetify config
-```
-
-If the Spotify path is wrong, set `spotify_data_dir` and `spotify_exec` in `config.toml`, or pass `--spotify-exec` for one command.
-
-If you installed Spotify from the Microsoft Store, Snap or Flatpak, that is the problem: those builds are sandboxed and Spicetify cannot patch them. Remove it and install Spotify from Spotify's own installer.
+`apply` and `restore` print this when Spotify's `xpui.spa` is gone and only an unpacked `xpui` folder is left, with no v2 backup to restore from. Spicetify v2 leaves a client in that state. Reinstall Spotify from its own installer, then run `spicetify apply` (see [upgrade from v2](/docs/whats-new#upgrade-from-v2)).
 
 ## I installed a module and nothing happened
 
-From the CLI, installing is only the first of three steps:
-
-```bash
-spicetify pkg install <id>
-spicetify pkg enable <id>@<version>
-spicetify apply
-```
-
-`pkg install` unpacks the module, `pkg enable` points the client at it, and `apply` stages it. From the store inside Spotify all three happen for you.
+A module installed with `spicetify pkg install` stays disabled until you run `spicetify pkg enable <id>@<version>` and `spicetify apply`. The Module Store does all three steps for you.
 
 ## A module broke my client
 
-Disable it from the store's Installed tab, or:
+Disable the module in the Installed section of the Module Store. If you can't reach the Module Store, delete the module from the terminal (`spicetify pkg list` shows its version):
 
 ```bash
-spicetify pkg delete <id>
+spicetify pkg delete <id>@<version>
 spicetify apply
 ```
 
-If the client is too broken to reach the store, `spicetify restore` returns stock Spotify, and re-applying afterwards brings back the modules you kept.
+If Spotify is too broken for that, `spicetify restore` returns stock Spotify. The next `apply` loads the modules you kept.
 
-## Can I go back to an older version of a module?
+## "Update all" left some updates behind
 
-Yes. Installed versions are kept side by side:
+A `stdlib` update needs a restart, so **Update all** installs it first and holds back the rest. After you apply the `stdlib` update and Spotify restarts, the Module Store finishes the held-back updates without another **Update all** (see [updates](/docs/modules#updates)).
 
-```bash
-spicetify pkg enable my-module@1.2.0
-spicetify apply
-```
+## Why did my theme turn off when I enabled another one?
 
-## Why did my theme stop when I enabled another one?
-
-Exactly one theme is active at a time. Enabling a theme unloads the previous one, so you never end up with two fighting over the same client chrome.
+Spicetify runs one theme at a time, so enabling a theme unloads the previous one.
 
 ## Do my v2 themes and extensions work?
 
-No. v3 modules are a different format, and v2's themes, extensions and custom apps are all modules now. Most popular ones already exist as modules in the store. See [what changes in v3](/docs/whats-new).
+No. v3 uses a different module format, so install the v3 versions from the Module Store.
 
-## Can I install something that is not in the store?
+## Can I install something that isn't in the Module Store?
 
-Yes, by naming its artifact:
-
-```bash
-spicetify pkg install my-module https://example.com/my-module@1.0.0.zip
-```
-
-Nothing verifies those bytes, because there is no registry entry with a checksum to hold them to, and the CLI says so. Prefer the store for anything you did not build yourself.
+Yes. Give `spicetify pkg install` the module's `id@version` and the artifact's URL or path, as [from the terminal](/docs/modules#from-the-terminal) shows. Nothing verifies those bytes, so install only artifacts you trust.
 
 ## I can't play some songs after downgrading Spotify
 
-Delete everything in Spotify's own cache folder and start Spotify again:
+Delete everything in Spotify's cache folder and start Spotify again:
 
-- **Windows**: `%LOCALAPPDATA%\Spotify`
-- **Linux**: `~/.config/spotify`
-- **macOS**: `~/Library/Application Support/Spotify`
+- Windows: `%LOCALAPPDATA%\Spotify`
+- Linux: `~/.config/spotify`
+- macOS: `~/Library/Application Support/Spotify`
 
 ## How do I report a bug?
 
-```bash
-spicetify support
-```
+Run `spicetify support` and paste its output into a [new issue](https://github.com/spicetify/cli/issues). It prints these details:
 
-Paste that output into the issue. It carries the versions and paths that most questions would otherwise be about.
+- The Spicetify and Spotify versions, and the classmap in use
+- Who patched the client: `v3`, `Spicetify v2 or another tool`, or `no`
+- v2's backup folder and its Spotify version, and whether v2 files are in the config folder
+- The CSS map in use, a file path or `embedded`
+- How many modules are staged, whether Spotify updates are blocked, and the main paths
