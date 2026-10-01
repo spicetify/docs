@@ -4,7 +4,7 @@ description: The props of the v2 ReactComponent.PanelHeader.
 ---
 
 :::warning
-Not available in Spicetify v3, which has no `Spicetify.Panel` and no panel components. In a v3 module, use stdlib's `registerPanel`, described on the [Panel](/docs/development/api-wrapper/methods/panel) page.
+Not available in Spicetify v3, which has no `Spicetify.Panel` and no panel components. In a v3 module, use stdlib's `registerPanel`, described on the [Panel](/docs/legacy/development/api-wrapper/methods/panel) page.
 :::
 
 `PanelHeaderProps` were the props of the v2 `PanelHeader`, which rendered a panel's title bar.

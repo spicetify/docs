@@ -18,7 +18,7 @@ namespace ReactHook {
 }
 ```
 
-v3 has no `usePanelState`. See [Panel](/docs/development/api-wrapper/methods/panel) for the v3 panel controller.
+v3 has no `usePanelState`. See [Panel](/docs/legacy/development/api-wrapper/methods/panel) for the v3 panel controller.
 
 ## `DragHandler`
 

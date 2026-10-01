@@ -50,4 +50,4 @@ namespace Panel {
 }
 ```
 
-`registerPanel` took [`PanelProps`](/docs/development/api-wrapper/types/panel/panel-props) and assigned the panel ID. `setPanel(0)` closed the panel. With `isCustom: true`, the children rendered as they were, built from the components with [`PanelSkeletonProps`](/docs/development/api-wrapper/types/react-component/panel-skeleton-props), [`PanelContentProps`](/docs/development/api-wrapper/types/react-component/panel-content-props) and [`PanelHeaderProps`](/docs/development/api-wrapper/types/react-component/panel-header-props).
+`registerPanel` took [`PanelProps`](/docs/legacy/development/api-wrapper/types/panel/panel-props) and assigned the panel ID. `setPanel(0)` closed the panel. With `isCustom: true`, the children rendered as they were, built from the components with [`PanelSkeletonProps`](/docs/legacy/development/api-wrapper/types/react-component/panel-skeleton-props), [`PanelContentProps`](/docs/legacy/development/api-wrapper/types/react-component/panel-content-props) and [`PanelHeaderProps`](/docs/legacy/development/api-wrapper/types/react-component/panel-header-props).

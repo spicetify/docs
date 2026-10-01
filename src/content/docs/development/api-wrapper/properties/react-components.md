@@ -42,7 +42,7 @@ namespace ReactComponent {
 }
 ```
 
-v3 has no `PanelSkeleton`, `PanelContent` or `PanelHeader`. See [Panel](/docs/development/api-wrapper/methods/panel).
+v3 has no `PanelSkeleton`, `PanelContent` or `PanelHeader`. See [Panel](/docs/legacy/development/api-wrapper/methods/panel).
 
 ## Menus
 

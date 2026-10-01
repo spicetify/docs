@@ -37,7 +37,7 @@ These `client` members map to the global:
 | `modules` | [`Spicetify.Modules`](/docs/development/api-wrapper/modules#spicetifymodules) |
 | `daemon` | [`Spicetify.Daemon`](#spicetifydaemon) |
 | `corsProxy` | [`Spicetify.CORSProxy`](#spicetifycorsproxy) |
-| `config` | [`Spicetify.Config`](/docs/development/api-wrapper/properties/config), which v3 does not set |
+| `config` | [`Spicetify.Config`](/docs/legacy/development/api-wrapper/properties/config), which v3 does not set |
 | `spicetifyVersion` | The CLI version from the loader manifest |
 
 `client.popupModal` is deprecated. Import `displayModal` and `hideModal` from `/modules/stdlib/mod.ts` instead.

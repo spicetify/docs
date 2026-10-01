@@ -85,10 +85,6 @@ export const sidebar: SidebarItem[] = [
                 href: '/docs/development/api-wrapper/methods/popup-modal',
               },
               {
-                label: 'Panel',
-                href: '/docs/development/api-wrapper/methods/panel',
-              },
-              {
                 label: 'AppTitle',
                 href: '/docs/development/api-wrapper/methods/app-title',
               },
@@ -138,19 +134,11 @@ export const sidebar: SidebarItem[] = [
                 label: 'showNotification',
                 href: '/docs/development/api-wrapper/functions/show-notification',
               },
-              {
-                label: 'getFontStyle',
-                href: '/docs/development/api-wrapper/functions/get-font-style',
-              },
             ],
           },
           {
             label: 'Properties',
             items: [
-              {
-                label: 'Config',
-                href: '/docs/development/api-wrapper/properties/config',
-              },
               {
                 label: 'SVGIcons',
                 href: '/docs/development/api-wrapper/properties/svgicons',
@@ -272,33 +260,12 @@ export const sidebar: SidebarItem[] = [
                     href: '/docs/development/api-wrapper/types/react-component/confirm-dialog-props',
                   },
                   {
-                    label: 'PanelSkeletonProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-skeleton-props',
-                  },
-                  {
-                    label: 'PanelContentProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-content-props',
-                  },
-                  {
-                    label: 'PanelHeaderProps',
-                    href: '/docs/development/api-wrapper/types/react-component/panel-header-props',
-                  },
-                  {
                     label: 'ToggleProps',
                     href: '/docs/development/api-wrapper/types/react-component/toggle-props',
                   },
                   {
                     label: 'SliderProps',
                     href: '/docs/development/api-wrapper/types/react-component/slider-props',
-                  },
-                ],
-              },
-              {
-                label: 'Panel',
-                items: [
-                  {
-                    label: 'PanelProps',
-                    href: '/docs/development/api-wrapper/types/panel/panel-props',
                   },
                 ],
               },
@@ -395,6 +362,39 @@ export const sidebar: SidebarItem[] = [
             href: '/docs/legacy/development/custom-apps',
           },
           { label: 'JS modules', href: '/docs/legacy/development/js-modules' },
+          {
+            label: 'v2 API wrapper',
+            items: [
+              {
+                label: 'Panel',
+                href: '/docs/legacy/development/api-wrapper/methods/panel',
+              },
+              {
+                label: 'PanelProps',
+                href: '/docs/legacy/development/api-wrapper/types/panel/panel-props',
+              },
+              {
+                label: 'PanelSkeletonProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-skeleton-props',
+              },
+              {
+                label: 'PanelContentProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-content-props',
+              },
+              {
+                label: 'PanelHeaderProps',
+                href: '/docs/legacy/development/api-wrapper/types/react-component/panel-header-props',
+              },
+              {
+                label: 'getFontStyle',
+                href: '/docs/legacy/development/api-wrapper/functions/get-font-style',
+              },
+              {
+                label: 'Config',
+                href: '/docs/legacy/development/api-wrapper/properties/config',
+              },
+            ],
+          },
           {
             label: 'Spicetify Creator',
             items: [
