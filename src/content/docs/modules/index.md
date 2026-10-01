@@ -1,83 +1,82 @@
 ---
-title: Modules and the store
-description: Find, install and manage modules, the one kind of add-on in Spicetify v3.
+title: Modules and the Module Store
+description: Find, install, update, and manage modules, the one kind of add-on in Spicetify v3.
 sidebar_position: 1
 category_index: true
 ---
 
-Everything you add to Spotify in v3 is a **module**. A theme, a small tweak like skipping explicit tracks, a whole extra page in the sidebar: same format, same install path, same lifecycle. Modules are tagged so you can still tell them apart in the store, but there is nothing different about installing one over another.
+Everything you add to Spotify in v3 is a module. Each module has a kind: extension, theme, snippet, or app. All kinds install and update the same way.
 
-## The store
+## The Module Store
 
-The store ships with Spicetify. Open Spotify and click **Module Store** in the top bar.
+The Module Store ships with Spicetify. Select **Module Store** in Spotify's top bar, where you can:
 
-- **Browse** by tab (extensions, themes, snippets, apps), search, or sort by installs.
-- **Install** with one click. Most modules load immediately; a module that has to run before the client boots says it needs a restart.
-- **Manage** what you have from the Installed tab: enable, disable, update or remove.
-- **Details** shows the description, authors, the source repository, and the license the code is published under.
+- Filter by kind, search, and sort by **Most installed**, **Name A-Z**, **Name Z-A**, or **Recently updated**.
+- Install a module from its card. Most modules load at once, and the rest tell you to restart Spotify.
+- Open a module's details for its README, authors, source repository, and license.
+- **Enable**, **Disable**, or **Remove** modules in the **Installed** section. A module you installed with the CLI has a `cli` badge and an **Uninstall** button, which needs the daemon and restarts Spotify. The `stdlib`, `store`, and `manager` modules have a `core` badge and can't be disabled or removed.
 
-Every module in the store comes from a single registry, and every entry in it was validated before it merged: the artifact is downloaded and re-hashed, the card is checked against the module's own metadata, and a published version can never be repointed at different bytes afterwards. The store verifies the checksum again when it installs, and refuses the install on a mismatch.
+Every module comes from one registry, whose checks re-hash each artifact before its entry merges and keep published versions immutable (see [what CI checks](/docs/development/publishing#what-ci-checks)). The Module Store checks the checksum again at install and refuses a mismatch. It installs the dependencies a module declares first, and reports a set of versions it can't satisfy.
 
 ### Updates
 
-The store shows what has a newer version, and **Update all** installs them in dependency order. Nothing updates behind your back.
+When Spotify starts, the Module Store shows a "N module updates available in the Module Store" toast, once for each new set of updates. It installs nothing until you select **Update all**.
 
-Modules declare compatible dependency ranges, so installing or updating one first resolves the exact versions it needs. Dependencies are installed before their dependants, and an incompatible set is reported instead of relying on whichever module happened to load first. When a dependency only takes effect on the next boot (the standard library works this way), the modules that need it install fine and say they will activate after you restart Spotify; that message is the install working, not failing.
+Most updates take effect at once. A `stdlib` update needs a restart because other modules share its running code, so the Module Store installs it alone and holds the other updates back. To finish it:
+
+1. Select **Update all**.
+2. If the Module Store shows **Apply stdlib update**, select it, then select **Apply and restart**. Playback stops while Spicetify rebuilds the client.
+3. Wait for Spotify to start again. The Module Store then installs the held-back updates on its own.
+
+Without the daemon, the Module Store installs `stdlib` inside Spotify and asks you to restart, and the held-back updates install the same way. `spicetify apply` also updates `stdlib`, `store`, and `manager`, and `spicetify pkg update` updates the rest from the terminal.
+
+### Snippets
+
+A snippet is a CSS-only module. Select **New snippet** to write one, and **Edit** in the **Installed** section to change it. The registry never updates your own snippets.
 
 ### Backups
 
-Export writes a small file listing your preferences and which modules you have installed. Import restores the preferences and reinstalls those modules from the registry, verified the same way as any other install. The file never contains module code, so importing one cannot install something the registry does not carry.
+**Export** downloads `spicetify-store-backup.json`, which holds your preferences (active theme, color schemes, disabled modules, filter, and sort), the registry modules you installed from the Module Store, and your snippets' CSS. It leaves out CLI installs and `stdlib`, `store`, and `manager`. **Import** restores the preferences and snippets and reinstalls the modules from the registry, verified like any install, so a backup file can't install code the registry doesn't carry.
+
+**Reset** removes your Module Store installs, snippets, and preferences, and takes effect after a Spotify restart.
+
+## Spicetify Settings
+
+Manager is the **Spicetify Settings** page in Spotify's profile menu, where modules' settings appear. Its **Updates** section has the **Install Spicetify updates automatically** toggle, which tells you when your install is outside the official installer's folder and doesn't update itself. [Keep Spicetify up to date](/docs/getting-started#keep-spicetify-up-to-date) and [Spotify updates](/docs/spotify-updates) cover the rest of the section.
 
 ## From the terminal
 
-The same catalog, without leaving the shell:
+The CLI installs the same modules. A module stays disabled until you enable a version, and Spotify loads it on the next `apply`:
 
 ```bash
-spicetify pkg install trashbin           # unpack it, printing its version
-spicetify pkg enable trashbin@<version>  # point the client at that version
-spicetify apply                          # stage it into the client
+spicetify pkg install trashbin           # download it and print its version
+spicetify pkg enable trashbin@<version>  # enable that version
+spicetify apply                          # stage it into Spotify
 ```
 
-`pkg install` on its own is inert. It unpacks the module and marks it installed, but nothing points at it until `pkg enable`, and nothing reaches the client until `apply`.
+Spicetify keeps installed versions side by side, so to roll back, enable an older version, as in `spicetify pkg enable my-module@1.2.0`, and apply.
+
+To install a module that isn't in the registry, give an `id@version` and the artifact's URL or local path. No checksum or review covers it, so the CLI warns you and prints its SHA-256 digest:
 
 ```bash
-spicetify pkg list                     # what is installed, with versions
-spicetify pkg delete trashbin          # remove it
+spicetify pkg install my-module@1.0.0 https://example.com/my-module@1.0.0.zip
 ```
 
-To install something that is not in the store, name the artifact directly:
-
-```bash
-spicetify pkg install my-module https://example.com/my-module@1.0.0.zip
-```
-
-That bypasses the registry, so there is no checksum to hold it to and no review behind it. The CLI says so, and prints the digest it got.
+[Commands](/docs/cli/commands#modules) documents every `pkg` command.
 
 ## Themes
 
-Themes are modules tagged `theme`, with one rule of their own: **exactly one theme is active at a time**. Enabling a theme unloads the previous one, so there is never an overlap and never a half-applied look.
-
-Many themes ship several colour **schemes**. Switch scheme from the theme's entry in the store, or from the Spicetify section of Spotify's own settings page. Scheme changes apply immediately, with no re-apply and no restart.
-
-If a theme leaves the client looking wrong, disable it from the Installed tab and the client returns to its stock appearance straight away.
-
-## Rolling back
-
-Installed versions are kept side by side, so going back to a version that worked is one command:
-
-```bash
-spicetify pkg enable my-module@1.2.0
-spicetify apply
-```
+Only one theme is active at a time, and enabling a theme unloads the previous one. The active theme appears in a bar at the top of the Module Store, where a color scheme you pick applies at once. If a theme makes the client look wrong, select **Disable** in that bar to get the stock look back.
 
 ## When a module is withdrawn
 
-The registry can revoke a module (a security problem, a takedown). A revoked module stops being offered, and the store disables it in your client and tells you why rather than leaving it running quietly.
+The registry can revoke a module, for example after a security problem or a takedown. The Module Store stops offering it, disables it in your client, and shows the reason on its card.
 
 ## Where modules live on disk
 
-```bash
-spicetify path
-```
+These folders are in the config folder that `spicetify path` prints:
 
-Under the config folder, `store/<id>/<version>/` holds the unpacked releases and `modules/<id>` points at the one that is enabled. `config.toml` sits beside them. If `modules/<id>` is a real directory rather than a link, it is a local build you staged yourself, and `apply` uses that instead of anything the store installed.
+- `store/<id>/<version>/` holds each installed version.
+- `modules/<id>` links to the enabled version.
+
+A real folder at `modules/<id>` is a local build you staged yourself. `apply` uses it, and no update replaces it.
