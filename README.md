@@ -1,7 +1,12 @@
-# Spicetify Docs
+# Spicetify docs
 
-This repository holds the documentation for Spicetify, which can be found [here](https://spicetify.app).
+This repository is the source of [spicetify.app](https://spicetify.app), built with Astro. Pages are Markdown files in `src/content/docs`, and the sidebar is in `src/config/sidebar.ts`.
 
-## Contributing
+To run the site locally, install the dependencies with pnpm and start the dev server:
 
-If you feel like you can contribute, please do so by opening an issue or pull request. We are always open to expand our documentation and add new features.
+```bash
+pnpm install
+pnpm dev
+```
+
+To fix or add a page, open an issue or a pull request.
