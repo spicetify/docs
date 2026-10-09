@@ -290,7 +290,7 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 ```
 
 :::note
-The installer adds Spicetify to your shell profile. Open a new terminal so the updated `PATH` takes effect, or run `source ~/.zshrc` to use Spicetify in your current zsh session.
+The installer updates your shell profile when it can. Open a new terminal to apply the updated `PATH`. In your current zsh session, run `source "${ZDOTDIR:-$HOME}/.zshrc"` instead. If the installer prints manual `PATH` instructions, follow those.
 :::
 
 </TabItem>
