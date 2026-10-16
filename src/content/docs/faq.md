@@ -11,13 +11,13 @@ The config file is generally located at:
 | **Windows**         | `%appdata%\spicetify\config-xpui.ini`      |
 | **Linux**/**macOS** | `~/.config/spicetify/config-xpui.ini`      |
 
-However, you can know specifically where it is with:
+Alternatively, you can print its exact location with:
 
 ```
 spicetify -c
 ```
 
-Or, you can open the folder where it is located by entering the following in your terminal:
+Or, you can open its folder by entering this in your terminal:
 
 ```
 spicetify config-dir
@@ -33,9 +33,9 @@ spicetify --help config
 
 ### Windows
 
-1. There is a great chance that you are using Microsoft Store Spotify. Please double check that in Spotify About page.
-2. If you are actually using Microsoft Store Spotify, remove it completely. Go to Spotify website to download the normal version installer.
-3. If you are not using the Microsoft Store Spotify, and are using the one from the Spotify website, check to see if you have a "prefs" file in `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify`.
+1. You are likely running the Microsoft Store version of Spotify. Please verify this in Spotify's About page.
+2. If you are actually using Microsoft Store Spotify, uninstall it completely. Go to the Spotify website to download the normal version installer.
+3. If you are not using the Microsoft Store Spotify, and are using the one from the Spotify website, check to see if you have a "prefs" file in `%APPDATA%\Spotify`.
 4. If so, open your `config-xpui.ini` and set `prefs_path` to the absolute path of that prefs file. (e.g. `C:\Users\YOUR_USERNAME\AppData\Roaming\Spotify\prefs`) Then try running `spicetify` again.
 
 ### Linux
@@ -52,7 +52,7 @@ It may be the case that Spicetify does not yet support a new Spotify update. In 
 
 ## I can't play some songs after downgrading Spotify
 
-Delete all files in the following folder and launch spotify again.
+Delete all files in the following folder and launch Spotify again.
 
 - **Windows**: `%LOCALAPPDATA%\Spotify`
 - **Linux**: `~/.config/spotify`
@@ -62,8 +62,9 @@ Delete all files in the following folder and launch spotify again.
 
 This problem happens in the extension [Popup Lyrics](https://github.com/spicetify/cli/wiki/Extensions#pop-up-lyrics) and custom app [Lyrics Plus](https://github.com/spicetify/cli/wiki/Custom-Apps#lyrics-plus) mostly because your Musixmatch token has been flagged for doing too many requests. This can be fixed by just waiting without skipping songs too much, however, if it is still a problem for you, all you need to do is to install the Musixmatch official app, which is a web-based app like Spotify.
 
-1. **Linux:** find an archive online
-   **Windows:** go to [store.rg-adguard.net](https://store.rg-adguard.net/) and then select ProductID and enter `9wzdncrfj235` and click done. Download the .appxbundle and install.
+1. Install the official Musixmatch app:
+   - **Windows:** Go to [store.rg-adguard.net](https://store.rg-adguard.net/), select **ProductID**, enter `9wzdncrfj235`, and download the `.appxbundle` installer.
+   - **Linux:** Download a packaged archive from an online repository.
 
 2. **You don't need to log in!**
 
