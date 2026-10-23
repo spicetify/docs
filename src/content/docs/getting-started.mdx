@@ -59,6 +59,8 @@ C:\Users\<username>\scoop\apps\spotify\current
 spicetify config spotify_path "C:\Users\<username>\scoop\apps\spotify\current"
 ```
 
+Make sure to replace `"C:\Users\<username>\scoop\apps\spotify\current"` with the actual output from the first command!
+
 </details>
 
 ### Linux
@@ -264,11 +266,13 @@ Snap apps cannot be modified. You'll need to switch to the apt version:
 
    ```bash
    # Check which exists:
-   ls ~/.config/spotify/prefs
-   ls ~/.var/app/com.spotify.Client/config/spotify/prefs
+   ls "$HOME/.config/spotify/prefs"
+   ls "$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
 
-   # Set whichever exists (use the full absolute path):
-   spicetify config prefs_path /home/username/.var/app/com.spotify.Client/config/spotify/prefs
+   # Set whichever exists:
+   spicetify config prefs_path "$HOME/.config/spotify/prefs"
+   # OR
+   spicetify config prefs_path "$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
    ```
 
 4. Grant permissions:
@@ -404,3 +408,4 @@ sh /tmp/install.sh 1.2.1
 Legacy resources:
 - [Spicetify v1 source (legacy branch)](https://github.com/spicetify/cli/tree/legacy)
 - [Legacy themes](https://github.com/spicetify/spicetify-themes/tree/legacy)
+
